@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "loppehenting-automatisering",
+  "private_key_id": "8ed88664cd64071e56caf43322d35223a28e23a6",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCj/JI9sE9LI4Ci\nzysgp4H+66Ly6ulcUSxuJvmIjcChqBo274HD1cO3kJpJ8alnYTMtUmB6ituoELaH\nCK+7GnN41oNruroc2dz0ZgLFtmHGg5OnUWf9rmNbTszQeM7bqAzm7ZBkl/91mMIU\n8CN9vkIQpXfl7J4pe3wFulfXIY5LghXjU+uDFyYMrffr/cbaLJ6pbNQrbcpyQ6iE\n1eupMW1PLIbZyofBA847iT2GQgqpu8KsqXWqCXUG+muQ9xpbfz0hMDkH0Qqc+Jzn\nxwacWQtup/WEU9HJiTOWeOd8wcGSO++qITb6zSXagzEFB7Ra397ITDcfU+HdUUNF\n3EGCYmCPAgMBAAECggEAESA53vVrIowU+BaDXjKq5zDmtfswid1JsutLw3ttCF+i\nSpBy0JKiO6kqDoTizegfIcw+RS3781kOJvC89uEJTtpgTpTpW5qpHQu2SGhcB7u1\nZOj3NPghv5HC3sFvIQ4zjWkhW6VqyXY9oVV+72KPoGYXgndWq+W4ixnt6IrEQ0BU\nr1n9qzvQ0ogJedhfeVci1CVRkk3UVx91cfRHXmbck70t/5szJZHh4R3htR4oeyq5\nL90wy+0uYWtVvNJg+7lGaX3ic0wQG9jX5SkjJi3gvnoB0Mwjg6b9ck2Q7h07NBR/\nsNx2yKTZGuEP6Ia8BC47oNcAbxD2oQHhFnbPuCF1sQKBgQDhNcKmK/4NjHjadFKz\nAZFLDzKvoTTJ/uEFgwanpfaeoJmYtzJA04nrz+AzXYQd73pDZ1oqQPel9IVyVdDv\neolDMwy/GLqZM4ctguXUvZQXl1HsVJokmZRfwRaW0NTythdCHpEUH0Ij+jfqtryE\nn8th/gL8PuFxoK6SP+D/BnLFeQKBgQC6aAWoCfRZ5/G9O8EFcbM+7tCwUT4aFg8x\noo3SqvyoDzINovrrJhdMOMalCIryWc9t2AQTs0DgJJVL6UTlMVfXyjIKcM7GmEYR\nzHKrUavFQsrVzT6O9fzKaNCFbAv6XFXPMdCCBQ/V40FO8usm8bd/bjz2xoMByUo6\nt3alYV98RwKBgF1RfXqFuBu9HUbH9IygFahYf9QupEUfC/bQuC03o91PBtY08unR\nvdCsrmYaVehhlvPfG4luqi9mBvW9gXn5+G6T9LAqeweIRnchSkLA22B7H0MiO0z3\nJngW9lk/5z07HqATMmJ4IVvvDsR/O9ZosEnGi04icCA5SJzpQz3pWh1hAoGAUmHO\nvilIGMPtjphuAh3x/gpFqOb+70B4jpMs4sI2z3+Hu4cgJfS7rzAYeq9/2QPgLMef\nZaV/MpB4ewgpLrHUBMaTvxGEETkTHqKgux5pL9EJG9yNnVkR09Lm9VB/KrLMKbn2\nUMAz829wWZf6XUfOtT7fKqEpHQz9BV43zXdvX9kCgYEA1VRtkgXW+XV0lZwV4jIC\nYvPqxEpsa8GkRRC+8RYGtZmwuJ2ZbeemBICEevsAoUCY5GPApJoMfq1nNLUe/a3S\ndx9lMF33OJRKYgmAKgubq4Y3IJVQmmFxnhH8c0s8f+iZO3lU9BVjN/46sfdZaqux\nwc8fCH6oRzgNXRlvFT/wH0g=\n-----END PRIVATE KEY-----\n",
+  "client_email": "loppe-admin@loppehenting-automatisering.iam.gserviceaccount.com",
+  "client_id": "109547422237027966449",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/loppe-admin%40loppehenting-automatisering.iam.gserviceaccount.com"
+}

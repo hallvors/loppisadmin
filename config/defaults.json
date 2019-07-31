@@ -1,0 +1,10 @@
+{
+	"sms": {
+		"token": "a2kcMLIzazwnJsU4rli2v8ScvmwJVeamIrTOgmQT"
+	},
+	"cookieSecret": "MObgBFNVgE2RWYvFPh7uxEH3FOa9xsqdW",
+	"google": {
+		"authfile": "Loppehenting-automatisering-8ed88664cd64.json",
+		"spreadsheet": "1Ay6hNdUnZzog74aV9zwHJjoMl5fdxM2gHPbMfxx24mg"
+	}
+}
