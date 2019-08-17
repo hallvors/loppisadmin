@@ -59,7 +59,7 @@ function update() {
 </style>
 <form  on:submit|preventDefault={e => update()}>
 		<p>
-			<span>{descs.number}:</span><span><input bind:value={number}></span>
+			<span>{descs.number}:</span><span><input bind:value={number} inputmode="tel"></span>
 		</p>
 		<p>
 			<span>{descs.address}:</span><span><textarea bind:value={address}></textarea></span>
