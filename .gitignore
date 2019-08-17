@@ -1,3 +1,4 @@
 node_modules/*
 config/overrides.json
 config/gsecrets.json
+pw.txt

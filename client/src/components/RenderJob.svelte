@@ -108,8 +108,8 @@ button img {vertical-align: middle;}
 .loading {position: relative;}
 .loading div {
 	position: absolute;
-	right: 45%;
-	top: 0;
+	right: 16px;
+	top: 8px;
 	z-index: 10;
 }
 </style>
@@ -119,7 +119,7 @@ button img {vertical-align: middle;}
 	data-id={itemData.id}
 >
 <td class:expanded class:loading on:click="{e => expanded = !expanded}" >
-{#if itemData.loading}<div><LoadingIcon w=32 h=32 /></div>{/if}
+{#if itemData.loading}<div><LoadingIcon w=24 h=24 /></div>{/if}
 {itemData.adresseforhenting}
 <br>
 <div class="smallscreen">
@@ -143,7 +143,7 @@ button img {vertical-align: middle;}
 }}>
 <input type="checkbox" bind:checked={itemSelected} id="select{itemData.id}" on:change="{e => dispatch('select', {id: itemData.id, selected: e.target.checked})}">
 <label for="select{itemData.id}">✓</label>
-<select bind:value={itemData.status} on:change|stopPropagation="{e => update({status: e.target.value})}">
+<select bind:value={itemData.status} on:change|stopPropagation="{e => update({detail: {status: e.target.value}})}">
 	{#each states as theState}
 		<option>{theState}</option>
 	{/each}
@@ -153,7 +153,7 @@ button img {vertical-align: middle;}
 {/if}
 </td>
 </tr>
-{#if expanded}<tr><td></td><td colspan="3" class="extrainfo">
+{#if expanded}<tr data-id={itemData.id}><td></td><td colspan="3" class="extrainfo">
 	<p>
 		<RenderPerson name={itemData.navnpåkontaktperson} number={itemData.telefonnummer} />
 	</p>
