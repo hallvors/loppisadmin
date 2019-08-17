@@ -4,6 +4,7 @@ var app = (function () {
     'use strict';
 
     function noop() { }
+    const identity = x => x;
     function assign(tar, src) {
         // @ts-ignore
         for (const k in src)
@@ -60,6 +61,41 @@ var app = (function () {
         return definition[1]
             ? assign({}, assign(ctx.$$scope.changed || {}, definition[1](fn ? fn(changed) : {})))
             : ctx.$$scope.changed || {};
+    }
+
+    const is_client = typeof window !== 'undefined';
+    let now = is_client
+        ? () => window.performance.now()
+        : () => Date.now();
+    let raf = is_client ? cb => requestAnimationFrame(cb) : noop;
+
+    const tasks = new Set();
+    let running = false;
+    function run_tasks() {
+        tasks.forEach(task => {
+            if (!task[0](now())) {
+                tasks.delete(task);
+                task[1]();
+            }
+        });
+        running = tasks.size > 0;
+        if (running)
+            raf(run_tasks);
+    }
+    function loop(fn) {
+        let task;
+        if (!running) {
+            running = true;
+            raf(run_tasks);
+        }
+        return {
+            promise: new Promise(fulfil => {
+                tasks.add(task = [fn, fulfil]);
+            }),
+            abort() {
+                tasks.delete(task);
+            }
+        };
     }
 
     function append(target, node) {
@@ -155,6 +191,62 @@ var app = (function () {
         return e;
     }
 
+    let stylesheet;
+    let active = 0;
+    let current_rules = {};
+    // https://github.com/darkskyapp/string-hash/blob/master/index.js
+    function hash(str) {
+        let hash = 5381;
+        let i = str.length;
+        while (i--)
+            hash = ((hash << 5) - hash) ^ str.charCodeAt(i);
+        return hash >>> 0;
+    }
+    function create_rule(node, a, b, duration, delay, ease, fn, uid = 0) {
+        const step = 16.666 / duration;
+        let keyframes = '{\n';
+        for (let p = 0; p <= 1; p += step) {
+            const t = a + (b - a) * ease(p);
+            keyframes += p * 100 + `%{${fn(t, 1 - t)}}\n`;
+        }
+        const rule = keyframes + `100% {${fn(b, 1 - b)}}\n}`;
+        const name = `__svelte_${hash(rule)}_${uid}`;
+        if (!current_rules[name]) {
+            if (!stylesheet) {
+                const style = element('style');
+                document.head.appendChild(style);
+                stylesheet = style.sheet;
+            }
+            current_rules[name] = true;
+            stylesheet.insertRule(`@keyframes ${name} ${rule}`, stylesheet.cssRules.length);
+        }
+        const animation = node.style.animation || '';
+        node.style.animation = `${animation ? `${animation}, ` : ``}${name} ${duration}ms linear ${delay}ms 1 both`;
+        active += 1;
+        return name;
+    }
+    function delete_rule(node, name) {
+        node.style.animation = (node.style.animation || '')
+            .split(', ')
+            .filter(name
+            ? anim => anim.indexOf(name) < 0 // remove specific animation
+            : anim => anim.indexOf('__svelte') === -1 // remove all Svelte animations
+        )
+            .join(', ');
+        if (name && !--active)
+            clear_rules();
+    }
+    function clear_rules() {
+        raf(() => {
+            if (active)
+                return;
+            let i = stylesheet.cssRules.length;
+            while (i--)
+                stylesheet.deleteRule(i);
+            current_rules = {};
+        });
+    }
+
     let current_component;
     function set_current_component(component) {
         current_component = component;
@@ -239,6 +331,20 @@ var app = (function () {
             $$.after_update.forEach(add_render_callback);
         }
     }
+
+    let promise;
+    function wait() {
+        if (!promise) {
+            promise = Promise.resolve();
+            promise.then(() => {
+                promise = null;
+            });
+        }
+        return promise;
+    }
+    function dispatch(node, direction, kind) {
+        node.dispatchEvent(custom_event(`${direction ? 'intro' : 'outro'}${kind}`));
+    }
     const outroing = new Set();
     let outros;
     function group_outros() {
@@ -275,6 +381,112 @@ var app = (function () {
             });
             block.o(local);
         }
+    }
+    const null_transition = { duration: 0 };
+    function create_bidirectional_transition(node, fn, params, intro) {
+        let config = fn(node, params);
+        let t = intro ? 0 : 1;
+        let running_program = null;
+        let pending_program = null;
+        let animation_name = null;
+        function clear_animation() {
+            if (animation_name)
+                delete_rule(node, animation_name);
+        }
+        function init(program, duration) {
+            const d = program.b - t;
+            duration *= Math.abs(d);
+            return {
+                a: t,
+                b: program.b,
+                d,
+                duration,
+                start: program.start,
+                end: program.start + duration,
+                group: program.group
+            };
+        }
+        function go(b) {
+            const { delay = 0, duration = 300, easing = identity, tick = noop, css } = config || null_transition;
+            const program = {
+                start: now() + delay,
+                b
+            };
+            if (!b) {
+                // @ts-ignore todo: improve typings
+                program.group = outros;
+                outros.r += 1;
+            }
+            if (running_program) {
+                pending_program = program;
+            }
+            else {
+                // if this is an intro, and there's a delay, we need to do
+                // an initial tick and/or apply CSS animation immediately
+                if (css) {
+                    clear_animation();
+                    animation_name = create_rule(node, t, b, duration, delay, easing, css);
+                }
+                if (b)
+                    tick(0, 1);
+                running_program = init(program, duration);
+                add_render_callback(() => dispatch(node, b, 'start'));
+                loop(now => {
+                    if (pending_program && now > pending_program.start) {
+                        running_program = init(pending_program, duration);
+                        pending_program = null;
+                        dispatch(node, running_program.b, 'start');
+                        if (css) {
+                            clear_animation();
+                            animation_name = create_rule(node, t, running_program.b, running_program.duration, 0, easing, config.css);
+                        }
+                    }
+                    if (running_program) {
+                        if (now >= running_program.end) {
+                            tick(t = running_program.b, 1 - t);
+                            dispatch(node, running_program.b, 'end');
+                            if (!pending_program) {
+                                // we're done
+                                if (running_program.b) {
+                                    // intro — we can tidy up immediately
+                                    clear_animation();
+                                }
+                                else {
+                                    // outro — needs to be coordinated
+                                    if (!--running_program.group.r)
+                                        run_all(running_program.group.c);
+                                }
+                            }
+                            running_program = null;
+                        }
+                        else if (now >= running_program.start) {
+                            const p = now - running_program.start;
+                            t = running_program.a + running_program.d * easing(p / running_program.duration);
+                            tick(t, 1 - t);
+                        }
+                    }
+                    return !!(running_program || pending_program);
+                });
+            }
+        }
+        return {
+            run(b) {
+                if (is_function(config)) {
+                    wait().then(() => {
+                        // @ts-ignore
+                        config = config();
+                        go(b);
+                    });
+                }
+                else {
+                    go(b);
+                }
+            },
+            end() {
+                clear_animation();
+                running_program = pending_program = null;
+            }
+        };
     }
 
     function handle_promise(promise, info) {
@@ -485,6 +697,26 @@ var app = (function () {
                 console.warn(`Component was already destroyed`); // eslint-disable-line no-console
             };
         }
+    }
+
+    function cubicOut(t) {
+        const f = t - 1.0;
+        return f * f * f + 1.0;
+    }
+
+    function fly(node, { delay = 0, duration = 400, easing = cubicOut, x = 0, y = 0, opacity = 0 }) {
+        const style = getComputedStyle(node);
+        const target_opacity = +style.opacity;
+        const transform = style.transform === 'none' ? '' : style.transform;
+        const od = target_opacity * (1 - opacity);
+        return {
+            delay,
+            duration,
+            easing,
+            css: (t, u) => `
+			transform: ${transform} translate(${(1 - t) * x}px, ${(1 - t) * y}px);
+			opacity: ${target_opacity - (od * u)}`
+        };
     }
 
     // TODO: get from config json file..
@@ -1884,6 +2116,7 @@ var app = (function () {
     	})
     	.then(response => response.json())
     	.then(data => {
+    		console.log(data);
     		if (data.error) {
     			throw new Error(data.message);
     		}
@@ -2844,7 +3077,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (52:4) {:else}
+    // (60:4) {:else}
     function create_else_block$1(ctx) {
     	var textarea, dispose;
 
@@ -2854,7 +3087,7 @@ var app = (function () {
     			attr(textarea, "pattern", "[0-9 ,]");
     			textarea.required = true;
     			attr(textarea, "class", "svelte-8k6fhs");
-    			add_location(textarea, file$8, 52, 5, 2230);
+    			add_location(textarea, file$8, 60, 5, 2429);
     			dispose = listen(textarea, "input", ctx.textarea_input_handler);
     		},
 
@@ -2878,7 +3111,7 @@ var app = (function () {
     	};
     }
 
-    // (44:4) {#if possibleRecipients}
+    // (52:4) {#if possibleRecipients && possibleRecipients.length}
     function create_if_block_1$2(ctx) {
     	var select, dispose;
 
@@ -2901,7 +3134,7 @@ var app = (function () {
     			select.multiple = true;
     			select.required = true;
     			attr(select, "class", "svelte-8k6fhs");
-    			add_location(select, file$8, 44, 5, 1953);
+    			add_location(select, file$8, 52, 5, 2152);
     			dispose = listen(select, "change", ctx.select_change_handler);
     		},
 
@@ -2952,7 +3185,7 @@ var app = (function () {
     	};
     }
 
-    // (48:24) {#if recipient.address}
+    // (56:24) {#if recipient.address}
     function create_if_block_2$1(ctx) {
     	var t0, t1_value = ctx.recipient.address + "", t1;
 
@@ -2982,7 +3215,7 @@ var app = (function () {
     	};
     }
 
-    // (46:6) {#each possibleRecipients as recipient}
+    // (54:6) {#each possibleRecipients as recipient}
     function create_each_block_1(ctx) {
     	var option, t0_value = ctx.recipient.name + "", t0, t1, option_value_value;
 
@@ -2996,7 +3229,7 @@ var app = (function () {
     			t1 = space();
     			option.__value = option_value_value = ctx.recipient.number;
     			option.value = option.__value;
-    			add_location(option, file$8, 46, 7, 2057);
+    			add_location(option, file$8, 54, 7, 2256);
     		},
 
     		m: function mount(target, anchor) {
@@ -3041,7 +3274,7 @@ var app = (function () {
     	};
     }
 
-    // (63:2) {#if !message}
+    // (71:2) {#if showQuickReplies}
     function create_if_block$2(ctx) {
     	var tr, th, t_1, td, select, option, dispose;
 
@@ -3066,14 +3299,14 @@ var app = (function () {
     			for (var i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
-    			add_location(th, file$8, 64, 3, 2473);
+    			add_location(th, file$8, 72, 3, 2680);
     			option.__value = "";
     			option.value = option.__value;
-    			add_location(option, file$8, 67, 5, 2564);
+    			add_location(option, file$8, 75, 5, 2771);
     			attr(select, "class", "svelte-8k6fhs");
-    			add_location(select, file$8, 66, 4, 2506);
-    			add_location(td, file$8, 65, 3, 2497);
-    			add_location(tr, file$8, 63, 2, 2465);
+    			add_location(select, file$8, 74, 4, 2713);
+    			add_location(td, file$8, 73, 3, 2704);
+    			add_location(tr, file$8, 71, 2, 2672);
     			dispose = listen(select, "change", ctx.change_handler);
     		},
 
@@ -3125,7 +3358,7 @@ var app = (function () {
     	};
     }
 
-    // (69:5) {#each Object.keys(stdMessages) as name}
+    // (77:5) {#each Object.keys(stdMessages) as name}
     function create_each_block$4(ctx) {
     	var option, t_value = ctx.name + "", t, option_value_value;
 
@@ -3135,7 +3368,7 @@ var app = (function () {
     			t = text(t_value);
     			option.__value = option_value_value = ctx.name;
     			option.value = option.__value;
-    			add_location(option, file$8, 69, 6, 2634);
+    			add_location(option, file$8, 77, 6, 2841);
     		},
 
     		m: function mount(target, anchor) {
@@ -3159,14 +3392,14 @@ var app = (function () {
     	var form, table, tr0, th0, t1, td0, t2, tr1, th1, t4, td1, textarea, t5, t6, tr2, td2, button0, t8, button1, dispose;
 
     	function select_block_type(ctx) {
-    		if (ctx.possibleRecipients) return create_if_block_1$2;
+    		if (ctx.possibleRecipients && ctx.possibleRecipients.length) return create_if_block_1$2;
     		return create_else_block$1;
     	}
 
     	var current_block_type = select_block_type(ctx);
     	var if_block0 = current_block_type(ctx);
 
-    	var if_block1 = (!ctx.message) && create_if_block$2(ctx);
+    	var if_block1 = (ctx.showQuickReplies) && create_if_block$2(ctx);
 
     	return {
     		c: function create() {
@@ -3195,29 +3428,29 @@ var app = (function () {
     			t8 = space();
     			button1 = element("button");
     			button1.textContent = "Avbryt";
-    			add_location(th0, file$8, 39, 3, 1878);
+    			add_location(th0, file$8, 47, 3, 2048);
     			attr(td0, "class", "to svelte-8k6fhs");
-    			add_location(td0, file$8, 42, 3, 1903);
-    			add_location(tr0, file$8, 38, 2, 1870);
-    			add_location(th1, file$8, 57, 3, 2340);
+    			add_location(td0, file$8, 50, 3, 2073);
+    			add_location(tr0, file$8, 46, 2, 2040);
+    			add_location(th1, file$8, 65, 3, 2539);
     			textarea.required = true;
     			attr(textarea, "class", "svelte-8k6fhs");
-    			add_location(textarea, file$8, 59, 4, 2377);
+    			add_location(textarea, file$8, 67, 4, 2576);
     			attr(td1, "class", "sms svelte-8k6fhs");
-    			add_location(td1, file$8, 58, 3, 2356);
-    			add_location(tr1, file$8, 56, 2, 2332);
+    			add_location(td1, file$8, 66, 3, 2555);
+    			add_location(tr1, file$8, 64, 2, 2531);
     			attr(button0, "type", "submit");
     			attr(button0, "class", "p8 br2");
-    			add_location(button0, file$8, 76, 3, 2752);
+    			add_location(button0, file$8, 84, 3, 2959);
     			attr(button1, "class", "p8 br2");
     			attr(button1, "type", "button");
-    			add_location(button1, file$8, 77, 3, 2807);
+    			add_location(button1, file$8, 85, 3, 3014);
     			attr(td2, "colspan", "2");
     			attr(td2, "align", "center");
-    			add_location(td2, file$8, 75, 6, 2717);
-    			add_location(tr2, file$8, 75, 2, 2713);
-    			add_location(table, file$8, 37, 1, 1860);
-    			add_location(form, file$8, 36, 0, 1813);
+    			add_location(td2, file$8, 83, 6, 2924);
+    			add_location(tr2, file$8, 83, 2, 2920);
+    			add_location(table, file$8, 45, 1, 2030);
+    			add_location(form, file$8, 44, 0, 1983);
 
     			dispose = [
     				listen(textarea, "input", ctx.textarea_input_handler_1),
@@ -3271,7 +3504,7 @@ var app = (function () {
 
     			if (changed.message) textarea.value = ctx.message;
 
-    			if (!ctx.message) {
+    			if (ctx.showQuickReplies) {
     				if (if_block1) {
     					if_block1.p(changed, ctx);
     				} else {
@@ -3302,6 +3535,7 @@ var app = (function () {
 
     function instance$8($$self, $$props, $$invalidate) {
     	let { recipients = [], message = '', possibleRecipients } = $$props;
+    let showQuickReplies = !message;
     const dispatch = createEventDispatcher();
 
     let stdMessages = {
@@ -3314,10 +3548,17 @@ var app = (function () {
     };
 
     function send() {
-    	dispatch('sms', {
-    		recipients, 
-    		message
-    	});
+    	if (typeof recipients === 'string') {
+    		dispatch('sms', {
+    			recipients: recipients.split(/,\s*/g),
+    			message
+    		});
+    	} else {
+    		dispatch('sms', {
+    			recipients, 
+    			message
+    		});		
+    	}
     }
 
     function addMessage(name) {
@@ -3370,6 +3611,7 @@ var app = (function () {
     		recipients,
     		message,
     		possibleRecipients,
+    		showQuickReplies,
     		dispatch,
     		stdMessages,
     		send,
@@ -3769,16 +4011,16 @@ var app = (function () {
     const file$a = "client/src/components/FlashMessage.svelte";
 
     function create_fragment$a(ctx) {
-    	var div, t;
+    	var div, t, div_transition, current;
 
     	return {
     		c: function create() {
     			div = element("div");
     			t = text(ctx.message);
-    			set_style(div, "bottom", "" + 40 * ctx.index + "px");
-    			attr(div, "class", "svelte-z82kfx");
+    			set_style(div, "bottom", "" + 36 * ctx.index + "px");
+    			attr(div, "class", "svelte-ni4itl");
     			toggle_class(div, "isError", ctx.isError);
-    			add_location(div, file$a, 17, 0, 230);
+    			add_location(div, file$a, 24, 0, 406);
     		},
 
     		l: function claim(nodes) {
@@ -3788,15 +4030,16 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			insert(target, div, anchor);
     			append(div, t);
+    			current = true;
     		},
 
     		p: function update(changed, ctx) {
-    			if (changed.message) {
+    			if (!current || changed.message) {
     				set_data(t, ctx.message);
     			}
 
-    			if (changed.index) {
-    				set_style(div, "bottom", "" + 40 * ctx.index + "px");
+    			if (!current || changed.index) {
+    				set_style(div, "bottom", "" + 36 * ctx.index + "px");
     			}
 
     			if (changed.isError) {
@@ -3804,12 +4047,27 @@ var app = (function () {
     			}
     		},
 
-    		i: noop,
-    		o: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			add_render_callback(() => {
+    				if (!div_transition) div_transition = create_bidirectional_transition(div, fly, { y: 50, duration: 500 }, true);
+    				div_transition.run(1);
+    			});
+
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			if (!div_transition) div_transition = create_bidirectional_transition(div, fly, { y: 50, duration: 500 }, false);
+    			div_transition.run(0);
+
+    			current = false;
+    		},
 
     		d: function destroy(detaching) {
     			if (detaching) {
     				detach(div);
+    				if (div_transition) div_transition.end();
     			}
     		}
     	};
@@ -4193,7 +4451,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (370:0) {:catch error}
+    // (372:0) {:catch error}
     function create_catch_block(ctx) {
     	var p, t_value = ctx.error.message + "", t;
 
@@ -4202,7 +4460,7 @@ var app = (function () {
     			p = element("p");
     			t = text(t_value);
     			set_style(p, "color", "red");
-    			add_location(p, file$c, 370, 1, 9404);
+    			add_location(p, file$c, 372, 1, 9435);
     		},
 
     		m: function mount(target, anchor) {
@@ -4227,7 +4485,7 @@ var app = (function () {
     	};
     }
 
-    // (278:0) {:then data}
+    // (279:0) {:then data}
     function create_then_block(ctx) {
     	var table, tr, th0, input0, t0, th1, img0, t1, img1, t2, th2, select, t3, th3, img2, t4, img3, t5, img4, t6, th4, ol, li0, t8, li1, t10, li2, t12, th5, label0, input1, t13, t14, br, label1, input2, t15, t16, t17, col0, t18, col1, t19, col2, t20, col3, t21, col4, t22, col5, t23, p, t24, t25_value = ctx.$jobs.length + "", t25, t26, t27_value = ctx.$jobs.filter(func).length + "", t27, t28, t29, if_block1_anchor, current, dispose;
 
@@ -4333,67 +4591,67 @@ var app = (function () {
     			if_block1_anchor = empty();
     			attr(input0, "type", "search");
     			attr(input0, "placeholder", "Filtrer");
-    			add_location(input0, file$c, 280, 7, 6726);
-    			add_location(th0, file$c, 280, 3, 6722);
+    			add_location(input0, file$c, 281, 7, 6756);
+    			add_location(th0, file$c, 281, 3, 6752);
     			attr(img0, "src", "/images/bigcar.png");
     			attr(img0, "alt", "stor bil");
     			attr(img0, "height", "22");
     			toggle_class(img0, "bigActive", ctx.bigActive);
-    			add_location(img0, file$c, 282, 4, 6815);
+    			add_location(img0, file$c, 283, 4, 6845);
     			attr(img1, "src", "/images/smallcar.png");
     			attr(img1, "alt", "liten bil");
     			attr(img1, "height", "22");
     			toggle_class(img1, "smallActive", ctx.smallActive);
-    			add_location(img1, file$c, 284, 4, 6940);
-    			add_location(th1, file$c, 281, 3, 6806);
+    			add_location(img1, file$c, 285, 4, 6970);
+    			add_location(th1, file$c, 282, 3, 6836);
     			if (ctx.typeFilter === void 0) add_render_callback(() => ctx.select_change_handler.call(select));
-    			add_location(select, file$c, 288, 4, 7094);
-    			add_location(th2, file$c, 287, 3, 7085);
+    			add_location(select, file$c, 289, 4, 7124);
+    			add_location(th2, file$c, 288, 3, 7115);
     			attr(img2, "src", "/images/star-full.png");
     			attr(img2, "width", "16");
     			attr(img2, "alt", "antatt kvalitet");
-    			add_location(img2, file$c, 295, 4, 7238);
+    			add_location(img2, file$c, 296, 4, 7268);
     			attr(img3, "src", "/images/star-full.png");
     			attr(img3, "width", "16");
     			attr(img3, "alt", "");
-    			add_location(img3, file$c, 296, 4, 7309);
+    			add_location(img3, file$c, 297, 4, 7339);
     			attr(img4, "src", "/images/star-full.png");
     			attr(img4, "width", "16");
     			attr(img4, "alt", "");
-    			add_location(img4, file$c, 297, 4, 7365);
-    			add_location(th3, file$c, 294, 3, 7229);
+    			add_location(img4, file$c, 298, 4, 7395);
+    			add_location(th3, file$c, 295, 3, 7259);
     			toggle_class(li0, "tueActive", ctx.tueActive);
-    			add_location(li0, file$c, 302, 5, 7542);
+    			add_location(li0, file$c, 303, 5, 7572);
     			toggle_class(li1, "wedActive", ctx.wedActive);
-    			add_location(li1, file$c, 303, 5, 7616);
+    			add_location(li1, file$c, 304, 5, 7646);
     			toggle_class(li2, "thuActive", ctx.thuActive);
-    			add_location(li2, file$c, 304, 5, 7690);
+    			add_location(li2, file$c, 305, 5, 7720);
     			attr(ol, "class", "days");
-    			add_location(ol, file$c, 300, 4, 7438);
-    			add_location(th4, file$c, 299, 3, 7429);
+    			add_location(ol, file$c, 301, 4, 7468);
+    			add_location(th4, file$c, 300, 3, 7459);
     			attr(input1, "type", "checkbox");
-    			add_location(input1, file$c, 308, 11, 7797);
-    			add_location(label0, file$c, 308, 4, 7790);
-    			add_location(br, file$c, 309, 4, 7884);
+    			add_location(input1, file$c, 309, 11, 7827);
+    			add_location(label0, file$c, 309, 4, 7820);
+    			add_location(br, file$c, 310, 4, 7914);
     			attr(input2, "type", "checkbox");
-    			add_location(input2, file$c, 309, 15, 7895);
-    			add_location(label1, file$c, 309, 8, 7888);
-    			add_location(th5, file$c, 307, 3, 7781);
-    			add_location(tr, file$c, 279, 2, 6714);
+    			add_location(input2, file$c, 310, 15, 7925);
+    			add_location(label1, file$c, 310, 8, 7918);
+    			add_location(th5, file$c, 308, 3, 7811);
+    			add_location(tr, file$c, 280, 2, 6744);
     			attr(col0, "class", "address");
-    			add_location(col0, file$c, 323, 1, 8339);
+    			add_location(col0, file$c, 324, 1, 8369);
     			attr(col1, "class", "cartype");
-    			add_location(col1, file$c, 324, 1, 8364);
+    			add_location(col1, file$c, 325, 1, 8394);
     			attr(col2, "class", "stufftype");
-    			add_location(col2, file$c, 325, 1, 8389);
+    			add_location(col2, file$c, 326, 1, 8419);
     			attr(col3, "class", "quality");
-    			add_location(col3, file$c, 326, 1, 8416);
+    			add_location(col3, file$c, 327, 1, 8446);
     			attr(col4, "class", "dayscol");
-    			add_location(col4, file$c, 327, 1, 8441);
+    			add_location(col4, file$c, 328, 1, 8471);
     			attr(col5, "class", "status");
-    			add_location(col5, file$c, 328, 1, 8466);
-    			add_location(table, file$c, 278, 1, 6704);
-    			add_location(p, file$c, 331, 0, 8499);
+    			add_location(col5, file$c, 329, 1, 8496);
+    			add_location(table, file$c, 279, 1, 6734);
+    			add_location(p, file$c, 332, 0, 8529);
 
     			dispose = [
     				listen(input0, "input", ctx.input0_input_handler),
@@ -4659,7 +4917,7 @@ var app = (function () {
     	};
     }
 
-    // (290:5) {#each types as theType}
+    // (291:5) {#each types as theType}
     function create_each_block_2(ctx) {
     	var option, t_value = ctx.theType + "", t, option_value_value;
 
@@ -4669,7 +4927,7 @@ var app = (function () {
     			t = text(t_value);
     			option.__value = option_value_value = ctx.theType;
     			option.value = option.__value;
-    			add_location(option, file$c, 290, 6, 7163);
+    			add_location(option, file$c, 291, 6, 7193);
     		},
 
     		m: function mount(target, anchor) {
@@ -4689,7 +4947,7 @@ var app = (function () {
     	};
     }
 
-    // (314:2) {#if filter(freeTextFilter, {smallActive, bigActive},     {monActive, tueActive, wedActive, thuActive, dayFilterExclusive}, typeFilter, hideDoneJobs, theJob)   }
+    // (315:2) {#if filter(freeTextFilter, {smallActive, bigActive},     {monActive, tueActive, wedActive, thuActive, dayFilterExclusive}, typeFilter, hideDoneJobs, theJob)   }
     function create_if_block_2$2(ctx) {
     	var current;
 
@@ -4737,7 +4995,7 @@ var app = (function () {
     	};
     }
 
-    // (313:1) {#each $jobs as theJob, i}
+    // (314:1) {#each $jobs as theJob, i}
     function create_each_block_1$1(ctx) {
     	var if_block_anchor, current;
 
@@ -4798,7 +5056,7 @@ var app = (function () {
     	};
     }
 
-    // (337:0) {#if showSmsEditor}
+    // (338:0) {#if showSmsEditor}
     function create_if_block_1$3(ctx) {
     	var current;
 
@@ -4848,7 +5106,7 @@ var app = (function () {
     	};
     }
 
-    // (339:2) <h2 slot="header">
+    // (340:2) <h2 slot="header">
     function create_header_slot_1(ctx) {
     	var h2;
 
@@ -4857,7 +5115,7 @@ var app = (function () {
     			h2 = element("h2");
     			h2.textContent = "Send SMS";
     			attr(h2, "slot", "header");
-    			add_location(h2, file$c, 338, 2, 8686);
+    			add_location(h2, file$c, 339, 2, 8716);
     		},
 
     		m: function mount(target, anchor) {
@@ -4872,7 +5130,7 @@ var app = (function () {
     	};
     }
 
-    // (338:1) <Modal on:close="{() => showSmsEditor = false}">
+    // (339:1) <Modal on:close="{() => showSmsEditor = false}">
     function create_default_slot_1(ctx) {
     	var t, current;
 
@@ -4929,7 +5187,7 @@ var app = (function () {
     	};
     }
 
-    // (360:0) {#if showDriverEditor}
+    // (361:0) {#if showDriverEditor}
     function create_if_block$5(ctx) {
     	var current;
 
@@ -4973,7 +5231,7 @@ var app = (function () {
     	};
     }
 
-    // (362:2) <h2 slot="header">
+    // (363:2) <h2 slot="header">
     function create_header_slot$1(ctx) {
     	var h2;
 
@@ -4982,7 +5240,7 @@ var app = (function () {
     			h2 = element("h2");
     			h2.textContent = "Oppdater hentere";
     			attr(h2, "slot", "header");
-    			add_location(h2, file$c, 361, 2, 9253);
+    			add_location(h2, file$c, 362, 2, 9283);
     		},
 
     		m: function mount(target, anchor) {
@@ -4997,7 +5255,7 @@ var app = (function () {
     	};
     }
 
-    // (361:1) <Modal on:close="{() => showDriverEditor = false}">
+    // (362:1) <Modal on:close="{() => showDriverEditor = false}">
     function create_default_slot$1(ctx) {
     	var t, current;
 
@@ -5040,7 +5298,7 @@ var app = (function () {
     	};
     }
 
-    // (276:16)   <p>...henter data</p> {:then data}
+    // (277:16)   <p>...henter data</p> {:then data}
     function create_pending_block(ctx) {
     	var p;
 
@@ -5048,7 +5306,7 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			p.textContent = "...henter data";
-    			add_location(p, file$c, 276, 1, 6668);
+    			add_location(p, file$c, 277, 1, 6698);
     		},
 
     		m: function mount(target, anchor) {
@@ -5067,7 +5325,7 @@ var app = (function () {
     	};
     }
 
-    // (394:0) {#each tempMsgQueue as msg, idx}
+    // (396:0) {#each tempMsgQueue as msg, idx}
     function create_each_block$7(ctx) {
     	var current;
 
@@ -5205,13 +5463,13 @@ var app = (function () {
     			attr(img, "src", "/images/wrench.png");
     			attr(img, "width", "24");
     			attr(img, "alt", "Innstillinger");
-    			add_location(img, file$c, 194, 1, 5086);
+    			add_location(img, file$c, 195, 1, 5116);
     			attr(button, "class", "conf");
-    			add_location(button, file$c, 193, 0, 5004);
-    			add_location(h1, file$c, 197, 0, 5159);
+    			add_location(button, file$c, 194, 0, 5034);
+    			add_location(h1, file$c, 198, 0, 5189);
     			attr(style, "type", "text/css");
-    			add_location(style, file$c, 199, 0, 5181);
-    			add_location(div, file$c, 184, 0, 4816);
+    			add_location(style, file$c, 200, 0, 5211);
+    			add_location(div, file$c, 185, 0, 4846);
 
     			dispose = [
     				listen(button, "click", stop_propagation(ctx.click_handler)),
@@ -5452,14 +5710,13 @@ var app = (function () {
     		} else {
     			let jobId;
     			let elm = targetElm;
-    			while(elm && !jobId) {
+    			while(elm && !jobId && elm.getAttribute) {
     				jobId = elm.getAttribute('data-id');
     				elm = elm.parentNode;
     			}
     			if (jobId && selectedItems.indexOf(jobId) === -1) {
     				updatedSelectedList({detail: {selected: true, id: jobId}});
     			}
-    			console.log('show menu? ', {jobId, selectedItems});
     			if (jobId || selectedItems.length) {
     				$$invalidate('showMenu', showMenu = true);
     			}
@@ -5494,8 +5751,10 @@ var app = (function () {
     	}
 
     	function flashMessage(message, isError) {
-    		tempMsgQueue.push({message, isError});
-    		setTimeout(() => tempMsgQueue.pop(), 300);
+    		$$invalidate('tempMsgQueue', tempMsgQueue = [...tempMsgQueue, {message, isError}]);
+    		setTimeout(() =>
+    			{ const $$result = tempMsgQueue = tempMsgQueue.slice(0, tempMsgQueue.length - 1); $$invalidate('tempMsgQueue', tempMsgQueue); return $$result; },
+    		5000);
     	}
 
     	function initSms(type) {
@@ -5603,8 +5862,8 @@ ${baseUrl}/henting/?jobb=${
 
     	function sms_handler(e) {
     					sendSms(e.detail.recipients, e.detail.message)
-    					.catch(err => flashMessage(err, true))
-    					.then(() => flashMessage('SMS sendt til ' + e.detail.recipients ));
+    					.then(() => flashMessage('SMS sendt til ' + e.detail.recipients ))
+    					.catch(err => flashMessage(err, true));
     					message = ''; $$invalidate('message', message);
     					possibleRecipients = null; $$invalidate('possibleRecipients', possibleRecipients);
     					showSmsEditor = false; $$invalidate('showSmsEditor', showSmsEditor);
