@@ -4131,7 +4131,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (47:3) {#if item.icon}
+    // (50:3) {#if item.icon}
     function create_if_block$4(ctx) {
     	var img, img_src_value;
 
@@ -4141,7 +4141,7 @@ var app = (function () {
     			attr(img, "src", img_src_value = ctx.item.icon);
     			attr(img, "alt", "");
     			attr(img, "class", "svelte-1s9tfhz");
-    			add_location(img, file$b, 46, 18, 895);
+    			add_location(img, file$b, 49, 18, 924);
     		},
 
     		m: function mount(target, anchor) {
@@ -4162,7 +4162,7 @@ var app = (function () {
     	};
     }
 
-    // (45:1) {#each items as item}
+    // (48:1) {#each items as item}
     function create_each_block$6(ctx) {
     	var button, t0, t1_value = ctx.item.label + "", t1, t2, dispose;
 
@@ -4176,7 +4176,7 @@ var app = (function () {
     			t1 = text(t1_value);
     			t2 = space();
     			attr(button, "class", "menu svelte-1s9tfhz");
-    			add_location(button, file$b, 45, 2, 832);
+    			add_location(button, file$b, 48, 2, 861);
     			dispose = listen(button, "click", ctx.item.action);
     		},
 
@@ -4242,7 +4242,7 @@ var app = (function () {
     			set_style(div, "left", "" + ctx.x + "px");
     			set_style(div, "position", "fixed");
     			toggle_class(div, "show", ctx.show);
-    			add_location(div, file$b, 43, 0, 727);
+    			add_location(div, file$b, 46, 0, 756);
     		},
 
     		l: function claim(nodes) {
@@ -4308,6 +4308,9 @@ var app = (function () {
     function instance$b($$self, $$props, $$invalidate) {
     	let { show = false, items = [], x = 0, y = 0 } = $$props;
     	onMount(() => document.getElementsByTagName('button')[0].focus());
+    	if (x <= 20) {
+    		$$invalidate('x', x = 20);
+    	}
 
     	const writable_props = ['show', 'items', 'x', 'y'];
     	Object.keys($$props).forEach(key => {
@@ -4451,7 +4454,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (372:0) {:catch error}
+    // (373:0) {:catch error}
     function create_catch_block(ctx) {
     	var p, t_value = ctx.error.message + "", t;
 
@@ -4460,7 +4463,7 @@ var app = (function () {
     			p = element("p");
     			t = text(t_value);
     			set_style(p, "color", "red");
-    			add_location(p, file$c, 372, 1, 9435);
+    			add_location(p, file$c, 373, 1, 9540);
     		},
 
     		m: function mount(target, anchor) {
@@ -4485,7 +4488,7 @@ var app = (function () {
     	};
     }
 
-    // (279:0) {:then data}
+    // (280:0) {:then data}
     function create_then_block(ctx) {
     	var table, tr, th0, input0, t0, th1, img0, t1, img1, t2, th2, select, t3, th3, img2, t4, img3, t5, img4, t6, th4, ol, li0, t8, li1, t10, li2, t12, th5, label0, input1, t13, t14, br, label1, input2, t15, t16, t17, col0, t18, col1, t19, col2, t20, col3, t21, col4, t22, col5, t23, p, t24, t25_value = ctx.$jobs.length + "", t25, t26, t27_value = ctx.$jobs.filter(func).length + "", t27, t28, t29, if_block1_anchor, current, dispose;
 
@@ -4591,67 +4594,67 @@ var app = (function () {
     			if_block1_anchor = empty();
     			attr(input0, "type", "search");
     			attr(input0, "placeholder", "Filtrer");
-    			add_location(input0, file$c, 281, 7, 6756);
-    			add_location(th0, file$c, 281, 3, 6752);
+    			add_location(input0, file$c, 282, 7, 6861);
+    			add_location(th0, file$c, 282, 3, 6857);
     			attr(img0, "src", "/images/bigcar.png");
     			attr(img0, "alt", "stor bil");
     			attr(img0, "height", "22");
     			toggle_class(img0, "bigActive", ctx.bigActive);
-    			add_location(img0, file$c, 283, 4, 6845);
+    			add_location(img0, file$c, 284, 4, 6950);
     			attr(img1, "src", "/images/smallcar.png");
     			attr(img1, "alt", "liten bil");
     			attr(img1, "height", "22");
     			toggle_class(img1, "smallActive", ctx.smallActive);
-    			add_location(img1, file$c, 285, 4, 6970);
-    			add_location(th1, file$c, 282, 3, 6836);
+    			add_location(img1, file$c, 286, 4, 7075);
+    			add_location(th1, file$c, 283, 3, 6941);
     			if (ctx.typeFilter === void 0) add_render_callback(() => ctx.select_change_handler.call(select));
-    			add_location(select, file$c, 289, 4, 7124);
-    			add_location(th2, file$c, 288, 3, 7115);
+    			add_location(select, file$c, 290, 4, 7229);
+    			add_location(th2, file$c, 289, 3, 7220);
     			attr(img2, "src", "/images/star-full.png");
     			attr(img2, "width", "16");
     			attr(img2, "alt", "antatt kvalitet");
-    			add_location(img2, file$c, 296, 4, 7268);
+    			add_location(img2, file$c, 297, 4, 7373);
     			attr(img3, "src", "/images/star-full.png");
     			attr(img3, "width", "16");
     			attr(img3, "alt", "");
-    			add_location(img3, file$c, 297, 4, 7339);
+    			add_location(img3, file$c, 298, 4, 7444);
     			attr(img4, "src", "/images/star-full.png");
     			attr(img4, "width", "16");
     			attr(img4, "alt", "");
-    			add_location(img4, file$c, 298, 4, 7395);
-    			add_location(th3, file$c, 295, 3, 7259);
+    			add_location(img4, file$c, 299, 4, 7500);
+    			add_location(th3, file$c, 296, 3, 7364);
     			toggle_class(li0, "tueActive", ctx.tueActive);
-    			add_location(li0, file$c, 303, 5, 7572);
+    			add_location(li0, file$c, 304, 5, 7677);
     			toggle_class(li1, "wedActive", ctx.wedActive);
-    			add_location(li1, file$c, 304, 5, 7646);
+    			add_location(li1, file$c, 305, 5, 7751);
     			toggle_class(li2, "thuActive", ctx.thuActive);
-    			add_location(li2, file$c, 305, 5, 7720);
+    			add_location(li2, file$c, 306, 5, 7825);
     			attr(ol, "class", "days");
-    			add_location(ol, file$c, 301, 4, 7468);
-    			add_location(th4, file$c, 300, 3, 7459);
+    			add_location(ol, file$c, 302, 4, 7573);
+    			add_location(th4, file$c, 301, 3, 7564);
     			attr(input1, "type", "checkbox");
-    			add_location(input1, file$c, 309, 11, 7827);
-    			add_location(label0, file$c, 309, 4, 7820);
-    			add_location(br, file$c, 310, 4, 7914);
+    			add_location(input1, file$c, 310, 11, 7932);
+    			add_location(label0, file$c, 310, 4, 7925);
+    			add_location(br, file$c, 311, 4, 8019);
     			attr(input2, "type", "checkbox");
-    			add_location(input2, file$c, 310, 15, 7925);
-    			add_location(label1, file$c, 310, 8, 7918);
-    			add_location(th5, file$c, 308, 3, 7811);
-    			add_location(tr, file$c, 280, 2, 6744);
+    			add_location(input2, file$c, 311, 15, 8030);
+    			add_location(label1, file$c, 311, 8, 8023);
+    			add_location(th5, file$c, 309, 3, 7916);
+    			add_location(tr, file$c, 281, 2, 6849);
     			attr(col0, "class", "address");
-    			add_location(col0, file$c, 324, 1, 8369);
+    			add_location(col0, file$c, 325, 1, 8474);
     			attr(col1, "class", "cartype");
-    			add_location(col1, file$c, 325, 1, 8394);
+    			add_location(col1, file$c, 326, 1, 8499);
     			attr(col2, "class", "stufftype");
-    			add_location(col2, file$c, 326, 1, 8419);
+    			add_location(col2, file$c, 327, 1, 8524);
     			attr(col3, "class", "quality");
-    			add_location(col3, file$c, 327, 1, 8446);
+    			add_location(col3, file$c, 328, 1, 8551);
     			attr(col4, "class", "dayscol");
-    			add_location(col4, file$c, 328, 1, 8471);
+    			add_location(col4, file$c, 329, 1, 8576);
     			attr(col5, "class", "status");
-    			add_location(col5, file$c, 329, 1, 8496);
-    			add_location(table, file$c, 279, 1, 6734);
-    			add_location(p, file$c, 332, 0, 8529);
+    			add_location(col5, file$c, 330, 1, 8601);
+    			add_location(table, file$c, 280, 1, 6839);
+    			add_location(p, file$c, 333, 0, 8634);
 
     			dispose = [
     				listen(input0, "input", ctx.input0_input_handler),
@@ -4917,7 +4920,7 @@ var app = (function () {
     	};
     }
 
-    // (291:5) {#each types as theType}
+    // (292:5) {#each types as theType}
     function create_each_block_2(ctx) {
     	var option, t_value = ctx.theType + "", t, option_value_value;
 
@@ -4927,7 +4930,7 @@ var app = (function () {
     			t = text(t_value);
     			option.__value = option_value_value = ctx.theType;
     			option.value = option.__value;
-    			add_location(option, file$c, 291, 6, 7193);
+    			add_location(option, file$c, 292, 6, 7298);
     		},
 
     		m: function mount(target, anchor) {
@@ -4947,7 +4950,7 @@ var app = (function () {
     	};
     }
 
-    // (315:2) {#if filter(freeTextFilter, {smallActive, bigActive},     {monActive, tueActive, wedActive, thuActive, dayFilterExclusive}, typeFilter, hideDoneJobs, theJob)   }
+    // (316:2) {#if filter(freeTextFilter, {smallActive, bigActive},     {monActive, tueActive, wedActive, thuActive, dayFilterExclusive}, typeFilter, hideDoneJobs, theJob)   }
     function create_if_block_2$2(ctx) {
     	var current;
 
@@ -4995,7 +4998,7 @@ var app = (function () {
     	};
     }
 
-    // (314:1) {#each $jobs as theJob, i}
+    // (315:1) {#each $jobs as theJob, i}
     function create_each_block_1$1(ctx) {
     	var if_block_anchor, current;
 
@@ -5056,7 +5059,7 @@ var app = (function () {
     	};
     }
 
-    // (338:0) {#if showSmsEditor}
+    // (339:0) {#if showSmsEditor}
     function create_if_block_1$3(ctx) {
     	var current;
 
@@ -5106,7 +5109,7 @@ var app = (function () {
     	};
     }
 
-    // (340:2) <h2 slot="header">
+    // (341:2) <h2 slot="header">
     function create_header_slot_1(ctx) {
     	var h2;
 
@@ -5115,7 +5118,7 @@ var app = (function () {
     			h2 = element("h2");
     			h2.textContent = "Send SMS";
     			attr(h2, "slot", "header");
-    			add_location(h2, file$c, 339, 2, 8716);
+    			add_location(h2, file$c, 340, 2, 8821);
     		},
 
     		m: function mount(target, anchor) {
@@ -5130,7 +5133,7 @@ var app = (function () {
     	};
     }
 
-    // (339:1) <Modal on:close="{() => showSmsEditor = false}">
+    // (340:1) <Modal on:close="{() => showSmsEditor = false}">
     function create_default_slot_1(ctx) {
     	var t, current;
 
@@ -5187,7 +5190,7 @@ var app = (function () {
     	};
     }
 
-    // (361:0) {#if showDriverEditor}
+    // (362:0) {#if showDriverEditor}
     function create_if_block$5(ctx) {
     	var current;
 
@@ -5231,7 +5234,7 @@ var app = (function () {
     	};
     }
 
-    // (363:2) <h2 slot="header">
+    // (364:2) <h2 slot="header">
     function create_header_slot$1(ctx) {
     	var h2;
 
@@ -5240,7 +5243,7 @@ var app = (function () {
     			h2 = element("h2");
     			h2.textContent = "Oppdater hentere";
     			attr(h2, "slot", "header");
-    			add_location(h2, file$c, 362, 2, 9283);
+    			add_location(h2, file$c, 363, 2, 9388);
     		},
 
     		m: function mount(target, anchor) {
@@ -5255,7 +5258,7 @@ var app = (function () {
     	};
     }
 
-    // (362:1) <Modal on:close="{() => showDriverEditor = false}">
+    // (363:1) <Modal on:close="{() => showDriverEditor = false}">
     function create_default_slot$1(ctx) {
     	var t, current;
 
@@ -5298,7 +5301,7 @@ var app = (function () {
     	};
     }
 
-    // (277:16)   <p>...henter data</p> {:then data}
+    // (278:16)   <p>...henter data</p> {:then data}
     function create_pending_block(ctx) {
     	var p;
 
@@ -5306,7 +5309,7 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			p.textContent = "...henter data";
-    			add_location(p, file$c, 277, 1, 6698);
+    			add_location(p, file$c, 278, 1, 6803);
     		},
 
     		m: function mount(target, anchor) {
@@ -5325,7 +5328,7 @@ var app = (function () {
     	};
     }
 
-    // (396:0) {#each tempMsgQueue as msg, idx}
+    // (415:0) {#each tempMsgQueue as msg, idx}
     function create_each_block$7(ctx) {
     	var current;
 
@@ -5402,8 +5405,14 @@ var app = (function () {
     		x: ctx.menuX,
     		y: ctx.menuY,
     		items: [
-    		{label: 'SMS til giver', icon: '/images/sms.png', action: ctx.func_1},
-    		{label: 'SMS til henter', icon: '/images/sms.png', action: ctx.func_2},
+    		{
+    			label: 'SMS til giver', icon: '/images/sms.png',
+    			action: ctx.func_1
+    		},
+    		{
+    			label: 'SMS til henter', icon: '/images/sms.png',
+    			action: ctx.func_2
+    		},
     	]
     	},
     		$$inline: true
@@ -5415,10 +5424,22 @@ var app = (function () {
     		x: ctx.menuX,
     		y: ctx.menuY,
     		items: [
-    		{label: 'Hentere', icon: '/images/smallcar.png', action: ctx.func_3},
-    		{label: 'Oppdater data', icon: '/images/wrench.png', action: ctx.reload},
-    		{label: 'Merk alle', icon: '/images/check.png', action: ctx.func_4 },
-    		{label: 'Fjern merking', icon: '/images/nocheck.png', action: ctx.func_5 },
+    		{
+    			label: 'Hentere', icon: '/images/smallcar.png',
+    			action: ctx.func_3
+    		},
+    		{
+    			label: 'Oppdater data', icon: '/images/wrench.png',
+    			action: ctx.func_4
+    		},
+    		{
+    			label: 'Merk alle', icon: '/images/check.png',
+    			action: ctx.func_5
+    		},
+    		{
+    			label: 'Fjern merking', icon: '/images/nocheck.png',
+    			action: ctx.func_6
+    		},
     	]
     	},
     		$$inline: true
@@ -5446,7 +5467,7 @@ var app = (function () {
     			h1.textContent = "Loppisadmin";
     			t2 = space();
     			style = element("style");
-    			style.textContent = "h1 {text-align: center;\n\t\tmax-width: 60%;\n\t\tmargin-left: auto;\n\t\tmargin-right: auto;\n\t}\n\t.conf {float: right; padding: 4px;margin-right: 8em}\n\t.conf img {vertical-align: middle;}\n\ttable {\n\t\twidth: 80%;\n\t\tmargin-left: 10%;\n\t\tmargin-right: 10%;\n\t\tborder-collapse: collapse;\n\t\tborder: 1px solid grey;\n\t}\n\ttable tr:first-child {\n\t\tbackground: #eee;\n\t\tborder-bottom: 1px solid black;\n\t}\n\tth {text-align: left; padding-left: 16px; }\n\tth li {\n\t\tdisplay: inline-block;\n\t\theight: 20px;\n\t\twidth: 20px;\n\t\tborder-bottom: 1px solid grey;\n\t\tcolor: grey;\n\t\tfont-weight: lighter;\n\t\tmargin-left: 8px;\n\t\tcursor: pointer;\n\t}\n\t.smallActive, .bigActive {\n\t\tborder: 1px solid black;\n\t}\n\t.smallActive, .bigActive, li.monActive, li.tueActive, li.wedActive, li.thuActive {\n\t\tborder-color: black;\n\t\tcolor: black;\n\t}\n\tlabel {font-weight: lighter; font-style: italic;}\n\n\n/* Extra small devices (phones, 600px and down) */\n@media only screen and (max-width: 600px) {\n\tth:nth-child(3) {display: none;}\n\tth:nth-child(4) {display: none;}\n\tth:nth-child(5) {display: none;}\n\ttable {width: 99%; margin: 0;}\n} \n\n@media only screen and (max-width: 700px) {\n\tth:nth-child(3) {display: none;}\n\t.stufftype {width: 25%}\n\t.dayscol {width: 25%}\n\ttable {width: 95%; margin: 2.5%;}\n}\n/* column styles */\n.address {\n\tbackground: #eee;\n\twidth: 25%;\n}\n.cartype {\n\twidth: 5%;\n}\n.quality {\n\twidth: 10%;\n}\n.stufftype {\n\twidth: 10%;\n}\n.dayscol {\n\twidth: 20%;\n}\n.status {\n\twidth: 15%;\n}";
+    			style.textContent = "h1 {text-align: center;}\n\t.conf {float: right; padding: 4px;margin-right: 8em}\n\t.conf img {vertical-align: middle;}\n\ttable {\n\t\twidth: 80%;\n\t\tmargin-left: 10%;\n\t\tmargin-right: 10%;\n\t\tborder-collapse: collapse;\n\t\tborder: 1px solid grey;\n\t}\n\ttable tr:first-child {\n\t\tbackground: #eee;\n\t\tborder-bottom: 1px solid black;\n\t}\n\tth {text-align: left; padding-left: 16px; }\n\tth li {\n\t\tdisplay: inline-block;\n\t\theight: 20px;\n\t\twidth: 20px;\n\t\tborder-bottom: 1px solid grey;\n\t\tcolor: grey;\n\t\tfont-weight: lighter;\n\t\tmargin-left: 8px;\n\t\tcursor: pointer;\n\t}\n\t.smallActive, .bigActive {\n\t\tborder: 1px solid black;\n\t}\n\t.smallActive, .bigActive, li.monActive, li.tueActive, li.wedActive, li.thuActive {\n\t\tborder-color: black;\n\t\tcolor: black;\n\t}\n\tlabel {font-weight: lighter; font-style: italic;}\n\n\n/* Extra small devices (phones, 600px and down) */\n@media only screen and (max-width: 600px) {\n\tth:nth-child(3) {display: none;}\n\tth:nth-child(4) {display: none;}\n\tth:nth-child(5) {display: none;}\n\ttable {width: 99%; margin: 0;}\n} \n\n@media only screen and (max-width: 700px) {\n\tth:nth-child(3) {display: none;}\n\t.stufftype {width: 25%}\n\t.dayscol {width: 25%}\n\ttable {width: 95%; margin: 2.5%;}\n}\n/* column styles */\n.address {\n\tbackground: #eee;\n\twidth: 25%;\n}\n.cartype {\n\twidth: 5%;\n}\n.quality {\n\twidth: 10%;\n}\n.stufftype {\n\twidth: 10%;\n}\n.dayscol {\n\twidth: 20%;\n}\n.status {\n\twidth: 15%;\n}";
     			t4 = space();
 
     			info.block.c();
@@ -5463,13 +5484,13 @@ var app = (function () {
     			attr(img, "src", "/images/wrench.png");
     			attr(img, "width", "24");
     			attr(img, "alt", "Innstillinger");
-    			add_location(img, file$c, 195, 1, 5116);
+    			add_location(img, file$c, 200, 1, 5284);
     			attr(button, "class", "conf");
-    			add_location(button, file$c, 194, 0, 5034);
-    			add_location(h1, file$c, 198, 0, 5189);
+    			add_location(button, file$c, 199, 0, 5202);
+    			add_location(h1, file$c, 203, 0, 5357);
     			attr(style, "type", "text/css");
-    			add_location(style, file$c, 200, 0, 5211);
-    			add_location(div, file$c, 185, 0, 4846);
+    			add_location(style, file$c, 205, 0, 5379);
+    			add_location(div, file$c, 190, 0, 5014);
 
     			dispose = [
     				listen(button, "click", stop_propagation(ctx.click_handler)),
@@ -5524,8 +5545,14 @@ var app = (function () {
     			if (changed.menuX) menu0_changes.x = ctx.menuX;
     			if (changed.menuY) menu0_changes.y = ctx.menuY;
     			if (changed.initSms) menu0_changes.items = [
-    		{label: 'SMS til giver', icon: '/images/sms.png', action: ctx.func_1},
-    		{label: 'SMS til henter', icon: '/images/sms.png', action: ctx.func_2},
+    		{
+    			label: 'SMS til giver', icon: '/images/sms.png',
+    			action: ctx.func_1
+    		},
+    		{
+    			label: 'SMS til henter', icon: '/images/sms.png',
+    			action: ctx.func_2
+    		},
     	];
     			menu0.$set(menu0_changes);
 
@@ -5533,11 +5560,23 @@ var app = (function () {
     			if (changed.showConfigMenu) menu1_changes.show = ctx.showConfigMenu;
     			if (changed.menuX) menu1_changes.x = ctx.menuX;
     			if (changed.menuY) menu1_changes.y = ctx.menuY;
-    			if (changed.showDriverEditor || changed.reload || changed.selectAllShown || changed.selectedItems) menu1_changes.items = [
-    		{label: 'Hentere', icon: '/images/smallcar.png', action: ctx.func_3},
-    		{label: 'Oppdater data', icon: '/images/wrench.png', action: ctx.reload},
-    		{label: 'Merk alle', icon: '/images/check.png', action: ctx.func_4 },
-    		{label: 'Fjern merking', icon: '/images/nocheck.png', action: ctx.func_5 },
+    			if (changed.showDriverEditor || changed.showConfigMenu || changed.reload || changed.selectAllShown || changed.selectedItems) menu1_changes.items = [
+    		{
+    			label: 'Hentere', icon: '/images/smallcar.png',
+    			action: ctx.func_3
+    		},
+    		{
+    			label: 'Oppdater data', icon: '/images/wrench.png',
+    			action: ctx.func_4
+    		},
+    		{
+    			label: 'Merk alle', icon: '/images/check.png',
+    			action: ctx.func_5
+    		},
+    		{
+    			label: 'Fjern merking', icon: '/images/nocheck.png',
+    			action: ctx.func_6
+    		},
     	];
     			menu1.$set(menu1_changes);
 
@@ -5744,6 +5783,11 @@ var app = (function () {
     	function onMouseDown(evt) {
     		if (showMenu || showConfigMenu) {return;}
     		$$invalidate('menuX', menuX = event.clientX);
+    		// nudge menu left- og rightwards if the touch or
+    		//mouse cursor is too near edge
+    		if (menuX < window.innerWidth * 0.2) {
+    			$$invalidate('menuX', menuX += window.innerWidth * 0.1);
+    		}
     		if (menuX >= window.innerWidth - 200) {
     			$$invalidate('menuX', menuX -= 200);
     		}
@@ -5894,18 +5938,26 @@ ${baseUrl}/henting/?jobb=${
     	}
 
     	function func_3(e) {
-    		const $$result = showDriverEditor = true;
-    		$$invalidate('showDriverEditor', showDriverEditor);
+    		const $$result = (showDriverEditor = true, showConfigMenu = false);
+    		$$invalidate('showDriverEditor', showDriverEditor); $$invalidate('showConfigMenu', showConfigMenu);
     		return $$result;
     	}
 
     	function func_4(e) {
-    		return selectAllShown();
+    		const $$result = (showConfigMenu = false, reload());
+    		$$invalidate('showConfigMenu', showConfigMenu);
+    		return $$result;
     	}
 
     	function func_5(e) {
-    		const $$result = selectedItems.length = 0;
-    		$$invalidate('selectedItems', selectedItems);
+    		const $$result = (showConfigMenu = false, selectAllShown());
+    		$$invalidate('showConfigMenu', showConfigMenu);
+    		return $$result;
+    	}
+
+    	function func_6(e) {
+    		const $$result = (showConfigMenu = false, selectedItems.length = 0);
+    		$$invalidate('showConfigMenu', showConfigMenu); $$invalidate('selectedItems', selectedItems);
     		return $$result;
     	}
 
@@ -5978,6 +6030,7 @@ ${baseUrl}/henting/?jobb=${
     		func_3,
     		func_4,
     		func_5,
+    		func_6,
     		contextmenu_handler,
     		click_handler_6,
     		mousedown_handler,
