@@ -6003,7 +6003,7 @@ ${baseUrl}/henting/?jobb=${
     	return child_ctx;
     }
 
-    // (123:0) {:catch error}
+    // (138:0) {:catch error}
     function create_catch_block$1(ctx) {
     	var p, t_value = ctx.error.message + "", t;
 
@@ -6012,8 +6012,8 @@ ${baseUrl}/henting/?jobb=${
     			p = element("p");
     			t = text(t_value);
     			set_style(p, "color", "red");
-    			attr(p, "class", "svelte-q7vxhi");
-    			add_location(p, file$d, 123, 1, 3165);
+    			attr(p, "class", "svelte-161imzm");
+    			add_location(p, file$d, 138, 1, 3450);
     		},
 
     		m: function mount(target, anchor) {
@@ -6038,7 +6038,7 @@ ${baseUrl}/henting/?jobb=${
     	};
     }
 
-    // (75:0) {:then data}
+    // (86:0) {:then data}
     function create_then_block$1(ctx) {
     	var each_1_anchor, current;
 
@@ -6120,7 +6120,7 @@ ${baseUrl}/henting/?jobb=${
     	};
     }
 
-    // (82:5) {#if job.loading}
+    // (93:5) {#if job.loading}
     function create_if_block$6(ctx) {
     	var current;
 
@@ -6154,9 +6154,9 @@ ${baseUrl}/henting/?jobb=${
     	};
     }
 
-    // (76:1) {#each $jobs as job}
+    // (87:1) {#each $jobs as job}
     function create_each_block$8(ctx) {
-    	var h1, t1, section, p0, b0, t3, span0, t4_value = ctx.job.adresseforhenting + "", t4, t5, t6, p1, b1, t8, span1, t9, p2, b2, t11, span2, t12, p3, b3, i, t14_value = ctx.job.informasjonomloppene + "", t14, t15, p4, b4, span3, t17, p5, b5, span4, em, t19_value = ctx.job.status + "", t19, t20, br0, br1, t21, button0, t23, button1, t25, button2, t27, current, dispose;
+    	var h1, t1, section, p0, b0, t3, span0, t4_value = ctx.job.adresseforhenting + "", t4, t5, t6, p1, b1, t8, span1, t9, p2, b2, t11, span2, t12, p3, b3, i, t14_value = ctx.job.informasjonomloppene + "", t14, t15, p4, b4, span3, t17, p5, b5, span4, em, t19_value = ctx.job.status + "", t19, t20, br0, br1, t21, p6, b6, span5, button0, t24, button1, t26, button2, t28, current, dispose;
 
     	var if_block = (ctx.job.loading) && create_if_block$6();
 
@@ -6249,67 +6249,74 @@ ${baseUrl}/henting/?jobb=${
     			br0 = element("br");
     			br1 = element("br");
     			t21 = space();
+    			p6 = element("p");
+    			b6 = element("b");
+    			b6.textContent = "Oppdater status:";
+    			span5 = element("span");
     			button0 = element("button");
     			button0.textContent = "Vi skal dit nå";
-    			t23 = space();
+    			t24 = space();
     			button1 = element("button");
     			button1.textContent = "Ferdig hentet!";
-    			t25 = space();
+    			t26 = space();
     			button2 = element("button");
     			button2.textContent = "Kan ikke hente denne";
-    			t27 = space();
-    			attr(h1, "class", "svelte-q7vxhi");
-    			add_location(h1, file$d, 76, 2, 1944);
-    			attr(b0, "class", "svelte-q7vxhi");
-    			add_location(b0, file$d, 79, 4, 1986);
-    			attr(span0, "class", "svelte-q7vxhi");
-    			add_location(span0, file$d, 79, 21, 2003);
-    			attr(p0, "class", "svelte-q7vxhi");
-    			add_location(p0, file$d, 78, 3, 1978);
-    			attr(b1, "class", "svelte-q7vxhi");
-    			add_location(b1, file$d, 85, 4, 2113);
-    			attr(span1, "class", "svelte-q7vxhi");
-    			add_location(span1, file$d, 86, 4, 2140);
-    			attr(p1, "class", "svelte-q7vxhi");
-    			add_location(p1, file$d, 84, 3, 2105);
-    			attr(b2, "class", "svelte-q7vxhi");
-    			add_location(b2, file$d, 91, 4, 2258);
-    			attr(span2, "class", "svelte-q7vxhi");
-    			add_location(span2, file$d, 91, 19, 2273);
-    			attr(p2, "class", "svelte-q7vxhi");
-    			add_location(p2, file$d, 90, 3, 2250);
-    			attr(b3, "class", "svelte-q7vxhi");
-    			add_location(b3, file$d, 93, 6, 2355);
-    			attr(i, "class", "svelte-q7vxhi");
-    			add_location(i, file$d, 93, 25, 2374);
-    			attr(p3, "class", "svelte-q7vxhi");
-    			add_location(p3, file$d, 93, 3, 2352);
-    			attr(b4, "class", "svelte-q7vxhi");
-    			add_location(b4, file$d, 94, 6, 2418);
-    			attr(span3, "class", "svelte-q7vxhi");
-    			add_location(span3, file$d, 94, 32, 2444);
-    			attr(p4, "class", "svelte-q7vxhi");
-    			add_location(p4, file$d, 94, 3, 2415);
-    			attr(b5, "class", "svelte-q7vxhi");
-    			add_location(b5, file$d, 98, 4, 2577);
-    			attr(em, "class", "svelte-q7vxhi");
-    			add_location(em, file$d, 99, 5, 2604);
-    			attr(br0, "class", "svelte-q7vxhi");
-    			add_location(br0, file$d, 99, 27, 2626);
-    			attr(br1, "class", "svelte-q7vxhi");
-    			add_location(br1, file$d, 99, 31, 2630);
-    			attr(button0, "class", "p8 br2 svelte-q7vxhi");
-    			add_location(button0, file$d, 100, 5, 2640);
-    			attr(button1, "class", "p8 br2 svelte-q7vxhi");
-    			add_location(button1, file$d, 106, 5, 2800);
-    			attr(button2, "class", "p8 br2 svelte-q7vxhi");
-    			add_location(button2, file$d, 112, 5, 2960);
-    			attr(span4, "class", "svelte-q7vxhi");
-    			add_location(span4, file$d, 98, 19, 2592);
-    			attr(p5, "class", "svelte-q7vxhi");
-    			add_location(p5, file$d, 97, 3, 2569);
-    			attr(section, "class", "svelte-q7vxhi");
-    			add_location(section, file$d, 77, 2, 1965);
+    			t28 = space();
+    			attr(h1, "class", "svelte-161imzm");
+    			add_location(h1, file$d, 87, 2, 2168);
+    			attr(b0, "class", "svelte-161imzm");
+    			add_location(b0, file$d, 90, 4, 2210);
+    			attr(span0, "class", "svelte-161imzm");
+    			add_location(span0, file$d, 90, 21, 2227);
+    			attr(p0, "class", "svelte-161imzm");
+    			add_location(p0, file$d, 89, 3, 2202);
+    			attr(b1, "class", "svelte-161imzm");
+    			add_location(b1, file$d, 96, 4, 2337);
+    			attr(span1, "class", "svelte-161imzm");
+    			add_location(span1, file$d, 97, 4, 2364);
+    			attr(p1, "class", "svelte-161imzm");
+    			add_location(p1, file$d, 95, 3, 2329);
+    			attr(b2, "class", "svelte-161imzm");
+    			add_location(b2, file$d, 102, 4, 2482);
+    			attr(span2, "class", "svelte-161imzm");
+    			add_location(span2, file$d, 102, 19, 2497);
+    			attr(p2, "class", "svelte-161imzm");
+    			add_location(p2, file$d, 101, 3, 2474);
+    			attr(b3, "class", "svelte-161imzm");
+    			add_location(b3, file$d, 104, 6, 2579);
+    			attr(i, "class", "svelte-161imzm");
+    			add_location(i, file$d, 104, 25, 2598);
+    			attr(p3, "class", "svelte-161imzm");
+    			add_location(p3, file$d, 104, 3, 2576);
+    			attr(b4, "class", "svelte-161imzm");
+    			add_location(b4, file$d, 105, 6, 2642);
+    			attr(span3, "class", "svelte-161imzm");
+    			add_location(span3, file$d, 105, 32, 2668);
+    			attr(p4, "class", "svelte-161imzm");
+    			add_location(p4, file$d, 105, 3, 2639);
+    			attr(b5, "class", "svelte-161imzm");
+    			add_location(b5, file$d, 109, 4, 2801);
+    			add_location(em, file$d, 110, 5, 2828);
+    			add_location(br0, file$d, 110, 27, 2850);
+    			add_location(br1, file$d, 110, 31, 2854);
+    			attr(span4, "class", "svelte-161imzm");
+    			add_location(span4, file$d, 109, 19, 2816);
+    			attr(p5, "class", "svelte-161imzm");
+    			add_location(p5, file$d, 108, 3, 2793);
+    			attr(b6, "class", "svelte-161imzm");
+    			add_location(b6, file$d, 114, 4, 2890);
+    			attr(button0, "class", "p8 br2 svelte-161imzm");
+    			add_location(button0, file$d, 115, 5, 2925);
+    			attr(button1, "class", "p8 br2 svelte-161imzm");
+    			add_location(button1, file$d, 121, 5, 3085);
+    			attr(button2, "class", "p8 br2 svelte-161imzm");
+    			add_location(button2, file$d, 127, 5, 3245);
+    			attr(span5, "class", "svelte-161imzm");
+    			add_location(span5, file$d, 114, 27, 2913);
+    			attr(p6, "class", "svelte-161imzm");
+    			add_location(p6, file$d, 113, 3, 2882);
+    			attr(section, "class", "svelte-161imzm");
+    			add_location(section, file$d, 88, 2, 2189);
 
     			dispose = [
     				listen(button0, "click", click_handler),
@@ -6360,13 +6367,16 @@ ${baseUrl}/henting/?jobb=${
     			append(span4, t20);
     			append(span4, br0);
     			append(span4, br1);
-    			append(span4, t21);
-    			append(span4, button0);
-    			append(span4, t23);
-    			append(span4, button1);
-    			append(span4, t25);
-    			append(span4, button2);
-    			append(section, t27);
+    			append(section, t21);
+    			append(section, p6);
+    			append(p6, b6);
+    			append(p6, span5);
+    			append(span5, button0);
+    			append(span5, t24);
+    			append(span5, button1);
+    			append(span5, t26);
+    			append(span5, button2);
+    			append(section, t28);
     			current = true;
     		},
 
@@ -6456,7 +6466,7 @@ ${baseUrl}/henting/?jobb=${
     	};
     }
 
-    // (73:16)   <div class="loading"><LoadingIcon /></div> {:then data}
+    // (84:16)   <div class="loading"><LoadingIcon /></div> {:then data}
     function create_pending_block$1(ctx) {
     	var div, current;
 
@@ -6466,8 +6476,8 @@ ${baseUrl}/henting/?jobb=${
     		c: function create() {
     			div = element("div");
     			loadingicon.$$.fragment.c();
-    			attr(div, "class", "loading svelte-q7vxhi");
-    			add_location(div, file$d, 73, 1, 1864);
+    			attr(div, "class", "loading svelte-161imzm");
+    			add_location(div, file$d, 84, 1, 2088);
     		},
 
     		m: function mount(target, anchor) {
