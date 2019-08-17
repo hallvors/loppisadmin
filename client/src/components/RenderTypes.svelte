@@ -23,7 +23,7 @@ types = types.split(/,\s+/g);
 </script>
 {#each types as typ}
 {#if icons[typ]}
-<img src={icons[typ]} alt={typ} height="24" />
+<img src={icons[typ]} alt={typ} title={typ} height="24" />
 {:else if showAll}
 <br>{typ}
 {/if}

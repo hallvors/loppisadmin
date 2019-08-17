@@ -59,19 +59,19 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 		border: 1px solid black;
 		padding: 8px;
 	}
-	p {
+	section p {
 		display: table-row;
 		border-bottom: 1px solid grey;
 	}
-	p b, p address, p span, p i {
+	section p b, section p address, section p span, section p i {
 		display: table-cell;
 		border: 8px solid transparent
 	}
-	p b:first-child {width: 5%;}
+	section p b:first-child {width: 5%;}
 	@media only screen and (min-width: 700px) {
 		section {width: 60%; margin-left: 20%}
-		p b:first-child {width: 15%;}
-		p b, p address, p span, p i {
+		section p b:first-child {width: 15%;}
+		section p b, section p address, section p span, section p i {
 			border: 16px solid transparent
 		}
 
@@ -86,11 +86,11 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 {:then data}
 	{#each $jobs as job}
 		<h1>Hentejobb</h1>
+		{#if job.loading}<div class="loading"><LoadingIcon /></div>{/if}
 		<section>
 			<p>
 				<b>Adresse: </b> <span>
 					{job.adresseforhenting}
-					{#if job.loading}<LoadingIcon />{/if}
 				</span>
 			</p>
 			<p>

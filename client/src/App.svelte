@@ -7,6 +7,7 @@
 	import SMSEditor from './components/SMSEditor.svelte';
 	import DriverEditor from './components/DriverEditor.svelte';
 	import FlashMessage from './components/FlashMessage.svelte';
+	import LoadingIcon from './components/LoadingIcon.svelte';
 	import Menu from './components/Menu.svelte';
 	import {sendSms} from './api.js';
 	import {drivers, jobs} from './store.js';
@@ -273,10 +274,19 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 .status {
 	width: 15%;
 }
+.loading {
+	position: fixed;
+	left: 45%;
+	right: 50%;
+	top: 45%;
+	bottom: 50%;
+}
+
 </style>
 
 {#await promise}
-	<p>...henter data</p>
+	<div class="loading"><LoadingIcon /></div>
+	<p style="text-align: center;">...henter data</p>
 {:then data}
 	<table>
 		<tr>
