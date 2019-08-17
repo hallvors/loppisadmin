@@ -8,5 +8,5 @@ if (!process.env.google__auth) {
 
 module.exports = {
 	nconf,
-	port: nconf.get('PORT') || 5544
+	PORT: nconf.get('PORT') || 5544
 };
