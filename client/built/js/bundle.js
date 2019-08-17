@@ -1157,13 +1157,13 @@ var app = (function () {
     			t3 = space();
     			hr1 = element("hr");
     			attr(div0, "class", "modal-background svelte-rbafol");
-    			add_location(div0, file$2, 41, 0, 665);
+    			add_location(div0, file$2, 45, 0, 813);
 
-    			add_location(hr0, file$2, 45, 1, 811);
+    			add_location(hr0, file$2, 49, 1, 959);
 
-    			add_location(hr1, file$2, 47, 1, 832);
+    			add_location(hr1, file$2, 51, 1, 980);
     			attr(div1, "class", "modal svelte-rbafol");
-    			add_location(div1, file$2, 43, 0, 740);
+    			add_location(div1, file$2, 47, 0, 888);
     			dispose = listen(div0, "click", ctx.click_handler);
     		},
 
@@ -1248,6 +1248,10 @@ var app = (function () {
     	onMount(() => {
     		if(modalElm && modalElm.scrollIntoView) {
     			modalElm.scrollIntoView();
+    		}
+    		if (modalElm && modalElm.querySelector) {
+    			// accessibility: focus management
+    			modalElm.querySelector('input, textarea, button').focus();
     		}
     	});
 
@@ -2148,7 +2152,7 @@ var app = (function () {
     			div = element("div");
     			loadingicon.$$.fragment.c();
     			attr(div, "class", "svelte-azj9oq");
-    			add_location(div, file$7, 121, 22, 2431);
+    			add_location(div, file$7, 121, 22, 2444);
     		},
 
     		m: function mount(target, anchor) {
@@ -2189,7 +2193,7 @@ var app = (function () {
     			attr(img, "src", "/images/smallcar.png");
     			attr(img, "alt", "liten bil");
     			attr(img, "height", "22");
-    			add_location(img, file$7, 132, 0, 2706);
+    			add_location(img, file$7, 132, 0, 2719);
     		},
 
     		m: function mount(target, anchor) {
@@ -2214,7 +2218,7 @@ var app = (function () {
     			attr(img, "src", "/images/bigcar.png");
     			attr(img, "alt", "stor bil");
     			attr(img, "height", "22");
-    			add_location(img, file$7, 130, 0, 2640);
+    			add_location(img, file$7, 130, 0, 2653);
     		},
 
     		m: function mount(target, anchor) {
@@ -2239,7 +2243,7 @@ var app = (function () {
     			t = text(t_value);
     			option.__value = option_value_value = ctx.theState;
     			option.value = option.__value;
-    			add_location(option, file$7, 147, 2, 3554);
+    			add_location(option, file$7, 147, 2, 3580);
     		},
 
     		m: function mount(target, anchor) {
@@ -2267,7 +2271,7 @@ var app = (function () {
     		c: function create() {
     			i = element("i");
     			t = text(t_value);
-    			add_location(i, file$7, 151, 1, 3626);
+    			add_location(i, file$7, 151, 1, 3652);
     		},
 
     		m: function mount(target, anchor) {
@@ -2324,25 +2328,25 @@ var app = (function () {
     			t5 = space();
     			if (if_block) if_block.c();
     			attr(td0, "class", "svelte-azj9oq");
-    			add_location(td0, file$7, 155, 40, 3711);
-    			add_location(p0, file$7, 156, 1, 3756);
-    			add_location(p1, file$7, 159, 1, 3854);
-    			add_location(i, file$7, 160, 4, 3888);
-    			add_location(p2, file$7, 160, 1, 3885);
+    			add_location(td0, file$7, 155, 40, 3737);
+    			add_location(p0, file$7, 156, 1, 3782);
+    			add_location(p1, file$7, 159, 1, 3880);
+    			add_location(i, file$7, 160, 4, 3914);
+    			add_location(p2, file$7, 160, 1, 3911);
     			attr(td1, "colspan", "3");
     			attr(td1, "class", "extrainfo svelte-azj9oq");
-    			add_location(td1, file$7, 155, 49, 3720);
+    			add_location(td1, file$7, 155, 49, 3746);
     			attr(img, "src", "/images/edit.png");
     			attr(img, "alt", "endre detaljer");
     			attr(img, "width", "36");
     			attr(img, "class", "svelte-azj9oq");
-    			add_location(img, file$7, 163, 43, 3985);
+    			add_location(img, file$7, 163, 43, 4011);
     			attr(button, "class", "svelte-azj9oq");
-    			add_location(button, file$7, 163, 1, 3943);
+    			add_location(button, file$7, 163, 1, 3969);
     			attr(td2, "class", "svelte-azj9oq");
-    			add_location(td2, file$7, 162, 0, 3937);
+    			add_location(td2, file$7, 162, 0, 3963);
     			attr(tr, "data-id", tr_data_id_value = ctx.itemData.id);
-    			add_location(tr, file$7, 155, 14, 3685);
+    			add_location(tr, file$7, 155, 14, 3711);
     			dispose = listen(button, "click", ctx.click_handler_2);
     		},
 
@@ -2491,7 +2495,7 @@ var app = (function () {
     			h2 = element("h2");
     			h2.textContent = "Endre detaljer";
     			attr(h2, "slot", "header");
-    			add_location(h2, file$7, 166, 3, 4125);
+    			add_location(h2, file$7, 166, 3, 4151);
     		},
 
     		m: function mount(target, anchor) {
@@ -2641,34 +2645,36 @@ var app = (function () {
     			t14 = space();
     			if (if_block3) if_block3.c();
     			if_block3_anchor = empty();
-    			add_location(br, file$7, 123, 0, 2502);
-    			add_location(i, file$7, 125, 0, 2533);
+    			add_location(br, file$7, 123, 0, 2515);
+    			add_location(i, file$7, 125, 0, 2546);
     			attr(div, "class", "smallscreen svelte-azj9oq");
-    			add_location(div, file$7, 124, 0, 2507);
+    			add_location(div, file$7, 124, 0, 2520);
+    			attr(td0, "tabindex", "0");
     			attr(td0, "class", "svelte-azj9oq");
     			toggle_class(td0, "expanded", ctx.expanded);
     			toggle_class(td0, "loading", ctx.loading);
     			add_location(td0, file$7, 120, 0, 2335);
     			attr(td1, "class", "car svelte-azj9oq");
-    			add_location(td1, file$7, 128, 0, 2598);
+    			add_location(td1, file$7, 128, 0, 2611);
     			attr(td2, "class", "typefilter svelte-azj9oq");
-    			add_location(td2, file$7, 135, 0, 2779);
+    			add_location(td2, file$7, 135, 0, 2792);
     			attr(td3, "class", "svelte-azj9oq");
-    			add_location(td3, file$7, 136, 0, 2852);
+    			add_location(td3, file$7, 136, 0, 2865);
     			attr(td4, "class", "svelte-azj9oq");
-    			add_location(td4, file$7, 137, 0, 2937);
+    			add_location(td4, file$7, 137, 0, 2950);
     			attr(input, "type", "checkbox");
     			attr(input, "id", input_id_value = "select" + ctx.itemData.id);
     			attr(input, "class", "svelte-azj9oq");
-    			add_location(input, file$7, 143, 0, 3203);
+    			add_location(input, file$7, 143, 0, 3216);
     			attr(label, "for", label_for_value = "select" + ctx.itemData.id);
+    			attr(label, "tabindex", "0");
     			attr(label, "class", "svelte-azj9oq");
-    			add_location(label, file$7, 144, 0, 3365);
+    			add_location(label, file$7, 144, 0, 3378);
     			if (ctx.itemData.status === void 0) add_render_callback(() => ctx.select_change_handler.call(select));
     			attr(select, "class", "svelte-azj9oq");
-    			add_location(select, file$7, 145, 0, 3408);
+    			add_location(select, file$7, 145, 0, 3434);
     			attr(td5, "class", "statuscell svelte-azj9oq");
-    			add_location(td5, file$7, 138, 0, 3010);
+    			add_location(td5, file$7, 138, 0, 3023);
     			attr(tr, "class", "job svelte-azj9oq");
     			attr(tr, "data-id", tr_data_id_value = ctx.itemData.id);
     			toggle_class(tr, "itemSelected", ctx.itemSelected);
@@ -4454,7 +4460,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (373:0) {:catch error}
+    // (377:0) {:catch error}
     function create_catch_block(ctx) {
     	var p, t_value = ctx.error.message + "", t;
 
@@ -4463,7 +4469,7 @@ var app = (function () {
     			p = element("p");
     			t = text(t_value);
     			set_style(p, "color", "red");
-    			add_location(p, file$c, 373, 1, 9540);
+    			add_location(p, file$c, 377, 1, 9629);
     		},
 
     		m: function mount(target, anchor) {
@@ -4599,62 +4605,67 @@ var app = (function () {
     			attr(img0, "src", "/images/bigcar.png");
     			attr(img0, "alt", "stor bil");
     			attr(img0, "height", "22");
+    			attr(img0, "tabindex", "0");
     			toggle_class(img0, "bigActive", ctx.bigActive);
     			add_location(img0, file$c, 284, 4, 6950);
     			attr(img1, "src", "/images/smallcar.png");
     			attr(img1, "alt", "liten bil");
     			attr(img1, "height", "22");
+    			attr(img1, "tabindex", "0");
     			toggle_class(img1, "smallActive", ctx.smallActive);
-    			add_location(img1, file$c, 286, 4, 7075);
+    			add_location(img1, file$c, 288, 4, 7100);
     			add_location(th1, file$c, 283, 3, 6941);
     			if (ctx.typeFilter === void 0) add_render_callback(() => ctx.select_change_handler.call(select));
-    			add_location(select, file$c, 290, 4, 7229);
-    			add_location(th2, file$c, 289, 3, 7220);
+    			add_location(select, file$c, 294, 4, 7279);
+    			add_location(th2, file$c, 293, 3, 7270);
     			attr(img2, "src", "/images/star-full.png");
     			attr(img2, "width", "16");
     			attr(img2, "alt", "antatt kvalitet");
-    			add_location(img2, file$c, 297, 4, 7373);
+    			add_location(img2, file$c, 301, 4, 7423);
     			attr(img3, "src", "/images/star-full.png");
     			attr(img3, "width", "16");
     			attr(img3, "alt", "");
-    			add_location(img3, file$c, 298, 4, 7444);
+    			add_location(img3, file$c, 302, 4, 7494);
     			attr(img4, "src", "/images/star-full.png");
     			attr(img4, "width", "16");
     			attr(img4, "alt", "");
-    			add_location(img4, file$c, 299, 4, 7500);
-    			add_location(th3, file$c, 296, 3, 7364);
+    			add_location(img4, file$c, 303, 4, 7550);
+    			add_location(th3, file$c, 300, 3, 7414);
+    			attr(li0, "tabindex", "0");
     			toggle_class(li0, "tueActive", ctx.tueActive);
-    			add_location(li0, file$c, 304, 5, 7677);
+    			add_location(li0, file$c, 308, 5, 7727);
+    			attr(li1, "tabindex", "0");
     			toggle_class(li1, "wedActive", ctx.wedActive);
-    			add_location(li1, file$c, 305, 5, 7751);
+    			add_location(li1, file$c, 309, 5, 7814);
+    			attr(li2, "tabindex", "0");
     			toggle_class(li2, "thuActive", ctx.thuActive);
-    			add_location(li2, file$c, 306, 5, 7825);
+    			add_location(li2, file$c, 310, 5, 7901);
     			attr(ol, "class", "days");
-    			add_location(ol, file$c, 302, 4, 7573);
-    			add_location(th4, file$c, 301, 3, 7564);
+    			add_location(ol, file$c, 306, 4, 7623);
+    			add_location(th4, file$c, 305, 3, 7614);
     			attr(input1, "type", "checkbox");
-    			add_location(input1, file$c, 310, 11, 7932);
-    			add_location(label0, file$c, 310, 4, 7925);
-    			add_location(br, file$c, 311, 4, 8019);
+    			add_location(input1, file$c, 314, 11, 8021);
+    			add_location(label0, file$c, 314, 4, 8014);
+    			add_location(br, file$c, 315, 4, 8108);
     			attr(input2, "type", "checkbox");
-    			add_location(input2, file$c, 311, 15, 8030);
-    			add_location(label1, file$c, 311, 8, 8023);
-    			add_location(th5, file$c, 309, 3, 7916);
+    			add_location(input2, file$c, 315, 15, 8119);
+    			add_location(label1, file$c, 315, 8, 8112);
+    			add_location(th5, file$c, 313, 3, 8005);
     			add_location(tr, file$c, 281, 2, 6849);
     			attr(col0, "class", "address");
-    			add_location(col0, file$c, 325, 1, 8474);
+    			add_location(col0, file$c, 329, 1, 8563);
     			attr(col1, "class", "cartype");
-    			add_location(col1, file$c, 326, 1, 8499);
+    			add_location(col1, file$c, 330, 1, 8588);
     			attr(col2, "class", "stufftype");
-    			add_location(col2, file$c, 327, 1, 8524);
+    			add_location(col2, file$c, 331, 1, 8613);
     			attr(col3, "class", "quality");
-    			add_location(col3, file$c, 328, 1, 8551);
+    			add_location(col3, file$c, 332, 1, 8640);
     			attr(col4, "class", "dayscol");
-    			add_location(col4, file$c, 329, 1, 8576);
+    			add_location(col4, file$c, 333, 1, 8665);
     			attr(col5, "class", "status");
-    			add_location(col5, file$c, 330, 1, 8601);
+    			add_location(col5, file$c, 334, 1, 8690);
     			add_location(table, file$c, 280, 1, 6839);
-    			add_location(p, file$c, 333, 0, 8634);
+    			add_location(p, file$c, 337, 0, 8723);
 
     			dispose = [
     				listen(input0, "input", ctx.input0_input_handler),
@@ -4920,7 +4931,7 @@ var app = (function () {
     	};
     }
 
-    // (292:5) {#each types as theType}
+    // (296:5) {#each types as theType}
     function create_each_block_2(ctx) {
     	var option, t_value = ctx.theType + "", t, option_value_value;
 
@@ -4930,7 +4941,7 @@ var app = (function () {
     			t = text(t_value);
     			option.__value = option_value_value = ctx.theType;
     			option.value = option.__value;
-    			add_location(option, file$c, 292, 6, 7298);
+    			add_location(option, file$c, 296, 6, 7348);
     		},
 
     		m: function mount(target, anchor) {
@@ -4950,7 +4961,7 @@ var app = (function () {
     	};
     }
 
-    // (316:2) {#if filter(freeTextFilter, {smallActive, bigActive},     {monActive, tueActive, wedActive, thuActive, dayFilterExclusive}, typeFilter, hideDoneJobs, theJob)   }
+    // (320:2) {#if filter(freeTextFilter, {smallActive, bigActive},     {monActive, tueActive, wedActive, thuActive, dayFilterExclusive}, typeFilter, hideDoneJobs, theJob)   }
     function create_if_block_2$2(ctx) {
     	var current;
 
@@ -4998,7 +5009,7 @@ var app = (function () {
     	};
     }
 
-    // (315:1) {#each $jobs as theJob, i}
+    // (319:1) {#each $jobs as theJob, i}
     function create_each_block_1$1(ctx) {
     	var if_block_anchor, current;
 
@@ -5059,7 +5070,7 @@ var app = (function () {
     	};
     }
 
-    // (339:0) {#if showSmsEditor}
+    // (343:0) {#if showSmsEditor}
     function create_if_block_1$3(ctx) {
     	var current;
 
@@ -5109,7 +5120,7 @@ var app = (function () {
     	};
     }
 
-    // (341:2) <h2 slot="header">
+    // (345:2) <h2 slot="header">
     function create_header_slot_1(ctx) {
     	var h2;
 
@@ -5118,7 +5129,7 @@ var app = (function () {
     			h2 = element("h2");
     			h2.textContent = "Send SMS";
     			attr(h2, "slot", "header");
-    			add_location(h2, file$c, 340, 2, 8821);
+    			add_location(h2, file$c, 344, 2, 8910);
     		},
 
     		m: function mount(target, anchor) {
@@ -5133,7 +5144,7 @@ var app = (function () {
     	};
     }
 
-    // (340:1) <Modal on:close="{() => showSmsEditor = false}">
+    // (344:1) <Modal on:close="{() => showSmsEditor = false}">
     function create_default_slot_1(ctx) {
     	var t, current;
 
@@ -5190,7 +5201,7 @@ var app = (function () {
     	};
     }
 
-    // (362:0) {#if showDriverEditor}
+    // (366:0) {#if showDriverEditor}
     function create_if_block$5(ctx) {
     	var current;
 
@@ -5234,7 +5245,7 @@ var app = (function () {
     	};
     }
 
-    // (364:2) <h2 slot="header">
+    // (368:2) <h2 slot="header">
     function create_header_slot$1(ctx) {
     	var h2;
 
@@ -5243,7 +5254,7 @@ var app = (function () {
     			h2 = element("h2");
     			h2.textContent = "Oppdater hentere";
     			attr(h2, "slot", "header");
-    			add_location(h2, file$c, 363, 2, 9388);
+    			add_location(h2, file$c, 367, 2, 9477);
     		},
 
     		m: function mount(target, anchor) {
@@ -5258,7 +5269,7 @@ var app = (function () {
     	};
     }
 
-    // (363:1) <Modal on:close="{() => showDriverEditor = false}">
+    // (367:1) <Modal on:close="{() => showDriverEditor = false}">
     function create_default_slot$1(ctx) {
     	var t, current;
 
@@ -5328,7 +5339,7 @@ var app = (function () {
     	};
     }
 
-    // (415:0) {#each tempMsgQueue as msg, idx}
+    // (419:0) {#each tempMsgQueue as msg, idx}
     function create_each_block$7(ctx) {
     	var current;
 
