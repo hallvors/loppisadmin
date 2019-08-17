@@ -118,7 +118,7 @@ button img {vertical-align: middle;}
 	class:itemSelected
 	data-id={itemData.id}
 >
-<td class:expanded class:loading on:click="{e => expanded = !expanded}" >
+<td class:expanded class:loading on:click="{e => expanded = !expanded}" tabindex="0" >
 {#if itemData.loading}<div><LoadingIcon w=24 h=24 /></div>{/if}
 {itemData.adresseforhenting}
 <br>
@@ -142,7 +142,7 @@ button img {vertical-align: middle;}
 	}
 }}>
 <input type="checkbox" bind:checked={itemSelected} id="select{itemData.id}" on:change="{e => dispatch('select', {id: itemData.id, selected: e.target.checked})}">
-<label for="select{itemData.id}">✓</label>
+<label for="select{itemData.id}" tabindex="0">✓</label>
 <select bind:value={itemData.status} on:change|stopPropagation="{e => update({detail: {status: e.target.value}})}">
 	{#each states as theState}
 		<option>{theState}</option>

@@ -283,9 +283,13 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 			<th><input type="search" bind:value={freeTextFilter} placeholder="Filtrer"></th>
 			<th>
 				<img src="/images/bigcar.png" alt="stor bil" height="22" 
-					class:bigActive on:click="{e => bigActive = !bigActive}">
+					class:bigActive 
+					on:click="{e => bigActive = !bigActive}" 
+					tabindex="0">
 				<img src="/images/smallcar.png" alt="liten bil" height="22"
-					class:smallActive on:click="{e => smallActive = !smallActive}">				
+					class:smallActive 
+					on:click="{e => smallActive = !smallActive}" 
+					tabindex="0">				
 			</th>
 			<th>
 				<select bind:value={typeFilter}>
@@ -302,9 +306,9 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 			<th>
 				<ol class="days">
 					<!--<li class:monActive on:click="{e => monActive = !monActive}">Ma</li>-->
-					<li class:tueActive on:click="{e => tueActive = !tueActive}">Ti</li>
-					<li class:wedActive on:click="{e => wedActive = !wedActive}">On</li>
-					<li class:thuActive on:click="{e => thuActive = !thuActive}">To</li>
+					<li class:tueActive on:click="{e => tueActive = !tueActive}" tabindex="0">Ti</li>
+					<li class:wedActive on:click="{e => wedActive = !wedActive}" tabindex="0">On</li>
+					<li class:thuActive on:click="{e => thuActive = !thuActive}" tabindex="0">To</li>
 				</ol>
 			</th>
 			<th>

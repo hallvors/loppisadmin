@@ -7,6 +7,10 @@
 		if(modalElm && modalElm.scrollIntoView) {
 			modalElm.scrollIntoView();
 		}
+		if (modalElm && modalElm.querySelector) {
+			// accessibility: focus management
+			modalElm.querySelector('input, textarea, button').focus();
+		}
 	});
 </script>
 
