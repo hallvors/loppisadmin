@@ -33,7 +33,6 @@ function getFullList(force, callback) {
 		Date.now() - lastFetchedTime.getTime() < 1000 * 60 * 10
 	) {
 		console.log('Using cached list!');
-		console.log(JSON.stringify( cachedList.map(row => _.pick(row, fields))))
 		callback(null, cachedList.map(row => _.pick(row, fields)));
 		return;
 	}
@@ -48,7 +47,6 @@ function getFullList(force, callback) {
 			cachedList = result;
 			lastFetchedTime = new Date();
 			result = result.map(row => _.pick(row, fields));
-			console.log(result, next);
 			next(result);
 		}
 	], (res) => {
@@ -64,7 +62,6 @@ function update(id, details, callback) {
 			return row.save((err, result) => {
 				let saved = {};
 				fields.forEach(f => {saved[f] = result['gsx:' + f]});
-				console.log('update result', err, saved);
 				callback(err, {id, saved});
 			});
 		}
