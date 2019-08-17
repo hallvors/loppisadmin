@@ -130,6 +130,11 @@
 	function onMouseDown(evt) {
 		if (showMenu || showConfigMenu) {return;}
 		menuX = event.clientX;
+		// nudge menu left- og rightwards if the touch or
+		//mouse cursor is too near edge
+		if (menuX < window.innerWidth * 0.2) {
+			menuX += window.innerWidth * 0.1;
+		}
 		if (menuX >= window.innerWidth - 200) {
 			menuX -= 200;
 		}
@@ -199,11 +204,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 <h1>Loppisadmin</h1>
 
 <style type="text/css">
-	h1 {text-align: center;
-		max-width: 60%;
-		margin-left: auto;
-		margin-right: auto;
-	}
+	h1 {text-align: center;}
 	.conf {float: right; padding: 4px;margin-right: 8em}
 	.conf img {vertical-align: middle;}
 	table {
@@ -377,8 +378,14 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 	x={menuX}
 	y={menuY} 
 	items={[
-		{label: 'SMS til giver', icon: '/images/sms.png', action: e => initSms('donor')},
-		{label: 'SMS til henter', icon: '/images/sms.png', action: e => initSms('worker')},
+		{
+			label: 'SMS til giver', icon: '/images/sms.png',
+			action: e => initSms('donor')
+		},
+		{
+			label: 'SMS til henter', icon: '/images/sms.png',
+			action: e => initSms('worker')
+		},
 	]}
 />
 <Menu 
@@ -386,10 +393,22 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 	x={menuX}
 	y={menuY} 
 	items={[
-		{label: 'Hentere', icon: '/images/smallcar.png', action: e => showDriverEditor = true},
-		{label: 'Oppdater data', icon: '/images/wrench.png', action: reload},
-		{label: 'Merk alle', icon: '/images/check.png', action: e => selectAllShown() },
-		{label: 'Fjern merking', icon: '/images/nocheck.png', action: e => selectedItems.length = 0 },
+		{
+			label: 'Hentere', icon: '/images/smallcar.png',
+			action: e => (showDriverEditor = true, showConfigMenu = false)
+		},
+		{
+			label: 'Oppdater data', icon: '/images/wrench.png',
+			action: e => (showConfigMenu = false, reload())
+		},
+		{
+			label: 'Merk alle', icon: '/images/check.png',
+			action: e => (showConfigMenu = false, selectAllShown())
+		},
+		{
+			label: 'Fjern merking', icon: '/images/nocheck.png',
+			action: e => (showConfigMenu = false, selectedItems.length = 0)
+		},
 	]}
 />
 

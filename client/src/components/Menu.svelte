@@ -5,6 +5,9 @@
 	export let x = 0;
 	export let y = 0;
 	onMount(() => document.getElementsByTagName('button')[0].focus());
+	if (x <= 20) {
+		x = 20;
+	}
 </script>
 
 <style type="text/css">
