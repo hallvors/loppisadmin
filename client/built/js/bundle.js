@@ -1901,7 +1901,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (123:0) {#if itemData.loading}
+    // (122:0) {#if itemData.loading}
     function create_if_block_4(ctx) {
     	var div, current;
 
@@ -1915,7 +1915,7 @@ var app = (function () {
     			div = element("div");
     			loadingicon.$$.fragment.c();
     			attr(div, "class", "svelte-13a52ed");
-    			add_location(div, file$7, 122, 22, 2470);
+    			add_location(div, file$7, 121, 22, 2428);
     		},
 
     		m: function mount(target, anchor) {
@@ -1946,7 +1946,7 @@ var app = (function () {
     	};
     }
 
-    // (133:0) {:else}
+    // (132:0) {:else}
     function create_else_block(ctx) {
     	var img;
 
@@ -1956,7 +1956,7 @@ var app = (function () {
     			attr(img, "src", "/images/smallcar.png");
     			attr(img, "alt", "liten bil");
     			attr(img, "height", "22");
-    			add_location(img, file$7, 133, 0, 2745);
+    			add_location(img, file$7, 132, 0, 2703);
     		},
 
     		m: function mount(target, anchor) {
@@ -1971,7 +1971,7 @@ var app = (function () {
     	};
     }
 
-    // (131:0) {#if itemData.størrelse}
+    // (130:0) {#if itemData.størrelse}
     function create_if_block_3(ctx) {
     	var img;
 
@@ -1981,7 +1981,7 @@ var app = (function () {
     			attr(img, "src", "/images/bigcar.png");
     			attr(img, "alt", "stor bil");
     			attr(img, "height", "22");
-    			add_location(img, file$7, 131, 0, 2679);
+    			add_location(img, file$7, 130, 0, 2637);
     		},
 
     		m: function mount(target, anchor) {
@@ -1996,7 +1996,7 @@ var app = (function () {
     	};
     }
 
-    // (148:1) {#each states as theState}
+    // (147:1) {#each states as theState}
     function create_each_block$3(ctx) {
     	var option, t_value = ctx.theState + "", t, option_value_value;
 
@@ -2006,7 +2006,7 @@ var app = (function () {
     			t = text(t_value);
     			option.__value = option_value_value = ctx.theState;
     			option.value = option.__value;
-    			add_location(option, file$7, 148, 2, 3596);
+    			add_location(option, file$7, 147, 2, 3541);
     		},
 
     		m: function mount(target, anchor) {
@@ -2026,7 +2026,7 @@ var app = (function () {
     	};
     }
 
-    // (152:0) {#if itemData.hentesav}
+    // (151:0) {#if itemData.hentesav}
     function create_if_block_2(ctx) {
     	var i, t_value = ctx.itemData.hentesav + "", t;
 
@@ -2034,7 +2034,7 @@ var app = (function () {
     		c: function create() {
     			i = element("i");
     			t = text(t_value);
-    			add_location(i, file$7, 152, 1, 3668);
+    			add_location(i, file$7, 151, 1, 3613);
     		},
 
     		m: function mount(target, anchor) {
@@ -2056,7 +2056,7 @@ var app = (function () {
     	};
     }
 
-    // (157:0) {#if expanded}
+    // (156:0) {#if expanded}
     function create_if_block$1(ctx) {
     	var tr, td0, td1, p0, t0, p1, t1_value = ctx.itemData.typerlopper + "", t1, t2, p2, i, t3_value = ctx.itemData.informasjonomloppene + "", t3, t4, td2, button, img, t5, current, dispose;
 
@@ -2091,24 +2091,24 @@ var app = (function () {
     			t5 = space();
     			if (if_block) if_block.c();
     			attr(td0, "class", "svelte-13a52ed");
-    			add_location(td0, file$7, 156, 18, 3731);
-    			add_location(p0, file$7, 157, 1, 3776);
-    			add_location(p1, file$7, 160, 1, 3874);
-    			add_location(i, file$7, 161, 4, 3908);
-    			add_location(p2, file$7, 161, 1, 3905);
+    			add_location(td0, file$7, 155, 18, 3676);
+    			add_location(p0, file$7, 156, 1, 3721);
+    			add_location(p1, file$7, 159, 1, 3819);
+    			add_location(i, file$7, 160, 4, 3853);
+    			add_location(p2, file$7, 160, 1, 3850);
     			attr(td1, "colspan", "3");
     			attr(td1, "class", "extrainfo svelte-13a52ed");
-    			add_location(td1, file$7, 156, 27, 3740);
+    			add_location(td1, file$7, 155, 27, 3685);
     			attr(img, "src", "/images/edit.png");
     			attr(img, "alt", "endre detaljer");
     			attr(img, "width", "36");
     			attr(img, "class", "svelte-13a52ed");
-    			add_location(img, file$7, 164, 43, 4005);
+    			add_location(img, file$7, 163, 43, 3950);
     			attr(button, "class", "svelte-13a52ed");
-    			add_location(button, file$7, 164, 1, 3963);
+    			add_location(button, file$7, 163, 1, 3908);
     			attr(td2, "class", "svelte-13a52ed");
-    			add_location(td2, file$7, 163, 0, 3957);
-    			add_location(tr, file$7, 156, 14, 3727);
+    			add_location(td2, file$7, 162, 0, 3902);
+    			add_location(tr, file$7, 155, 14, 3672);
     			dispose = listen(button, "click", ctx.click_handler_2);
     		},
 
@@ -2194,7 +2194,7 @@ var app = (function () {
     	};
     }
 
-    // (166:1) {#if showEditor}
+    // (165:1) {#if showEditor}
     function create_if_block_1$1(ctx) {
     	var current;
 
@@ -2244,7 +2244,7 @@ var app = (function () {
     	};
     }
 
-    // (168:3) <h2 slot="header">
+    // (167:3) <h2 slot="header">
     function create_header_slot(ctx) {
     	var h2;
 
@@ -2253,7 +2253,7 @@ var app = (function () {
     			h2 = element("h2");
     			h2.textContent = "Endre detaljer";
     			attr(h2, "slot", "header");
-    			add_location(h2, file$7, 167, 3, 4145);
+    			add_location(h2, file$7, 166, 3, 4090);
     		},
 
     		m: function mount(target, anchor) {
@@ -2268,7 +2268,7 @@ var app = (function () {
     	};
     }
 
-    // (167:2) <Modal on:close="{() => showEditor = false}" >
+    // (166:2) <Modal on:close="{() => showEditor = false}" >
     function create_default_slot(ctx) {
     	var t, current;
 
@@ -2403,38 +2403,38 @@ var app = (function () {
     			t14 = space();
     			if (if_block3) if_block3.c();
     			if_block3_anchor = empty();
-    			add_location(br, file$7, 124, 0, 2541);
-    			add_location(i, file$7, 126, 0, 2572);
+    			add_location(br, file$7, 123, 0, 2499);
+    			add_location(i, file$7, 125, 0, 2530);
     			attr(div, "class", "smallscreen svelte-13a52ed");
-    			add_location(div, file$7, 125, 0, 2546);
+    			add_location(div, file$7, 124, 0, 2504);
     			attr(td0, "class", "svelte-13a52ed");
     			toggle_class(td0, "expanded", ctx.expanded);
     			toggle_class(td0, "loading", ctx.loading);
-    			add_location(td0, file$7, 121, 0, 2374);
+    			add_location(td0, file$7, 120, 0, 2332);
     			attr(td1, "class", "car svelte-13a52ed");
-    			add_location(td1, file$7, 129, 0, 2637);
+    			add_location(td1, file$7, 128, 0, 2595);
     			attr(td2, "class", "typefilter svelte-13a52ed");
-    			add_location(td2, file$7, 136, 0, 2818);
+    			add_location(td2, file$7, 135, 0, 2776);
     			attr(td3, "class", "svelte-13a52ed");
-    			add_location(td3, file$7, 137, 0, 2891);
+    			add_location(td3, file$7, 136, 0, 2849);
     			attr(td4, "class", "svelte-13a52ed");
-    			add_location(td4, file$7, 138, 0, 2976);
+    			add_location(td4, file$7, 137, 0, 2934);
     			attr(input, "type", "checkbox");
     			attr(input, "id", input_id_value = "select" + ctx.itemData.id);
     			attr(input, "class", "svelte-13a52ed");
-    			add_location(input, file$7, 144, 0, 3242);
+    			add_location(input, file$7, 143, 0, 3200);
     			attr(label, "for", label_for_value = "select" + ctx.itemData.id);
     			attr(label, "class", "svelte-13a52ed");
-    			add_location(label, file$7, 145, 0, 3404);
+    			add_location(label, file$7, 144, 0, 3362);
     			if (ctx.itemData.status === void 0) add_render_callback(() => ctx.select_change_handler.call(select));
     			attr(select, "class", "svelte-13a52ed");
-    			add_location(select, file$7, 146, 0, 3447);
+    			add_location(select, file$7, 145, 0, 3405);
     			attr(td5, "class", "statuscell svelte-13a52ed");
-    			add_location(td5, file$7, 139, 0, 3049);
+    			add_location(td5, file$7, 138, 0, 3007);
     			attr(tr, "class", "job svelte-13a52ed");
     			attr(tr, "data-id", tr_data_id_value = ctx.itemData.id);
     			toggle_class(tr, "itemSelected", ctx.itemSelected);
-    			add_location(tr, file$7, 117, 0, 2312);
+    			add_location(tr, file$7, 116, 0, 2270);
 
     			dispose = [
     				listen(td0, "click", ctx.click_handler),
@@ -2704,7 +2704,6 @@ var app = (function () {
 
     function update(event) {
     	$$invalidate('showEditor', showEditor = false);
-    //	Object.assign(itemData, event.detail);
     	return changeJobDetails(itemData.id, event.detail)
     	.catch(err => alert(err));
     }
@@ -2736,7 +2735,7 @@ var app = (function () {
     	}
 
     	function change_handler_1(e) {
-    		return update(itemData.id, {status: e.target.value});
+    		return update({status: e.target.value});
     	}
 
     	function click_handler_1(e) {

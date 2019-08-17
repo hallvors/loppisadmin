@@ -29,7 +29,6 @@ let showEditor = false;
 
 function update(event) {
 	showEditor = false;
-//	Object.assign(itemData, event.detail);
 	return changeJobDetails(itemData.id, event.detail)
 	.catch(err => alert(err));
 }
@@ -144,7 +143,7 @@ button img {vertical-align: middle;}
 }}>
 <input type="checkbox" bind:checked={itemSelected} id="select{itemData.id}" on:change="{e => dispatch('select', {id: itemData.id, selected: e.target.checked})}">
 <label for="select{itemData.id}">✓</label>
-<select bind:value={itemData.status} on:change|stopPropagation="{e => update(itemData.id, {status: e.target.value})}">
+<select bind:value={itemData.status} on:change|stopPropagation="{e => update({status: e.target.value})}">
 	{#each states as theState}
 		<option>{theState}</option>
 	{/each}
