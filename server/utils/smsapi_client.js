@@ -6,7 +6,7 @@ const rp = require('request-promise');
 
 const isTest = false;
 
-function send(number, sender, message) {
+function send(number, sender, message, param1) {
 	let options = {
 		uri: URL,
 		headers: {
@@ -16,6 +16,7 @@ function send(number, sender, message) {
 			from: sender,
 			to: number,
 			message,
+			param1,
 			format: 'json'
 		},
 		json: true,

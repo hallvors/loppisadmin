@@ -96,14 +96,13 @@
 		} else {
 			let jobId;
 			let elm = targetElm;
-			while(elm && !jobId) {
+			while(elm && !jobId && elm.getAttribute) {
 				jobId = elm.getAttribute('data-id');
 				elm = elm.parentNode;
 			}
 			if (jobId && selectedItems.indexOf(jobId) === -1) {
 				updatedSelectedList({detail: {selected: true, id: jobId}});
 			}
-			console.log('show menu? ', {jobId, selectedItems})
 			if (jobId || selectedItems.length) {
 				showMenu = true;
 			}
@@ -138,8 +137,10 @@
 	}
 
 	function flashMessage(message, isError) {
-		tempMsgQueue.push({message, isError});
-		setTimeout(() => tempMsgQueue.pop(), 300);
+		tempMsgQueue = [...tempMsgQueue, {message, isError}];
+		setTimeout(() =>
+			tempMsgQueue = tempMsgQueue.slice(0, tempMsgQueue.length - 1),
+		5000);
 	}
 
 	function initSms(type) {
@@ -345,8 +346,8 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 			}}
 			on:sms={e => {
 				sendSms(e.detail.recipients, e.detail.message)
-				.catch(err => flashMessage(err, true))
-				.then(() => flashMessage('SMS sendt til ' + e.detail.recipients ));
+				.then(() => flashMessage('SMS sendt til ' + e.detail.recipients ))
+				.catch(err => flashMessage(err, true));
 				message = '';
 				possibleRecipients = null;
 				showSmsEditor = false;
@@ -367,6 +368,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 		/>
 	</Modal>
 {/if}
+
 {:catch error}
 	<p style="color: red">{error.message}</p>
 {/await}
@@ -394,4 +396,5 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 {#each tempMsgQueue as msg, idx}
 	<FlashMessage {...msg} index={idx} />
 {/each}
+
 </div>

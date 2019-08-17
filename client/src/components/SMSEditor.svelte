@@ -3,6 +3,7 @@ import { createEventDispatcher } from 'svelte';
 export let recipients = [];
 export let message = '';
 export let possibleRecipients;
+let showQuickReplies = !message;
 const dispatch = createEventDispatcher();
 
 let stdMessages = {
@@ -15,10 +16,17 @@ let stdMessages = {
 };
 
 function send() {
-	dispatch('sms', {
-		recipients, 
-		message
-	});
+	if (typeof recipients === 'string') {
+		dispatch('sms', {
+			recipients: recipients.split(/,\s*/g),
+			message
+		});
+	} else {
+		dispatch('sms', {
+			recipients, 
+			message
+		});		
+	}
 }
 
 function addMessage(name) {
@@ -41,7 +49,7 @@ function addMessage(name) {
 				Til
 			</th>
 			<td class="to">
-				{#if possibleRecipients}
+				{#if possibleRecipients && possibleRecipients.length}
 					<select multiple bind:value={recipients} required>
 						{#each possibleRecipients as recipient}
 							<option value={recipient.number}>
@@ -60,7 +68,7 @@ function addMessage(name) {
 				<textarea bind:value={message} required></textarea>
 			</td>
 		</tr>
-		{#if !message}
+		{#if showQuickReplies}
 		<tr>
 			<th>Kjappe svar</th>
 			<td>

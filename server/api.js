@@ -83,7 +83,7 @@ router.post('/sendsms', (req, res, next) => {
 		res.end();
 		return;
 	}
-	return sendSMS(req.body.to, req.body.from, req.body.message)
+	return sendSMS(req.body.to, req.body.from, req.body.message, req.body.param1)
 	.then(result => {
 		res.json(result);
 	});

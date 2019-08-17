@@ -53,6 +53,7 @@ export function sendSms(recipients, message) {
 	})
 	.then(response => response.json())
 	.then(data => {
+		console.log(data);
 		if (data.error) {
 			throw new Error(data.message);
 		}
