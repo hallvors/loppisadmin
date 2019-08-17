@@ -3,7 +3,7 @@ const GoogleSpreadsheet = require('google-spreadsheet');
 const async = require('async');
 const env = require('../../config/env');
 const _ = require('underscore');
-let gCred = require(env.nconf.get('google:auth'));
+let gCred = env.nconf.get('google:auth');
 if (typeof gCred === 'string') { // JSON string from env var..
 	gCred = JSON.parse(gCred);
 }
