@@ -39,7 +39,7 @@ export function sendSms(recipients, message) {
 	let param1;
 	if (message.indexOf('{number}')) {
 		message = message.replace(/\{number\}/g, '[%1%]');
-		param1 = recipients.join('|');
+		param1 = recipients.split(/,/g).join('|');
 	}
 	return fetch(apiUrl + '/sendsms', {
 		method: 'post',
