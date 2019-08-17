@@ -1,1 +1,1 @@
-web: PORT=$PORT yarn run prod
+web: PORT=$PORT NODE_ENV=production node index.js
