@@ -23,6 +23,6 @@ app.use('/henting', express.static('./client/'));
 const server = require('http').createServer();
 server.on('request', app);
 
-server.listen(env.port, () => {
-	console.log(`[ready] http://localhost:${env.port}`);
+server.listen(env.PORT, () => {
+	console.log(`[ready] http://localhost:${env.PORT}`);
 });

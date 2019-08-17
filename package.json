@@ -8,6 +8,7 @@
     "autobuild": "rollup -c -w",
     "dev": "run-p start:dev autobuild",
     "start": "sirv client --single",
+    "prod": "NODE_ENV=production node index.js",
     "start:dev": "sirv client --single --dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
