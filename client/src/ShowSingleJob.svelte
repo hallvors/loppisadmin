@@ -1,4 +1,5 @@
 <script>
+	import { fade } from 'svelte/transition';
 	import {apiUrl, baseUrl} from './config.js';
 	import {jobs} from './store.js';
 	import LoadingIcon from './components/LoadingIcon.svelte';
@@ -108,7 +109,11 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 			</span></p>
 			<p>
 				<b>Status: </b><span>
-					<em>{job.status}</em> <br><br>
+					<em>{job.status}</em> <br>
+					{#if job.hentesav && job.hentesav === params.henter}
+						<br>
+						<em transition:fade><br>★ ★ ☺   Du har tatt på deg jobben - takk!  ☺ ★ ★</em>
+					{/if}
 				</span>
 			</p>
 			<p>
@@ -117,7 +122,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 						on:click={e => update(job.id, {status: 'Hentes', hentesav: params.henter})}
 						class="p8 br2"
 					>
-						Vi skal dit nå
+						Vi tar jobben!
 					</button>
 					<button 
 						on:click={e => update(job.id, {status: 'Hentet', hentesav: params.henter})}
