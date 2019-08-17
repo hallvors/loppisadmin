@@ -55,7 +55,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 	h1 {text-align: center;}
 	section {
 		display: table;
-		width: 60%; margin-left: 20%;
+		width: 90%; margin-left: 5%;
 		border: 1px solid black;
 		padding: 8px;
 	}
@@ -65,9 +65,20 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 	}
 	p b, p address, p span, p i {
 		display: table-cell;
-		border: 16px solid transparent
+		border: 8px solid transparent
 	}
-	p *:first-child {width: 20%;}
+	p b:first-child {width: 5%;}
+	@media only screen and (min-width: 700px) {
+		section {width: 60%; margin-left: 20%}
+		p b:first-child {width: 15%;}
+		p b, p address, p span, p i {
+			border: 16px solid transparent
+		}
+
+	}
+	button {
+		margin-bottom: 8px;
+	}
 </style>
 
 {#await promise}
@@ -98,6 +109,10 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 			<p>
 				<b>Status: </b><span>
 					<em>{job.status}</em> <br><br>
+				</span>
+			</p>
+			<p>
+				<b>Oppdater status:</b><span>
 					<button 
 						on:click={e => update(job.id, {status: 'Hentes', hentesav: params.henter})}
 						class="p8 br2"
