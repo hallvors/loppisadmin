@@ -4,6 +4,13 @@ export function getIdFromUrl(url) {
 		.join('/');
 }
 
+// SMSapi uses the national 47 prefix but w/o +, we typically want to
+// strip that out. I remove whitespace just in case we use this method
+// on input form non-SMSapi sources..
+export function normalizeNumber(str) {
+	return str.replace(/\s*/g, '').substr(-8);
+}
+
 export function filter(string, sizePref, dayPref, typeFilter, hideDoneJobs, job) {
 	if (hideDoneJobs && ['Hentet', 'Avvist'].indexOf(job.status) > -1) {
 		return false;

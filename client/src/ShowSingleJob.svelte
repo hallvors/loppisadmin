@@ -92,6 +92,9 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 			<p>
 				<b>Adresse: </b> <span>
 					{job.adresseforhenting}
+					<a href="https://www.google.no/maps/?q={
+						encodeURIComponent(job.adresseforhenting)
+					}" target="_blank">🔎</a>
 				</span>
 			</p>
 			<p>
@@ -103,7 +106,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 			<p>
 				<b>Typer: </b> <span><RenderTypes types={job.typerlopper} showAll={true} /></span>
 			</p>
-			<p><b>Om loppene: </b><i>{job.informasjonomloppene}</i></p>
+			{#if job.informasjonomloppene} <p><b>Om loppene: </b><i>{job.informasjonomloppene}</i></p>{/if}
 			<p><b>Estimert kvalitet: </b><span>
 				<RenderStars qualityRanking={job.kvalitet}  on:qualityupdate={e => update(job.id, e.detail)} />
 			</span></p>

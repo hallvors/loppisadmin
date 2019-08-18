@@ -8,6 +8,9 @@ import RenderStars from './RenderStars.svelte';
 import LoadingIcon from './LoadingIcon.svelte';
 import {changeJobDetails} from '../api.js';
 import { createEventDispatcher } from 'svelte';
+import {drivers} from '../store.js';
+import {normalizeNumber} from '../utils/helpers.js';
+
 const dispatch = createEventDispatcher();
 
 export let itemData;
@@ -32,6 +35,16 @@ function update(event) {
 	return changeJobDetails(itemData.id, event.detail)
 	.catch(err => alert(err));
 }
+
+function getDriverName(number) {
+	let driver = $drivers.find(driver => driver.number === normalizeNumber(number));
+	 return driver ? driver.name : normalizeNumber(number);
+}
+
+function statusVerbString(state) {
+	return state === 'Hentet' ? 'hentet' : 'henter nå';
+}
+
 </script>
 <style>
 	.job {
@@ -112,6 +125,9 @@ button img {vertical-align: middle;}
 	top: 8px;
 	z-index: 10;
 }
+.hentesav {font-size: x-small;	max-width: 65%;
+clear:left;
+}
 </style>
 
 <tr class="job" 
@@ -135,9 +151,11 @@ button img {vertical-align: middle;}
 </td>
 <td class="typefilter"><RenderTypes types={itemData.typerlopper} /></td>
 <td><RenderStars qualityRanking={itemData.kvalitet} on:qualityupdate={update}/></td>
-<td><RenderDays days={itemData.hentetidspunktkryssavsåmangedukan}/></td>
+<td>
+	<RenderDays days={itemData.hentetidspunktkryssavsåmangedukan}/>
+</td>
 <td class="statuscell" on:click={e => {
-	if (['SELECT', 'LABEL', 'INPUT', 'OPTION'].indexOf(e.target.tagName) === -1) {
+	if (['SELECT', 'LABEL', 'INPUT', 'OPTION', 'A'].indexOf(e.target.tagName) === -1) {
 		dispatch('select', {id: itemData.id, selected: !itemSelected});
 	}
 }}>
@@ -149,7 +167,9 @@ button img {vertical-align: middle;}
 	{/each}
 </select>
 {#if itemData.hentesav}
-	<i>{itemData.hentesav}</i>
+	<div class="hentesav"><a href="tel:{normalizeNumber(itemData.hentesav)}">
+		{getDriverName(itemData.hentesav)}</a> {statusVerbString(itemData.status)}
+	</div>
 {/if}
 </td>
 </tr>
