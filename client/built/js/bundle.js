@@ -276,6 +276,15 @@ var app = (function () {
             }
         };
     }
+    // TODO figure out if we still want to support
+    // shorthand events, or if we want to implement
+    // a real bubbling mechanism
+    function bubble(component, event) {
+        const callbacks = component.$$.callbacks[event.type];
+        if (callbacks) {
+            callbacks.slice().forEach(fn => fn(event));
+        }
+    }
 
     const dirty_components = [];
     const binding_callbacks = [];
@@ -2278,7 +2287,7 @@ var app = (function () {
     	};
     }
 
-    // (148:0) {:else}
+    // (151:0) {:else}
     function create_else_block(ctx) {
     	var img;
 
@@ -2288,7 +2297,7 @@ var app = (function () {
     			attr(img, "src", "/images/smallcar.png");
     			attr(img, "alt", "liten bil");
     			attr(img, "height", "22");
-    			add_location(img, file$7, 148, 0, 3138);
+    			add_location(img, file$7, 151, 0, 3278);
     		},
 
     		m: function mount(target, anchor) {
@@ -2303,7 +2312,7 @@ var app = (function () {
     	};
     }
 
-    // (146:0) {#if itemData.størrelse}
+    // (149:0) {#if itemData.størrelse}
     function create_if_block_3(ctx) {
     	var img;
 
@@ -2313,7 +2322,7 @@ var app = (function () {
     			attr(img, "src", "/images/bigcar.png");
     			attr(img, "alt", "stor bil");
     			attr(img, "height", "22");
-    			add_location(img, file$7, 146, 0, 3072);
+    			add_location(img, file$7, 149, 0, 3212);
     		},
 
     		m: function mount(target, anchor) {
@@ -2328,7 +2337,7 @@ var app = (function () {
     	};
     }
 
-    // (165:1) {#each states as theState}
+    // (168:1) {#each states as theState}
     function create_each_block$3(ctx) {
     	var option, t_value = ctx.theState + "", t, option_value_value;
 
@@ -2338,7 +2347,7 @@ var app = (function () {
     			t = text(t_value);
     			option.__value = option_value_value = ctx.theState;
     			option.value = option.__value;
-    			add_location(option, file$7, 165, 2, 4007);
+    			add_location(option, file$7, 168, 2, 4147);
     		},
 
     		m: function mount(target, anchor) {
@@ -2358,7 +2367,7 @@ var app = (function () {
     	};
     }
 
-    // (169:0) {#if itemData.hentesav}
+    // (172:0) {#if itemData.hentesav}
     function create_if_block_2(ctx) {
     	var div, a, t0_value = ctx.getDriverName(ctx.itemData.hentesav) + "", t0, a_href_value, t1, t2_value = statusVerbString(ctx.itemData.status) + "", t2;
 
@@ -2370,9 +2379,9 @@ var app = (function () {
     			t1 = space();
     			t2 = text(t2_value);
     			attr(a, "href", a_href_value = "tel:" + normalizeNumber(ctx.itemData.hentesav));
-    			add_location(a, file$7, 169, 23, 4101);
+    			add_location(a, file$7, 172, 23, 4241);
     			attr(div, "class", "hentesav svelte-1cd40x6");
-    			add_location(div, file$7, 169, 1, 4079);
+    			add_location(div, file$7, 172, 1, 4219);
     		},
 
     		m: function mount(target, anchor) {
@@ -2405,7 +2414,7 @@ var app = (function () {
     	};
     }
 
-    // (176:0) {#if expanded}
+    // (179:0) {#if expanded}
     function create_if_block$1(ctx) {
     	var tr, td0, td1, p0, t0, p1, t1_value = ctx.itemData.typerlopper + "", t1, t2, p2, i, t3_value = ctx.itemData.informasjonomloppene + "", t3, t4, td2, button, img, t5, tr_data_id_value, current, dispose;
 
@@ -2440,26 +2449,26 @@ var app = (function () {
     			t5 = space();
     			if (if_block) if_block.c();
     			attr(td0, "class", "svelte-1cd40x6");
-    			add_location(td0, file$7, 175, 40, 4296);
-    			add_location(p0, file$7, 176, 1, 4341);
-    			add_location(p1, file$7, 179, 1, 4439);
-    			add_location(i, file$7, 180, 4, 4473);
-    			add_location(p2, file$7, 180, 1, 4470);
+    			add_location(td0, file$7, 178, 40, 4436);
+    			add_location(p0, file$7, 179, 1, 4481);
+    			add_location(p1, file$7, 182, 1, 4579);
+    			add_location(i, file$7, 183, 4, 4613);
+    			add_location(p2, file$7, 183, 1, 4610);
     			attr(td1, "colspan", "3");
     			attr(td1, "class", "extrainfo svelte-1cd40x6");
-    			add_location(td1, file$7, 175, 49, 4305);
+    			add_location(td1, file$7, 178, 49, 4445);
     			attr(img, "src", "/images/edit.png");
     			attr(img, "alt", "endre detaljer");
     			attr(img, "width", "36");
     			attr(img, "class", "svelte-1cd40x6");
-    			add_location(img, file$7, 183, 43, 4570);
+    			add_location(img, file$7, 186, 43, 4710);
     			attr(button, "class", "svelte-1cd40x6");
-    			add_location(button, file$7, 183, 1, 4528);
+    			add_location(button, file$7, 186, 1, 4668);
     			attr(td2, "class", "svelte-1cd40x6");
-    			add_location(td2, file$7, 182, 0, 4522);
+    			add_location(td2, file$7, 185, 0, 4662);
     			attr(tr, "data-id", tr_data_id_value = ctx.itemData.id);
-    			add_location(tr, file$7, 175, 14, 4270);
-    			dispose = listen(button, "click", ctx.click_handler_2);
+    			add_location(tr, file$7, 178, 14, 4410);
+    			dispose = listen(button, "click", ctx.click_handler_3);
     		},
 
     		m: function mount(target, anchor) {
@@ -2548,7 +2557,7 @@ var app = (function () {
     	};
     }
 
-    // (185:1) {#if showEditor}
+    // (188:1) {#if showEditor}
     function create_if_block_1$1(ctx) {
     	var current;
 
@@ -2598,7 +2607,7 @@ var app = (function () {
     	};
     }
 
-    // (187:3) <h2 slot="header">
+    // (190:3) <h2 slot="header">
     function create_header_slot(ctx) {
     	var h2;
 
@@ -2607,7 +2616,7 @@ var app = (function () {
     			h2 = element("h2");
     			h2.textContent = "Endre detaljer";
     			attr(h2, "slot", "header");
-    			add_location(h2, file$7, 186, 3, 4710);
+    			add_location(h2, file$7, 189, 3, 4850);
     		},
 
     		m: function mount(target, anchor) {
@@ -2622,7 +2631,7 @@ var app = (function () {
     	};
     }
 
-    // (186:2) <Modal on:close="{() => showEditor = false}" >
+    // (189:2) <Modal on:close="{() => showEditor = false}" >
     function create_default_slot(ctx) {
     	var t, current;
 
@@ -2674,7 +2683,7 @@ var app = (function () {
     }
 
     function create_fragment$7(ctx) {
-    	var tr, td0, t0, t1_value = ctx.itemData.adresseforhenting + "", t1, t2, br, t3, div, i, t4_value = ctx.itemData.hentetidspunktkryssavsåmangedukan + "", t4, t5, td1, t6, td2, t7, td3, t8, td4, t9, td5, input, input_id_value, t10, label, t11, label_for_value, t12, select, t13, tr_data_id_value, t14, if_block3_anchor, current, dispose;
+    	var tr, td0, t0, t1_value = ctx.itemData.adresseforhenting + "", t1, t2, a, t3, a_href_value, t4, br, t5, div, i, t6_value = ctx.itemData.hentetidspunktkryssavsåmangedukan + "", t6, t7, td1, t8, td2, t9, td3, t10, td4, t11, td5, input, input_id_value, t12, label, t13, label_for_value, t14, select, t15, tr_data_id_value, t16, if_block3_anchor, current, dispose;
 
     	var if_block0 = (ctx.itemData.loading) && create_if_block_4();
 
@@ -2722,83 +2731,90 @@ var app = (function () {
     			t0 = space();
     			t1 = text(t1_value);
     			t2 = space();
+    			a = element("a");
+    			t3 = text("🔎");
+    			t4 = space();
     			br = element("br");
-    			t3 = space();
+    			t5 = space();
     			div = element("div");
     			i = element("i");
-    			t4 = text(t4_value);
-    			t5 = space();
+    			t6 = text(t6_value);
+    			t7 = space();
     			td1 = element("td");
     			if_block1.c();
-    			t6 = space();
+    			t8 = space();
     			td2 = element("td");
     			rendertypes.$$.fragment.c();
-    			t7 = space();
+    			t9 = space();
     			td3 = element("td");
     			renderstars.$$.fragment.c();
-    			t8 = space();
+    			t10 = space();
     			td4 = element("td");
     			renderdays.$$.fragment.c();
-    			t9 = space();
+    			t11 = space();
     			td5 = element("td");
     			input = element("input");
-    			t10 = space();
-    			label = element("label");
-    			t11 = text("✓");
     			t12 = space();
+    			label = element("label");
+    			t13 = text("✓");
+    			t14 = space();
     			select = element("select");
 
     			for (var i_1 = 0; i_1 < each_blocks.length; i_1 += 1) {
     				each_blocks[i_1].c();
     			}
 
-    			t13 = space();
+    			t15 = space();
     			if (if_block2) if_block2.c();
-    			t14 = space();
+    			t16 = space();
     			if (if_block3) if_block3.c();
     			if_block3_anchor = empty();
-    			add_location(br, file$7, 139, 0, 2934);
-    			add_location(i, file$7, 141, 0, 2965);
+    			attr(a, "href", a_href_value = "https://www.google.no/maps/?q=" + encodeURIComponent(ctx.itemData.adresseforhenting));
+    			attr(a, "target", "_blank");
+    			add_location(a, file$7, 139, 0, 2934);
+    			add_location(br, file$7, 142, 0, 3074);
+    			add_location(i, file$7, 144, 0, 3105);
     			attr(div, "class", "smallscreen svelte-1cd40x6");
-    			add_location(div, file$7, 140, 0, 2939);
+    			add_location(div, file$7, 143, 0, 3079);
     			attr(td0, "tabindex", "0");
     			attr(td0, "class", "svelte-1cd40x6");
     			toggle_class(td0, "expanded", ctx.expanded);
     			toggle_class(td0, "loading", ctx.loading);
     			add_location(td0, file$7, 136, 0, 2754);
     			attr(td1, "class", "car svelte-1cd40x6");
-    			add_location(td1, file$7, 144, 0, 3030);
+    			add_location(td1, file$7, 147, 0, 3170);
     			attr(td2, "class", "typefilter svelte-1cd40x6");
-    			add_location(td2, file$7, 151, 0, 3211);
+    			add_location(td2, file$7, 154, 0, 3351);
     			attr(td3, "class", "svelte-1cd40x6");
-    			add_location(td3, file$7, 152, 0, 3284);
+    			add_location(td3, file$7, 155, 0, 3424);
     			attr(td4, "class", "svelte-1cd40x6");
-    			add_location(td4, file$7, 153, 0, 3369);
+    			add_location(td4, file$7, 156, 0, 3509);
     			attr(input, "type", "checkbox");
     			attr(input, "id", input_id_value = "select" + ctx.itemData.id);
     			attr(input, "class", "svelte-1cd40x6");
-    			add_location(input, file$7, 161, 0, 3643);
+    			add_location(input, file$7, 164, 0, 3783);
     			attr(label, "for", label_for_value = "select" + ctx.itemData.id);
     			attr(label, "tabindex", "0");
     			attr(label, "class", "svelte-1cd40x6");
-    			add_location(label, file$7, 162, 0, 3805);
+    			add_location(label, file$7, 165, 0, 3945);
     			if (ctx.itemData.status === void 0) add_render_callback(() => ctx.select_change_handler.call(select));
     			attr(select, "class", "svelte-1cd40x6");
-    			add_location(select, file$7, 163, 0, 3861);
+    			add_location(select, file$7, 166, 0, 4001);
     			attr(td5, "class", "statuscell svelte-1cd40x6");
-    			add_location(td5, file$7, 156, 0, 3445);
+    			add_location(td5, file$7, 159, 0, 3585);
     			attr(tr, "class", "job svelte-1cd40x6");
     			attr(tr, "data-id", tr_data_id_value = ctx.itemData.id);
     			toggle_class(tr, "itemSelected", ctx.itemSelected);
     			add_location(tr, file$7, 132, 0, 2692);
 
     			dispose = [
-    				listen(td0, "click", ctx.click_handler),
+    				listen(a, "click", stop_propagation(ctx.click_handler)),
+    				listen(td0, "click", ctx.click_handler_1),
     				listen(input, "change", ctx.input_change_handler),
     				listen(input, "change", ctx.change_handler),
     				listen(select, "change", ctx.select_change_handler),
     				listen(select, "change", stop_propagation(ctx.change_handler_1)),
-    				listen(td5, "click", ctx.click_handler_1)
+    				listen(td5, "click", ctx.click_handler_2)
     			];
     		},
 
@@ -2813,33 +2829,36 @@ var app = (function () {
     			append(td0, t0);
     			append(td0, t1);
     			append(td0, t2);
+    			append(td0, a);
+    			append(a, t3);
+    			append(td0, t4);
     			append(td0, br);
-    			append(td0, t3);
+    			append(td0, t5);
     			append(td0, div);
     			append(div, i);
-    			append(i, t4);
-    			append(tr, t5);
+    			append(i, t6);
+    			append(tr, t7);
     			append(tr, td1);
     			if_block1.m(td1, null);
-    			append(tr, t6);
+    			append(tr, t8);
     			append(tr, td2);
     			mount_component(rendertypes, td2, null);
-    			append(tr, t7);
+    			append(tr, t9);
     			append(tr, td3);
     			mount_component(renderstars, td3, null);
-    			append(tr, t8);
+    			append(tr, t10);
     			append(tr, td4);
     			mount_component(renderdays, td4, null);
-    			append(tr, t9);
+    			append(tr, t11);
     			append(tr, td5);
     			append(td5, input);
 
     			input.checked = ctx.itemSelected;
 
-    			append(td5, t10);
-    			append(td5, label);
-    			append(label, t11);
     			append(td5, t12);
+    			append(td5, label);
+    			append(label, t13);
+    			append(td5, t14);
     			append(td5, select);
 
     			for (var i_1 = 0; i_1 < each_blocks.length; i_1 += 1) {
@@ -2848,9 +2867,9 @@ var app = (function () {
 
     			select_option(select, ctx.itemData.status);
 
-    			append(td5, t13);
+    			append(td5, t15);
     			if (if_block2) if_block2.m(td5, null);
-    			insert(target, t14, anchor);
+    			insert(target, t16, anchor);
     			if (if_block3) if_block3.m(target, anchor);
     			insert(target, if_block3_anchor, anchor);
     			current = true;
@@ -2878,8 +2897,12 @@ var app = (function () {
     				set_data(t1, t1_value);
     			}
 
-    			if ((!current || changed.itemData) && t4_value !== (t4_value = ctx.itemData.hentetidspunktkryssavsåmangedukan + "")) {
-    				set_data(t4, t4_value);
+    			if ((!current || changed.itemData) && a_href_value !== (a_href_value = "https://www.google.no/maps/?q=" + encodeURIComponent(ctx.itemData.adresseforhenting))) {
+    				attr(a, "href", a_href_value);
+    			}
+
+    			if ((!current || changed.itemData) && t6_value !== (t6_value = ctx.itemData.hentetidspunktkryssavsåmangedukan + "")) {
+    				set_data(t6, t6_value);
     			}
 
     			if (changed.expanded) {
@@ -3026,7 +3049,7 @@ var app = (function () {
     			if (if_block2) if_block2.d();
 
     			if (detaching) {
-    				detach(t14);
+    				detach(t16);
     			}
 
     			if (if_block3) if_block3.d(detaching);
@@ -3084,7 +3107,11 @@ var app = (function () {
     		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<RenderJob> was created with unknown prop '${key}'`);
     	});
 
-    	function click_handler(e) {
+    	function click_handler(event) {
+    		bubble($$self, event);
+    	}
+
+    	function click_handler_1(e) {
     		const $$result = expanded = !expanded;
     		$$invalidate('expanded', expanded);
     		return $$result;
@@ -3109,13 +3136,13 @@ var app = (function () {
     		return update({detail: {status: e.target.value}});
     	}
 
-    	function click_handler_1(e) {
+    	function click_handler_2(e) {
     		if (['SELECT', 'LABEL', 'INPUT', 'OPTION', 'A'].indexOf(e.target.tagName) === -1) {
     			dispatch('select', {id: itemData.id, selected: !itemSelected});
     		}
     	}
 
-    	function click_handler_2(e) {
+    	function click_handler_3(e) {
     		const $$result = showEditor = true;
     		$$invalidate('showEditor', showEditor);
     		return $$result;
@@ -3155,12 +3182,13 @@ var app = (function () {
     		getDriverName,
     		loading,
     		click_handler,
+    		click_handler_1,
     		input_change_handler,
     		change_handler,
     		select_change_handler,
     		change_handler_1,
-    		click_handler_1,
     		click_handler_2,
+    		click_handler_3,
     		cancel_handler,
     		close_handler
     	};
@@ -4526,7 +4554,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (387:0) {:catch error}
+    // (388:0) {:catch error}
     function create_catch_block(ctx) {
     	var p, t_value = ctx.error.message + "", t;
 
@@ -4535,7 +4563,7 @@ var app = (function () {
     			p = element("p");
     			t = text(t_value);
     			set_style(p, "color", "red");
-    			add_location(p, file$c, 387, 1, 9843);
+    			add_location(p, file$c, 388, 1, 9911);
     		},
 
     		m: function mount(target, anchor) {
@@ -4562,7 +4590,7 @@ var app = (function () {
 
     // (290:0) {:then data}
     function create_then_block(ctx) {
-    	var table, tr, th0, input0, t0, th1, img0, t1, img1, t2, th2, select, t3, th3, img2, t4, img3, t5, img4, t6, th4, ol, li0, t8, li1, t10, li2, t12, th5, label0, input1, t13, t14, br, label1, input2, t15, t16, t17, col0, t18, col1, t19, col2, t20, col3, t21, col4, t22, col5, t23, p, t24, t25_value = ctx.$jobs.length + "", t25, t26, t27_value = ctx.$jobs.filter(func).length + "", t27, t28, t29, if_block1_anchor, current, dispose;
+    	var table, tr, th0, input0, t0, th1, img0, t1, img1, t2, th2, select, t3, th3, img2, t4, img3, t5, img4, t6, th4, ol, li0, t8, li1, t10, li2, t12, th5, label0, input1, t13, t14, br, label1, input2, t15, t16, t17, col0, t18, col1, t19, col2, t20, col3, t21, col4, t22, col5, t23, p, t24, t25_value = ctx.$jobs.length + "", t25, t26, t27_value = ctx.$jobs.filter(func).length + "", t27, t28, t29_value = ctx.$jobs.filter(func_1).length + "", t29, t30, t31, if_block1_anchor, current, dispose;
 
     	var each_value_2 = ctx.types;
 
@@ -4657,11 +4685,13 @@ var app = (function () {
     			p = element("p");
     			t24 = text("Antall jobber totalt: ");
     			t25 = text(t25_value);
-    			t26 = text(". \n\tHentet: ");
+    			t26 = text(". \n\tHentes nå: ");
     			t27 = text(t27_value);
-    			t28 = space();
+    			t28 = text("\n\tHentet: ");
+    			t29 = text(t29_value);
+    			t30 = space();
     			if (if_block0) if_block0.c();
-    			t29 = space();
+    			t31 = space();
     			if (if_block1) if_block1.c();
     			if_block1_anchor = empty();
     			attr(input0, "type", "search");
@@ -4824,9 +4854,11 @@ var app = (function () {
     			append(p, t25);
     			append(p, t26);
     			append(p, t27);
-    			insert(target, t28, anchor);
+    			append(p, t28);
+    			append(p, t29);
+    			insert(target, t30, anchor);
     			if (if_block0) if_block0.m(target, anchor);
-    			insert(target, t29, anchor);
+    			insert(target, t31, anchor);
     			if (if_block1) if_block1.m(target, anchor);
     			insert(target, if_block1_anchor, anchor);
     			current = true;
@@ -4911,6 +4943,10 @@ var app = (function () {
     				set_data(t27, t27_value);
     			}
 
+    			if ((!current || changed.$jobs) && t29_value !== (t29_value = ctx.$jobs.filter(func_1).length + "")) {
+    				set_data(t29, t29_value);
+    			}
+
     			if (ctx.showSmsEditor) {
     				if (if_block0) {
     					if_block0.p(changed, ctx);
@@ -4919,7 +4955,7 @@ var app = (function () {
     					if_block0 = create_if_block_1$3(ctx);
     					if_block0.c();
     					transition_in(if_block0, 1);
-    					if_block0.m(t29.parentNode, t29);
+    					if_block0.m(t31.parentNode, t31);
     				}
     			} else if (if_block0) {
     				group_outros();
@@ -4977,13 +5013,13 @@ var app = (function () {
     			if (detaching) {
     				detach(t23);
     				detach(p);
-    				detach(t28);
+    				detach(t30);
     			}
 
     			if (if_block0) if_block0.d(detaching);
 
     			if (detaching) {
-    				detach(t29);
+    				detach(t31);
     			}
 
     			if (if_block1) if_block1.d(detaching);
@@ -5136,7 +5172,7 @@ var app = (function () {
     	};
     }
 
-    // (353:0) {#if showSmsEditor}
+    // (354:0) {#if showSmsEditor}
     function create_if_block_1$3(ctx) {
     	var current;
 
@@ -5186,7 +5222,7 @@ var app = (function () {
     	};
     }
 
-    // (355:2) <h2 slot="header">
+    // (356:2) <h2 slot="header">
     function create_header_slot_1(ctx) {
     	var h2;
 
@@ -5195,7 +5231,7 @@ var app = (function () {
     			h2 = element("h2");
     			h2.textContent = "Send SMS";
     			attr(h2, "slot", "header");
-    			add_location(h2, file$c, 354, 2, 9124);
+    			add_location(h2, file$c, 355, 2, 9192);
     		},
 
     		m: function mount(target, anchor) {
@@ -5210,7 +5246,7 @@ var app = (function () {
     	};
     }
 
-    // (354:1) <Modal on:close="{() => showSmsEditor = false}">
+    // (355:1) <Modal on:close="{() => showSmsEditor = false}">
     function create_default_slot_1(ctx) {
     	var t, current;
 
@@ -5267,7 +5303,7 @@ var app = (function () {
     	};
     }
 
-    // (376:0) {#if showDriverEditor}
+    // (377:0) {#if showDriverEditor}
     function create_if_block$5(ctx) {
     	var current;
 
@@ -5311,7 +5347,7 @@ var app = (function () {
     	};
     }
 
-    // (378:2) <h2 slot="header">
+    // (379:2) <h2 slot="header">
     function create_header_slot$1(ctx) {
     	var h2;
 
@@ -5320,7 +5356,7 @@ var app = (function () {
     			h2 = element("h2");
     			h2.textContent = "Oppdater hentere";
     			attr(h2, "slot", "header");
-    			add_location(h2, file$c, 377, 2, 9691);
+    			add_location(h2, file$c, 378, 2, 9759);
     		},
 
     		m: function mount(target, anchor) {
@@ -5335,7 +5371,7 @@ var app = (function () {
     	};
     }
 
-    // (377:1) <Modal on:close="{() => showDriverEditor = false}">
+    // (378:1) <Modal on:close="{() => showDriverEditor = false}">
     function create_default_slot$1(ctx) {
     	var t, current;
 
@@ -5434,7 +5470,7 @@ var app = (function () {
     	};
     }
 
-    // (429:0) {#each tempMsgQueue as msg, idx}
+    // (430:0) {#each tempMsgQueue as msg, idx}
     function create_each_block$7(ctx) {
     	var current;
 
@@ -5513,11 +5549,11 @@ var app = (function () {
     		items: [
     		{
     			label: 'SMS til giver', icon: '/images/sms.png',
-    			action: ctx.func_1
+    			action: ctx.func_2
     		},
     		{
     			label: 'SMS til henter', icon: '/images/sms.png',
-    			action: ctx.func_2
+    			action: ctx.func_3
     		},
     	]
     	},
@@ -5532,19 +5568,19 @@ var app = (function () {
     		items: [
     		{
     			label: 'Hentere', icon: '/images/smallcar.png',
-    			action: ctx.func_3
-    		},
-    		{
-    			label: 'Oppdater data', icon: '/images/wrench.png',
     			action: ctx.func_4
     		},
     		{
-    			label: 'Merk alle', icon: '/images/check.png',
+    			label: 'Oppdater data', icon: '/images/wrench.png',
     			action: ctx.func_5
     		},
     		{
-    			label: 'Fjern merking', icon: '/images/nocheck.png',
+    			label: 'Merk alle', icon: '/images/check.png',
     			action: ctx.func_6
+    		},
+    		{
+    			label: 'Fjern merking', icon: '/images/nocheck.png',
+    			action: ctx.func_7
     		},
     	]
     	},
@@ -5653,11 +5689,11 @@ var app = (function () {
     			if (changed.initSms) menu0_changes.items = [
     		{
     			label: 'SMS til giver', icon: '/images/sms.png',
-    			action: ctx.func_1
+    			action: ctx.func_2
     		},
     		{
     			label: 'SMS til henter', icon: '/images/sms.png',
-    			action: ctx.func_2
+    			action: ctx.func_3
     		},
     	];
     			menu0.$set(menu0_changes);
@@ -5669,19 +5705,19 @@ var app = (function () {
     			if (changed.showDriverEditor || changed.showConfigMenu || changed.reload || changed.selectAllShown || changed.selectedItems) menu1_changes.items = [
     		{
     			label: 'Hentere', icon: '/images/smallcar.png',
-    			action: ctx.func_3
-    		},
-    		{
-    			label: 'Oppdater data', icon: '/images/wrench.png',
     			action: ctx.func_4
     		},
     		{
-    			label: 'Merk alle', icon: '/images/check.png',
+    			label: 'Oppdater data', icon: '/images/wrench.png',
     			action: ctx.func_5
     		},
     		{
-    			label: 'Fjern merking', icon: '/images/nocheck.png',
+    			label: 'Merk alle', icon: '/images/check.png',
     			action: ctx.func_6
+    		},
+    		{
+    			label: 'Fjern merking', icon: '/images/nocheck.png',
+    			action: ctx.func_7
     		},
     	];
     			menu1.$set(menu1_changes);
@@ -5785,6 +5821,10 @@ var app = (function () {
     }
 
     function func(item) {
+    	return item.status === 'Hentes';
+    }
+
+    function func_1(item) {
     	return item.status === 'Hentet';
     }
 
@@ -6035,33 +6075,33 @@ ${baseUrl}/henting/?jobb=${
     		return $$result;
     	}
 
-    	function func_1(e) {
+    	function func_2(e) {
     		return initSms('donor');
     	}
 
-    	function func_2(e) {
+    	function func_3(e) {
     		return initSms('worker');
     	}
 
-    	function func_3(e) {
+    	function func_4(e) {
     		const $$result = (showDriverEditor = true, showConfigMenu = false);
     		$$invalidate('showDriverEditor', showDriverEditor); $$invalidate('showConfigMenu', showConfigMenu);
     		return $$result;
     	}
 
-    	function func_4(e) {
+    	function func_5(e) {
     		const $$result = (showConfigMenu = false, reload());
     		$$invalidate('showConfigMenu', showConfigMenu);
     		return $$result;
     	}
 
-    	function func_5(e) {
+    	function func_6(e) {
     		const $$result = (showConfigMenu = false, selectAllShown());
     		$$invalidate('showConfigMenu', showConfigMenu);
     		return $$result;
     	}
 
-    	function func_6(e) {
+    	function func_7(e) {
     		const $$result = (showConfigMenu = false, selectedItems.length = 0);
     		$$invalidate('showConfigMenu', showConfigMenu); $$invalidate('selectedItems', selectedItems);
     		return $$result;
@@ -6131,12 +6171,12 @@ ${baseUrl}/henting/?jobb=${
     		close_handler,
     		cancel_handler_1,
     		close_handler_1,
-    		func_1,
     		func_2,
     		func_3,
     		func_4,
     		func_5,
     		func_6,
+    		func_7,
     		contextmenu_handler,
     		click_handler_6,
     		mousedown_handler,
