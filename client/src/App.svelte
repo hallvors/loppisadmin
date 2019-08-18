@@ -347,6 +347,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 
 <p>
 	Antall jobber totalt: {$jobs.length}. 
+	Hentes nå: {$jobs.filter(item => item.status === 'Hentes').length}
 	Hentet: {$jobs.filter(item => item.status === 'Hentet').length}
 </p>
 

@@ -137,6 +137,9 @@ clear:left;
 <td class:expanded class:loading on:click="{e => expanded = !expanded}" tabindex="0" >
 {#if itemData.loading}<div><LoadingIcon w=24 h=24 /></div>{/if}
 {itemData.adresseforhenting}
+<a href="https://www.google.no/maps/?q={
+	encodeURIComponent(itemData.adresseforhenting)
+}" on:click|stopPropagation target="_blank">🔎</a>
 <br>
 <div class="smallscreen">
 <i>{itemData.hentetidspunktkryssavsåmangedukan}</i>
