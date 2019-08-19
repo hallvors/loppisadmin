@@ -9,6 +9,7 @@ import LoadingIcon from './LoadingIcon.svelte';
 import {changeJobDetails} from '../api.js';
 import { createEventDispatcher } from 'svelte';
 import {drivers} from '../store.js';
+import {states} from '../config.js';
 import {normalizeNumber} from '../utils/helpers.js';
 
 const dispatch = createEventDispatcher();
@@ -16,15 +17,6 @@ const dispatch = createEventDispatcher();
 export let itemData;
 export let itemSelected = false;
 let expanded = false;
-let states = [
-	'',
-	'Ny',
-	'Kontaktet',
-	'Mangler info',
-	'Hentes',
-	'Hentet',
-	'Avvist',
-];
 
 $: loading = itemData.loading;
 

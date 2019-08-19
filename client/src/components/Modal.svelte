@@ -1,15 +1,24 @@
 <script>
-	import { createEventDispatcher, onMount } from 'svelte';
+	import { createEventDispatcher, onMount, onDestroy } from 'svelte';
 
 	const dispatch = createEventDispatcher();
 	let modalElm;
+	let lastActiveElement;
 	onMount(() => {
 		if(modalElm && modalElm.scrollIntoView) {
 			modalElm.scrollIntoView();
 		}
 		if (modalElm && modalElm.querySelector) {
 			// accessibility: focus management
-			modalElm.querySelector('input, textarea, button').focus();
+			lastActiveElement = document.activeElement;
+			modalElm.querySelector('input, select, textarea, button').focus();
+		}
+	});
+	onDestroy(() => {
+		// TODO: this doesn't truly work as intended because focus will have gone to
+		// the right-clicked element or the menu element activated most of the time
+		if (lastActiveElement && lastActiveElement.focus) {
+			lastActiveElement.focus();
 		}
 	});
 </script>

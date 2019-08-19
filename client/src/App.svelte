@@ -6,14 +6,16 @@
 	import Modal from './components/Modal.svelte';
 	import SMSEditor from './components/SMSEditor.svelte';
 	import DriverEditor from './components/DriverEditor.svelte';
+	import StateEditor from './components/StateEditor.svelte';
 	import FlashMessage from './components/FlashMessage.svelte';
 	import LoadingIcon from './components/LoadingIcon.svelte';
 	import Menu from './components/Menu.svelte';
-	import {sendSms} from './api.js';
+	import {sendSms, changeJobDetails} from './api.js';
 	import {drivers, jobs} from './store.js';
 	import {getIdFromUrl, filter} from './utils/helpers.js';
-	let showSmsEditor = false;
+	let smsEditorType = '';
 	let showDriverEditor = false;
+	let showStateEditor = false;
 	let showMenu = false;
 	let showConfigMenu = false;
 	let promise = getData();
@@ -159,7 +161,7 @@
 				address: item.adresseforhenting,
 			}));
 			recipients = items.map(item => item.telefonnummer);
-			showSmsEditor = true;
+			smsEditorType = type;
 		} else {
 			possibleRecipients = $drivers;
 			message = 'Hei, foreslår at du henter følgende jobb(er): \n\n' + 
@@ -172,7 +174,7 @@ Merk jobber som hentet her etterpå:
 ${baseUrl}/henting/?jobb=${
 	encodeURIComponent(items.map(item => getIdFromUrl(item.id)).join(','))
 }&token=${encodeURIComponent(helperToken)}&henter={number}`;
-			showSmsEditor = true;
+			smsEditorType = type;
 		}
 	}
 
@@ -208,14 +210,14 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 	h1 {text-align: center;}
 	.conf {float: right; padding: 4px;margin-right: 8em}
 	.conf img {vertical-align: middle;}
-	table {
+	table.main {
 		width: 80%;
 		margin-left: 10%;
 		margin-right: 10%;
 		border-collapse: collapse;
 		border: 1px solid grey;
 	}
-	table tr:first-child {
+	table.main tr:first-child {
 		background: #eee;
 		border-bottom: 1px solid black;
 	}
@@ -288,7 +290,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 	<div class="loading"><LoadingIcon /></div>
 	<p style="text-align: center;">...henter data</p>
 {:then data}
-	<table>
+	<table class="main">
 		<tr>
 			<th><input type="search" bind:value={freeTextFilter} placeholder="Filtrer"></th>
 			<th>
@@ -351,12 +353,12 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 	Hentet: {$jobs.filter(item => item.status === 'Hentet').length}
 </p>
 
-{#if showSmsEditor}
-	<Modal on:close="{() => showSmsEditor = false}">
+{#if smsEditorType}
+	<Modal on:close="{() => smsEditorType = ''}">
 		<h2 slot="header">Send SMS</h2>
 		<SMSEditor 
 			on:cancel={e => {
-				showSmsEditor = false;
+				smsEditorType = '';
 				message = '';
 				possibleRecipients = null;
 			}}
@@ -366,7 +368,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 				.catch(err => flashMessage(err, true));
 				message = '';
 				possibleRecipients = null;
-				showSmsEditor = false;
+				smsEditorType = '';
 			}}
 			{possibleRecipients}
 			{recipients}
@@ -380,6 +382,24 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 		<DriverEditor 
 			on:cancel={e => {
 				showDriverEditor = false;
+			}}
+		/>
+	</Modal>
+{/if}
+{#if showStateEditor}
+	<Modal on:close="{() => showStateEditor = false}">
+		<h2 slot="header">Oppdater status</h2>
+		<StateEditor 
+			on:cancel={e => {
+				showStateEditor = false;
+			}}
+			on:statusupdate={e => {
+				if (e.detail.newState) {
+					selectedItems.forEach(item => {
+						changeJobDetails(item, {status: e.detail.newState});
+					});
+				}
+				showStateEditor = false;
 			}}
 		/>
 	</Modal>
@@ -400,6 +420,10 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 		{
 			label: 'SMS til henter', icon: '/images/sms.png',
 			action: e => initSms('worker')
+		},
+		{
+			label: 'Sett status', icon: '/images/wrench.png',
+			action: e => (showStateEditor = true, showMenu = false)
 		},
 	]}
 />
