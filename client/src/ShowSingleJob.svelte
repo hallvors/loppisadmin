@@ -1,6 +1,6 @@
 <script>
 	import { fade } from 'svelte/transition';
-	import {apiUrl, baseUrl} from './config.js';
+	import {apiUrl, baseUrl, gMapsDirection} from './config.js';
 	import {jobs} from './store.js';
 	import LoadingIcon from './components/LoadingIcon.svelte';
 	import RenderDays from './components/RenderDays.svelte';
@@ -10,6 +10,7 @@
 	import {changeJobDetails} from './api.js';
 
 	let params, promise;
+
 	if (typeof location !== "undefined") {
 		params = location.search
 			.substr(1)
@@ -31,6 +32,7 @@
 			json = json.sort(
 				(a, b) => a.adresseforhenting < b.adresseforhenting ? -1 : 1
 			);
+			json.forEach(job => job.oldStatus = job.status === 'Hentes' ? null : job.status);
 			jobs.set(json);
 		} else {
 			let text = await res.text();
@@ -43,6 +45,7 @@
 		return changeJobDetails(id, detail, params.token)
 		.catch(err => alert(err));
 	}
+
 jobs.subscribe(data => {console.log('updated data! ', data)})
 </script>
 <style>
@@ -80,21 +83,32 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 	button {
 		margin-bottom: 8px;
 	}
+
+	.commonmap {
+		text-align: center;
+	}
 </style>
 
 {#await promise}
 	<div class="loading"><LoadingIcon /></div>
 {:then data}
-	{#each $jobs as job}
-		<h1>Hentejobb</h1>
+	<h1>Hentinger</h1>
+	{#if $jobs.length > 1}
+		<p class="commonmap"><a href={
+			gMapsDirection + $jobs.map(job => job.adresseforhenting).join('/')
+		} target="_blank">Kart med alle adresser: <br><img src="/images/map.png" alt="alle adresser i kart" width="36"></a></p>
+	{/if}
+	{#each $jobs as job, i}
 		{#if job.loading}<div class="loading"><LoadingIcon /></div>{/if}
 		<section>
 			<p>
 				<b>Adresse: </b> <span>
 					{job.adresseforhenting}
-					<a href="https://www.google.no/maps/?q={
-						encodeURIComponent(job.adresseforhenting)
-					}" target="_blank">🔎</a>
+					<a href={
+								gMapsDirection + job.adresseforhenting
+					} target="_blank">
+						<img src="/images/map.png" alt="adresse i kart" width="24">
+					</a>
 				</span>
 			</p>
 			<p>
@@ -121,30 +135,33 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 			</p>
 			<p>
 				<b>Oppdater status:</b><span>
-					<button 
-						on:click={e => update(job.id, {status: 'Hentes', hentesav: params.henter})}
-						class="p8 br2"
-					>
-						Vi tar jobben!
-					</button>
-					<button 
-						on:click={e => update(job.id, {status: 'Hentet', hentesav: params.henter})}
-						class="p8 br2"
-					>
-						Ferdig hentet!
-					</button>
-					<button 
-						on:click={e => update(job.id, {status: 'Ny', hentesav: ''})}
-						class="p8 br2"
-					>
-						Vi rekker ikke denne
-					</button>
-					<button
-						on:click={e => update(job.id, {status: 'Hentes ikke', hentesav: ''})}
-						class="p8 br2"
-					>
-						Jobben skal ikke hentes
-					</button> 
+					{#if job.hentesav === params.henter && job.status === 'Hentes'}
+						<button
+							on:click={e => update(job.id, {status: 'Hentet', hentesav: params.henter})}
+							class="p8 br2"
+						>
+							Ferdig hentet!
+						</button>
+						<button
+							on:click={e => update(job.id, {status: job.oldStatus || 'Ny', hentesav: ''})}
+							class="p8 br2"
+						>
+							Vi rekker ikke å hente likevel
+						</button>
+						<button
+							on:click={e => update(job.id, {status: 'Hentes ikke', hentesav: ''})}
+							class="p8 br2"
+						>
+							Jobben skal ikke hentes
+						</button>
+					{:else}
+						<button
+							on:click={e => update(job.id, {status: 'Hentes', hentesav: params.henter})}
+							class="p8 br2"
+						>
+							Vi tar jobben!
+						</button>
+					{/if}
 				</span>
 			</p>
 		</section>

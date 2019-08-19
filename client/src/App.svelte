@@ -1,7 +1,7 @@
 
 <script>
 	import { fade } from 'svelte/transition';
-	import {apiUrl, baseUrl} from './config.js';
+	import {apiUrl, baseUrl, gMapsDirection} from './config.js';
 	import RenderJob from './components/RenderJob.svelte';
 	import Modal from './components/Modal.svelte';
 	import SMSEditor from './components/SMSEditor.svelte';
@@ -189,6 +189,16 @@ ${baseUrl}/henting/?jobb=${
 			}
 		});
 	}
+
+	function openMap() {
+		let str = gMapsDirection + (selectedItems.map(item => {
+			let data = $jobs.find(job => job.id === item);
+			return data.adresseforhenting;
+		})
+		.join('/'));
+		window.open(str);
+	}
+
 jobs.subscribe(data => {console.log('updated data! ', data)})
 </script>
 <div 
@@ -428,6 +438,10 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 		{
 			label: 'Sett status', icon: '/images/wrench.png',
 			action: e => (showStateEditor = true, showMenu = false)
+		},
+		{
+			label: 'Vis på kart', icon: '/images/map.png',
+			action: e => (openMap(), showMenu = false)
 		},
 	]}
 />

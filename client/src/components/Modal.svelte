@@ -31,6 +31,7 @@
 		width: 100%;
 		height: 100%;
 		background: rgba(0,0,0,0.3);
+		z-index: 11;
 	}
 
 	.modal {
@@ -45,6 +46,7 @@
 		padding: 1em;
 		border-radius: 0.2em;
 		background: white;
+		z-index: 12;
 	}
 
 	button {
@@ -52,7 +54,7 @@
 	}
 </style>
 
-<div class='modal-background' on:click='{() => dispatch("close")}'></div>
+<div class='modal-background' on:click|stopPropagation='{() => dispatch("close")}'></div>
 
 <div class='modal' bind:this={modalElm}>
 	<slot name='header'></slot>

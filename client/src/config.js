@@ -5,6 +5,8 @@
 export const baseUrl = location.protocol + '//' + location.host;
 export const apiUrl = baseUrl + '/api';
 
+export const gMapsDirection = 'https://www.google.com/maps/dir//';
+
 export const states = [
 	'',
 	'Ny',
