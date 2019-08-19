@@ -156,7 +156,11 @@ clear:left;
 }}>
 <input type="checkbox" bind:checked={itemSelected} id="select{itemData.id}" on:change="{e => dispatch('select', {id: itemData.id, selected: e.target.checked})}">
 <label for="select{itemData.id}" tabindex="0">✓</label>
-<select bind:value={itemData.status} on:change|stopPropagation="{e => update({detail: {status: e.target.value}})}">
+<select
+	bind:value={itemData.status}
+	on:change|stopPropagation="{e => update({detail: {status: e.target.value}})}"
+	disabled={Boolean(itemData.hentesav)}
+>
 	{#each states as theState}
 		<option>{theState}</option>
 	{/each}

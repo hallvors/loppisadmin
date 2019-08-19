@@ -396,6 +396,10 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 			on:statusupdate={e => {
 				if (e.detail.newState) {
 					selectedItems.forEach(item => {
+						let data = $jobs.find(job => job.id === item);
+						if (data.hentesav) {
+							return; // don't update state behind assignee's back..
+						}
 						changeJobDetails(item, {status: e.detail.newState});
 					});
 				}
