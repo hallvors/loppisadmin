@@ -325,7 +325,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 			</th>
 			<th>
 				<label><input type="checkbox" bind:checked={dayFilterExclusive}>Bare valgte dager</label>
-				<br><label><input type="checkbox" bind:checked={hideDoneJobs}>Skjul hentede</label>
+				<br><label><input type="checkbox" bind:checked={hideDoneJobs}>Skjul ferdige</label>
 			</th>
 		</tr>
 	{#each $jobs as theJob, i}
