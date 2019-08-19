@@ -68,10 +68,10 @@
 
 	<form  on:submit|preventDefault={e => createDriver(addName, addNumber)}>
 		<p>
-		<span>Navn: </span><span><input bind:value={addName}></span>
+		<span>Navn: </span><span><input bind:value={addName} required></span>
 		</p>
 		<p>
-		<span>Mobil: </span><span><input bind:value={addNumber} inputmode="tel"></span>
+		<span>Mobil: </span><span><input bind:value={addNumber} inputmode="tel" required></span>
 		</p>
 		<p><span></span><span>
 			<button type="submit" class="p8 br2">Legg til</button>
