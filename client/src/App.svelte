@@ -208,7 +208,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 
 <style type="text/css">
 	h1 {text-align: center;}
-	.conf {float: right; padding: 4px;margin-right: 8em}
+	.conf {position: absolute; padding: 4px; right: 8em}
 	.conf img {vertical-align: middle;}
 	table.main {
 		width: 80%;
