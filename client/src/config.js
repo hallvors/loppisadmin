@@ -10,6 +10,7 @@ export const states = [
 	'Ny',
 	'Kontaktet',
 	'Mangler info',
+	'Klar til henting',
 	'Hentes',
 	'Hentet',
 	'Hentes ikke',
