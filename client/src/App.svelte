@@ -276,7 +276,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 .status {
 	width: 15%;
 }
-.loading {
+.dataloading {
 	position: fixed;
 	left: 45%;
 	right: 50%;
@@ -287,7 +287,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 </style>
 
 {#await promise}
-	<div class="loading"><LoadingIcon /></div>
+	<div class="dataloading"><LoadingIcon /></div>
 	<p style="text-align: center;">...henter data</p>
 {:then data}
 	<table class="main">
