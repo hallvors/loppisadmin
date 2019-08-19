@@ -751,6 +751,7 @@ var app = (function () {
     	'Ny',
     	'Kontaktet',
     	'Mangler info',
+    	'Klar til henting',
     	'Hentes',
     	'Hentet',
     	'Hentes ikke',
@@ -1340,35 +1341,32 @@ var app = (function () {
     const file$3 = "client/src/components/DetailsEditor.svelte";
 
     function create_fragment$3(ctx) {
-    	var form, p0, span0, t0_value = ctx.descs.number + "", t0, t1, span1, input, t2, p1, span2, t3_value = ctx.descs.address + "", t3, t4, span3, textarea0, t5, p2, span4, t6_value = ctx.descs.info + "", t6, t7, span5, textarea1, t8, p3, span6, t9_value = ctx.descs.time + "", t9, span7, select, option0, option1, option2, t13, p4, span8, t14, span9, button0, t16, button1, dispose;
+    	var form, p0, span0, span1, input0, t1, p1, span2, span3, textarea0, t3, p2, span4, span5, textarea1, t5, p3, span6, span7, select, option0, option1, option2, t10, p4, span8, t12, span9, label0, input1, t13, img0, t14, label1, input2, t15, img1, t16, p5, span10, t17, span11, button0, t19, button1, dispose;
 
     	return {
     		c: function create() {
     			form = element("form");
     			p0 = element("p");
     			span0 = element("span");
-    			t0 = text(t0_value);
-    			t1 = text(":");
+    			span0.textContent = "Mobilnummer:";
     			span1 = element("span");
-    			input = element("input");
-    			t2 = space();
+    			input0 = element("input");
+    			t1 = space();
     			p1 = element("p");
     			span2 = element("span");
-    			t3 = text(t3_value);
-    			t4 = text(":");
+    			span2.textContent = "Adresse for henting:";
     			span3 = element("span");
     			textarea0 = element("textarea");
-    			t5 = space();
+    			t3 = space();
     			p2 = element("p");
     			span4 = element("span");
-    			t6 = text(t6_value);
-    			t7 = text(":");
+    			span4.textContent = "Om loppene:";
     			span5 = element("span");
     			textarea1 = element("textarea");
-    			t8 = space();
+    			t5 = space();
     			p3 = element("p");
     			span6 = element("span");
-    			t9 = text(t9_value);
+    			span6.textContent = "Hentetidspunkt:";
     			span7 = element("span");
     			select = element("select");
     			option0 = element("option");
@@ -1377,83 +1375,131 @@ var app = (function () {
     			option1.textContent = "Onsdag kveld";
     			option2 = element("option");
     			option2.textContent = "Torsdag kveld";
-    			t13 = space();
+    			t10 = space();
     			p4 = element("p");
     			span8 = element("span");
-    			t14 = space();
+    			span8.textContent = "Type bil:";
+    			t12 = space();
     			span9 = element("span");
+    			label0 = element("label");
+    			input1 = element("input");
+    			t13 = space();
+    			img0 = element("img");
+    			t14 = space();
+    			label1 = element("label");
+    			input2 = element("input");
+    			t15 = space();
+    			img1 = element("img");
+    			t16 = space();
+    			p5 = element("p");
+    			span10 = element("span");
+    			t17 = space();
+    			span11 = element("span");
     			button0 = element("button");
     			button0.textContent = "Oppdater";
-    			t16 = space();
+    			t19 = space();
     			button1 = element("button");
     			button1.textContent = "Avbryt";
-    			attr(span0, "class", "svelte-184cksn");
-    			add_location(span0, file$3, 61, 3, 1127);
-    			attr(input, "inputmode", "tel");
-    			attr(input, "class", "svelte-184cksn");
-    			add_location(input, file$3, 61, 37, 1161);
-    			attr(span1, "class", "svelte-184cksn");
-    			add_location(span1, file$3, 61, 31, 1155);
-    			attr(p0, "class", "svelte-184cksn");
-    			add_location(p0, file$3, 60, 2, 1120);
-    			attr(span2, "class", "svelte-184cksn");
-    			add_location(span2, file$3, 64, 3, 1228);
-    			attr(textarea0, "class", "svelte-184cksn");
-    			add_location(textarea0, file$3, 64, 38, 1263);
-    			attr(span3, "class", "svelte-184cksn");
-    			add_location(span3, file$3, 64, 32, 1257);
-    			attr(p1, "class", "svelte-184cksn");
-    			add_location(p1, file$3, 63, 2, 1221);
-    			attr(span4, "class", "svelte-184cksn");
-    			add_location(span4, file$3, 67, 3, 1329);
-    			attr(textarea1, "class", "svelte-184cksn");
-    			add_location(textarea1, file$3, 67, 35, 1361);
-    			attr(span5, "class", "svelte-184cksn");
-    			add_location(span5, file$3, 67, 29, 1355);
-    			attr(p2, "class", "svelte-184cksn");
-    			add_location(p2, file$3, 66, 2, 1322);
-    			attr(span6, "class", "svelte-184cksn");
-    			add_location(span6, file$3, 70, 3, 1424);
+    			attr(span0, "class", "svelte-1hgccn9");
+    			add_location(span0, file$3, 66, 3, 1272);
+    			attr(input0, "inputmode", "tel");
+    			attr(input0, "class", "svelte-1hgccn9");
+    			add_location(input0, file$3, 66, 34, 1303);
+    			attr(span1, "class", "svelte-1hgccn9");
+    			add_location(span1, file$3, 66, 28, 1297);
+    			attr(p0, "class", "svelte-1hgccn9");
+    			add_location(p0, file$3, 65, 2, 1265);
+    			attr(span2, "class", "svelte-1hgccn9");
+    			add_location(span2, file$3, 69, 3, 1370);
+    			attr(textarea0, "class", "svelte-1hgccn9");
+    			add_location(textarea0, file$3, 69, 42, 1409);
+    			attr(span3, "class", "svelte-1hgccn9");
+    			add_location(span3, file$3, 69, 36, 1403);
+    			attr(p1, "class", "svelte-1hgccn9");
+    			add_location(p1, file$3, 68, 2, 1363);
+    			attr(span4, "class", "svelte-1hgccn9");
+    			add_location(span4, file$3, 72, 3, 1475);
+    			attr(textarea1, "class", "svelte-1hgccn9");
+    			add_location(textarea1, file$3, 72, 33, 1505);
+    			attr(span5, "class", "svelte-1hgccn9");
+    			add_location(span5, file$3, 72, 27, 1499);
+    			attr(p2, "class", "svelte-1hgccn9");
+    			add_location(p2, file$3, 71, 2, 1468);
+    			attr(span6, "class", "svelte-1hgccn9");
+    			add_location(span6, file$3, 75, 3, 1568);
     			option0.__value = "Tirsdag kveld";
     			option0.value = option0.__value;
-    			attr(option0, "class", "svelte-184cksn");
-    			add_location(option0, file$3, 73, 5, 1543);
+    			add_location(option0, file$3, 78, 5, 1690);
     			option1.__value = "Onsdag kveld";
     			option1.value = option1.__value;
-    			attr(option1, "class", "svelte-184cksn");
-    			add_location(option1, file$3, 74, 5, 1579);
+    			add_location(option1, file$3, 79, 5, 1726);
     			option2.__value = "Torsdag kveld";
     			option2.value = option2.__value;
-    			attr(option2, "class", "svelte-184cksn");
-    			add_location(option2, file$3, 75, 5, 1614);
+    			add_location(option2, file$3, 80, 5, 1761);
     			if (ctx.time === void 0) add_render_callback(() => ctx.select_change_handler.call(select));
     			select.multiple = true;
-    			attr(select, "class", "svelte-184cksn");
-    			add_location(select, file$3, 71, 4, 1460);
-    			attr(span7, "class", "svelte-184cksn");
-    			add_location(span7, file$3, 70, 28, 1449);
-    			attr(p3, "class", "svelte-184cksn");
-    			add_location(p3, file$3, 69, 2, 1417);
-    			attr(span8, "class", "svelte-184cksn");
-    			add_location(span8, file$3, 79, 5, 1682);
+    			attr(select, "class", "svelte-1hgccn9");
+    			add_location(select, file$3, 76, 4, 1607);
+    			attr(span7, "class", "svelte-1hgccn9");
+    			add_location(span7, file$3, 75, 31, 1596);
+    			attr(p3, "class", "svelte-1hgccn9");
+    			add_location(p3, file$3, 74, 2, 1561);
+    			attr(span8, "class", "svelte-1hgccn9");
+    			add_location(span8, file$3, 85, 3, 1833);
+    			ctx.$$binding_groups[0].push(input1);
+    			attr(input1, "type", "radio");
+    			attr(input1, "name", "size");
+    			input1.__value = bigStr;
+    			input1.value = input1.__value;
+    			attr(input1, "class", "svelte-1hgccn9");
+    			add_location(input1, file$3, 87, 11, 1877);
+    			attr(img0, "src", "/images/bigcar.png");
+    			attr(img0, "alt", "stor bil");
+    			attr(img0, "width", "36");
+    			attr(img0, "class", "svelte-1hgccn9");
+    			add_location(img0, file$3, 92, 6, 1969);
+    			attr(label0, "class", "svelte-1hgccn9");
+    			add_location(label0, file$3, 87, 4, 1870);
+    			ctx.$$binding_groups[0].push(input2);
+    			attr(input2, "type", "radio");
+    			attr(input2, "name", "size");
+    			input2.__value = '';
+    			input2.value = input2.__value;
+    			attr(input2, "class", "svelte-1hgccn9");
+    			add_location(input2, file$3, 94, 11, 2050);
+    			attr(img1, "src", "/images/smallcar.png");
+    			attr(img1, "alt", "liten bil");
+    			attr(img1, "width", "36");
+    			attr(img1, "class", "svelte-1hgccn9");
+    			add_location(img1, file$3, 99, 6, 2138);
+    			attr(label1, "class", "svelte-1hgccn9");
+    			add_location(label1, file$3, 94, 4, 2043);
+    			attr(span9, "class", "svelte-1hgccn9");
+    			add_location(span9, file$3, 86, 3, 1859);
+    			attr(p4, "class", "svelte-1hgccn9");
+    			add_location(p4, file$3, 84, 2, 1826);
+    			attr(span10, "class", "svelte-1hgccn9");
+    			add_location(span10, file$3, 103, 5, 2234);
     			attr(button0, "type", "submit");
-    			attr(button0, "class", "p8 br2 svelte-184cksn");
-    			add_location(button0, file$3, 81, 3, 1708);
+    			attr(button0, "class", "p8 br2 svelte-1hgccn9");
+    			add_location(button0, file$3, 105, 3, 2260);
     			attr(button1, "type", "button");
-    			attr(button1, "class", "p8 br2 svelte-184cksn");
-    			add_location(button1, file$3, 82, 3, 1767);
-    			attr(span9, "class", "svelte-184cksn");
-    			add_location(span9, file$3, 80, 2, 1698);
-    			attr(p4, "class", "svelte-184cksn");
-    			add_location(p4, file$3, 79, 2, 1679);
-    			attr(form, "class", "svelte-184cksn");
-    			add_location(form, file$3, 59, 0, 1069);
+    			attr(button1, "class", "p8 br2 svelte-1hgccn9");
+    			add_location(button1, file$3, 106, 3, 2319);
+    			attr(span11, "class", "svelte-1hgccn9");
+    			add_location(span11, file$3, 104, 2, 2250);
+    			attr(p5, "class", "svelte-1hgccn9");
+    			add_location(p5, file$3, 103, 2, 2231);
+    			attr(form, "class", "svelte-1hgccn9");
+    			add_location(form, file$3, 64, 0, 1214);
 
     			dispose = [
-    				listen(input, "input", ctx.input_input_handler),
+    				listen(input0, "input", ctx.input0_input_handler),
     				listen(textarea0, "input", ctx.textarea0_input_handler),
     				listen(textarea1, "input", ctx.textarea1_input_handler),
     				listen(select, "change", ctx.select_change_handler),
+    				listen(input1, "change", ctx.input1_change_handler),
+    				listen(input2, "change", ctx.input2_change_handler),
     				listen(button1, "click", ctx.click_handler),
     				listen(form, "submit", prevent_default(ctx.submit_handler))
     			];
@@ -1467,37 +1513,30 @@ var app = (function () {
     			insert(target, form, anchor);
     			append(form, p0);
     			append(p0, span0);
-    			append(span0, t0);
-    			append(span0, t1);
     			append(p0, span1);
-    			append(span1, input);
+    			append(span1, input0);
 
-    			input.value = ctx.number;
+    			input0.value = ctx.number;
 
-    			append(form, t2);
+    			append(form, t1);
     			append(form, p1);
     			append(p1, span2);
-    			append(span2, t3);
-    			append(span2, t4);
     			append(p1, span3);
     			append(span3, textarea0);
 
     			textarea0.value = ctx.address;
 
-    			append(form, t5);
+    			append(form, t3);
     			append(form, p2);
     			append(p2, span4);
-    			append(span4, t6);
-    			append(span4, t7);
     			append(p2, span5);
     			append(span5, textarea1);
 
     			textarea1.value = ctx.info;
 
-    			append(form, t8);
+    			append(form, t5);
     			append(form, p3);
     			append(p3, span6);
-    			append(span6, t9);
     			append(p3, span7);
     			append(span7, select);
     			append(select, option0);
@@ -1506,21 +1545,44 @@ var app = (function () {
 
     			select_options(select, ctx.time);
 
-    			append(form, t13);
+    			append(form, t10);
     			append(form, p4);
     			append(p4, span8);
-    			append(p4, t14);
+    			append(p4, t12);
     			append(p4, span9);
-    			append(span9, button0);
-    			append(span9, t16);
-    			append(span9, button1);
+    			append(span9, label0);
+    			append(label0, input1);
+
+    			input1.checked = input1.__value === ctx.size;
+
+    			append(label0, t13);
+    			append(label0, img0);
+    			append(span9, t14);
+    			append(span9, label1);
+    			append(label1, input2);
+
+    			input2.checked = input2.__value === ctx.size;
+
+    			append(label1, t15);
+    			append(label1, img1);
+    			append(form, t16);
+    			append(form, p5);
+    			append(p5, span10);
+    			append(p5, t17);
+    			append(p5, span11);
+    			append(span11, button0);
+    			append(span11, t19);
+    			append(span11, button1);
     		},
 
     		p: function update_1(changed, ctx) {
-    			if (changed.number && (input.value !== ctx.number)) input.value = ctx.number;
+    			if (changed.number && (input0.value !== ctx.number)) input0.value = ctx.number;
     			if (changed.address) textarea0.value = ctx.address;
     			if (changed.info) textarea1.value = ctx.info;
     			if (changed.time) select_options(select, ctx.time);
+    			if (changed.size) input1.checked = input1.__value === ctx.size;
+    			input1.value = input1.__value;
+    			if (changed.size) input2.checked = input2.__value === ctx.size;
     		},
 
     		i: noop,
@@ -1531,10 +1593,14 @@ var app = (function () {
     				detach(form);
     			}
 
+    			ctx.$$binding_groups[0].splice(ctx.$$binding_groups[0].indexOf(input1), 1);
+    			ctx.$$binding_groups[0].splice(ctx.$$binding_groups[0].indexOf(input2), 1);
     			run_all(dispose);
     		}
     	};
     }
+
+    const bigStr = 'Store ting (vare-bil eller tilhenger kreves ved henting)';
 
     function instance$3($$self, $$props, $$invalidate) {
     	let { job } = $$props;
@@ -1545,19 +1611,15 @@ var app = (function () {
     let info = job.informasjonomloppene;
     let time = job.hentetidspunktkryssavsåmangedukan.split(/,\s*/g);
     let address = job.adresseforhenting;
-    let descs = {
-    	number: 'Mobilnummer',
-    	time: 'Hentetidspunkt',
-    	info: 'Om loppene', 
-    	address: 'Adresse for henting'
-    };
+    let size = job.størrelse;
 
     function update() {
     	dispatch('update', {
     		telefonnummer: number,
     		adresseforhenting: address,
     		informasjonomloppene: info,
-    		hentetidspunktkryssavsåmangedukan: time.join(', ')
+    		hentetidspunktkryssavsåmangedukan: time.join(', '),
+    		størrelse: size,
     	});
     }
 
@@ -1566,7 +1628,9 @@ var app = (function () {
     		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<DetailsEditor> was created with unknown prop '${key}'`);
     	});
 
-    	function input_input_handler() {
+    	const $$binding_groups = [[]];
+
+    	function input0_input_handler() {
     		number = this.value;
     		$$invalidate('number', number);
     	}
@@ -1584,6 +1648,16 @@ var app = (function () {
     	function select_change_handler() {
     		time = select_multiple_value(this);
     		$$invalidate('time', time);
+    	}
+
+    	function input1_change_handler() {
+    		size = this.__value;
+    		$$invalidate('size', size);
+    	}
+
+    	function input2_change_handler() {
+    		size = this.__value;
+    		$$invalidate('size', size);
     	}
 
     	function click_handler(e) {
@@ -1605,14 +1679,17 @@ var app = (function () {
     		info,
     		time,
     		address,
-    		descs,
+    		size,
     		update,
-    		input_input_handler,
+    		input0_input_handler,
     		textarea0_input_handler,
     		textarea1_input_handler,
     		select_change_handler,
+    		input1_change_handler,
+    		input2_change_handler,
     		click_handler,
-    		submit_handler
+    		submit_handler,
+    		$$binding_groups
     	};
     }
 
@@ -1666,22 +1743,22 @@ var app = (function () {
     			attr(a0, "href", a0_href_value = "https://www.gulesider.no/" + encodeURIComponent(ctx.name) + "/personer");
     			attr(a0, "target", "_blank");
     			attr(a0, "title", "Slå opp person på Gule sider");
-    			attr(a0, "class", "svelte-11t3l74");
-    			add_location(a0, file$4, 22, 0, 292);
-    			add_location(br, file$4, 23, 0, 423);
+    			attr(a0, "class", "svelte-x7cwha");
+    			add_location(a0, file$4, 16, 0, 177);
+    			add_location(br, file$4, 17, 0, 308);
     			attr(a1, "href", a1_href_value = "tel:" + ctx.number);
     			attr(a1, "title", "Ring nummer");
-    			attr(a1, "class", "svelte-11t3l74");
-    			add_location(a1, file$4, 24, 9, 437);
+    			attr(a1, "class", "svelte-x7cwha");
+    			add_location(a1, file$4, 18, 9, 322);
     			attr(a2, "href", a2_href_value = "sms:" + ctx.number);
     			attr(a2, "title", "Send SMS");
-    			attr(a2, "class", "svelte-11t3l74");
-    			add_location(a2, file$4, 25, 0, 488);
+    			attr(a2, "class", "svelte-x7cwha");
+    			add_location(a2, file$4, 19, 0, 373);
     			attr(a3, "href", a3_href_value = "https://www.gulesider.no/" + ctx.number + "/personer");
     			attr(a3, "target", "_blank");
     			attr(a3, "title", "slå opp nummer på Gule sider");
-    			attr(a3, "class", "svelte-11t3l74");
-    			add_location(a3, file$4, 26, 0, 535);
+    			attr(a3, "class", "svelte-x7cwha");
+    			add_location(a3, file$4, 20, 0, 420);
     		},
 
     		l: function claim(nodes) {
@@ -2253,7 +2330,9 @@ var app = (function () {
     		'telefonnummer',
     		'informasjonomloppene',
     		'status',
-    	].map(key => job[key].indexOf(string) > -1)
+    	].map(key => {
+    		return (job[key] || '').toLowerCase().indexOf(string.toLowerCase()) > -1
+    	})
     	.indexOf(true) > -1;
     }
 
@@ -2362,7 +2441,7 @@ var app = (function () {
     	};
     }
 
-    // (160:1) {#each states as theState}
+    // (164:1) {#each states as theState}
     function create_each_block$3(ctx) {
     	var option, t_value = ctx.theState + "", t, option_value_value;
 
@@ -2372,7 +2451,7 @@ var app = (function () {
     			t = text(t_value);
     			option.__value = option_value_value = ctx.theState;
     			option.value = option.__value;
-    			add_location(option, file$7, 160, 2, 4090);
+    			add_location(option, file$7, 164, 2, 4132);
     		},
 
     		m: function mount(target, anchor) {
@@ -2392,7 +2471,7 @@ var app = (function () {
     	};
     }
 
-    // (164:0) {#if itemData.hentesav}
+    // (168:0) {#if itemData.hentesav}
     function create_if_block_2(ctx) {
     	var div, a, t0_value = ctx.getDriverName(ctx.itemData.hentesav) + "", t0, a_href_value, t1, t2_value = statusVerbString(ctx.itemData.status) + "", t2;
 
@@ -2404,9 +2483,9 @@ var app = (function () {
     			t1 = space();
     			t2 = text(t2_value);
     			attr(a, "href", a_href_value = "tel:" + normalizeNumber(ctx.itemData.hentesav));
-    			add_location(a, file$7, 164, 23, 4184);
+    			add_location(a, file$7, 168, 23, 4226);
     			attr(div, "class", "hentesav svelte-1cd40x6");
-    			add_location(div, file$7, 164, 1, 4162);
+    			add_location(div, file$7, 168, 1, 4204);
     		},
 
     		m: function mount(target, anchor) {
@@ -2439,7 +2518,7 @@ var app = (function () {
     	};
     }
 
-    // (171:0) {#if expanded}
+    // (175:0) {#if expanded}
     function create_if_block$1(ctx) {
     	var tr, td0, td1, p0, t0, p1, t1_value = ctx.itemData.typerlopper + "", t1, t2, p2, i, t3_value = ctx.itemData.informasjonomloppene + "", t3, t4, td2, button, img, t5, tr_data_id_value, current, dispose;
 
@@ -2474,25 +2553,25 @@ var app = (function () {
     			t5 = space();
     			if (if_block) if_block.c();
     			attr(td0, "class", "svelte-1cd40x6");
-    			add_location(td0, file$7, 170, 40, 4379);
-    			add_location(p0, file$7, 171, 1, 4424);
-    			add_location(p1, file$7, 174, 1, 4522);
-    			add_location(i, file$7, 175, 4, 4556);
-    			add_location(p2, file$7, 175, 1, 4553);
+    			add_location(td0, file$7, 174, 40, 4421);
+    			add_location(p0, file$7, 175, 1, 4466);
+    			add_location(p1, file$7, 178, 1, 4564);
+    			add_location(i, file$7, 179, 4, 4598);
+    			add_location(p2, file$7, 179, 1, 4595);
     			attr(td1, "colspan", "3");
     			attr(td1, "class", "extrainfo svelte-1cd40x6");
-    			add_location(td1, file$7, 170, 49, 4388);
+    			add_location(td1, file$7, 174, 49, 4430);
     			attr(img, "src", "/images/edit.png");
     			attr(img, "alt", "endre detaljer");
     			attr(img, "width", "36");
     			attr(img, "class", "svelte-1cd40x6");
-    			add_location(img, file$7, 178, 43, 4653);
+    			add_location(img, file$7, 182, 43, 4695);
     			attr(button, "class", "svelte-1cd40x6");
-    			add_location(button, file$7, 178, 1, 4611);
+    			add_location(button, file$7, 182, 1, 4653);
     			attr(td2, "class", "svelte-1cd40x6");
-    			add_location(td2, file$7, 177, 0, 4605);
+    			add_location(td2, file$7, 181, 0, 4647);
     			attr(tr, "data-id", tr_data_id_value = ctx.itemData.id);
-    			add_location(tr, file$7, 170, 14, 4353);
+    			add_location(tr, file$7, 174, 14, 4395);
     			dispose = listen(button, "click", ctx.click_handler_3);
     		},
 
@@ -2582,7 +2661,7 @@ var app = (function () {
     	};
     }
 
-    // (180:1) {#if showEditor}
+    // (184:1) {#if showEditor}
     function create_if_block_1$1(ctx) {
     	var current;
 
@@ -2632,7 +2711,7 @@ var app = (function () {
     	};
     }
 
-    // (182:3) <h2 slot="header">
+    // (186:3) <h2 slot="header">
     function create_header_slot(ctx) {
     	var h2;
 
@@ -2641,7 +2720,7 @@ var app = (function () {
     			h2 = element("h2");
     			h2.textContent = "Endre detaljer";
     			attr(h2, "slot", "header");
-    			add_location(h2, file$7, 181, 3, 4793);
+    			add_location(h2, file$7, 185, 3, 4835);
     		},
 
     		m: function mount(target, anchor) {
@@ -2656,7 +2735,7 @@ var app = (function () {
     	};
     }
 
-    // (181:2) <Modal on:close="{() => showEditor = false}" >
+    // (185:2) <Modal on:close="{() => showEditor = false}" >
     function create_default_slot(ctx) {
     	var t, current;
 
@@ -2708,7 +2787,7 @@ var app = (function () {
     }
 
     function create_fragment$7(ctx) {
-    	var tr, td0, t0, t1_value = ctx.itemData.adresseforhenting + "", t1, t2, a, t3, a_href_value, t4, br, t5, div, i, t6_value = ctx.itemData.hentetidspunktkryssavsåmangedukan + "", t6, t7, td1, t8, td2, t9, td3, t10, td4, t11, td5, input, input_id_value, t12, label, t13, label_for_value, t14, select, t15, tr_data_id_value, t16, if_block3_anchor, current, dispose;
+    	var tr, td0, t0, t1_value = ctx.itemData.adresseforhenting + "", t1, t2, a, t3, a_href_value, t4, br, t5, div, i, t6_value = ctx.itemData.hentetidspunktkryssavsåmangedukan + "", t6, t7, td1, t8, td2, t9, td3, t10, td4, t11, td5, input, input_id_value, t12, label, t13, label_for_value, t14, select, select_disabled_value, t15, tr_data_id_value, t16, if_block3_anchor, current, dispose;
 
     	var if_block0 = (ctx.itemData.loading) && create_if_block_4();
 
@@ -2823,6 +2902,7 @@ var app = (function () {
     			attr(label, "class", "svelte-1cd40x6");
     			add_location(label, file$7, 157, 0, 3888);
     			if (ctx.itemData.status === void 0) add_render_callback(() => ctx.select_change_handler.call(select));
+    			select.disabled = select_disabled_value = Boolean(ctx.itemData.hentesav);
     			attr(select, "class", "svelte-1cd40x6");
     			add_location(select, file$7, 158, 0, 3944);
     			attr(td5, "class", "statuscell svelte-1cd40x6");
@@ -2991,6 +3071,10 @@ var app = (function () {
     			}
 
     			if (changed.itemData) select_option(select, ctx.itemData.status);
+
+    			if ((!current || changed.itemData) && select_disabled_value !== (select_disabled_value = Boolean(ctx.itemData.hentesav))) {
+    				select.disabled = select_disabled_value;
+    			}
 
     			if (ctx.itemData.hentesav) {
     				if (if_block2) {
@@ -4797,7 +4881,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (408:0) {:catch error}
+    // (412:0) {:catch error}
     function create_catch_block(ctx) {
     	var p, t_value = ctx.error.message + "", t;
 
@@ -4806,7 +4890,7 @@ var app = (function () {
     			p = element("p");
     			t = text(t_value);
     			set_style(p, "color", "red");
-    			add_location(p, file$d, 408, 1, 10440);
+    			add_location(p, file$d, 412, 1, 10598);
     		},
 
     		m: function mount(target, anchor) {
@@ -4907,7 +4991,7 @@ var app = (function () {
     			br = element("br");
     			label1 = element("label");
     			input2 = element("input");
-    			t15 = text("Skjul hentede");
+    			t15 = text("Skjul ferdige");
     			t16 = space();
 
     			for (var i = 0; i < each_blocks.length; i += 1) {
@@ -4943,73 +5027,73 @@ var app = (function () {
     			if_block2_anchor = empty();
     			attr(input0, "type", "search");
     			attr(input0, "placeholder", "Filtrer");
-    			add_location(input0, file$d, 294, 7, 7203);
-    			add_location(th0, file$d, 294, 3, 7199);
+    			add_location(input0, file$d, 294, 7, 7211);
+    			add_location(th0, file$d, 294, 3, 7207);
     			attr(img0, "src", "/images/bigcar.png");
     			attr(img0, "alt", "stor bil");
     			attr(img0, "height", "22");
     			attr(img0, "tabindex", "0");
     			toggle_class(img0, "bigActive", ctx.bigActive);
-    			add_location(img0, file$d, 296, 4, 7292);
+    			add_location(img0, file$d, 296, 4, 7300);
     			attr(img1, "src", "/images/smallcar.png");
     			attr(img1, "alt", "liten bil");
     			attr(img1, "height", "22");
     			attr(img1, "tabindex", "0");
     			toggle_class(img1, "smallActive", ctx.smallActive);
-    			add_location(img1, file$d, 300, 4, 7442);
-    			add_location(th1, file$d, 295, 3, 7283);
+    			add_location(img1, file$d, 300, 4, 7450);
+    			add_location(th1, file$d, 295, 3, 7291);
     			if (ctx.typeFilter === void 0) add_render_callback(() => ctx.select_change_handler.call(select));
-    			add_location(select, file$d, 306, 4, 7621);
-    			add_location(th2, file$d, 305, 3, 7612);
+    			add_location(select, file$d, 306, 4, 7629);
+    			add_location(th2, file$d, 305, 3, 7620);
     			attr(img2, "src", "/images/star-full.png");
     			attr(img2, "width", "16");
     			attr(img2, "alt", "antatt kvalitet");
-    			add_location(img2, file$d, 313, 4, 7765);
+    			add_location(img2, file$d, 313, 4, 7773);
     			attr(img3, "src", "/images/star-full.png");
     			attr(img3, "width", "16");
     			attr(img3, "alt", "");
-    			add_location(img3, file$d, 314, 4, 7836);
+    			add_location(img3, file$d, 314, 4, 7844);
     			attr(img4, "src", "/images/star-full.png");
     			attr(img4, "width", "16");
     			attr(img4, "alt", "");
-    			add_location(img4, file$d, 315, 4, 7892);
-    			add_location(th3, file$d, 312, 3, 7756);
+    			add_location(img4, file$d, 315, 4, 7900);
+    			add_location(th3, file$d, 312, 3, 7764);
     			attr(li0, "tabindex", "0");
     			toggle_class(li0, "tueActive", ctx.tueActive);
-    			add_location(li0, file$d, 320, 5, 8069);
+    			add_location(li0, file$d, 320, 5, 8077);
     			attr(li1, "tabindex", "0");
     			toggle_class(li1, "wedActive", ctx.wedActive);
-    			add_location(li1, file$d, 321, 5, 8156);
+    			add_location(li1, file$d, 321, 5, 8164);
     			attr(li2, "tabindex", "0");
     			toggle_class(li2, "thuActive", ctx.thuActive);
-    			add_location(li2, file$d, 322, 5, 8243);
+    			add_location(li2, file$d, 322, 5, 8251);
     			attr(ol, "class", "days");
-    			add_location(ol, file$d, 318, 4, 7965);
-    			add_location(th4, file$d, 317, 3, 7956);
+    			add_location(ol, file$d, 318, 4, 7973);
+    			add_location(th4, file$d, 317, 3, 7964);
     			attr(input1, "type", "checkbox");
-    			add_location(input1, file$d, 326, 11, 8363);
-    			add_location(label0, file$d, 326, 4, 8356);
-    			add_location(br, file$d, 327, 4, 8450);
+    			add_location(input1, file$d, 326, 11, 8371);
+    			add_location(label0, file$d, 326, 4, 8364);
+    			add_location(br, file$d, 327, 4, 8458);
     			attr(input2, "type", "checkbox");
-    			add_location(input2, file$d, 327, 15, 8461);
-    			add_location(label1, file$d, 327, 8, 8454);
-    			add_location(th5, file$d, 325, 3, 8347);
-    			add_location(tr, file$d, 293, 2, 7191);
+    			add_location(input2, file$d, 327, 15, 8469);
+    			add_location(label1, file$d, 327, 8, 8462);
+    			add_location(th5, file$d, 325, 3, 8355);
+    			add_location(tr, file$d, 293, 2, 7199);
     			attr(col0, "class", "address");
-    			add_location(col0, file$d, 341, 1, 8905);
+    			add_location(col0, file$d, 341, 1, 8913);
     			attr(col1, "class", "cartype");
-    			add_location(col1, file$d, 342, 1, 8930);
+    			add_location(col1, file$d, 342, 1, 8938);
     			attr(col2, "class", "stufftype");
-    			add_location(col2, file$d, 343, 1, 8955);
+    			add_location(col2, file$d, 343, 1, 8963);
     			attr(col3, "class", "quality");
-    			add_location(col3, file$d, 344, 1, 8982);
+    			add_location(col3, file$d, 344, 1, 8990);
     			attr(col4, "class", "dayscol");
-    			add_location(col4, file$d, 345, 1, 9007);
+    			add_location(col4, file$d, 345, 1, 9015);
     			attr(col5, "class", "status");
-    			add_location(col5, file$d, 346, 1, 9032);
+    			add_location(col5, file$d, 346, 1, 9040);
     			attr(table, "class", "main");
-    			add_location(table, file$d, 292, 1, 7168);
-    			add_location(p, file$d, 349, 0, 9065);
+    			add_location(table, file$d, 292, 1, 7176);
+    			add_location(p, file$d, 349, 0, 9073);
 
     			dispose = [
     				listen(input0, "input", ctx.input0_input_handler),
@@ -5318,7 +5402,7 @@ var app = (function () {
     			t = text(t_value);
     			option.__value = option_value_value = ctx.theType;
     			option.value = option.__value;
-    			add_location(option, file$d, 308, 6, 7690);
+    			add_location(option, file$d, 308, 6, 7698);
     		},
 
     		m: function mount(target, anchor) {
@@ -5506,7 +5590,7 @@ var app = (function () {
     			h2 = element("h2");
     			h2.textContent = "Send SMS";
     			attr(h2, "slot", "header");
-    			add_location(h2, file$d, 357, 2, 9317);
+    			add_location(h2, file$d, 357, 2, 9325);
     		},
 
     		m: function mount(target, anchor) {
@@ -5631,7 +5715,7 @@ var app = (function () {
     			h2 = element("h2");
     			h2.textContent = "Oppdater hentere";
     			attr(h2, "slot", "header");
-    			add_location(h2, file$d, 380, 2, 9878);
+    			add_location(h2, file$d, 380, 2, 9886);
     		},
 
     		m: function mount(target, anchor) {
@@ -5742,7 +5826,7 @@ var app = (function () {
     			h2 = element("h2");
     			h2.textContent = "Oppdater status";
     			attr(h2, "slot", "header");
-    			add_location(h2, file$d, 390, 2, 10089);
+    			add_location(h2, file$d, 390, 2, 10097);
     		},
 
     		m: function mount(target, anchor) {
@@ -5801,7 +5885,7 @@ var app = (function () {
     	};
     }
 
-    // (289:16)   <div class="loading"><LoadingIcon /></div>  <p style="text-align: center;">...henter data</p> {:then data}
+    // (289:16)   <div class="dataloading"><LoadingIcon /></div>  <p style="text-align: center;">...henter data</p> {:then data}
     function create_pending_block(ctx) {
     	var div, t, p, current;
 
@@ -5814,10 +5898,10 @@ var app = (function () {
     			t = space();
     			p = element("p");
     			p.textContent = "...henter data";
-    			attr(div, "class", "loading");
-    			add_location(div, file$d, 289, 1, 7060);
+    			attr(div, "class", "dataloading");
+    			add_location(div, file$d, 289, 1, 7064);
     			set_style(p, "text-align", "center");
-    			add_location(p, file$d, 290, 1, 7104);
+    			add_location(p, file$d, 290, 1, 7112);
     		},
 
     		m: function mount(target, anchor) {
@@ -5857,7 +5941,7 @@ var app = (function () {
     	};
     }
 
-    // (454:0) {#each tempMsgQueue as msg, idx}
+    // (458:0) {#each tempMsgQueue as msg, idx}
     function create_each_block$8(ctx) {
     	var current;
 
@@ -6000,7 +6084,7 @@ var app = (function () {
     			h1.textContent = "Loppisadmin";
     			t2 = space();
     			style = element("style");
-    			style.textContent = "h1 {text-align: center;}\n\t.conf {float: right; padding: 4px;margin-right: 8em}\n\t.conf img {vertical-align: middle;}\n\ttable.main {\n\t\twidth: 80%;\n\t\tmargin-left: 10%;\n\t\tmargin-right: 10%;\n\t\tborder-collapse: collapse;\n\t\tborder: 1px solid grey;\n\t}\n\ttable.main tr:first-child {\n\t\tbackground: #eee;\n\t\tborder-bottom: 1px solid black;\n\t}\n\tth {text-align: left; padding-left: 16px; }\n\tth li {\n\t\tdisplay: inline-block;\n\t\theight: 20px;\n\t\twidth: 20px;\n\t\tborder-bottom: 1px solid grey;\n\t\tcolor: grey;\n\t\tfont-weight: lighter;\n\t\tmargin-left: 8px;\n\t\tcursor: pointer;\n\t}\n\t.smallActive, .bigActive {\n\t\tborder: 1px solid black;\n\t}\n\t.smallActive, .bigActive, li.monActive, li.tueActive, li.wedActive, li.thuActive {\n\t\tborder-color: black;\n\t\tcolor: black;\n\t}\n\tlabel {font-weight: lighter; font-style: italic;}\n\n\n/* Extra small devices (phones, 600px and down) */\n@media only screen and (max-width: 600px) {\n\tth:nth-child(3) {display: none;}\n\tth:nth-child(4) {display: none;}\n\tth:nth-child(5) {display: none;}\n\ttable {width: 99%; margin: 0;}\n} \n\n@media only screen and (max-width: 700px) {\n\tth:nth-child(3) {display: none;}\n\t.stufftype {width: 25%}\n\t.dayscol {width: 25%}\n\ttable {width: 95%; margin: 2.5%;}\n}\n/* column styles */\n.address {\n\tbackground: #eee;\n\twidth: 25%;\n}\n.cartype {\n\twidth: 5%;\n}\n.quality {\n\twidth: 10%;\n}\n.stufftype {\n\twidth: 10%;\n}\n.dayscol {\n\twidth: 20%;\n}\n.status {\n\twidth: 15%;\n}\n.loading {\n\tposition: fixed;\n\tleft: 45%;\n\tright: 50%;\n\ttop: 45%;\n\tbottom: 50%;\n}";
+    			style.textContent = "h1 {text-align: center;}\n\t.conf {position: absolute; padding: 4px; right: 8em}\n\t.conf img {vertical-align: middle;}\n\ttable.main {\n\t\twidth: 80%;\n\t\tmargin-left: 10%;\n\t\tmargin-right: 10%;\n\t\tborder-collapse: collapse;\n\t\tborder: 1px solid grey;\n\t}\n\ttable.main tr:first-child {\n\t\tbackground: #eee;\n\t\tborder-bottom: 1px solid black;\n\t}\n\tth {text-align: left; padding-left: 16px; }\n\tth li {\n\t\tdisplay: inline-block;\n\t\theight: 20px;\n\t\twidth: 20px;\n\t\tborder-bottom: 1px solid grey;\n\t\tcolor: grey;\n\t\tfont-weight: lighter;\n\t\tmargin-left: 8px;\n\t\tcursor: pointer;\n\t}\n\t.smallActive, .bigActive {\n\t\tborder: 1px solid black;\n\t}\n\t.smallActive, .bigActive, li.monActive, li.tueActive, li.wedActive, li.thuActive {\n\t\tborder-color: black;\n\t\tcolor: black;\n\t}\n\tlabel {font-weight: lighter; font-style: italic;}\n\n\n/* Extra small devices (phones, 600px and down) */\n@media only screen and (max-width: 600px) {\n\tth:nth-child(3) {display: none;}\n\tth:nth-child(4) {display: none;}\n\tth:nth-child(5) {display: none;}\n\ttable {width: 99%; margin: 0;}\n} \n\n@media only screen and (max-width: 700px) {\n\tth:nth-child(3) {display: none;}\n\t.stufftype {width: 25%}\n\t.dayscol {width: 25%}\n\ttable {width: 95%; margin: 2.5%;}\n}\n/* column styles */\n.address {\n\tbackground: #eee;\n\twidth: 25%;\n}\n.cartype {\n\twidth: 5%;\n}\n.quality {\n\twidth: 10%;\n}\n.stufftype {\n\twidth: 10%;\n}\n.dayscol {\n\twidth: 20%;\n}\n.status {\n\twidth: 15%;\n}\n.dataloading {\n\tposition: fixed;\n\tleft: 45%;\n\tright: 50%;\n\ttop: 45%;\n\tbottom: 50%;\n}";
     			t4 = space();
 
     			info.block.c();
@@ -6478,6 +6562,10 @@ ${baseUrl}/henting/?jobb=${
     	function statusupdate_handler(e) {
     					if (e.detail.newState) {
     						selectedItems.forEach(item => {
+    							let data = $jobs.find(job => job.id === item);
+    							if (data.hentesav) {
+    								return; // don't update state behind assignee's back..
+    							}
     							changeJobDetails(item, {status: e.detail.newState});
     						});
     					}

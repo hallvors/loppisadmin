@@ -28,7 +28,7 @@ let cachedList;
 let lastFetchedTime;
 
 function getFullList(force, callback) {
-	console.log({force})
+	console.log({SHEET, force})
 	if (cachedList && !force && lastFetchedTime &&
 		Date.now() - lastFetchedTime.getTime() < 1000 * 60 * 10
 	) {
