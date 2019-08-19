@@ -12,5 +12,5 @@ export const states = [
 	'Mangler info',
 	'Hentes',
 	'Hentet',
-	'Avvist',
+	'Hentes ikke',
 ];

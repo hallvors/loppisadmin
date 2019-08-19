@@ -12,7 +12,7 @@ export function normalizeNumber(str) {
 }
 
 export function filter(string, sizePref, dayPref, typeFilter, hideDoneJobs, job) {
-	if (hideDoneJobs && ['Hentet', 'Avvist'].indexOf(job.status) > -1) {
+	if (hideDoneJobs && ['Hentet', 'Hentes ikke'].indexOf(job.status) > -1) {
 		return false;
 	}
 	// all the "defaults" set - noop
