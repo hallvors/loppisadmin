@@ -4020,6 +4020,7 @@ var app = (function () {
     			button1.textContent = "Lukk";
     			attr(span0, "class", "svelte-4kixmb");
     			add_location(span0, file$9, 70, 2, 1370);
+    			input0.required = true;
     			attr(input0, "class", "svelte-4kixmb");
     			add_location(input0, file$9, 70, 27, 1395);
     			attr(span1, "class", "svelte-4kixmb");
@@ -4027,26 +4028,27 @@ var app = (function () {
     			attr(p0, "class", "svelte-4kixmb");
     			add_location(p0, file$9, 69, 2, 1364);
     			attr(span2, "class", "svelte-4kixmb");
-    			add_location(span2, file$9, 73, 2, 1446);
+    			add_location(span2, file$9, 73, 2, 1455);
     			attr(input1, "inputmode", "tel");
+    			input1.required = true;
     			attr(input1, "class", "svelte-4kixmb");
-    			add_location(input1, file$9, 73, 28, 1472);
+    			add_location(input1, file$9, 73, 28, 1481);
     			attr(span3, "class", "svelte-4kixmb");
-    			add_location(span3, file$9, 73, 22, 1466);
+    			add_location(span3, file$9, 73, 22, 1475);
     			attr(p1, "class", "svelte-4kixmb");
-    			add_location(p1, file$9, 72, 2, 1440);
+    			add_location(p1, file$9, 72, 2, 1449);
     			attr(span4, "class", "svelte-4kixmb");
-    			add_location(span4, file$9, 75, 5, 1538);
+    			add_location(span4, file$9, 75, 5, 1556);
     			attr(button0, "type", "submit");
     			attr(button0, "class", "p8 br2 svelte-4kixmb");
-    			add_location(button0, file$9, 76, 3, 1561);
+    			add_location(button0, file$9, 76, 3, 1579);
     			attr(button1, "class", "p8 br2 svelte-4kixmb");
     			attr(button1, "type", "button");
-    			add_location(button1, file$9, 77, 3, 1619);
+    			add_location(button1, file$9, 77, 3, 1637);
     			attr(span5, "class", "svelte-4kixmb");
-    			add_location(span5, file$9, 75, 18, 1551);
+    			add_location(span5, file$9, 75, 18, 1569);
     			attr(p2, "class", "svelte-4kixmb");
-    			add_location(p2, file$9, 75, 2, 1535);
+    			add_location(p2, file$9, 75, 2, 1553);
     			attr(form, "class", "svelte-4kixmb");
     			add_location(form, file$9, 68, 1, 1289);
     			add_location(div, file$9, 58, 0, 1038);
@@ -6626,7 +6628,7 @@ ${baseUrl}/henting/?jobb=${
     	return child_ctx;
     }
 
-    // (146:0) {:catch error}
+    // (152:0) {:catch error}
     function create_catch_block$1(ctx) {
     	var p, t_value = ctx.error.message + "", t;
 
@@ -6635,7 +6637,7 @@ ${baseUrl}/henting/?jobb=${
     			p = element("p");
     			t = text(t_value);
     			set_style(p, "color", "red");
-    			add_location(p, file$e, 146, 1, 3926);
+    			add_location(p, file$e, 152, 1, 4088);
     		},
 
     		m: function mount(target, anchor) {
@@ -6879,7 +6881,7 @@ ${baseUrl}/henting/?jobb=${
 
     // (88:1) {#each $jobs as job}
     function create_each_block$9(ctx) {
-    	var h1, t1, t2, section, p0, b0, t4, span0, t5_value = ctx.job.adresseforhenting + "", t5, t6, a, t7, a_href_value, t8, p1, b1, t10, span1, t11, p2, b2, t13, span2, t14, t15, p3, b3, span3, t17, p4, b4, span4, em, t19_value = ctx.job.status + "", t19, t20, br, t21, t22, p5, b5, span5, button0, t25, button1, t27, button2, t29, current, dispose;
+    	var h1, t1, t2, section, p0, b0, t4, span0, t5_value = ctx.job.adresseforhenting + "", t5, t6, a, t7, a_href_value, t8, p1, b1, t10, span1, t11, p2, b2, t13, span2, t14, t15, p3, b3, span3, t17, p4, b4, span4, em, t19_value = ctx.job.status + "", t19, t20, br, t21, t22, p5, b5, span5, button0, t25, button1, t27, button2, t29, button3, t31, current, dispose;
 
     	var if_block0 = (ctx.job.loading) && create_if_block_2$3();
 
@@ -6923,6 +6925,10 @@ ${baseUrl}/henting/?jobb=${
 
     	function click_handler_2(...args) {
     		return ctx.click_handler_2(ctx, ...args);
+    	}
+
+    	function click_handler_3(...args) {
+    		return ctx.click_handler_3(ctx, ...args);
     	}
 
     	return {
@@ -6987,8 +6993,11 @@ ${baseUrl}/henting/?jobb=${
     			button1.textContent = "Ferdig hentet!";
     			t27 = space();
     			button2 = element("button");
-    			button2.textContent = "Kan ikke hente denne";
+    			button2.textContent = "Vi rekker ikke denne";
     			t29 = space();
+    			button3 = element("button");
+    			button3.textContent = "Jobben skal ikke hentes";
+    			t31 = space();
     			attr(h1, "class", "svelte-tjsvhh");
     			add_location(h1, file$e, 88, 2, 2299);
     			attr(b0, "class", "svelte-tjsvhh");
@@ -7034,6 +7043,8 @@ ${baseUrl}/henting/?jobb=${
     			add_location(button1, file$e, 129, 5, 3561);
     			attr(button2, "class", "p8 br2 svelte-tjsvhh");
     			add_location(button2, file$e, 135, 5, 3721);
+    			attr(button3, "class", "p8 br2 svelte-tjsvhh");
+    			add_location(button3, file$e, 141, 5, 3872);
     			attr(span5, "class", "svelte-tjsvhh");
     			add_location(span5, file$e, 122, 27, 3389);
     			attr(p5, "class", "svelte-tjsvhh");
@@ -7044,7 +7055,8 @@ ${baseUrl}/henting/?jobb=${
     			dispose = [
     				listen(button0, "click", click_handler),
     				listen(button1, "click", click_handler_1),
-    				listen(button2, "click", click_handler_2)
+    				listen(button2, "click", click_handler_2),
+    				listen(button3, "click", click_handler_3)
     			];
     		},
 
@@ -7100,7 +7112,9 @@ ${baseUrl}/henting/?jobb=${
     			append(span5, button1);
     			append(span5, t27);
     			append(span5, button2);
-    			append(section, t29);
+    			append(span5, t29);
+    			append(span5, button3);
+    			append(section, t31);
     			current = true;
     		},
 
@@ -7408,6 +7422,10 @@ ${baseUrl}/henting/?jobb=${
     		return update(job.id, {status: 'Ny', hentesav: ''});
     	}
 
+    	function click_handler_3({ job }, e) {
+    		return update(job.id, {status: 'Hentes ikke', hentesav: ''});
+    	}
+
     	return {
     		params,
     		promise,
@@ -7417,7 +7435,8 @@ ${baseUrl}/henting/?jobb=${
     		qualityupdate_handler,
     		click_handler,
     		click_handler_1,
-    		click_handler_2
+    		click_handler_2,
+    		click_handler_3
     	};
     }
 
