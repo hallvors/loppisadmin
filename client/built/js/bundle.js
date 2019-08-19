@@ -3264,7 +3264,7 @@ var app = (function () {
     			attr(textarea, "pattern", "[0-9 ,]");
     			textarea.required = true;
     			attr(textarea, "class", "svelte-72ojky");
-    			add_location(textarea, file$8, 87, 4, 2833);
+    			add_location(textarea, file$8, 87, 4, 2834);
     			dispose = listen(textarea, "input", ctx.textarea_input_handler);
     		},
 
@@ -3311,7 +3311,7 @@ var app = (function () {
     			select.multiple = true;
     			select.required = true;
     			attr(select, "class", "svelte-72ojky");
-    			add_location(select, file$8, 79, 4, 2564);
+    			add_location(select, file$8, 79, 4, 2565);
     			dispose = listen(select, "change", ctx.select_change_handler);
     		},
 
@@ -3407,7 +3407,7 @@ var app = (function () {
     			option.__value = option_value_value = ctx.recipient.number;
     			option.value = option.__value;
     			attr(option, "class", "svelte-72ojky");
-    			add_location(option, file$8, 81, 6, 2666);
+    			add_location(option, file$8, 81, 6, 2667);
     		},
 
     		m: function mount(target, anchor) {
@@ -3477,17 +3477,17 @@ var app = (function () {
     			for (var i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
-    			add_location(b, file$8, 100, 2, 3073);
+    			add_location(b, file$8, 100, 2, 3074);
     			option.__value = "";
     			option.value = option.__value;
     			attr(option, "class", "svelte-72ojky");
-    			add_location(option, file$8, 103, 4, 3161);
+    			add_location(option, file$8, 103, 4, 3162);
     			attr(select, "class", "svelte-72ojky");
-    			add_location(select, file$8, 102, 3, 3104);
+    			add_location(select, file$8, 102, 3, 3105);
     			attr(span, "class", "svelte-72ojky");
-    			add_location(span, file$8, 101, 2, 3094);
+    			add_location(span, file$8, 101, 2, 3095);
     			attr(p, "class", "svelte-72ojky");
-    			add_location(p, file$8, 99, 1, 3067);
+    			add_location(p, file$8, 99, 1, 3068);
     			dispose = listen(select, "change", ctx.change_handler);
     		},
 
@@ -3550,7 +3550,7 @@ var app = (function () {
     			option.__value = option_value_value = ctx.name;
     			option.value = option.__value;
     			attr(option, "class", "svelte-72ojky");
-    			add_location(option, file$8, 105, 5, 3229);
+    			add_location(option, file$8, 105, 5, 3230);
     		},
 
     		m: function mount(target, anchor) {
@@ -3610,33 +3610,33 @@ var app = (function () {
     			t8 = space();
     			button1 = element("button");
     			button1.textContent = "Avbryt";
-    			add_location(b0, file$8, 77, 2, 2475);
+    			add_location(b0, file$8, 77, 2, 2476);
     			attr(span0, "class", "to svelte-72ojky");
-    			add_location(span0, file$8, 77, 12, 2485);
+    			add_location(span0, file$8, 77, 12, 2486);
     			attr(p0, "class", "svelte-72ojky");
-    			add_location(p0, file$8, 76, 1, 2469);
-    			add_location(b1, file$8, 92, 2, 2938);
+    			add_location(p0, file$8, 76, 1, 2470);
+    			add_location(b1, file$8, 92, 2, 2939);
     			textarea.required = true;
     			attr(textarea, "class", "svelte-72ojky");
-    			add_location(textarea, file$8, 94, 3, 2973);
+    			add_location(textarea, file$8, 94, 3, 2974);
     			attr(span1, "class", "sms svelte-72ojky");
-    			add_location(span1, file$8, 93, 2, 2951);
+    			add_location(span1, file$8, 93, 2, 2952);
     			attr(p1, "class", "svelte-72ojky");
-    			add_location(p1, file$8, 91, 1, 2932);
+    			add_location(p1, file$8, 91, 1, 2933);
     			attr(span2, "class", "svelte-72ojky");
-    			add_location(span2, file$8, 112, 4, 3307);
+    			add_location(span2, file$8, 112, 4, 3308);
     			attr(button0, "type", "submit");
     			attr(button0, "class", "p8 br2 svelte-72ojky");
-    			add_location(button0, file$8, 114, 3, 3333);
+    			add_location(button0, file$8, 114, 3, 3334);
     			attr(button1, "class", "p8 br2 svelte-72ojky");
     			attr(button1, "type", "button");
-    			add_location(button1, file$8, 115, 3, 3388);
+    			add_location(button1, file$8, 115, 3, 3389);
     			attr(span3, "class", "svelte-72ojky");
-    			add_location(span3, file$8, 113, 2, 3323);
+    			add_location(span3, file$8, 113, 2, 3324);
     			attr(p2, "class", "svelte-72ojky");
-    			add_location(p2, file$8, 112, 1, 3304);
+    			add_location(p2, file$8, 112, 1, 3305);
     			attr(form, "class", "svelte-72ojky");
-    			add_location(form, file$8, 75, 0, 2422);
+    			add_location(form, file$8, 75, 0, 2423);
 
     			dispose = [
     				listen(textarea, "input", ctx.textarea_input_handler_1),
@@ -3730,7 +3730,7 @@ var app = (function () {
     	'Hentes snart': 'Hei,\ntakk for at du vil gi korpset lopper. Passer det om noen kommer og henter hos deg snart?\n\nVennlig hilsen Ila og Bolteløkka skolekorps',
     	'Ikke IKEA': 'Hei,\ntakk for at du vil gi korpset lopper! Dessverre har vi dårlig erfaring med å selge IKEA-møbler, så slike vil vi helst ikke ta imot.\n\nVennlig hilsen Ila og Bolteløkka skolekorps',
     	'Ikke sofa': 'Hei,\ntakk for at du vil gi korpset lopper! Dessverre har vi dårlig erfaring med å selge sofaer på loppemarked. Vi vil helst ikke ta imot sofaer med mindre de er av spesielt god kvalitet.\n\nVennlig hilsen Ila og Bolteløkka skolekorps',
-    	'Rekker ikke': 'Hei,\ntakk for at du vil gi korpset lopper! Dessverre rekker vi ikke å hente loppene dine i kveld. Dersom du har mulighet til å lever i skolegården, er det supert.\n\nVennlig hilsen Ila og Bolteløkka skolekorps',
+    	'Rekker ikke': 'Hei,\ntakk for at du vil gi korpset lopper! Dessverre rekker vi ikke å hente loppene dine i kveld. Dersom du har mulighet til å levere i skolegården, er det supert.\n\nVennlig hilsen Ila og Bolteløkka skolekorps',
     	'Send foto?': 'Hei,\ntakk for at du vil gi korpset lopper! Kan du sende meg et foto av loppene?\n\nVennlig hilsen Ila og Bolteløkka skolekorps',
     };
 
