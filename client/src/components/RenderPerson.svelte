@@ -11,12 +11,6 @@ export let number;
 		display: inline-block;
 		padding-right: 1em;
 	}
-	/* no better feature detection, sadly */
-	@media(min-width: 800px) {
-		a[href^="sms:"] {
-			display: none;
-		}
-	}
 </style>
 
 {name} 
