@@ -137,7 +137,13 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 						on:click={e => update(job.id, {status: 'Ny', hentesav: ''})}
 						class="p8 br2"
 					>
-						Kan ikke hente denne
+						Vi rekker ikke denne
+					</button>
+					<button
+						on:click={e => update(job.id, {status: 'Hentes ikke', hentesav: ''})}
+						class="p8 br2"
+					>
+						Jobben skal ikke hentes
 					</button> 
 				</span>
 			</p>
