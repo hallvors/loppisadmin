@@ -61,6 +61,7 @@
 			);
 			json.forEach(item => {
 				item.status = item.status || '';
+				item.admkom = item.admkom || '';
 			});
 			jobs.set(json);
 			return true;

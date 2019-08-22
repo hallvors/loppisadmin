@@ -50,6 +50,7 @@ function statusVerbString(state) {
 	td {
 		padding-left: 16px;
 		padding-right: 16px;
+		vertical-align: top;
 	}
 	.job td:first-child {
 		cursor: pointer;
@@ -67,6 +68,9 @@ function statusVerbString(state) {
 .statuscell {
 	position: relative;
 	cursor: pointer;
+}
+.cen {
+	text-align: center;
 }
 label {
   cursor: pointer;
@@ -120,6 +124,8 @@ button img {vertical-align: middle;}
 .hentesav {font-size: x-small;	max-width: 65%;
 clear:left;
 }
+textarea {height: 150px; width: 100%;font-size: 1em;}
+
 </style>
 
 <tr class="job" 
@@ -173,20 +179,25 @@ clear:left;
 </td>
 </tr>
 {#if expanded}<tr data-id={itemData.id}><td></td><td colspan="3" class="extrainfo">
-	<p>
-		<RenderPerson name={itemData.navnpåkontaktperson} number={itemData.telefonnummer} />
-	</p>
+	<RenderPerson name={itemData.navnpåkontaktperson} number={itemData.telefonnummer} />
 	<p>{itemData.typerlopper}</p>
 	<p><i>{itemData.informasjonomloppene}</i></p>
-</td>
-<td>
-	<button on:click={e => showEditor = true}><img src="/images/edit.png" alt="endre detaljer" width="36"></button>
+	<p class="cen">
+		<button on:click={e => showEditor = true}><img src="/images/edit.png" alt="endre detaljer" width="36"></button>
+	</p>
 	{#if showEditor}
 		<Modal on:close="{() => showEditor = false}" >
 			<h2 slot="header">Endre detaljer</h2>
 			<DetailsEditor job={itemData} on:update={update} on:cancel={e => showEditor = false} />
 		</Modal>
 	{/if}
+</td>
+<td colspan="2">
+	Kommentarer fra admin/hentere:<br>
+	<textarea
+		bind:value={itemData.admkom}
+		on:change={e => changeJobDetails(itemData.id, {admkom: this.value}) }
+	></textarea>
 </td>
 </tr>
 {/if}

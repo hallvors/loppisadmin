@@ -64,6 +64,7 @@ export function filter(string, sizePref, dayPref, typeFilter, hideDoneJobs, job)
 		'telefonnummer',
 		'informasjonomloppene',
 		'status',
+		'admkom',
 	].map(key => {
 		return (job[key] || '').toLowerCase().indexOf(string.toLowerCase()) > -1
 	})

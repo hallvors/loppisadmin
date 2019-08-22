@@ -32,7 +32,10 @@
 			json = json.sort(
 				(a, b) => a.adresseforhenting < b.adresseforhenting ? -1 : 1
 			);
-			json.forEach(job => job.oldStatus = job.status === 'Hentes' ? null : job.status);
+			json.forEach(job => {
+				job.oldStatus = job.status === 'Hentes' ? null : job.status;
+				job.admkom = job.admkom || '';
+			});
 			jobs.set(json);
 		} else {
 			let text = await res.text();
@@ -87,6 +90,8 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 	.commonmap {
 		text-align: center;
 	}
+	textarea {height: 150px; width: 100%;font-size: 1em;}
+
 </style>
 
 {#await promise}
@@ -124,6 +129,15 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 			<p><b>Estimert kvalitet: </b><span>
 				<RenderStars qualityRanking={job.kvalitet}  on:qualityupdate={e => update(job.id, e.detail)} />
 			</span></p>
+			<p>
+				<b>Administrators/henteres kommentarer:</b>
+				<span>
+					<textarea
+						bind:value={job.admkom}
+						on:change={e => changeJobDetails(itemData.id, {admkom: this.value}) }
+					></textarea>
+				</span>
+			</p>
 			<p>
 				<b>Status: </b><span>
 					<em>{job.status}</em> <br>

@@ -4,9 +4,6 @@ export let number;
 </script>
 
 <style>
-	a[href^="sms:"] {
-		font-size: 2em;
-	}
 	a {
 		display: inline-block;
 		padding-right: 1em;
