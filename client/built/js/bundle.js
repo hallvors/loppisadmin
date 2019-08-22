@@ -3295,7 +3295,7 @@ var app = (function () {
     	}
 
     	function change_handler_2(e) {
-    		return changeJobDetails(itemData.id, {admkom: this.value});
+    		return changeJobDetails(itemData.id, {admkom: e.target.value});
     	}
 
     	$$self.$set = $$props => {
@@ -6794,7 +6794,7 @@ ${baseUrl}/henting/?jobb=${
     			p = element("p");
     			t = text(t_value);
     			set_style(p, "color", "red");
-    			add_location(p, file$e, 184, 1, 5003);
+    			add_location(p, file$e, 184, 1, 5007);
     		},
 
     		m: function mount(target, anchor) {
@@ -6850,7 +6850,7 @@ ${baseUrl}/henting/?jobb=${
     			}
 
     			each_1_anchor = empty();
-    			attr(h1, "class", "svelte-1ern7p3");
+    			attr(h1, "class", "svelte-13d3xze");
     			add_location(h1, file$e, 100, 1, 2546);
     		},
 
@@ -6959,7 +6959,7 @@ ${baseUrl}/henting/?jobb=${
     			attr(a, "href", a_href_value = gMapsDirection + ctx.$jobs.map(func$1).join('/'));
     			attr(a, "target", "_blank");
     			add_location(a, file$e, 102, 23, 2612);
-    			attr(p, "class", "commonmap svelte-1ern7p3");
+    			attr(p, "class", "commonmap svelte-13d3xze");
     			add_location(p, file$e, 102, 2, 2591);
     		},
 
@@ -6995,7 +6995,7 @@ ${baseUrl}/henting/?jobb=${
     		c: function create() {
     			div = element("div");
     			loadingicon.$$.fragment.c();
-    			attr(div, "class", "loading svelte-1ern7p3");
+    			attr(div, "class", "loading svelte-13d3xze");
     			add_location(div, file$e, 107, 19, 2865);
     		},
 
@@ -7038,11 +7038,11 @@ ${baseUrl}/henting/?jobb=${
     			b.textContent = "Om loppene: ";
     			i = element("i");
     			t_1 = text(t_1_value);
-    			attr(b, "class", "svelte-1ern7p3");
+    			attr(b, "class", "svelte-13d3xze");
     			add_location(b, file$e, 128, 37, 3455);
-    			attr(i, "class", "svelte-1ern7p3");
+    			attr(i, "class", "svelte-13d3xze");
     			add_location(i, file$e, 128, 56, 3474);
-    			attr(p, "class", "svelte-1ern7p3");
+    			attr(p, "class", "svelte-13d3xze");
     			add_location(p, file$e, 128, 34, 3452);
     		},
 
@@ -7078,9 +7078,9 @@ ${baseUrl}/henting/?jobb=${
     			em = element("em");
     			br1 = element("br");
     			t1 = text("★ ★ ☺   Du har tatt på deg jobben - takk!  ☺ ★ ★");
-    			add_location(br0, file$e, 145, 6, 4010);
-    			add_location(br1, file$e, 146, 26, 4041);
-    			add_location(em, file$e, 146, 6, 4021);
+    			add_location(br0, file$e, 145, 6, 4014);
+    			add_location(br1, file$e, 146, 26, 4045);
+    			add_location(em, file$e, 146, 6, 4025);
     		},
 
     		m: function mount(target, anchor) {
@@ -7132,8 +7132,8 @@ ${baseUrl}/henting/?jobb=${
     		c: function create() {
     			button = element("button");
     			button.textContent = "Vi tar jobben!";
-    			attr(button, "class", "p8 br2 svelte-1ern7p3");
-    			add_location(button, file$e, 172, 6, 4775);
+    			attr(button, "class", "p8 br2 svelte-13d3xze");
+    			add_location(button, file$e, 172, 6, 4779);
     			dispose = listen(button, "click", click_handler_3);
     		},
 
@@ -7181,12 +7181,12 @@ ${baseUrl}/henting/?jobb=${
     			t3 = space();
     			button2 = element("button");
     			button2.textContent = "Jobben skal ikke hentes";
-    			attr(button0, "class", "p8 br2 svelte-1ern7p3");
-    			add_location(button0, file$e, 153, 6, 4246);
-    			attr(button1, "class", "p8 br2 svelte-1ern7p3");
-    			add_location(button1, file$e, 159, 6, 4411);
-    			attr(button2, "class", "p8 br2 svelte-1ern7p3");
-    			add_location(button2, file$e, 165, 6, 4594);
+    			attr(button0, "class", "p8 br2 svelte-13d3xze");
+    			add_location(button0, file$e, 153, 6, 4250);
+    			attr(button1, "class", "p8 br2 svelte-13d3xze");
+    			add_location(button1, file$e, 159, 6, 4415);
+    			attr(button2, "class", "p8 br2 svelte-13d3xze");
+    			add_location(button2, file$e, 165, 6, 4598);
 
     			dispose = [
     				listen(button0, "click", click_handler),
@@ -7334,7 +7334,7 @@ ${baseUrl}/henting/?jobb=${
     			span6 = element("span");
     			if_block3.c();
     			t24 = space();
-    			attr(b0, "class", "svelte-1ern7p3");
+    			attr(b0, "class", "svelte-13d3xze");
     			add_location(b0, file$e, 110, 4, 2936);
     			attr(img, "src", "/images/map.png");
     			attr(img, "alt", "adresse i kart");
@@ -7343,51 +7343,51 @@ ${baseUrl}/henting/?jobb=${
     			attr(a, "href", a_href_value = gMapsDirection + ctx.job.adresseforhenting);
     			attr(a, "target", "_blank");
     			add_location(a, file$e, 112, 5, 2994);
-    			attr(span0, "class", "svelte-1ern7p3");
+    			attr(span0, "class", "svelte-13d3xze");
     			add_location(span0, file$e, 110, 21, 2953);
-    			attr(p0, "class", "svelte-1ern7p3");
+    			attr(p0, "class", "svelte-13d3xze");
     			add_location(p0, file$e, 109, 3, 2928);
-    			attr(b1, "class", "svelte-1ern7p3");
+    			attr(b1, "class", "svelte-13d3xze");
     			add_location(b1, file$e, 120, 4, 3182);
-    			attr(span1, "class", "svelte-1ern7p3");
+    			attr(span1, "class", "svelte-13d3xze");
     			add_location(span1, file$e, 121, 4, 3209);
-    			attr(p1, "class", "svelte-1ern7p3");
+    			attr(p1, "class", "svelte-13d3xze");
     			add_location(p1, file$e, 119, 3, 3174);
-    			attr(b2, "class", "svelte-1ern7p3");
+    			attr(b2, "class", "svelte-13d3xze");
     			add_location(b2, file$e, 126, 4, 3327);
-    			attr(span2, "class", "svelte-1ern7p3");
+    			attr(span2, "class", "svelte-13d3xze");
     			add_location(span2, file$e, 126, 19, 3342);
-    			attr(p2, "class", "svelte-1ern7p3");
+    			attr(p2, "class", "svelte-13d3xze");
     			add_location(p2, file$e, 125, 3, 3319);
-    			attr(b3, "class", "svelte-1ern7p3");
+    			attr(b3, "class", "svelte-13d3xze");
     			add_location(b3, file$e, 129, 6, 3523);
-    			attr(span3, "class", "svelte-1ern7p3");
+    			attr(span3, "class", "svelte-13d3xze");
     			add_location(span3, file$e, 129, 32, 3549);
-    			attr(p3, "class", "svelte-1ern7p3");
+    			attr(p3, "class", "svelte-13d3xze");
     			add_location(p3, file$e, 129, 3, 3520);
-    			attr(b4, "class", "svelte-1ern7p3");
+    			attr(b4, "class", "svelte-13d3xze");
     			add_location(b4, file$e, 133, 4, 3682);
-    			attr(textarea, "class", "svelte-1ern7p3");
+    			attr(textarea, "class", "svelte-13d3xze");
     			add_location(textarea, file$e, 135, 5, 3742);
-    			attr(span4, "class", "svelte-1ern7p3");
+    			attr(span4, "class", "svelte-13d3xze");
     			add_location(span4, file$e, 134, 4, 3730);
-    			attr(p4, "class", "svelte-1ern7p3");
+    			attr(p4, "class", "svelte-13d3xze");
     			add_location(p4, file$e, 132, 3, 3674);
-    			attr(b5, "class", "svelte-1ern7p3");
-    			add_location(b5, file$e, 142, 4, 3892);
-    			add_location(em, file$e, 143, 5, 3919);
-    			add_location(br, file$e, 143, 27, 3941);
-    			attr(span5, "class", "svelte-1ern7p3");
-    			add_location(span5, file$e, 142, 19, 3907);
-    			attr(p5, "class", "svelte-1ern7p3");
-    			add_location(p5, file$e, 141, 3, 3884);
-    			attr(b6, "class", "svelte-1ern7p3");
-    			add_location(b6, file$e, 151, 4, 4141);
-    			attr(span6, "class", "svelte-1ern7p3");
-    			add_location(span6, file$e, 151, 27, 4164);
-    			attr(p6, "class", "svelte-1ern7p3");
-    			add_location(p6, file$e, 150, 3, 4133);
-    			attr(section, "class", "svelte-1ern7p3");
+    			attr(b5, "class", "svelte-13d3xze");
+    			add_location(b5, file$e, 142, 4, 3896);
+    			add_location(em, file$e, 143, 5, 3923);
+    			add_location(br, file$e, 143, 27, 3945);
+    			attr(span5, "class", "svelte-13d3xze");
+    			add_location(span5, file$e, 142, 19, 3911);
+    			attr(p5, "class", "svelte-13d3xze");
+    			add_location(p5, file$e, 141, 3, 3888);
+    			attr(b6, "class", "svelte-13d3xze");
+    			add_location(b6, file$e, 151, 4, 4145);
+    			attr(span6, "class", "svelte-13d3xze");
+    			add_location(span6, file$e, 151, 27, 4168);
+    			attr(p6, "class", "svelte-13d3xze");
+    			add_location(p6, file$e, 150, 3, 4137);
+    			attr(section, "class", "svelte-13d3xze");
     			add_location(section, file$e, 108, 2, 2915);
 
     			dispose = [
@@ -7597,7 +7597,7 @@ ${baseUrl}/henting/?jobb=${
     		c: function create() {
     			div = element("div");
     			loadingicon.$$.fragment.c();
-    			attr(div, "class", "loading svelte-1ern7p3");
+    			attr(div, "class", "loading svelte-13d3xze");
     			add_location(div, file$e, 98, 1, 2489);
     		},
 
@@ -7769,7 +7769,7 @@ ${baseUrl}/henting/?jobb=${
     	}
 
     	function change_handler({ job }, e) {
-    		return update(job.id, {admkom: this.value});
+    		return update(job.id, {admkom: e.target.value});
     	}
 
     	function click_handler({ job }, e) {
