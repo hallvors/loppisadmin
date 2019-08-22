@@ -91,7 +91,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 	.commonmap {
 		text-align: center;
 	}
-	textarea {height: 150px; width: 100%;font-size: 1em;}
+	textarea {height: 100px; width: 100%;font-size: 1em;}
 
 </style>
 
@@ -135,7 +135,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 				<span>
 					<textarea
 						bind:value={job.admkom}
-						on:change={e => update(job.id, {admkom: this.value}) }
+						on:change={e => update(job.id, {admkom: e.target.value}) }
 					></textarea>
 				</span>
 			</p>

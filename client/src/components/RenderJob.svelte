@@ -196,7 +196,7 @@ textarea {height: 150px; width: 100%;font-size: 1em;}
 	Kommentarer fra admin/hentere:<br>
 	<textarea
 		bind:value={itemData.admkom}
-		on:change={e => changeJobDetails(itemData.id, {admkom: this.value}) }
+		on:change={e => changeJobDetails(itemData.id, {admkom: e.target.value}) }
 	></textarea>
 </td>
 </tr>
