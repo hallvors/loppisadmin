@@ -135,7 +135,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 				<span>
 					<textarea
 						bind:value={job.admkom}
-						on:change={e => changeJobDetails(job.id, {admkom: this.value}) }
+						on:change={e => update(job.id, {admkom: this.value}) }
 					></textarea>
 				</span>
 			</p>
