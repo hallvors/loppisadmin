@@ -6794,7 +6794,7 @@ ${baseUrl}/henting/?jobb=${
     			p = element("p");
     			t = text(t_value);
     			set_style(p, "color", "red");
-    			add_location(p, file$e, 183, 1, 4994);
+    			add_location(p, file$e, 183, 1, 4989);
     		},
 
     		m: function mount(target, anchor) {
@@ -7078,9 +7078,9 @@ ${baseUrl}/henting/?jobb=${
     			em = element("em");
     			br1 = element("br");
     			t1 = text("★ ★ ☺   Du har tatt på deg jobben - takk!  ☺ ★ ★");
-    			add_location(br0, file$e, 144, 6, 4001);
-    			add_location(br1, file$e, 145, 26, 4032);
-    			add_location(em, file$e, 145, 6, 4012);
+    			add_location(br0, file$e, 144, 6, 3996);
+    			add_location(br1, file$e, 145, 26, 4027);
+    			add_location(em, file$e, 145, 6, 4007);
     		},
 
     		m: function mount(target, anchor) {
@@ -7133,7 +7133,7 @@ ${baseUrl}/henting/?jobb=${
     			button = element("button");
     			button.textContent = "Vi tar jobben!";
     			attr(button, "class", "p8 br2 svelte-t0mwqq");
-    			add_location(button, file$e, 171, 6, 4766);
+    			add_location(button, file$e, 171, 6, 4761);
     			dispose = listen(button, "click", click_handler_3);
     		},
 
@@ -7182,11 +7182,11 @@ ${baseUrl}/henting/?jobb=${
     			button2 = element("button");
     			button2.textContent = "Jobben skal ikke hentes";
     			attr(button0, "class", "p8 br2 svelte-t0mwqq");
-    			add_location(button0, file$e, 152, 6, 4237);
+    			add_location(button0, file$e, 152, 6, 4232);
     			attr(button1, "class", "p8 br2 svelte-t0mwqq");
-    			add_location(button1, file$e, 158, 6, 4402);
+    			add_location(button1, file$e, 158, 6, 4397);
     			attr(button2, "class", "p8 br2 svelte-t0mwqq");
-    			add_location(button2, file$e, 164, 6, 4585);
+    			add_location(button2, file$e, 164, 6, 4580);
 
     			dispose = [
     				listen(button0, "click", click_handler),
@@ -7257,6 +7257,10 @@ ${baseUrl}/henting/?jobb=${
 
     	function textarea_input_handler() {
     		ctx.textarea_input_handler.call(textarea, ctx);
+    	}
+
+    	function change_handler(...args) {
+    		return ctx.change_handler(ctx, ...args);
     	}
 
     	var if_block2 = (ctx.job.hentesav && ctx.job.hentesav === ctx.params.henter) && create_if_block_1$4();
@@ -7370,25 +7374,25 @@ ${baseUrl}/henting/?jobb=${
     			attr(p4, "class", "svelte-t0mwqq");
     			add_location(p4, file$e, 131, 3, 3650);
     			attr(b5, "class", "svelte-t0mwqq");
-    			add_location(b5, file$e, 141, 4, 3883);
-    			add_location(em, file$e, 142, 5, 3910);
-    			add_location(br, file$e, 142, 27, 3932);
+    			add_location(b5, file$e, 141, 4, 3878);
+    			add_location(em, file$e, 142, 5, 3905);
+    			add_location(br, file$e, 142, 27, 3927);
     			attr(span5, "class", "svelte-t0mwqq");
-    			add_location(span5, file$e, 141, 19, 3898);
+    			add_location(span5, file$e, 141, 19, 3893);
     			attr(p5, "class", "svelte-t0mwqq");
-    			add_location(p5, file$e, 140, 3, 3875);
+    			add_location(p5, file$e, 140, 3, 3870);
     			attr(b6, "class", "svelte-t0mwqq");
-    			add_location(b6, file$e, 150, 4, 4132);
+    			add_location(b6, file$e, 150, 4, 4127);
     			attr(span6, "class", "svelte-t0mwqq");
-    			add_location(span6, file$e, 150, 27, 4155);
+    			add_location(span6, file$e, 150, 27, 4150);
     			attr(p6, "class", "svelte-t0mwqq");
-    			add_location(p6, file$e, 149, 3, 4124);
+    			add_location(p6, file$e, 149, 3, 4119);
     			attr(section, "class", "svelte-t0mwqq");
     			add_location(section, file$e, 107, 2, 2891);
 
     			dispose = [
     				listen(textarea, "input", textarea_input_handler),
-    				listen(textarea, "change", ctx.change_handler)
+    				listen(textarea, "change", change_handler)
     			];
     		},
 
@@ -7764,8 +7768,8 @@ ${baseUrl}/henting/?jobb=${
     		each_value[i].admkom = this.value;
     	}
 
-    	function change_handler(e) {
-    		return changeJobDetails(itemData.id, {admkom: this.value});
+    	function change_handler({ job }, e) {
+    		return changeJobDetails(job.id, {admkom: this.value});
     	}
 
     	function click_handler({ job }, e) {
