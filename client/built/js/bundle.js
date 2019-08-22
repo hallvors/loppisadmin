@@ -6794,7 +6794,7 @@ ${baseUrl}/henting/?jobb=${
     			p = element("p");
     			t = text(t_value);
     			set_style(p, "color", "red");
-    			add_location(p, file$e, 184, 1, 5013);
+    			add_location(p, file$e, 184, 1, 5003);
     		},
 
     		m: function mount(target, anchor) {
@@ -7078,9 +7078,9 @@ ${baseUrl}/henting/?jobb=${
     			em = element("em");
     			br1 = element("br");
     			t1 = text("★ ★ ☺   Du har tatt på deg jobben - takk!  ☺ ★ ★");
-    			add_location(br0, file$e, 145, 6, 4020);
-    			add_location(br1, file$e, 146, 26, 4051);
-    			add_location(em, file$e, 146, 6, 4031);
+    			add_location(br0, file$e, 145, 6, 4010);
+    			add_location(br1, file$e, 146, 26, 4041);
+    			add_location(em, file$e, 146, 6, 4021);
     		},
 
     		m: function mount(target, anchor) {
@@ -7133,7 +7133,7 @@ ${baseUrl}/henting/?jobb=${
     			button = element("button");
     			button.textContent = "Vi tar jobben!";
     			attr(button, "class", "p8 br2 svelte-1ern7p3");
-    			add_location(button, file$e, 172, 6, 4785);
+    			add_location(button, file$e, 172, 6, 4775);
     			dispose = listen(button, "click", click_handler_3);
     		},
 
@@ -7182,11 +7182,11 @@ ${baseUrl}/henting/?jobb=${
     			button2 = element("button");
     			button2.textContent = "Jobben skal ikke hentes";
     			attr(button0, "class", "p8 br2 svelte-1ern7p3");
-    			add_location(button0, file$e, 153, 6, 4256);
+    			add_location(button0, file$e, 153, 6, 4246);
     			attr(button1, "class", "p8 br2 svelte-1ern7p3");
-    			add_location(button1, file$e, 159, 6, 4421);
+    			add_location(button1, file$e, 159, 6, 4411);
     			attr(button2, "class", "p8 br2 svelte-1ern7p3");
-    			add_location(button2, file$e, 165, 6, 4604);
+    			add_location(button2, file$e, 165, 6, 4594);
 
     			dispose = [
     				listen(button0, "click", click_handler),
@@ -7374,19 +7374,19 @@ ${baseUrl}/henting/?jobb=${
     			attr(p4, "class", "svelte-1ern7p3");
     			add_location(p4, file$e, 132, 3, 3674);
     			attr(b5, "class", "svelte-1ern7p3");
-    			add_location(b5, file$e, 142, 4, 3902);
-    			add_location(em, file$e, 143, 5, 3929);
-    			add_location(br, file$e, 143, 27, 3951);
+    			add_location(b5, file$e, 142, 4, 3892);
+    			add_location(em, file$e, 143, 5, 3919);
+    			add_location(br, file$e, 143, 27, 3941);
     			attr(span5, "class", "svelte-1ern7p3");
-    			add_location(span5, file$e, 142, 19, 3917);
+    			add_location(span5, file$e, 142, 19, 3907);
     			attr(p5, "class", "svelte-1ern7p3");
-    			add_location(p5, file$e, 141, 3, 3894);
+    			add_location(p5, file$e, 141, 3, 3884);
     			attr(b6, "class", "svelte-1ern7p3");
-    			add_location(b6, file$e, 151, 4, 4151);
+    			add_location(b6, file$e, 151, 4, 4141);
     			attr(span6, "class", "svelte-1ern7p3");
-    			add_location(span6, file$e, 151, 27, 4174);
+    			add_location(span6, file$e, 151, 27, 4164);
     			attr(p6, "class", "svelte-1ern7p3");
-    			add_location(p6, file$e, 150, 3, 4143);
+    			add_location(p6, file$e, 150, 3, 4133);
     			attr(section, "class", "svelte-1ern7p3");
     			add_location(section, file$e, 108, 2, 2915);
 
@@ -7769,7 +7769,7 @@ ${baseUrl}/henting/?jobb=${
     	}
 
     	function change_handler({ job }, e) {
-    		return changeJobDetails(job.id, {admkom: this.value});
+    		return update(job.id, {admkom: this.value});
     	}
 
     	function click_handler({ job }, e) {
