@@ -22,6 +22,7 @@ const fields = [
 	'kvalitet',
 	'koordinater',
 	'hentesav',
+	'admkom',
 ];
 
 let cachedList;
