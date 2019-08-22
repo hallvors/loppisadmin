@@ -72,7 +72,8 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 	}
 	section p b, section p address, section p span, section p i {
 		display: table-cell;
-		border: 8px solid transparent
+		border: 8px solid transparent;
+		vertical-align: top;
 	}
 	section p b:first-child {width: 5%;}
 	@media only screen and (min-width: 700px) {
