@@ -1,5 +1,7 @@
 # Loppisadmin
 
+![Skjemdump av nettside](https://github.com/hallvors/loppisadmin/blob/master/docs/images/overview.png?raw=true)
+
 Nettside for å ha oversikt over, oppdatere og fordele jobber når lopper skal hentes.
 
 Hente-administrator kan kontakte givere (pr SMS) og sende utvalgte jobber til hentere (pr SMS).
