@@ -362,6 +362,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 	Antall jobber totalt: {$jobs.length}. 
 	Hentes nå: {$jobs.filter(item => item.status === 'Hentes').length}
 	Hentet: {$jobs.filter(item => item.status === 'Hentet').length}
+	Hentes ikke: {$jobs.filter(item => item.status === 'Hentes ikke').length}
 </p>
 
 {#if smsEditorType}
