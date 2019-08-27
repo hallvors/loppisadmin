@@ -15,6 +15,7 @@
   "author": "Hallvord Reiar Michaelsen Steen <hallvord@hallvord.com>",
   "license": "ISC",
   "dependencies": {
+    "@babel/cli": "^7.5.5",
     "bluebird": "^3.5.5",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.4",
@@ -30,8 +31,10 @@
     "underscore": "^1.9.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.5.5",
     "npm-run-all": "^4.1.5",
     "rollup": "^1.12.0",
+    "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-livereload": "^1.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
