@@ -106,7 +106,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 	{/if}
 	{#each $jobs as job, i}
 		{#if job.loading}<div class="loading"><LoadingIcon /></div>{/if}
-		<section>
+		<section class={job.status}>
 			<p>
 				<b>Adresse: </b> <span>
 					{job.adresseforhenting}
@@ -169,7 +169,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 						>
 							Jobben skal ikke hentes
 						</button>
-					{:else}
+					{:else if job.status !== 'Hentet'}
 						<button
 							on:click={e => update(job.id, {status: 'Hentes', hentesav: params.henter})}
 							class="p8 br2"
