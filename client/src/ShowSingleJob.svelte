@@ -23,19 +23,24 @@
 	}
 	if (params && (params.token && params.jobb)) {
 		promise = getData(params.token, params.jobb)
-
 	}
+
+	function normalizeJobList(jobs) {
+		jobs = jobs.sort(
+			(a, b) => a.adresseforhenting < b.adresseforhenting ? -1 : 1
+		);
+		jobs.forEach(job => {
+			job.oldStatus = job.status === 'Hentes' ? null : job.status;
+			job.admkom = job.admkom || '';
+		});
+		return jobs;
+	}
+
 	async function getData(token, ids) {
 		const res = await fetch(`${apiUrl}/job/${encodeURIComponent(ids)}?token=${encodeURIComponent(token)}`);
 		let json = await res.json();
 		if (res.ok) {
-			json = json.sort(
-				(a, b) => a.adresseforhenting < b.adresseforhenting ? -1 : 1
-			);
-			json.forEach(job => {
-				job.oldStatus = job.status === 'Hentes' ? null : job.status;
-				job.admkom = job.admkom || '';
-			});
+			json = normalizeJobList(json);
 			jobs.set(json);
 		} else {
 			let text = await res.text();
@@ -43,7 +48,19 @@
 			throw new Error('Ingen tilgang');
 		}
 	}
-	
+	async function getDataByAssignee(token, number) {
+		const res = await fetch(`${apiUrl}/byperson/${encodeURIComponent(number)}?token=${encodeURIComponent(token)}`);
+		let json = await res.json();
+		if (res.ok) {
+			json = normalizeJobList(json);
+			jobs.set(json);
+		} else {
+			let text = await res.text();
+			console.log(text)
+			throw new Error('Ingen tilgang');
+		}
+	}
+
 	function update(id, detail) {
 		return changeJobDetails(id, detail, params.token)
 		.catch(err => alert(err));
@@ -74,7 +91,6 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 		display: table-cell;
 		border: 8px solid transparent;
 		vertical-align: top;
-		position: relative;
 	}
 	section p b:first-child {width: 5%;}
 	@media only screen and (min-width: 700px) {
@@ -106,11 +122,11 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 		line-height: 32px;
 		text-align: center;
 		top: 24px;
-		right: 0px;
-		width: 30%;
-		transform-origin: 50% 50%;
+		right: 40px;
+		width: 70%;
+		transform-origin: 40% 90%;
 		opacity: 0.5;
-		transform: translate(25%, -20%) rotate(35deg);
+		transform: translate(35%, -30%) rotate(35deg);
 		font-size: 1.5em;
 	}
 	.Hentet:after {
@@ -122,8 +138,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 		height: 100%;
 		padding: 4px;
 		background: #aaa;
-		position: absolute;
-		right: 8px;
+		float: right;
 	}
 
 </style>
@@ -149,7 +164,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 						<img src="/images/map.png" alt="adresse i kart" width="24">
 					</a>
 				</span>
-				<span class="jobnr">{itemData.jobnr}</span>
+				<span class="jobnr">{job.jobnr}</span>
 			</p>
 			<p>
 				<b>Kontaktperson: </b>
@@ -220,6 +235,13 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 			</p>
 		</section>
 	{/each}
+	<hr>
+	<button
+		on:click={e => promise = getDataByAssignee(params.token, params.henter)}
+		class="p8 br2">
+			Alle mine jobber
+	</button>
+
 {:catch error}
 	<p style="color: red">{error.message}</p>
 {/await}

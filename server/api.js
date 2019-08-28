@@ -70,6 +70,20 @@ router.get('/job/:ids', (req, res,next) => {
 	});
 });
 
+router.get('/byperson/:assignee', (req, res,next) => {
+	if (!req.params.assignee) {
+		res.status(401);
+		throw new Error('not allowed');
+	}
+	return getFullListAsync(false)
+	.then(result => {
+		result = result.filter(item => {
+			return item.hentesav === req.params.assignee;
+		});
+		res.json(result);
+	});
+});
+
 router.post('/update', (req, res, next) => {
 	return updateAsync(req.body.id, req.body.details)
 	.then(result => {
