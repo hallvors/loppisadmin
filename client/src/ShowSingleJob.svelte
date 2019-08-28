@@ -8,6 +8,7 @@
 	import RenderStars from './components/RenderStars.svelte';
 	import RenderPerson from './components/RenderPerson.svelte';
 	import {changeJobDetails} from './api.js';
+	import {normalizeNumber} from '../utils/helpers.js';
 
 	let params, promise;
 
@@ -195,14 +196,14 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 						{#if job.status === 'Hentes'}
 							<br>
 							<em transition:fade><br>★ ★ ☺   Du har tatt på deg jobben - takk!  ☺ ★ ★</em>
-						{:else}
+						{:else if job.status === 'Hentet'}
 							<br>
 							<em transition:fade><br>★ ★ ☺  Takk for at du hentet!  ☺ ★ ★</em>
 						{/if}
 					{/if}
 					{#if job.hentesav && job.hentesav !== params.henter}
 						<br>
-						<em><b>Merk: jobben er akseptert av en annen henter.</b></em>
+						<em><b>Merk: jobben er akseptert av en annen henter.</b> Det er vel lurt å sjekke med <a href={'tel:' + normalizeNumber(job.hentesav)}>{normalizeNumber(job.hentesav)}</a> før du henter.</em>
 					{/if}
 				</span>
 			</p>
