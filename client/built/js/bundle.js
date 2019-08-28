@@ -6836,7 +6836,7 @@ ${baseUrl}/henting/?jobb=${
     	return child_ctx;
     }
 
-    // (249:0) {:catch error}
+    // (250:0) {:catch error}
     function create_catch_block$1(ctx) {
     	var p, t_value = ctx.error.message + "", t;
 
@@ -6845,7 +6845,7 @@ ${baseUrl}/henting/?jobb=${
     			p = element("p");
     			t = text(t_value);
     			set_style(p, "color", "red");
-    			add_location(p, file$e, 249, 1, 6611);
+    			add_location(p, file$e, 250, 1, 6803);
     		},
 
     		m: function mount(target, anchor) {
@@ -6870,11 +6870,11 @@ ${baseUrl}/henting/?jobb=${
     	};
     }
 
-    // (148:0) {:then data}
+    // (149:0) {:then data}
     function create_then_block$1(ctx) {
     	var h1, t1, t2, t3, hr, t4, button, current, dispose;
 
-    	var if_block = (ctx.$jobs.length > 1) && create_if_block_6(ctx);
+    	var if_block = (ctx.$jobs.length > 1) && create_if_block_7(ctx);
 
     	var each_value = ctx.$jobs;
 
@@ -6906,10 +6906,10 @@ ${baseUrl}/henting/?jobb=${
     			button = element("button");
     			button.textContent = "Alle mine jobber";
     			attr(h1, "class", "svelte-1l2x28v");
-    			add_location(h1, file$e, 148, 1, 3575);
-    			add_location(hr, file$e, 241, 1, 6456);
+    			add_location(h1, file$e, 149, 1, 3628);
+    			add_location(hr, file$e, 242, 1, 6648);
     			attr(button, "class", "p8 br2 svelte-1l2x28v");
-    			add_location(button, file$e, 242, 1, 6462);
+    			add_location(button, file$e, 243, 1, 6654);
     			dispose = listen(button, "click", ctx.click_handler_4);
     		},
 
@@ -6935,7 +6935,7 @@ ${baseUrl}/henting/?jobb=${
     				if (if_block) {
     					if_block.p(changed, ctx);
     				} else {
-    					if_block = create_if_block_6(ctx);
+    					if_block = create_if_block_7(ctx);
     					if_block.c();
     					if_block.m(t2.parentNode, t2);
     				}
@@ -6944,7 +6944,7 @@ ${baseUrl}/henting/?jobb=${
     				if_block = null;
     			}
 
-    			if (changed.$jobs || changed.params || changed.gMapsDirection) {
+    			if (changed.$jobs || changed.params || changed.normalizeNumber || changed.gMapsDirection) {
     				each_value = ctx.$jobs;
 
     				for (var i = 0; i < each_value.length; i += 1) {
@@ -7007,8 +7007,8 @@ ${baseUrl}/henting/?jobb=${
     	};
     }
 
-    // (150:1) {#if $jobs.length > 1}
-    function create_if_block_6(ctx) {
+    // (151:1) {#if $jobs.length > 1}
+    function create_if_block_7(ctx) {
     	var p, a, t, br, img, a_href_value;
 
     	return {
@@ -7018,16 +7018,16 @@ ${baseUrl}/henting/?jobb=${
     			t = text("Kart med alle adresser: ");
     			br = element("br");
     			img = element("img");
-    			add_location(br, file$e, 152, 44, 3765);
+    			add_location(br, file$e, 153, 44, 3818);
     			attr(img, "src", "/images/map.png");
     			attr(img, "alt", "alle adresser i kart");
     			attr(img, "width", "36");
-    			add_location(img, file$e, 152, 48, 3769);
+    			add_location(img, file$e, 153, 48, 3822);
     			attr(a, "href", a_href_value = gMapsDirection + ctx.$jobs.map(func$1).join('/'));
     			attr(a, "target", "_blank");
-    			add_location(a, file$e, 150, 23, 3641);
+    			add_location(a, file$e, 151, 23, 3694);
     			attr(p, "class", "commonmap svelte-1l2x28v");
-    			add_location(p, file$e, 150, 2, 3620);
+    			add_location(p, file$e, 151, 2, 3673);
     		},
 
     		m: function mount(target, anchor) {
@@ -7052,8 +7052,8 @@ ${baseUrl}/henting/?jobb=${
     	};
     }
 
-    // (156:2) {#if job.loading}
-    function create_if_block_5(ctx) {
+    // (157:2) {#if job.loading}
+    function create_if_block_6(ctx) {
     	var div, current;
 
     	var loadingicon = new LoadingIcon({ $$inline: true });
@@ -7063,7 +7063,7 @@ ${baseUrl}/henting/?jobb=${
     			div = element("div");
     			loadingicon.$$.fragment.c();
     			attr(div, "class", "loading svelte-1l2x28v");
-    			add_location(div, file$e, 155, 19, 3894);
+    			add_location(div, file$e, 156, 19, 3947);
     		},
 
     		m: function mount(target, anchor) {
@@ -7094,8 +7094,8 @@ ${baseUrl}/henting/?jobb=${
     	};
     }
 
-    // (178:3) {#if job.informasjonomloppene}
-    function create_if_block_4$1(ctx) {
+    // (179:3) {#if job.informasjonomloppene}
+    function create_if_block_5(ctx) {
     	var p, b, i, t_1_value = ctx.job.informasjonomloppene + "", t_1;
 
     	return {
@@ -7106,11 +7106,11 @@ ${baseUrl}/henting/?jobb=${
     			i = element("i");
     			t_1 = text(t_1_value);
     			attr(b, "class", "svelte-1l2x28v");
-    			add_location(b, file$e, 177, 37, 4565);
+    			add_location(b, file$e, 178, 37, 4618);
     			attr(i, "class", "svelte-1l2x28v");
-    			add_location(i, file$e, 177, 56, 4584);
+    			add_location(i, file$e, 178, 56, 4637);
     			attr(p, "class", "svelte-1l2x28v");
-    			add_location(p, file$e, 177, 34, 4562);
+    			add_location(p, file$e, 178, 34, 4615);
     		},
 
     		m: function mount(target, anchor) {
@@ -7134,33 +7134,35 @@ ${baseUrl}/henting/?jobb=${
     	};
     }
 
-    // (194:5) {#if job.hentesav && job.hentesav === params.henter}
+    // (195:5) {#if job.hentesav && job.hentesav === params.henter}
     function create_if_block_2$3(ctx) {
     	var current_block_type_index, if_block, if_block_anchor, current;
 
     	var if_block_creators = [
     		create_if_block_3$2,
-    		create_else_block_1
+    		create_if_block_4$1
     	];
 
     	var if_blocks = [];
 
     	function select_block_type(ctx) {
     		if (ctx.job.status === 'Hentes') return 0;
-    		return 1;
+    		if (ctx.job.status === 'Hentet') return 1;
+    		return -1;
     	}
 
-    	current_block_type_index = select_block_type(ctx);
-    	if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    	if (~(current_block_type_index = select_block_type(ctx))) {
+    		if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    	}
 
     	return {
     		c: function create() {
-    			if_block.c();
+    			if (if_block) if_block.c();
     			if_block_anchor = empty();
     		},
 
     		m: function mount(target, anchor) {
-    			if_blocks[current_block_type_index].m(target, anchor);
+    			if (~current_block_type_index) if_blocks[current_block_type_index].m(target, anchor);
     			insert(target, if_block_anchor, anchor);
     			current = true;
     		},
@@ -7169,19 +7171,25 @@ ${baseUrl}/henting/?jobb=${
     			var previous_block_index = current_block_type_index;
     			current_block_type_index = select_block_type(ctx);
     			if (current_block_type_index !== previous_block_index) {
-    				group_outros();
-    				transition_out(if_blocks[previous_block_index], 1, 1, () => {
-    					if_blocks[previous_block_index] = null;
-    				});
-    				check_outros();
-
-    				if_block = if_blocks[current_block_type_index];
-    				if (!if_block) {
-    					if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
-    					if_block.c();
+    				if (if_block) {
+    					group_outros();
+    					transition_out(if_blocks[previous_block_index], 1, 1, () => {
+    						if_blocks[previous_block_index] = null;
+    					});
+    					check_outros();
     				}
-    				transition_in(if_block, 1);
-    				if_block.m(if_block_anchor.parentNode, if_block_anchor);
+
+    				if (~current_block_type_index) {
+    					if_block = if_blocks[current_block_type_index];
+    					if (!if_block) {
+    						if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    						if_block.c();
+    					}
+    					transition_in(if_block, 1);
+    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    				} else {
+    					if_block = null;
+    				}
     			}
     		},
 
@@ -7197,7 +7205,7 @@ ${baseUrl}/henting/?jobb=${
     		},
 
     		d: function destroy(detaching) {
-    			if_blocks[current_block_type_index].d(detaching);
+    			if (~current_block_type_index) if_blocks[current_block_type_index].d(detaching);
 
     			if (detaching) {
     				detach(if_block_anchor);
@@ -7206,8 +7214,8 @@ ${baseUrl}/henting/?jobb=${
     	};
     }
 
-    // (198:6) {:else}
-    function create_else_block_1(ctx) {
+    // (199:40) 
+    function create_if_block_4$1(ctx) {
     	var br0, t0, em, br1, t1, em_transition, current;
 
     	return {
@@ -7217,9 +7225,9 @@ ${baseUrl}/henting/?jobb=${
     			em = element("em");
     			br1 = element("br");
     			t1 = text("★ ★ ☺  Takk for at du hentet!  ☺ ★ ★");
-    			add_location(br0, file$e, 198, 7, 5310);
-    			add_location(br1, file$e, 199, 27, 5342);
-    			add_location(em, file$e, 199, 7, 5322);
+    			add_location(br0, file$e, 199, 7, 5390);
+    			add_location(br1, file$e, 200, 27, 5422);
+    			add_location(em, file$e, 200, 7, 5402);
     		},
 
     		m: function mount(target, anchor) {
@@ -7259,7 +7267,7 @@ ${baseUrl}/henting/?jobb=${
     	};
     }
 
-    // (195:6) {#if job.status === 'Hentes'}
+    // (196:6) {#if job.status === 'Hentes'}
     function create_if_block_3$2(ctx) {
     	var br0, t0, em, br1, t1, em_transition, current;
 
@@ -7270,9 +7278,9 @@ ${baseUrl}/henting/?jobb=${
     			em = element("em");
     			br1 = element("br");
     			t1 = text("★ ★ ☺   Du har tatt på deg jobben - takk!  ☺ ★ ★");
-    			add_location(br0, file$e, 195, 7, 5199);
-    			add_location(br1, file$e, 196, 27, 5231);
-    			add_location(em, file$e, 196, 7, 5211);
+    			add_location(br0, file$e, 196, 7, 5252);
+    			add_location(br1, file$e, 197, 27, 5284);
+    			add_location(em, file$e, 197, 7, 5264);
     		},
 
     		m: function mount(target, anchor) {
@@ -7312,41 +7320,60 @@ ${baseUrl}/henting/?jobb=${
     	};
     }
 
-    // (203:5) {#if job.hentesav && job.hentesav !== params.henter}
+    // (204:5) {#if job.hentesav && job.hentesav !== params.henter}
     function create_if_block_1$4(ctx) {
-    	var br, t, em, b;
+    	var br, t0, em, b, t1, a, t2_value = normalizeNumber(ctx.job.hentesav) + "", t2, a_href_value, t3;
 
     	return {
     		c: function create() {
     			br = element("br");
-    			t = space();
+    			t0 = space();
     			em = element("em");
     			b = element("b");
-    			b.textContent = "Merk: jobben er akseptert av en annen henter.";
-    			add_location(br, file$e, 203, 6, 5475);
+    			t1 = text("Merk: jobben er akseptert av en annen. Sjekk med ");
+    			a = element("a");
+    			t2 = text(t2_value);
+    			t3 = text(" om du vurderer å hente.");
+    			add_location(br, file$e, 204, 6, 5555);
+    			attr(a, "href", a_href_value = 'tel:' + normalizeNumber(ctx.job.hentesav));
+    			add_location(a, file$e, 205, 62, 5622);
     			attr(b, "class", "svelte-1l2x28v");
-    			add_location(b, file$e, 204, 10, 5490);
-    			add_location(em, file$e, 204, 6, 5486);
+    			add_location(b, file$e, 205, 10, 5570);
+    			add_location(em, file$e, 205, 6, 5566);
     		},
 
     		m: function mount(target, anchor) {
     			insert(target, br, anchor);
-    			insert(target, t, anchor);
+    			insert(target, t0, anchor);
     			insert(target, em, anchor);
     			append(em, b);
+    			append(b, t1);
+    			append(b, a);
+    			append(a, t2);
+    			append(b, t3);
+    		},
+
+    		p: function update_1(changed, ctx) {
+    			if ((changed.$jobs) && t2_value !== (t2_value = normalizeNumber(ctx.job.hentesav) + "")) {
+    				set_data(t2, t2_value);
+    			}
+
+    			if ((changed.$jobs) && a_href_value !== (a_href_value = 'tel:' + normalizeNumber(ctx.job.hentesav))) {
+    				attr(a, "href", a_href_value);
+    			}
     		},
 
     		d: function destroy(detaching) {
     			if (detaching) {
     				detach(br);
-    				detach(t);
+    				detach(t0);
     				detach(em);
     			}
     		}
     	};
     }
 
-    // (230:5) {:else}
+    // (231:5) {:else}
     function create_else_block$2(ctx) {
     	var button, dispose;
 
@@ -7359,7 +7386,7 @@ ${baseUrl}/henting/?jobb=${
     			button = element("button");
     			button.textContent = "Vi tar jobben!";
     			attr(button, "class", "p8 br2 svelte-1l2x28v");
-    			add_location(button, file$e, 230, 6, 6243);
+    			add_location(button, file$e, 231, 6, 6435);
     			dispose = listen(button, "click", click_handler_3);
     		},
 
@@ -7381,7 +7408,7 @@ ${baseUrl}/henting/?jobb=${
     	};
     }
 
-    // (211:5) {#if job.hentesav === params.henter && job.status === 'Hentes'}
+    // (212:5) {#if job.hentesav === params.henter && job.status === 'Hentes'}
     function create_if_block$6(ctx) {
     	var button0, t1, button1, t3, button2, dispose;
 
@@ -7408,11 +7435,11 @@ ${baseUrl}/henting/?jobb=${
     			button2 = element("button");
     			button2.textContent = "Jobben skal ikke hentes";
     			attr(button0, "class", "p8 br2 svelte-1l2x28v");
-    			add_location(button0, file$e, 211, 6, 5714);
+    			add_location(button0, file$e, 212, 6, 5906);
     			attr(button1, "class", "p8 br2 svelte-1l2x28v");
-    			add_location(button1, file$e, 217, 6, 5879);
+    			add_location(button1, file$e, 218, 6, 6071);
     			attr(button2, "class", "p8 br2 svelte-1l2x28v");
-    			add_location(button2, file$e, 223, 6, 6062);
+    			add_location(button2, file$e, 224, 6, 6254);
 
     			dispose = [
     				listen(button0, "click", click_handler),
@@ -7447,11 +7474,11 @@ ${baseUrl}/henting/?jobb=${
     	};
     }
 
-    // (155:1) {#each $jobs as job, i}
+    // (156:1) {#each $jobs as job, i}
     function create_each_block$9(ctx) {
     	var t0, section, p0, b0, t2, span0, t3_value = ctx.job.adresseforhenting + "", t3, t4, a, img, a_href_value, t5, span1, t6_value = ctx.job.jobnr + "", t6, t7, p1, b1, t9, span2, t10, p2, b2, t12, span3, t13, t14, p3, b3, span4, t16, p4, b4, t18, span5, textarea, t19, p5, b5, span6, em, t21_value = ctx.job.status + "", t21, t22, br, t23, t24, t25, p6, b6, span7, section_class_value, current, dispose;
 
-    	var if_block0 = (ctx.job.loading) && create_if_block_5();
+    	var if_block0 = (ctx.job.loading) && create_if_block_6();
 
     	var renderperson = new RenderPerson({
     		props: {
@@ -7469,7 +7496,7 @@ ${baseUrl}/henting/?jobb=${
     		$$inline: true
     	});
 
-    	var if_block1 = (ctx.job.informasjonomloppene) && create_if_block_4$1(ctx);
+    	var if_block1 = (ctx.job.informasjonomloppene) && create_if_block_5(ctx);
 
     	function qualityupdate_handler(...args) {
     		return ctx.qualityupdate_handler(ctx, ...args);
@@ -7491,7 +7518,7 @@ ${baseUrl}/henting/?jobb=${
 
     	var if_block2 = (ctx.job.hentesav && ctx.job.hentesav === ctx.params.henter) && create_if_block_2$3(ctx);
 
-    	var if_block3 = (ctx.job.hentesav && ctx.job.hentesav !== ctx.params.henter) && create_if_block_1$4();
+    	var if_block3 = (ctx.job.hentesav && ctx.job.hentesav !== ctx.params.henter) && create_if_block_1$4(ctx);
 
     	function select_block_type_1(ctx) {
     		if (ctx.job.hentesav === ctx.params.henter && ctx.job.status === 'Hentes') return create_if_block$6;
@@ -7567,62 +7594,62 @@ ${baseUrl}/henting/?jobb=${
     			span7 = element("span");
     			if_block4.c();
     			attr(b0, "class", "svelte-1l2x28v");
-    			add_location(b0, file$e, 158, 4, 3984);
+    			add_location(b0, file$e, 159, 4, 4037);
     			attr(img, "src", "/images/map.png");
     			attr(img, "alt", "adresse i kart");
     			attr(img, "width", "24");
-    			add_location(img, file$e, 163, 6, 4129);
+    			add_location(img, file$e, 164, 6, 4182);
     			attr(a, "href", a_href_value = gMapsDirection + ctx.job.adresseforhenting);
     			attr(a, "target", "_blank");
-    			add_location(a, file$e, 160, 5, 4042);
+    			add_location(a, file$e, 161, 5, 4095);
     			attr(span0, "class", "svelte-1l2x28v");
-    			add_location(span0, file$e, 158, 21, 4001);
+    			add_location(span0, file$e, 159, 21, 4054);
     			attr(span1, "class", "jobnr svelte-1l2x28v");
-    			add_location(span1, file$e, 166, 4, 4215);
+    			add_location(span1, file$e, 167, 4, 4268);
     			attr(p0, "class", "svelte-1l2x28v");
-    			add_location(p0, file$e, 157, 3, 3976);
+    			add_location(p0, file$e, 158, 3, 4029);
     			attr(b1, "class", "svelte-1l2x28v");
-    			add_location(b1, file$e, 169, 4, 4273);
+    			add_location(b1, file$e, 170, 4, 4326);
     			attr(span2, "class", "svelte-1l2x28v");
-    			add_location(span2, file$e, 170, 4, 4300);
+    			add_location(span2, file$e, 171, 4, 4353);
     			attr(p1, "class", "svelte-1l2x28v");
-    			add_location(p1, file$e, 168, 3, 4265);
+    			add_location(p1, file$e, 169, 3, 4318);
     			attr(b2, "class", "svelte-1l2x28v");
-    			add_location(b2, file$e, 175, 4, 4437);
+    			add_location(b2, file$e, 176, 4, 4490);
     			attr(span3, "class", "svelte-1l2x28v");
-    			add_location(span3, file$e, 175, 19, 4452);
+    			add_location(span3, file$e, 176, 19, 4505);
     			attr(p2, "class", "hideondone svelte-1l2x28v");
-    			add_location(p2, file$e, 174, 3, 4410);
+    			add_location(p2, file$e, 175, 3, 4463);
     			attr(b3, "class", "svelte-1l2x28v");
-    			add_location(b3, file$e, 178, 25, 4652);
+    			add_location(b3, file$e, 179, 25, 4705);
     			attr(span4, "class", "svelte-1l2x28v");
-    			add_location(span4, file$e, 178, 51, 4678);
+    			add_location(span4, file$e, 179, 51, 4731);
     			attr(p3, "class", "hideondone svelte-1l2x28v");
-    			add_location(p3, file$e, 178, 3, 4630);
+    			add_location(p3, file$e, 179, 3, 4683);
     			attr(b4, "class", "svelte-1l2x28v");
-    			add_location(b4, file$e, 182, 4, 4830);
+    			add_location(b4, file$e, 183, 4, 4883);
     			attr(textarea, "class", "svelte-1l2x28v");
-    			add_location(textarea, file$e, 184, 5, 4890);
+    			add_location(textarea, file$e, 185, 5, 4943);
     			attr(span5, "class", "svelte-1l2x28v");
-    			add_location(span5, file$e, 183, 4, 4878);
+    			add_location(span5, file$e, 184, 4, 4931);
     			attr(p4, "class", "hideondone svelte-1l2x28v");
-    			add_location(p4, file$e, 181, 3, 4803);
+    			add_location(p4, file$e, 182, 3, 4856);
     			attr(b5, "class", "svelte-1l2x28v");
-    			add_location(b5, file$e, 191, 4, 5044);
-    			add_location(em, file$e, 192, 5, 5071);
-    			add_location(br, file$e, 192, 27, 5093);
+    			add_location(b5, file$e, 192, 4, 5097);
+    			add_location(em, file$e, 193, 5, 5124);
+    			add_location(br, file$e, 193, 27, 5146);
     			attr(span6, "class", "svelte-1l2x28v");
-    			add_location(span6, file$e, 191, 19, 5059);
+    			add_location(span6, file$e, 192, 19, 5112);
     			attr(p5, "class", "svelte-1l2x28v");
-    			add_location(p5, file$e, 190, 3, 5036);
+    			add_location(p5, file$e, 191, 3, 5089);
     			attr(b6, "class", "svelte-1l2x28v");
-    			add_location(b6, file$e, 209, 4, 5609);
+    			add_location(b6, file$e, 210, 4, 5801);
     			attr(span7, "class", "svelte-1l2x28v");
-    			add_location(span7, file$e, 209, 27, 5632);
+    			add_location(span7, file$e, 210, 27, 5824);
     			attr(p6, "class", "hideondone svelte-1l2x28v");
-    			add_location(p6, file$e, 208, 3, 5582);
+    			add_location(p6, file$e, 209, 3, 5774);
     			attr(section, "class", section_class_value = "" + null_to_empty(ctx.job.status) + " svelte-1l2x28v");
-    			add_location(section, file$e, 156, 2, 3944);
+    			add_location(section, file$e, 157, 2, 3997);
 
     			dispose = [
     				listen(textarea, "input", textarea_input_handler),
@@ -7697,7 +7724,7 @@ ${baseUrl}/henting/?jobb=${
     			ctx = new_ctx;
     			if (ctx.job.loading) {
     				if (!if_block0) {
-    					if_block0 = create_if_block_5();
+    					if_block0 = create_if_block_6();
     					if_block0.c();
     					transition_in(if_block0, 1);
     					if_block0.m(t0.parentNode, t0);
@@ -7737,7 +7764,7 @@ ${baseUrl}/henting/?jobb=${
     				if (if_block1) {
     					if_block1.p(changed, ctx);
     				} else {
-    					if_block1 = create_if_block_4$1(ctx);
+    					if_block1 = create_if_block_5(ctx);
     					if_block1.c();
     					if_block1.m(section, t14);
     				}
@@ -7775,8 +7802,10 @@ ${baseUrl}/henting/?jobb=${
     			}
 
     			if (ctx.job.hentesav && ctx.job.hentesav !== ctx.params.henter) {
-    				if (!if_block3) {
-    					if_block3 = create_if_block_1$4();
+    				if (if_block3) {
+    					if_block3.p(changed, ctx);
+    				} else {
+    					if_block3 = create_if_block_1$4(ctx);
     					if_block3.c();
     					if_block3.m(span6, null);
     				}
@@ -7846,7 +7875,7 @@ ${baseUrl}/henting/?jobb=${
     	};
     }
 
-    // (146:16)   <div class="loading"><LoadingIcon /></div> {:then data}
+    // (147:16)   <div class="loading"><LoadingIcon /></div> {:then data}
     function create_pending_block$1(ctx) {
     	var div, current;
 
@@ -7857,7 +7886,7 @@ ${baseUrl}/henting/?jobb=${
     			div = element("div");
     			loadingicon.$$.fragment.c();
     			attr(div, "class", "loading svelte-1l2x28v");
-    			add_location(div, file$e, 146, 1, 3518);
+    			add_location(div, file$e, 147, 1, 3571);
     		},
 
     		m: function mount(target, anchor) {
