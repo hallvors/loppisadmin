@@ -470,6 +470,10 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 			label: 'Fjern merking', icon: '/images/nocheck.png',
 			action: e => (showConfigMenu = false, selectedItems.length = 0)
 		},
+		{
+			label: 'Tom SMS', icon: '/images/sms.png',
+			action: e => (showConfigMenu = false, smsEditorType = 'new')
+		}
 	]}
 />
 
