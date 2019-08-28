@@ -184,8 +184,8 @@ ${baseUrl}/henting/?jobb=${
 		selectedItems.length = 0;
 		$jobs.forEach(item => {
 			if (filter(freeTextFilter, {smallActive, bigActive}, 
-				{monActive, tueActive, wedActive, thuActive, dayFilterExclusive}, 
-				typeFilter, hideDoneJobs, item)
+				{monActive, tueActive, wedActive, thuActive, dayFilterExclusive},
+				typeFilter, hideDoneJobs, drivers, item)
 			) {
 				selectedItems.push(item.id);
 			}
@@ -342,7 +342,8 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 		</tr>
 	{#each $jobs as theJob, i}
 		{#if filter(freeTextFilter, {smallActive, bigActive}, 
-			{monActive, tueActive, wedActive, thuActive, dayFilterExclusive}, typeFilter, hideDoneJobs, theJob)
+			{monActive, tueActive, wedActive, thuActive, dayFilterExclusive}, typeFilter,
+			hideDoneJobs, drivers, theJob)
 		}
 			<RenderJob 
 				itemData={theJob}

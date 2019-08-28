@@ -11,7 +11,7 @@ export function normalizeNumber(str) {
 	return str.replace(/\s*/g, '').substr(-8);
 }
 
-export function filter(string, sizePref, dayPref, typeFilter, hideDoneJobs, job) {
+export function filter(string, sizePref, dayPref, typeFilter, hideDoneJobs, fetchers, job) {
 	if (hideDoneJobs && ['Hentet', 'Hentes ikke'].indexOf(job.status) > -1) {
 		return false;
 	}
@@ -56,6 +56,11 @@ export function filter(string, sizePref, dayPref, typeFilter, hideDoneJobs, job)
 	if (!showDay) {
 		return false;
 	}
+	if (job.hentesav && fetchers && fetchers.length && string) {
+		if (fetchers.find(person => person.name.toLowerCase().indexOf(string.toLowerCase()) > -1)) {
+			return true;
+		}
+	}
 
 	return [
 		'adresseforhenting',
@@ -65,6 +70,7 @@ export function filter(string, sizePref, dayPref, typeFilter, hideDoneJobs, job)
 		'informasjonomloppene',
 		'status',
 		'admkom',
+		'hentesav',
 	].map(key => {
 		return (job[key] || '').toLowerCase().indexOf(string.toLowerCase()) > -1
 	})
