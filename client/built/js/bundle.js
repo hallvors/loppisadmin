@@ -2282,7 +2282,7 @@ var app = (function () {
     	return str.replace(/\s*/g, '').substr(-8);
     }
 
-    function filter(string, sizePref, dayPref, typeFilter, hideDoneJobs, job) {
+    function filter(string, sizePref, dayPref, typeFilter, hideDoneJobs, fetchers, job) {
     	if (hideDoneJobs && ['Hentet', 'Hentes ikke'].indexOf(job.status) > -1) {
     		return false;
     	}
@@ -2327,6 +2327,11 @@ var app = (function () {
     	if (!showDay) {
     		return false;
     	}
+    	if (job.hentesav && fetchers && fetchers.length && string) {
+    		if (fetchers.find(person => person.name.toLowerCase().indexOf(string.toLowerCase()) > -1)) {
+    			return true;
+    		}
+    	}
 
     	return [
     		'adresseforhenting',
@@ -2336,6 +2341,7 @@ var app = (function () {
     		'informasjonomloppene',
     		'status',
     		'admkom',
+    		'hentesav',
     	].map(key => {
     		return (job[key] || '').toLowerCase().indexOf(string.toLowerCase()) > -1
     	})
@@ -2352,7 +2358,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (136:0) {#if itemData.loading}
+    // (142:0) {#if itemData.loading}
     function create_if_block_4(ctx) {
     	var div, current;
 
@@ -2365,8 +2371,8 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			loadingicon.$$.fragment.c();
-    			attr(div, "class", "svelte-10kdq1i");
-    			add_location(div, file$7, 135, 22, 2914);
+    			attr(div, "class", "svelte-thhux8");
+    			add_location(div, file$7, 141, 22, 3018);
     		},
 
     		m: function mount(target, anchor) {
@@ -2397,7 +2403,7 @@ var app = (function () {
     	};
     }
 
-    // (149:0) {:else}
+    // (156:0) {:else}
     function create_else_block(ctx) {
     	var img;
 
@@ -2407,7 +2413,7 @@ var app = (function () {
     			attr(img, "src", "/images/smallcar.png");
     			attr(img, "alt", "liten bil");
     			attr(img, "height", "22");
-    			add_location(img, file$7, 149, 0, 3329);
+    			add_location(img, file$7, 156, 0, 3477);
     		},
 
     		m: function mount(target, anchor) {
@@ -2422,7 +2428,7 @@ var app = (function () {
     	};
     }
 
-    // (147:0) {#if itemData.størrelse}
+    // (154:0) {#if itemData.størrelse}
     function create_if_block_3(ctx) {
     	var img;
 
@@ -2432,7 +2438,7 @@ var app = (function () {
     			attr(img, "src", "/images/bigcar.png");
     			attr(img, "alt", "stor bil");
     			attr(img, "height", "22");
-    			add_location(img, file$7, 147, 0, 3263);
+    			add_location(img, file$7, 154, 0, 3411);
     		},
 
     		m: function mount(target, anchor) {
@@ -2447,7 +2453,7 @@ var app = (function () {
     	};
     }
 
-    // (170:1) {#each states as theState}
+    // (177:1) {#each states as theState}
     function create_each_block$3(ctx) {
     	var option, t_value = ctx.theState + "", t, option_value_value;
 
@@ -2457,7 +2463,7 @@ var app = (function () {
     			t = text(t_value);
     			option.__value = option_value_value = ctx.theState;
     			option.value = option.__value;
-    			add_location(option, file$7, 170, 2, 4240);
+    			add_location(option, file$7, 177, 2, 4388);
     		},
 
     		m: function mount(target, anchor) {
@@ -2477,7 +2483,7 @@ var app = (function () {
     	};
     }
 
-    // (174:0) {#if itemData.hentesav}
+    // (181:0) {#if itemData.hentesav}
     function create_if_block_2(ctx) {
     	var div, a, t0_value = ctx.getDriverName(ctx.itemData.hentesav) + "", t0, a_href_value, t1, t2_value = statusVerbString(ctx.itemData.status) + "", t2;
 
@@ -2489,9 +2495,9 @@ var app = (function () {
     			t1 = space();
     			t2 = text(t2_value);
     			attr(a, "href", a_href_value = "tel:" + normalizeNumber(ctx.itemData.hentesav));
-    			add_location(a, file$7, 174, 23, 4334);
-    			attr(div, "class", "hentesav svelte-10kdq1i");
-    			add_location(div, file$7, 174, 1, 4312);
+    			add_location(a, file$7, 181, 23, 4482);
+    			attr(div, "class", "hentesav svelte-thhux8");
+    			add_location(div, file$7, 181, 1, 4460);
     		},
 
     		m: function mount(target, anchor) {
@@ -2524,7 +2530,7 @@ var app = (function () {
     	};
     }
 
-    // (181:0) {#if expanded}
+    // (188:0) {#if expanded}
     function create_if_block$1(ctx) {
     	var tr, td0, td1, t0, p0, t1_value = ctx.itemData.typerlopper + "", t1, t2, p1, i, t3_value = ctx.itemData.informasjonomloppene + "", t3, t4, p2, button, img, t5, t6, td2, t7, br, t8, textarea, tr_data_id_value, current, dispose;
 
@@ -2563,31 +2569,31 @@ var app = (function () {
     			br = element("br");
     			t8 = space();
     			textarea = element("textarea");
-    			attr(td0, "class", "svelte-10kdq1i");
-    			add_location(td0, file$7, 180, 40, 4529);
-    			add_location(p0, file$7, 182, 1, 4660);
-    			add_location(i, file$7, 183, 4, 4694);
-    			add_location(p1, file$7, 183, 1, 4691);
+    			attr(td0, "class", "svelte-thhux8");
+    			add_location(td0, file$7, 187, 40, 4677);
+    			add_location(p0, file$7, 189, 1, 4808);
+    			add_location(i, file$7, 190, 4, 4842);
+    			add_location(p1, file$7, 190, 1, 4839);
     			attr(img, "src", "/images/edit.png");
     			attr(img, "alt", "endre detaljer");
     			attr(img, "width", "36");
-    			attr(img, "class", "svelte-10kdq1i");
-    			add_location(img, file$7, 185, 44, 4798);
-    			attr(button, "class", "svelte-10kdq1i");
-    			add_location(button, file$7, 185, 2, 4756);
-    			attr(p2, "class", "cen svelte-10kdq1i");
-    			add_location(p2, file$7, 184, 1, 4738);
+    			attr(img, "class", "svelte-thhux8");
+    			add_location(img, file$7, 192, 44, 4946);
+    			attr(button, "class", "svelte-thhux8");
+    			add_location(button, file$7, 192, 2, 4904);
+    			attr(p2, "class", "cen svelte-thhux8");
+    			add_location(p2, file$7, 191, 1, 4886);
     			attr(td1, "colspan", "3");
-    			attr(td1, "class", "extrainfo svelte-10kdq1i");
-    			add_location(td1, file$7, 180, 49, 4538);
-    			add_location(br, file$7, 195, 31, 5145);
-    			attr(textarea, "class", "svelte-10kdq1i");
-    			add_location(textarea, file$7, 196, 1, 5151);
+    			attr(td1, "class", "extrainfo svelte-thhux8");
+    			add_location(td1, file$7, 187, 49, 4686);
+    			add_location(br, file$7, 202, 31, 5293);
+    			attr(textarea, "class", "svelte-thhux8");
+    			add_location(textarea, file$7, 203, 1, 5299);
     			attr(td2, "colspan", "2");
-    			attr(td2, "class", "svelte-10kdq1i");
-    			add_location(td2, file$7, 194, 0, 5097);
+    			attr(td2, "class", "svelte-thhux8");
+    			add_location(td2, file$7, 201, 0, 5245);
     			attr(tr, "data-id", tr_data_id_value = ctx.itemData.id);
-    			add_location(tr, file$7, 180, 14, 4503);
+    			add_location(tr, file$7, 187, 14, 4651);
 
     			dispose = [
     				listen(button, "click", ctx.click_handler_3),
@@ -2692,7 +2698,7 @@ var app = (function () {
     	};
     }
 
-    // (188:1) {#if showEditor}
+    // (195:1) {#if showEditor}
     function create_if_block_1$1(ctx) {
     	var current;
 
@@ -2742,7 +2748,7 @@ var app = (function () {
     	};
     }
 
-    // (190:3) <h2 slot="header">
+    // (197:3) <h2 slot="header">
     function create_header_slot(ctx) {
     	var h2;
 
@@ -2751,7 +2757,7 @@ var app = (function () {
     			h2 = element("h2");
     			h2.textContent = "Endre detaljer";
     			attr(h2, "slot", "header");
-    			add_location(h2, file$7, 189, 3, 4944);
+    			add_location(h2, file$7, 196, 3, 5092);
     		},
 
     		m: function mount(target, anchor) {
@@ -2766,7 +2772,7 @@ var app = (function () {
     	};
     }
 
-    // (189:2) <Modal on:close="{() => showEditor = false}" >
+    // (196:2) <Modal on:close="{() => showEditor = false}" >
     function create_default_slot(ctx) {
     	var t, current;
 
@@ -2818,7 +2824,7 @@ var app = (function () {
     }
 
     function create_fragment$7(ctx) {
-    	var tr, td0, t0, t1_value = ctx.itemData.adresseforhenting + "", t1, t2, a, t3, a_href_value, t4, br, t5, div, i, t6_value = ctx.itemData.hentetidspunktkryssavsåmangedukan + "", t6, t7, td1, t8, td2, t9, td3, t10, td4, t11, td5, input, input_id_value, t12, label, t13, label_for_value, t14, select, select_disabled_value, t15, tr_data_id_value, t16, if_block3_anchor, current, dispose;
+    	var tr, td0, t0, span, t1_value = ctx.itemData.jobnr + "", t1, t2, t3_value = ctx.itemData.adresseforhenting + "", t3, t4, a, t5, a_href_value, t6, br, t7, div, i, t8_value = ctx.itemData.hentetidspunktkryssavsåmangedukan + "", t8, t9, td1, t10, td2, t11, td3, t12, td4, t13, td5, input, input_id_value, t14, label, t15, label_for_value, t16, select, select_disabled_value, t17, tr_data_id_value, t18, if_block3_anchor, current, dispose;
 
     	var if_block0 = (ctx.itemData.loading) && create_if_block_4();
 
@@ -2864,84 +2870,89 @@ var app = (function () {
     			td0 = element("td");
     			if (if_block0) if_block0.c();
     			t0 = space();
+    			span = element("span");
     			t1 = text(t1_value);
     			t2 = space();
-    			a = element("a");
-    			t3 = text("🔎");
+    			t3 = text(t3_value);
     			t4 = space();
+    			a = element("a");
+    			t5 = text("🔎");
+    			t6 = space();
     			br = element("br");
-    			t5 = space();
+    			t7 = space();
     			div = element("div");
     			i = element("i");
-    			t6 = text(t6_value);
-    			t7 = space();
+    			t8 = text(t8_value);
+    			t9 = space();
     			td1 = element("td");
     			if_block1.c();
-    			t8 = space();
+    			t10 = space();
     			td2 = element("td");
     			rendertypes.$$.fragment.c();
-    			t9 = space();
+    			t11 = space();
     			td3 = element("td");
     			renderstars.$$.fragment.c();
-    			t10 = space();
+    			t12 = space();
     			td4 = element("td");
     			renderdays.$$.fragment.c();
-    			t11 = space();
+    			t13 = space();
     			td5 = element("td");
     			input = element("input");
-    			t12 = space();
-    			label = element("label");
-    			t13 = text("✓");
     			t14 = space();
+    			label = element("label");
+    			t15 = text("✓");
+    			t16 = space();
     			select = element("select");
 
     			for (var i_1 = 0; i_1 < each_blocks.length; i_1 += 1) {
     				each_blocks[i_1].c();
     			}
 
-    			t15 = space();
+    			t17 = space();
     			if (if_block2) if_block2.c();
-    			t16 = space();
+    			t18 = space();
     			if (if_block3) if_block3.c();
     			if_block3_anchor = empty();
+    			attr(span, "class", "jobnr svelte-thhux8");
+    			add_location(span, file$7, 142, 0, 3060);
     			attr(a, "href", a_href_value = "https://www.google.no/maps/?q=" + encodeURIComponent(ctx.itemData.adresseforhenting));
     			attr(a, "target", "_blank");
-    			add_location(a, file$7, 137, 0, 2985);
-    			add_location(br, file$7, 140, 0, 3125);
-    			add_location(i, file$7, 142, 0, 3156);
-    			attr(div, "class", "smallscreen svelte-10kdq1i");
-    			add_location(div, file$7, 141, 0, 3130);
+    			add_location(a, file$7, 144, 0, 3133);
+    			add_location(br, file$7, 147, 0, 3273);
+    			add_location(i, file$7, 149, 0, 3304);
+    			attr(div, "class", "smallscreen svelte-thhux8");
+    			add_location(div, file$7, 148, 0, 3278);
     			attr(td0, "tabindex", "0");
-    			attr(td0, "class", "svelte-10kdq1i");
+    			attr(td0, "class", "svelte-thhux8");
     			toggle_class(td0, "expanded", ctx.expanded);
     			toggle_class(td0, "loading", ctx.loading);
-    			add_location(td0, file$7, 134, 0, 2805);
-    			attr(td1, "class", "car svelte-10kdq1i");
-    			add_location(td1, file$7, 145, 0, 3221);
-    			attr(td2, "class", "typefilter svelte-10kdq1i");
-    			add_location(td2, file$7, 152, 0, 3402);
-    			attr(td3, "class", "svelte-10kdq1i");
-    			add_location(td3, file$7, 153, 0, 3475);
-    			attr(td4, "class", "svelte-10kdq1i");
-    			add_location(td4, file$7, 154, 0, 3560);
+    			add_location(td0, file$7, 140, 0, 2909);
+    			attr(td1, "class", "car svelte-thhux8");
+    			add_location(td1, file$7, 152, 0, 3369);
+    			attr(td2, "class", "typefilter svelte-thhux8");
+    			add_location(td2, file$7, 159, 0, 3550);
+    			attr(td3, "class", "svelte-thhux8");
+    			add_location(td3, file$7, 160, 0, 3623);
+    			attr(td4, "class", "svelte-thhux8");
+    			add_location(td4, file$7, 161, 0, 3708);
     			attr(input, "type", "checkbox");
     			attr(input, "id", input_id_value = "select" + ctx.itemData.id);
-    			attr(input, "class", "svelte-10kdq1i");
-    			add_location(input, file$7, 162, 0, 3834);
+    			attr(input, "class", "svelte-thhux8");
+    			add_location(input, file$7, 169, 0, 3982);
     			attr(label, "for", label_for_value = "select" + ctx.itemData.id);
     			attr(label, "tabindex", "0");
-    			attr(label, "class", "svelte-10kdq1i");
-    			add_location(label, file$7, 163, 0, 3996);
+    			attr(label, "class", "svelte-thhux8");
+    			add_location(label, file$7, 170, 0, 4144);
     			if (ctx.itemData.status === void 0) add_render_callback(() => ctx.select_change_handler.call(select));
     			select.disabled = select_disabled_value = Boolean(ctx.itemData.hentesav);
-    			attr(select, "class", "svelte-10kdq1i");
-    			add_location(select, file$7, 164, 0, 4052);
-    			attr(td5, "class", "statuscell svelte-10kdq1i");
-    			add_location(td5, file$7, 157, 0, 3636);
-    			attr(tr, "class", "job svelte-10kdq1i");
+    			attr(select, "class", "svelte-thhux8");
+    			add_location(select, file$7, 171, 0, 4200);
+    			attr(td5, "class", "statuscell svelte-thhux8");
+    			add_location(td5, file$7, 164, 0, 3784);
+    			attr(tr, "class", "job svelte-thhux8");
     			attr(tr, "data-id", tr_data_id_value = ctx.itemData.id);
     			toggle_class(tr, "itemSelected", ctx.itemSelected);
-    			add_location(tr, file$7, 130, 0, 2743);
+    			add_location(tr, file$7, 136, 0, 2847);
 
     			dispose = [
     				listen(a, "click", stop_propagation(ctx.click_handler)),
@@ -2963,38 +2974,41 @@ var app = (function () {
     			append(tr, td0);
     			if (if_block0) if_block0.m(td0, null);
     			append(td0, t0);
-    			append(td0, t1);
+    			append(td0, span);
+    			append(span, t1);
     			append(td0, t2);
-    			append(td0, a);
-    			append(a, t3);
+    			append(td0, t3);
     			append(td0, t4);
+    			append(td0, a);
+    			append(a, t5);
+    			append(td0, t6);
     			append(td0, br);
-    			append(td0, t5);
+    			append(td0, t7);
     			append(td0, div);
     			append(div, i);
-    			append(i, t6);
-    			append(tr, t7);
+    			append(i, t8);
+    			append(tr, t9);
     			append(tr, td1);
     			if_block1.m(td1, null);
-    			append(tr, t8);
+    			append(tr, t10);
     			append(tr, td2);
     			mount_component(rendertypes, td2, null);
-    			append(tr, t9);
+    			append(tr, t11);
     			append(tr, td3);
     			mount_component(renderstars, td3, null);
-    			append(tr, t10);
+    			append(tr, t12);
     			append(tr, td4);
     			mount_component(renderdays, td4, null);
-    			append(tr, t11);
+    			append(tr, t13);
     			append(tr, td5);
     			append(td5, input);
 
     			input.checked = ctx.itemSelected;
 
-    			append(td5, t12);
-    			append(td5, label);
-    			append(label, t13);
     			append(td5, t14);
+    			append(td5, label);
+    			append(label, t15);
+    			append(td5, t16);
     			append(td5, select);
 
     			for (var i_1 = 0; i_1 < each_blocks.length; i_1 += 1) {
@@ -3003,9 +3017,9 @@ var app = (function () {
 
     			select_option(select, ctx.itemData.status);
 
-    			append(td5, t15);
+    			append(td5, t17);
     			if (if_block2) if_block2.m(td5, null);
-    			insert(target, t16, anchor);
+    			insert(target, t18, anchor);
     			if (if_block3) if_block3.m(target, anchor);
     			insert(target, if_block3_anchor, anchor);
     			current = true;
@@ -3029,16 +3043,20 @@ var app = (function () {
     				check_outros();
     			}
 
-    			if ((!current || changed.itemData) && t1_value !== (t1_value = ctx.itemData.adresseforhenting + "")) {
+    			if ((!current || changed.itemData) && t1_value !== (t1_value = ctx.itemData.jobnr + "")) {
     				set_data(t1, t1_value);
+    			}
+
+    			if ((!current || changed.itemData) && t3_value !== (t3_value = ctx.itemData.adresseforhenting + "")) {
+    				set_data(t3, t3_value);
     			}
 
     			if ((!current || changed.itemData) && a_href_value !== (a_href_value = "https://www.google.no/maps/?q=" + encodeURIComponent(ctx.itemData.adresseforhenting))) {
     				attr(a, "href", a_href_value);
     			}
 
-    			if ((!current || changed.itemData) && t6_value !== (t6_value = ctx.itemData.hentetidspunktkryssavsåmangedukan + "")) {
-    				set_data(t6, t6_value);
+    			if ((!current || changed.itemData) && t8_value !== (t8_value = ctx.itemData.hentetidspunktkryssavsåmangedukan + "")) {
+    				set_data(t8, t8_value);
     			}
 
     			if (changed.expanded) {
@@ -3189,7 +3207,7 @@ var app = (function () {
     			if (if_block2) if_block2.d();
 
     			if (detaching) {
-    				detach(t16);
+    				detach(t18);
     			}
 
     			if (if_block3) if_block3.d(detaching);
@@ -4924,7 +4942,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (424:0) {:catch error}
+    // (426:0) {:catch error}
     function create_catch_block(ctx) {
     	var p, t_value = ctx.error.message + "", t;
 
@@ -4933,7 +4951,7 @@ var app = (function () {
     			p = element("p");
     			t = text(t_value);
     			set_style(p, "color", "red");
-    			add_location(p, file$d, 424, 1, 10935);
+    			add_location(p, file$d, 426, 1, 11004);
     		},
 
     		m: function mount(target, anchor) {
@@ -4958,7 +4976,7 @@ var app = (function () {
     	};
     }
 
-    // (303:0) {:then data}
+    // (304:0) {:then data}
     function create_then_block(ctx) {
     	var table, tr, th0, input0, t0, th1, img0, t1, img1, t2, th2, select, t3, th3, img2, t4, img3, t5, img4, t6, th4, ol, li0, t8, li1, t10, li2, t12, th5, label0, input1, t13, t14, br, label1, input2, t15, t16, t17, col0, t18, col1, t19, col2, t20, col3, t21, col4, t22, col5, t23, p, t24, t25_value = ctx.$jobs.length + "", t25, t26, t27_value = ctx.$jobs.filter(func).length + "", t27, t28, t29_value = ctx.$jobs.filter(func_1).length + "", t29, t30, t31_value = ctx.$jobs.filter(func_2).length + "", t31, t32, t33, t34, if_block2_anchor, current, dispose;
 
@@ -5072,73 +5090,73 @@ var app = (function () {
     			if_block2_anchor = empty();
     			attr(input0, "type", "search");
     			attr(input0, "placeholder", "Filtrer");
-    			add_location(input0, file$d, 305, 7, 7473);
-    			add_location(th0, file$d, 305, 3, 7469);
+    			add_location(input0, file$d, 306, 7, 7530);
+    			add_location(th0, file$d, 306, 3, 7526);
     			attr(img0, "src", "/images/bigcar.png");
     			attr(img0, "alt", "stor bil");
     			attr(img0, "height", "22");
     			attr(img0, "tabindex", "0");
     			toggle_class(img0, "bigActive", ctx.bigActive);
-    			add_location(img0, file$d, 307, 4, 7562);
+    			add_location(img0, file$d, 308, 4, 7619);
     			attr(img1, "src", "/images/smallcar.png");
     			attr(img1, "alt", "liten bil");
     			attr(img1, "height", "22");
     			attr(img1, "tabindex", "0");
     			toggle_class(img1, "smallActive", ctx.smallActive);
-    			add_location(img1, file$d, 311, 4, 7712);
-    			add_location(th1, file$d, 306, 3, 7553);
+    			add_location(img1, file$d, 312, 4, 7769);
+    			add_location(th1, file$d, 307, 3, 7610);
     			if (ctx.typeFilter === void 0) add_render_callback(() => ctx.select_change_handler.call(select));
-    			add_location(select, file$d, 317, 4, 7891);
-    			add_location(th2, file$d, 316, 3, 7882);
+    			add_location(select, file$d, 318, 4, 7948);
+    			add_location(th2, file$d, 317, 3, 7939);
     			attr(img2, "src", "/images/star-full.png");
     			attr(img2, "width", "16");
     			attr(img2, "alt", "antatt kvalitet");
-    			add_location(img2, file$d, 324, 4, 8035);
+    			add_location(img2, file$d, 325, 4, 8092);
     			attr(img3, "src", "/images/star-full.png");
     			attr(img3, "width", "16");
     			attr(img3, "alt", "");
-    			add_location(img3, file$d, 325, 4, 8106);
+    			add_location(img3, file$d, 326, 4, 8163);
     			attr(img4, "src", "/images/star-full.png");
     			attr(img4, "width", "16");
     			attr(img4, "alt", "");
-    			add_location(img4, file$d, 326, 4, 8162);
-    			add_location(th3, file$d, 323, 3, 8026);
+    			add_location(img4, file$d, 327, 4, 8219);
+    			add_location(th3, file$d, 324, 3, 8083);
     			attr(li0, "tabindex", "0");
     			toggle_class(li0, "tueActive", ctx.tueActive);
-    			add_location(li0, file$d, 331, 5, 8339);
+    			add_location(li0, file$d, 332, 5, 8396);
     			attr(li1, "tabindex", "0");
     			toggle_class(li1, "wedActive", ctx.wedActive);
-    			add_location(li1, file$d, 332, 5, 8426);
+    			add_location(li1, file$d, 333, 5, 8483);
     			attr(li2, "tabindex", "0");
     			toggle_class(li2, "thuActive", ctx.thuActive);
-    			add_location(li2, file$d, 333, 5, 8513);
+    			add_location(li2, file$d, 334, 5, 8570);
     			attr(ol, "class", "days");
-    			add_location(ol, file$d, 329, 4, 8235);
-    			add_location(th4, file$d, 328, 3, 8226);
+    			add_location(ol, file$d, 330, 4, 8292);
+    			add_location(th4, file$d, 329, 3, 8283);
     			attr(input1, "type", "checkbox");
-    			add_location(input1, file$d, 337, 11, 8633);
-    			add_location(label0, file$d, 337, 4, 8626);
-    			add_location(br, file$d, 338, 4, 8720);
+    			add_location(input1, file$d, 338, 11, 8690);
+    			add_location(label0, file$d, 338, 4, 8683);
+    			add_location(br, file$d, 339, 4, 8777);
     			attr(input2, "type", "checkbox");
-    			add_location(input2, file$d, 338, 15, 8731);
-    			add_location(label1, file$d, 338, 8, 8724);
-    			add_location(th5, file$d, 336, 3, 8617);
-    			add_location(tr, file$d, 304, 2, 7461);
+    			add_location(input2, file$d, 339, 15, 8788);
+    			add_location(label1, file$d, 339, 8, 8781);
+    			add_location(th5, file$d, 337, 3, 8674);
+    			add_location(tr, file$d, 305, 2, 7518);
     			attr(col0, "class", "address");
-    			add_location(col0, file$d, 352, 1, 9175);
+    			add_location(col0, file$d, 354, 1, 9244);
     			attr(col1, "class", "cartype");
-    			add_location(col1, file$d, 353, 1, 9200);
+    			add_location(col1, file$d, 355, 1, 9269);
     			attr(col2, "class", "stufftype");
-    			add_location(col2, file$d, 354, 1, 9225);
+    			add_location(col2, file$d, 356, 1, 9294);
     			attr(col3, "class", "quality");
-    			add_location(col3, file$d, 355, 1, 9252);
+    			add_location(col3, file$d, 357, 1, 9321);
     			attr(col4, "class", "dayscol");
-    			add_location(col4, file$d, 356, 1, 9277);
+    			add_location(col4, file$d, 358, 1, 9346);
     			attr(col5, "class", "status");
-    			add_location(col5, file$d, 357, 1, 9302);
+    			add_location(col5, file$d, 359, 1, 9371);
     			attr(table, "class", "main");
-    			add_location(table, file$d, 303, 1, 7438);
-    			add_location(p, file$d, 360, 0, 9335);
+    			add_location(table, file$d, 304, 1, 7495);
+    			add_location(p, file$d, 362, 0, 9404);
 
     			dispose = [
     				listen(input0, "input", ctx.input0_input_handler),
@@ -5294,7 +5312,7 @@ var app = (function () {
     			if (changed.dayFilterExclusive) input1.checked = ctx.dayFilterExclusive;
     			if (changed.hideDoneJobs) input2.checked = ctx.hideDoneJobs;
 
-    			if (changed.filter || changed.freeTextFilter || changed.smallActive || changed.bigActive || changed.monActive || changed.tueActive || changed.wedActive || changed.thuActive || changed.dayFilterExclusive || changed.typeFilter || changed.hideDoneJobs || changed.$jobs || changed.selectedItems) {
+    			if (changed.filter || changed.freeTextFilter || changed.smallActive || changed.bigActive || changed.monActive || changed.tueActive || changed.wedActive || changed.thuActive || changed.dayFilterExclusive || changed.typeFilter || changed.hideDoneJobs || changed.drivers || changed.$jobs || changed.selectedItems) {
     				each_value_1 = ctx.$jobs;
 
     				for (var i = 0; i < each_value_1.length; i += 1) {
@@ -5443,7 +5461,7 @@ var app = (function () {
     	};
     }
 
-    // (319:5) {#each types as theType}
+    // (320:5) {#each types as theType}
     function create_each_block_2(ctx) {
     	var option, t_value = ctx.theType + "", t, option_value_value;
 
@@ -5453,7 +5471,7 @@ var app = (function () {
     			t = text(t_value);
     			option.__value = option_value_value = ctx.theType;
     			option.value = option.__value;
-    			add_location(option, file$d, 319, 6, 7960);
+    			add_location(option, file$d, 320, 6, 8017);
     		},
 
     		m: function mount(target, anchor) {
@@ -5473,7 +5491,7 @@ var app = (function () {
     	};
     }
 
-    // (343:2) {#if filter(freeTextFilter, {smallActive, bigActive},     {monActive, tueActive, wedActive, thuActive, dayFilterExclusive}, typeFilter, hideDoneJobs, theJob)   }
+    // (344:2) {#if filter(freeTextFilter, {smallActive, bigActive},     {monActive, tueActive, wedActive, thuActive, dayFilterExclusive}, typeFilter,    hideDoneJobs, drivers, theJob)   }
     function create_if_block_3$1(ctx) {
     	var current;
 
@@ -5521,12 +5539,13 @@ var app = (function () {
     	};
     }
 
-    // (342:1) {#each $jobs as theJob, i}
+    // (343:1) {#each $jobs as theJob, i}
     function create_each_block_1$1(ctx) {
     	var if_block_anchor, current;
 
     	var if_block = (filter(ctx.freeTextFilter, {smallActive: ctx.smallActive, bigActive: ctx.bigActive}, 
-    			{monActive, tueActive: ctx.tueActive, wedActive: ctx.wedActive, thuActive: ctx.thuActive, dayFilterExclusive: ctx.dayFilterExclusive}, ctx.typeFilter, ctx.hideDoneJobs, ctx.theJob)) && create_if_block_3$1(ctx);
+    			{monActive, tueActive: ctx.tueActive, wedActive: ctx.wedActive, thuActive: ctx.thuActive, dayFilterExclusive: ctx.dayFilterExclusive}, ctx.typeFilter,
+    			ctx.hideDoneJobs, drivers, ctx.theJob)) && create_if_block_3$1(ctx);
 
     	return {
     		c: function create() {
@@ -5542,7 +5561,8 @@ var app = (function () {
 
     		p: function update(changed, ctx) {
     			if (filter(ctx.freeTextFilter, {smallActive: ctx.smallActive, bigActive: ctx.bigActive}, 
-    			{monActive, tueActive: ctx.tueActive, wedActive: ctx.wedActive, thuActive: ctx.thuActive, dayFilterExclusive: ctx.dayFilterExclusive}, ctx.typeFilter, ctx.hideDoneJobs, ctx.theJob)) {
+    			{monActive, tueActive: ctx.tueActive, wedActive: ctx.wedActive, thuActive: ctx.thuActive, dayFilterExclusive: ctx.dayFilterExclusive}, ctx.typeFilter,
+    			ctx.hideDoneJobs, drivers, ctx.theJob)) {
     				if (if_block) {
     					if_block.p(changed, ctx);
     					transition_in(if_block, 1);
@@ -5582,7 +5602,7 @@ var app = (function () {
     	};
     }
 
-    // (368:0) {#if smsEditorType}
+    // (370:0) {#if smsEditorType}
     function create_if_block_2$2(ctx) {
     	var current;
 
@@ -5632,7 +5652,7 @@ var app = (function () {
     	};
     }
 
-    // (370:2) <h2 slot="header">
+    // (372:2) <h2 slot="header">
     function create_header_slot_2(ctx) {
     	var h2;
 
@@ -5641,7 +5661,7 @@ var app = (function () {
     			h2 = element("h2");
     			h2.textContent = "Send SMS";
     			attr(h2, "slot", "header");
-    			add_location(h2, file$d, 369, 2, 9662);
+    			add_location(h2, file$d, 371, 2, 9731);
     		},
 
     		m: function mount(target, anchor) {
@@ -5656,7 +5676,7 @@ var app = (function () {
     	};
     }
 
-    // (369:1) <Modal on:close="{() => smsEditorType = ''}">
+    // (371:1) <Modal on:close="{() => smsEditorType = ''}">
     function create_default_slot_2(ctx) {
     	var t, current;
 
@@ -5713,7 +5733,7 @@ var app = (function () {
     	};
     }
 
-    // (391:0) {#if showDriverEditor}
+    // (393:0) {#if showDriverEditor}
     function create_if_block_1$3(ctx) {
     	var current;
 
@@ -5757,7 +5777,7 @@ var app = (function () {
     	};
     }
 
-    // (393:2) <h2 slot="header">
+    // (395:2) <h2 slot="header">
     function create_header_slot_1(ctx) {
     	var h2;
 
@@ -5766,7 +5786,7 @@ var app = (function () {
     			h2 = element("h2");
     			h2.textContent = "Oppdater hentere";
     			attr(h2, "slot", "header");
-    			add_location(h2, file$d, 392, 2, 10223);
+    			add_location(h2, file$d, 394, 2, 10292);
     		},
 
     		m: function mount(target, anchor) {
@@ -5781,7 +5801,7 @@ var app = (function () {
     	};
     }
 
-    // (392:1) <Modal on:close="{() => showDriverEditor = false}">
+    // (394:1) <Modal on:close="{() => showDriverEditor = false}">
     function create_default_slot_1(ctx) {
     	var t, current;
 
@@ -5824,7 +5844,7 @@ var app = (function () {
     	};
     }
 
-    // (401:0) {#if showStateEditor}
+    // (403:0) {#if showStateEditor}
     function create_if_block$5(ctx) {
     	var current;
 
@@ -5868,7 +5888,7 @@ var app = (function () {
     	};
     }
 
-    // (403:2) <h2 slot="header">
+    // (405:2) <h2 slot="header">
     function create_header_slot$1(ctx) {
     	var h2;
 
@@ -5877,7 +5897,7 @@ var app = (function () {
     			h2 = element("h2");
     			h2.textContent = "Oppdater status";
     			attr(h2, "slot", "header");
-    			add_location(h2, file$d, 402, 2, 10434);
+    			add_location(h2, file$d, 404, 2, 10503);
     		},
 
     		m: function mount(target, anchor) {
@@ -5892,7 +5912,7 @@ var app = (function () {
     	};
     }
 
-    // (402:1) <Modal on:close="{() => showStateEditor = false}">
+    // (404:1) <Modal on:close="{() => showStateEditor = false}">
     function create_default_slot$1(ctx) {
     	var t, current;
 
@@ -5936,7 +5956,7 @@ var app = (function () {
     	};
     }
 
-    // (300:16)   <div class="dataloading"><LoadingIcon /></div>  <p style="text-align: center;">...henter data</p> {:then data}
+    // (301:16)   <div class="dataloading"><LoadingIcon /></div>  <p style="text-align: center;">...henter data</p> {:then data}
     function create_pending_block(ctx) {
     	var div, t, p, current;
 
@@ -5950,9 +5970,9 @@ var app = (function () {
     			p = element("p");
     			p.textContent = "...henter data";
     			attr(div, "class", "dataloading");
-    			add_location(div, file$d, 300, 1, 7326);
+    			add_location(div, file$d, 301, 1, 7383);
     			set_style(p, "text-align", "center");
-    			add_location(p, file$d, 301, 1, 7374);
+    			add_location(p, file$d, 302, 1, 7431);
     		},
 
     		m: function mount(target, anchor) {
@@ -5992,7 +6012,7 @@ var app = (function () {
     	};
     }
 
-    // (474:0) {#each tempMsgQueue as msg, idx}
+    // (480:0) {#each tempMsgQueue as msg, idx}
     function create_each_block$8(ctx) {
     	var current;
 
@@ -6112,6 +6132,10 @@ var app = (function () {
     			label: 'Fjern merking', icon: '/images/nocheck.png',
     			action: ctx.func_10
     		},
+    		{
+    			label: 'Tom SMS', icon: '/images/sms.png',
+    			action: ctx.func_11
+    		}
     	]
     	},
     		$$inline: true
@@ -6156,13 +6180,13 @@ var app = (function () {
     			attr(img, "src", "/images/wrench.png");
     			attr(img, "width", "24");
     			attr(img, "alt", "Innstillinger");
-    			add_location(img, file$d, 214, 1, 5711);
+    			add_location(img, file$d, 215, 1, 5768);
     			attr(button, "class", "conf");
-    			add_location(button, file$d, 213, 0, 5629);
-    			add_location(h1, file$d, 217, 0, 5784);
+    			add_location(button, file$d, 214, 0, 5686);
+    			add_location(h1, file$d, 218, 0, 5841);
     			attr(style, "type", "text/css");
-    			add_location(style, file$d, 219, 0, 5806);
-    			add_location(div, file$d, 204, 0, 5441);
+    			add_location(style, file$d, 220, 0, 5863);
+    			add_location(div, file$d, 205, 0, 5498);
 
     			dispose = [
     				listen(button, "click", stop_propagation(ctx.click_handler)),
@@ -6240,7 +6264,7 @@ var app = (function () {
     			if (changed.showConfigMenu) menu1_changes.show = ctx.showConfigMenu;
     			if (changed.menuX) menu1_changes.x = ctx.menuX;
     			if (changed.menuY) menu1_changes.y = ctx.menuY;
-    			if (changed.showDriverEditor || changed.showConfigMenu || changed.reload || changed.selectAllShown || changed.selectedItems) menu1_changes.items = [
+    			if (changed.showDriverEditor || changed.showConfigMenu || changed.reload || changed.selectAllShown || changed.selectedItems || changed.smsEditorType) menu1_changes.items = [
     		{
     			label: 'Hentere', icon: '/images/smallcar.png',
     			action: ctx.func_7
@@ -6257,6 +6281,10 @@ var app = (function () {
     			label: 'Fjern merking', icon: '/images/nocheck.png',
     			action: ctx.func_10
     		},
+    		{
+    			label: 'Tom SMS', icon: '/images/sms.png',
+    			action: ctx.func_11
+    		}
     	];
     			menu1.$set(menu1_changes);
 
@@ -6337,13 +6365,14 @@ var app = (function () {
     	const res = await fetch(`${apiUrl}/jobs` + (forceReload ? '?refresh=1' : ''));
     	if (res.ok) {
     		let json = await res.json();
+    		json.forEach((item, idx) => {
+    			item.status = item.status || '';
+    			item.admkom = item.admkom || '';
+    			item.jobnr = item.jobnr || (idx + 1);
+    		});
     		json.sort(
     			(a, b) => a.adresseforhenting < b.adresseforhenting ? -1 : 1
     		);
-    		json.forEach(item => {
-    			item.status = item.status || '';
-    			item.admkom = item.admkom || '';
-    		});
     		jobs.set(json);
     		return true;
     	} else {
@@ -6522,8 +6551,8 @@ ${baseUrl}/henting/?jobb=${
     		selectedItems.length = 0; $$invalidate('selectedItems', selectedItems);
     		$jobs.forEach(item => {
     			if (filter(freeTextFilter, {smallActive, bigActive}, 
-    				{monActive, tueActive, wedActive, thuActive, dayFilterExclusive}, 
-    				typeFilter, hideDoneJobs, item)
+    				{monActive, tueActive, wedActive, thuActive, dayFilterExclusive},
+    				typeFilter, hideDoneJobs, drivers, item)
     			) {
     				selectedItems.push(item.id);
     			}
@@ -6696,6 +6725,12 @@ ${baseUrl}/henting/?jobb=${
     		return $$result;
     	}
 
+    	function func_11(e) {
+    		const $$result = (showConfigMenu = false, smsEditorType = 'new');
+    		$$invalidate('showConfigMenu', showConfigMenu); $$invalidate('smsEditorType', smsEditorType);
+    		return $$result;
+    	}
+
     	function contextmenu_handler(e) {
     			toggleMenu(e.target);
     		}
@@ -6773,6 +6808,7 @@ ${baseUrl}/henting/?jobb=${
     		func_8,
     		func_9,
     		func_10,
+    		func_11,
     		contextmenu_handler,
     		click_handler_6,
     		mousedown_handler,
@@ -6800,7 +6836,7 @@ ${baseUrl}/henting/?jobb=${
     	return child_ctx;
     }
 
-    // (184:0) {:catch error}
+    // (249:0) {:catch error}
     function create_catch_block$1(ctx) {
     	var p, t_value = ctx.error.message + "", t;
 
@@ -6809,7 +6845,7 @@ ${baseUrl}/henting/?jobb=${
     			p = element("p");
     			t = text(t_value);
     			set_style(p, "color", "red");
-    			add_location(p, file$e, 184, 1, 5053);
+    			add_location(p, file$e, 249, 1, 6611);
     		},
 
     		m: function mount(target, anchor) {
@@ -6834,11 +6870,11 @@ ${baseUrl}/henting/?jobb=${
     	};
     }
 
-    // (100:0) {:then data}
+    // (148:0) {:then data}
     function create_then_block$1(ctx) {
-    	var h1, t1, t2, each_1_anchor, current;
+    	var h1, t1, t2, t3, hr, t4, button, current, dispose;
 
-    	var if_block = (ctx.$jobs.length > 1) && create_if_block_5(ctx);
+    	var if_block = (ctx.$jobs.length > 1) && create_if_block_6(ctx);
 
     	var each_value = ctx.$jobs;
 
@@ -6864,9 +6900,17 @@ ${baseUrl}/henting/?jobb=${
     				each_blocks[i].c();
     			}
 
-    			each_1_anchor = empty();
-    			attr(h1, "class", "svelte-13d3xze");
-    			add_location(h1, file$e, 100, 1, 2546);
+    			t3 = space();
+    			hr = element("hr");
+    			t4 = space();
+    			button = element("button");
+    			button.textContent = "Alle mine jobber";
+    			attr(h1, "class", "svelte-1l2x28v");
+    			add_location(h1, file$e, 148, 1, 3575);
+    			add_location(hr, file$e, 241, 1, 6456);
+    			attr(button, "class", "p8 br2 svelte-1l2x28v");
+    			add_location(button, file$e, 242, 1, 6462);
+    			dispose = listen(button, "click", ctx.click_handler_4);
     		},
 
     		m: function mount(target, anchor) {
@@ -6879,7 +6923,10 @@ ${baseUrl}/henting/?jobb=${
     				each_blocks[i].m(target, anchor);
     			}
 
-    			insert(target, each_1_anchor, anchor);
+    			insert(target, t3, anchor);
+    			insert(target, hr, anchor);
+    			insert(target, t4, anchor);
+    			insert(target, button, anchor);
     			current = true;
     		},
 
@@ -6888,7 +6935,7 @@ ${baseUrl}/henting/?jobb=${
     				if (if_block) {
     					if_block.p(changed, ctx);
     				} else {
-    					if_block = create_if_block_5(ctx);
+    					if_block = create_if_block_6(ctx);
     					if_block.c();
     					if_block.m(t2.parentNode, t2);
     				}
@@ -6910,7 +6957,7 @@ ${baseUrl}/henting/?jobb=${
     						each_blocks[i] = create_each_block$9(child_ctx);
     						each_blocks[i].c();
     						transition_in(each_blocks[i], 1);
-    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    						each_blocks[i].m(t3.parentNode, t3);
     					}
     				}
 
@@ -6949,14 +6996,19 @@ ${baseUrl}/henting/?jobb=${
     			destroy_each(each_blocks, detaching);
 
     			if (detaching) {
-    				detach(each_1_anchor);
+    				detach(t3);
+    				detach(hr);
+    				detach(t4);
+    				detach(button);
     			}
+
+    			dispose();
     		}
     	};
     }
 
-    // (102:1) {#if $jobs.length > 1}
-    function create_if_block_5(ctx) {
+    // (150:1) {#if $jobs.length > 1}
+    function create_if_block_6(ctx) {
     	var p, a, t, br, img, a_href_value;
 
     	return {
@@ -6966,16 +7018,16 @@ ${baseUrl}/henting/?jobb=${
     			t = text("Kart med alle adresser: ");
     			br = element("br");
     			img = element("img");
-    			add_location(br, file$e, 104, 44, 2736);
+    			add_location(br, file$e, 152, 44, 3765);
     			attr(img, "src", "/images/map.png");
     			attr(img, "alt", "alle adresser i kart");
     			attr(img, "width", "36");
-    			add_location(img, file$e, 104, 48, 2740);
+    			add_location(img, file$e, 152, 48, 3769);
     			attr(a, "href", a_href_value = gMapsDirection + ctx.$jobs.map(func$1).join('/'));
     			attr(a, "target", "_blank");
-    			add_location(a, file$e, 102, 23, 2612);
-    			attr(p, "class", "commonmap svelte-13d3xze");
-    			add_location(p, file$e, 102, 2, 2591);
+    			add_location(a, file$e, 150, 23, 3641);
+    			attr(p, "class", "commonmap svelte-1l2x28v");
+    			add_location(p, file$e, 150, 2, 3620);
     		},
 
     		m: function mount(target, anchor) {
@@ -7000,8 +7052,8 @@ ${baseUrl}/henting/?jobb=${
     	};
     }
 
-    // (108:2) {#if job.loading}
-    function create_if_block_4$1(ctx) {
+    // (156:2) {#if job.loading}
+    function create_if_block_5(ctx) {
     	var div, current;
 
     	var loadingicon = new LoadingIcon({ $$inline: true });
@@ -7010,8 +7062,8 @@ ${baseUrl}/henting/?jobb=${
     		c: function create() {
     			div = element("div");
     			loadingicon.$$.fragment.c();
-    			attr(div, "class", "loading svelte-13d3xze");
-    			add_location(div, file$e, 107, 19, 2865);
+    			attr(div, "class", "loading svelte-1l2x28v");
+    			add_location(div, file$e, 155, 19, 3894);
     		},
 
     		m: function mount(target, anchor) {
@@ -7042,8 +7094,8 @@ ${baseUrl}/henting/?jobb=${
     	};
     }
 
-    // (129:3) {#if job.informasjonomloppene}
-    function create_if_block_3$2(ctx) {
+    // (178:3) {#if job.informasjonomloppene}
+    function create_if_block_4$1(ctx) {
     	var p, b, i, t_1_value = ctx.job.informasjonomloppene + "", t_1;
 
     	return {
@@ -7053,12 +7105,12 @@ ${baseUrl}/henting/?jobb=${
     			b.textContent = "Om loppene: ";
     			i = element("i");
     			t_1 = text(t_1_value);
-    			attr(b, "class", "svelte-13d3xze");
-    			add_location(b, file$e, 128, 37, 3474);
-    			attr(i, "class", "svelte-13d3xze");
-    			add_location(i, file$e, 128, 56, 3493);
-    			attr(p, "class", "svelte-13d3xze");
-    			add_location(p, file$e, 128, 34, 3471);
+    			attr(b, "class", "svelte-1l2x28v");
+    			add_location(b, file$e, 177, 37, 4565);
+    			attr(i, "class", "svelte-1l2x28v");
+    			add_location(i, file$e, 177, 56, 4584);
+    			attr(p, "class", "svelte-1l2x28v");
+    			add_location(p, file$e, 177, 34, 4562);
     		},
 
     		m: function mount(target, anchor) {
@@ -7082,8 +7134,80 @@ ${baseUrl}/henting/?jobb=${
     	};
     }
 
-    // (145:5) {#if job.hentesav && job.hentesav === params.henter}
+    // (194:5) {#if job.hentesav && job.hentesav === params.henter}
     function create_if_block_2$3(ctx) {
+    	var current_block_type_index, if_block, if_block_anchor, current;
+
+    	var if_block_creators = [
+    		create_if_block_3$2,
+    		create_else_block_1
+    	];
+
+    	var if_blocks = [];
+
+    	function select_block_type(ctx) {
+    		if (ctx.job.status === 'Hentes') return 0;
+    		return 1;
+    	}
+
+    	current_block_type_index = select_block_type(ctx);
+    	if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+
+    	return {
+    		c: function create() {
+    			if_block.c();
+    			if_block_anchor = empty();
+    		},
+
+    		m: function mount(target, anchor) {
+    			if_blocks[current_block_type_index].m(target, anchor);
+    			insert(target, if_block_anchor, anchor);
+    			current = true;
+    		},
+
+    		p: function update_1(changed, ctx) {
+    			var previous_block_index = current_block_type_index;
+    			current_block_type_index = select_block_type(ctx);
+    			if (current_block_type_index !== previous_block_index) {
+    				group_outros();
+    				transition_out(if_blocks[previous_block_index], 1, 1, () => {
+    					if_blocks[previous_block_index] = null;
+    				});
+    				check_outros();
+
+    				if_block = if_blocks[current_block_type_index];
+    				if (!if_block) {
+    					if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    					if_block.c();
+    				}
+    				transition_in(if_block, 1);
+    				if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    			}
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(if_block);
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			transition_out(if_block);
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			if_blocks[current_block_type_index].d(detaching);
+
+    			if (detaching) {
+    				detach(if_block_anchor);
+    			}
+    		}
+    	};
+    }
+
+    // (198:6) {:else}
+    function create_else_block_1(ctx) {
     	var br0, t0, em, br1, t1, em_transition, current;
 
     	return {
@@ -7092,10 +7216,10 @@ ${baseUrl}/henting/?jobb=${
     			t0 = space();
     			em = element("em");
     			br1 = element("br");
-    			t1 = text("★ ★ ☺   Du har tatt på deg jobben - takk!  ☺ ★ ★");
-    			add_location(br0, file$e, 145, 6, 4033);
-    			add_location(br1, file$e, 146, 26, 4064);
-    			add_location(em, file$e, 146, 6, 4044);
+    			t1 = text("★ ★ ☺  Takk for at du hentet!  ☺ ★ ★");
+    			add_location(br0, file$e, 198, 7, 5310);
+    			add_location(br1, file$e, 199, 27, 5342);
+    			add_location(em, file$e, 199, 7, 5322);
     		},
 
     		m: function mount(target, anchor) {
@@ -7135,8 +7259,95 @@ ${baseUrl}/henting/?jobb=${
     	};
     }
 
-    // (172:39) 
+    // (195:6) {#if job.status === 'Hentes'}
+    function create_if_block_3$2(ctx) {
+    	var br0, t0, em, br1, t1, em_transition, current;
+
+    	return {
+    		c: function create() {
+    			br0 = element("br");
+    			t0 = space();
+    			em = element("em");
+    			br1 = element("br");
+    			t1 = text("★ ★ ☺   Du har tatt på deg jobben - takk!  ☺ ★ ★");
+    			add_location(br0, file$e, 195, 7, 5199);
+    			add_location(br1, file$e, 196, 27, 5231);
+    			add_location(em, file$e, 196, 7, 5211);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, br0, anchor);
+    			insert(target, t0, anchor);
+    			insert(target, em, anchor);
+    			append(em, br1);
+    			append(em, t1);
+    			current = true;
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			add_render_callback(() => {
+    				if (!em_transition) em_transition = create_bidirectional_transition(em, fade, {}, true);
+    				em_transition.run(1);
+    			});
+
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			if (!em_transition) em_transition = create_bidirectional_transition(em, fade, {}, false);
+    			em_transition.run(0);
+
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(br0);
+    				detach(t0);
+    				detach(em);
+    				if (em_transition) em_transition.end();
+    			}
+    		}
+    	};
+    }
+
+    // (203:5) {#if job.hentesav && job.hentesav !== params.henter}
     function create_if_block_1$4(ctx) {
+    	var br, t, em, b;
+
+    	return {
+    		c: function create() {
+    			br = element("br");
+    			t = space();
+    			em = element("em");
+    			b = element("b");
+    			b.textContent = "Merk: jobben er akseptert av en annen henter.";
+    			add_location(br, file$e, 203, 6, 5475);
+    			attr(b, "class", "svelte-1l2x28v");
+    			add_location(b, file$e, 204, 10, 5490);
+    			add_location(em, file$e, 204, 6, 5486);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, br, anchor);
+    			insert(target, t, anchor);
+    			insert(target, em, anchor);
+    			append(em, b);
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(br);
+    				detach(t);
+    				detach(em);
+    			}
+    		}
+    	};
+    }
+
+    // (230:5) {:else}
+    function create_else_block$2(ctx) {
     	var button, dispose;
 
     	function click_handler_3(...args) {
@@ -7147,8 +7358,8 @@ ${baseUrl}/henting/?jobb=${
     		c: function create() {
     			button = element("button");
     			button.textContent = "Vi tar jobben!";
-    			attr(button, "class", "p8 br2 svelte-13d3xze");
-    			add_location(button, file$e, 172, 6, 4825);
+    			attr(button, "class", "p8 br2 svelte-1l2x28v");
+    			add_location(button, file$e, 230, 6, 6243);
     			dispose = listen(button, "click", click_handler_3);
     		},
 
@@ -7170,7 +7381,7 @@ ${baseUrl}/henting/?jobb=${
     	};
     }
 
-    // (153:5) {#if job.hentesav === params.henter && job.status === 'Hentes'}
+    // (211:5) {#if job.hentesav === params.henter && job.status === 'Hentes'}
     function create_if_block$6(ctx) {
     	var button0, t1, button1, t3, button2, dispose;
 
@@ -7196,12 +7407,12 @@ ${baseUrl}/henting/?jobb=${
     			t3 = space();
     			button2 = element("button");
     			button2.textContent = "Jobben skal ikke hentes";
-    			attr(button0, "class", "p8 br2 svelte-13d3xze");
-    			add_location(button0, file$e, 153, 6, 4269);
-    			attr(button1, "class", "p8 br2 svelte-13d3xze");
-    			add_location(button1, file$e, 159, 6, 4434);
-    			attr(button2, "class", "p8 br2 svelte-13d3xze");
-    			add_location(button2, file$e, 165, 6, 4617);
+    			attr(button0, "class", "p8 br2 svelte-1l2x28v");
+    			add_location(button0, file$e, 211, 6, 5714);
+    			attr(button1, "class", "p8 br2 svelte-1l2x28v");
+    			add_location(button1, file$e, 217, 6, 5879);
+    			attr(button2, "class", "p8 br2 svelte-1l2x28v");
+    			add_location(button2, file$e, 223, 6, 6062);
 
     			dispose = [
     				listen(button0, "click", click_handler),
@@ -7236,11 +7447,11 @@ ${baseUrl}/henting/?jobb=${
     	};
     }
 
-    // (107:1) {#each $jobs as job, i}
+    // (155:1) {#each $jobs as job, i}
     function create_each_block$9(ctx) {
-    	var t0, section, p0, b0, t2, span0, t3_value = ctx.job.adresseforhenting + "", t3, t4, a, img, a_href_value, t5, p1, b1, t7, span1, t8, p2, b2, t10, span2, t11, t12, p3, b3, span3, t14, p4, b4, t16, span4, textarea, t17, p5, b5, span5, em, t19_value = ctx.job.status + "", t19, t20, br, t21, t22, p6, b6, span6, t24, section_class_value, current, dispose;
+    	var t0, section, p0, b0, t2, span0, t3_value = ctx.job.adresseforhenting + "", t3, t4, a, img, a_href_value, t5, span1, t6_value = ctx.job.jobnr + "", t6, t7, p1, b1, t9, span2, t10, p2, b2, t12, span3, t13, t14, p3, b3, span4, t16, p4, b4, t18, span5, textarea, t19, p5, b5, span6, em, t21_value = ctx.job.status + "", t21, t22, br, t23, t24, t25, p6, b6, span7, section_class_value, current, dispose;
 
-    	var if_block0 = (ctx.job.loading) && create_if_block_4$1();
+    	var if_block0 = (ctx.job.loading) && create_if_block_5();
 
     	var renderperson = new RenderPerson({
     		props: {
@@ -7258,7 +7469,7 @@ ${baseUrl}/henting/?jobb=${
     		$$inline: true
     	});
 
-    	var if_block1 = (ctx.job.informasjonomloppene) && create_if_block_3$2(ctx);
+    	var if_block1 = (ctx.job.informasjonomloppene) && create_if_block_4$1(ctx);
 
     	function qualityupdate_handler(...args) {
     		return ctx.qualityupdate_handler(ctx, ...args);
@@ -7278,15 +7489,17 @@ ${baseUrl}/henting/?jobb=${
     		return ctx.change_handler(ctx, ...args);
     	}
 
-    	var if_block2 = (ctx.job.hentesav && ctx.job.hentesav === ctx.params.henter) && create_if_block_2$3();
+    	var if_block2 = (ctx.job.hentesav && ctx.job.hentesav === ctx.params.henter) && create_if_block_2$3(ctx);
 
-    	function select_block_type(ctx) {
+    	var if_block3 = (ctx.job.hentesav && ctx.job.hentesav !== ctx.params.henter) && create_if_block_1$4();
+
+    	function select_block_type_1(ctx) {
     		if (ctx.job.hentesav === ctx.params.henter && ctx.job.status === 'Hentes') return create_if_block$6;
-    		if (ctx.job.status !== 'Hentet') return create_if_block_1$4;
+    		return create_else_block$2;
     	}
 
-    	var current_block_type = select_block_type(ctx);
-    	var if_block3 = current_block_type && current_block_type(ctx);
+    	var current_block_type = select_block_type_1(ctx);
+    	var if_block4 = current_block_type(ctx);
 
     	return {
     		c: function create() {
@@ -7303,107 +7516,113 @@ ${baseUrl}/henting/?jobb=${
     			a = element("a");
     			img = element("img");
     			t5 = space();
+    			span1 = element("span");
+    			t6 = text(t6_value);
+    			t7 = space();
     			p1 = element("p");
     			b1 = element("b");
     			b1.textContent = "Kontaktperson:";
-    			t7 = space();
-    			span1 = element("span");
+    			t9 = space();
+    			span2 = element("span");
     			renderperson.$$.fragment.c();
-    			t8 = space();
+    			t10 = space();
     			p2 = element("p");
     			b2 = element("b");
     			b2.textContent = "Typer:";
-    			t10 = space();
-    			span2 = element("span");
-    			rendertypes.$$.fragment.c();
-    			t11 = space();
-    			if (if_block1) if_block1.c();
     			t12 = space();
+    			span3 = element("span");
+    			rendertypes.$$.fragment.c();
+    			t13 = space();
+    			if (if_block1) if_block1.c();
+    			t14 = space();
     			p3 = element("p");
     			b3 = element("b");
     			b3.textContent = "Estimert kvalitet: ";
-    			span3 = element("span");
+    			span4 = element("span");
     			renderstars.$$.fragment.c();
-    			t14 = space();
+    			t16 = space();
     			p4 = element("p");
     			b4 = element("b");
     			b4.textContent = "Administrators/henteres kommentarer:";
-    			t16 = space();
-    			span4 = element("span");
+    			t18 = space();
+    			span5 = element("span");
     			textarea = element("textarea");
-    			t17 = space();
+    			t19 = space();
     			p5 = element("p");
     			b5 = element("b");
     			b5.textContent = "Status: ";
-    			span5 = element("span");
+    			span6 = element("span");
     			em = element("em");
-    			t19 = text(t19_value);
-    			t20 = space();
-    			br = element("br");
-    			t21 = space();
-    			if (if_block2) if_block2.c();
+    			t21 = text(t21_value);
     			t22 = space();
+    			br = element("br");
+    			t23 = space();
+    			if (if_block2) if_block2.c();
+    			t24 = space();
+    			if (if_block3) if_block3.c();
+    			t25 = space();
     			p6 = element("p");
     			b6 = element("b");
     			b6.textContent = "Oppdater status:";
-    			span6 = element("span");
-    			if (if_block3) if_block3.c();
-    			t24 = space();
-    			attr(b0, "class", "svelte-13d3xze");
-    			add_location(b0, file$e, 110, 4, 2955);
+    			span7 = element("span");
+    			if_block4.c();
+    			attr(b0, "class", "svelte-1l2x28v");
+    			add_location(b0, file$e, 158, 4, 3984);
     			attr(img, "src", "/images/map.png");
     			attr(img, "alt", "adresse i kart");
     			attr(img, "width", "24");
-    			add_location(img, file$e, 115, 6, 3100);
+    			add_location(img, file$e, 163, 6, 4129);
     			attr(a, "href", a_href_value = gMapsDirection + ctx.job.adresseforhenting);
     			attr(a, "target", "_blank");
-    			add_location(a, file$e, 112, 5, 3013);
-    			attr(span0, "class", "svelte-13d3xze");
-    			add_location(span0, file$e, 110, 21, 2972);
-    			attr(p0, "class", "svelte-13d3xze");
-    			add_location(p0, file$e, 109, 3, 2947);
-    			attr(b1, "class", "svelte-13d3xze");
-    			add_location(b1, file$e, 120, 4, 3201);
-    			attr(span1, "class", "svelte-13d3xze");
-    			add_location(span1, file$e, 121, 4, 3228);
-    			attr(p1, "class", "svelte-13d3xze");
-    			add_location(p1, file$e, 119, 3, 3193);
-    			attr(b2, "class", "svelte-13d3xze");
-    			add_location(b2, file$e, 126, 4, 3346);
-    			attr(span2, "class", "svelte-13d3xze");
-    			add_location(span2, file$e, 126, 19, 3361);
-    			attr(p2, "class", "svelte-13d3xze");
-    			add_location(p2, file$e, 125, 3, 3338);
-    			attr(b3, "class", "svelte-13d3xze");
-    			add_location(b3, file$e, 129, 6, 3542);
-    			attr(span3, "class", "svelte-13d3xze");
-    			add_location(span3, file$e, 129, 32, 3568);
-    			attr(p3, "class", "svelte-13d3xze");
-    			add_location(p3, file$e, 129, 3, 3539);
-    			attr(b4, "class", "svelte-13d3xze");
-    			add_location(b4, file$e, 133, 4, 3701);
-    			attr(textarea, "class", "svelte-13d3xze");
-    			add_location(textarea, file$e, 135, 5, 3761);
-    			attr(span4, "class", "svelte-13d3xze");
-    			add_location(span4, file$e, 134, 4, 3749);
-    			attr(p4, "class", "svelte-13d3xze");
-    			add_location(p4, file$e, 132, 3, 3693);
-    			attr(b5, "class", "svelte-13d3xze");
-    			add_location(b5, file$e, 142, 4, 3915);
-    			add_location(em, file$e, 143, 5, 3942);
-    			add_location(br, file$e, 143, 27, 3964);
-    			attr(span5, "class", "svelte-13d3xze");
-    			add_location(span5, file$e, 142, 19, 3930);
-    			attr(p5, "class", "svelte-13d3xze");
-    			add_location(p5, file$e, 141, 3, 3907);
-    			attr(b6, "class", "svelte-13d3xze");
-    			add_location(b6, file$e, 151, 4, 4164);
-    			attr(span6, "class", "svelte-13d3xze");
-    			add_location(span6, file$e, 151, 27, 4187);
-    			attr(p6, "class", "svelte-13d3xze");
-    			add_location(p6, file$e, 150, 3, 4156);
-    			attr(section, "class", section_class_value = "" + null_to_empty(ctx.job.status) + " svelte-13d3xze");
-    			add_location(section, file$e, 108, 2, 2915);
+    			add_location(a, file$e, 160, 5, 4042);
+    			attr(span0, "class", "svelte-1l2x28v");
+    			add_location(span0, file$e, 158, 21, 4001);
+    			attr(span1, "class", "jobnr svelte-1l2x28v");
+    			add_location(span1, file$e, 166, 4, 4215);
+    			attr(p0, "class", "svelte-1l2x28v");
+    			add_location(p0, file$e, 157, 3, 3976);
+    			attr(b1, "class", "svelte-1l2x28v");
+    			add_location(b1, file$e, 169, 4, 4273);
+    			attr(span2, "class", "svelte-1l2x28v");
+    			add_location(span2, file$e, 170, 4, 4300);
+    			attr(p1, "class", "svelte-1l2x28v");
+    			add_location(p1, file$e, 168, 3, 4265);
+    			attr(b2, "class", "svelte-1l2x28v");
+    			add_location(b2, file$e, 175, 4, 4437);
+    			attr(span3, "class", "svelte-1l2x28v");
+    			add_location(span3, file$e, 175, 19, 4452);
+    			attr(p2, "class", "hideondone svelte-1l2x28v");
+    			add_location(p2, file$e, 174, 3, 4410);
+    			attr(b3, "class", "svelte-1l2x28v");
+    			add_location(b3, file$e, 178, 25, 4652);
+    			attr(span4, "class", "svelte-1l2x28v");
+    			add_location(span4, file$e, 178, 51, 4678);
+    			attr(p3, "class", "hideondone svelte-1l2x28v");
+    			add_location(p3, file$e, 178, 3, 4630);
+    			attr(b4, "class", "svelte-1l2x28v");
+    			add_location(b4, file$e, 182, 4, 4830);
+    			attr(textarea, "class", "svelte-1l2x28v");
+    			add_location(textarea, file$e, 184, 5, 4890);
+    			attr(span5, "class", "svelte-1l2x28v");
+    			add_location(span5, file$e, 183, 4, 4878);
+    			attr(p4, "class", "hideondone svelte-1l2x28v");
+    			add_location(p4, file$e, 181, 3, 4803);
+    			attr(b5, "class", "svelte-1l2x28v");
+    			add_location(b5, file$e, 191, 4, 5044);
+    			add_location(em, file$e, 192, 5, 5071);
+    			add_location(br, file$e, 192, 27, 5093);
+    			attr(span6, "class", "svelte-1l2x28v");
+    			add_location(span6, file$e, 191, 19, 5059);
+    			attr(p5, "class", "svelte-1l2x28v");
+    			add_location(p5, file$e, 190, 3, 5036);
+    			attr(b6, "class", "svelte-1l2x28v");
+    			add_location(b6, file$e, 209, 4, 5609);
+    			attr(span7, "class", "svelte-1l2x28v");
+    			add_location(span7, file$e, 209, 27, 5632);
+    			attr(p6, "class", "hideondone svelte-1l2x28v");
+    			add_location(p6, file$e, 208, 3, 5582);
+    			attr(section, "class", section_class_value = "" + null_to_empty(ctx.job.status) + " svelte-1l2x28v");
+    			add_location(section, file$e, 156, 2, 3944);
 
     			dispose = [
     				listen(textarea, "input", textarea_input_handler),
@@ -7423,50 +7642,54 @@ ${baseUrl}/henting/?jobb=${
     			append(span0, t4);
     			append(span0, a);
     			append(a, img);
-    			append(section, t5);
+    			append(p0, t5);
+    			append(p0, span1);
+    			append(span1, t6);
+    			append(section, t7);
     			append(section, p1);
     			append(p1, b1);
-    			append(p1, t7);
-    			append(p1, span1);
-    			mount_component(renderperson, span1, null);
-    			append(section, t8);
+    			append(p1, t9);
+    			append(p1, span2);
+    			mount_component(renderperson, span2, null);
+    			append(section, t10);
     			append(section, p2);
     			append(p2, b2);
-    			append(p2, t10);
-    			append(p2, span2);
-    			mount_component(rendertypes, span2, null);
-    			append(section, t11);
+    			append(p2, t12);
+    			append(p2, span3);
+    			mount_component(rendertypes, span3, null);
+    			append(section, t13);
     			if (if_block1) if_block1.m(section, null);
-    			append(section, t12);
+    			append(section, t14);
     			append(section, p3);
     			append(p3, b3);
-    			append(p3, span3);
-    			mount_component(renderstars, span3, null);
-    			append(section, t14);
+    			append(p3, span4);
+    			mount_component(renderstars, span4, null);
+    			append(section, t16);
     			append(section, p4);
     			append(p4, b4);
-    			append(p4, t16);
-    			append(p4, span4);
-    			append(span4, textarea);
+    			append(p4, t18);
+    			append(p4, span5);
+    			append(span5, textarea);
 
     			textarea.value = ctx.job.admkom;
 
-    			append(section, t17);
+    			append(section, t19);
     			append(section, p5);
     			append(p5, b5);
-    			append(p5, span5);
-    			append(span5, em);
-    			append(em, t19);
-    			append(span5, t20);
-    			append(span5, br);
-    			append(span5, t21);
-    			if (if_block2) if_block2.m(span5, null);
-    			append(section, t22);
+    			append(p5, span6);
+    			append(span6, em);
+    			append(em, t21);
+    			append(span6, t22);
+    			append(span6, br);
+    			append(span6, t23);
+    			if (if_block2) if_block2.m(span6, null);
+    			append(span6, t24);
+    			if (if_block3) if_block3.m(span6, null);
+    			append(section, t25);
     			append(section, p6);
     			append(p6, b6);
-    			append(p6, span6);
-    			if (if_block3) if_block3.m(span6, null);
-    			append(section, t24);
+    			append(p6, span7);
+    			if_block4.m(span7, null);
     			current = true;
     		},
 
@@ -7474,7 +7697,7 @@ ${baseUrl}/henting/?jobb=${
     			ctx = new_ctx;
     			if (ctx.job.loading) {
     				if (!if_block0) {
-    					if_block0 = create_if_block_4$1();
+    					if_block0 = create_if_block_5();
     					if_block0.c();
     					transition_in(if_block0, 1);
     					if_block0.m(t0.parentNode, t0);
@@ -7497,6 +7720,10 @@ ${baseUrl}/henting/?jobb=${
     				attr(a, "href", a_href_value);
     			}
 
+    			if ((!current || changed.$jobs) && t6_value !== (t6_value = ctx.job.jobnr + "")) {
+    				set_data(t6, t6_value);
+    			}
+
     			var renderperson_changes = {};
     			if (changed.$jobs) renderperson_changes.name = ctx.job.navnpåkontaktperson;
     			if (changed.$jobs) renderperson_changes.number = ctx.job.telefonnummer;
@@ -7510,9 +7737,9 @@ ${baseUrl}/henting/?jobb=${
     				if (if_block1) {
     					if_block1.p(changed, ctx);
     				} else {
-    					if_block1 = create_if_block_3$2(ctx);
+    					if_block1 = create_if_block_4$1(ctx);
     					if_block1.c();
-    					if_block1.m(section, t12);
+    					if_block1.m(section, t14);
     				}
     			} else if (if_block1) {
     				if_block1.d(1);
@@ -7525,18 +7752,19 @@ ${baseUrl}/henting/?jobb=${
 
     			if (changed.$jobs) textarea.value = ctx.job.admkom;
 
-    			if ((!current || changed.$jobs) && t19_value !== (t19_value = ctx.job.status + "")) {
-    				set_data(t19, t19_value);
+    			if ((!current || changed.$jobs) && t21_value !== (t21_value = ctx.job.status + "")) {
+    				set_data(t21, t21_value);
     			}
 
     			if (ctx.job.hentesav && ctx.job.hentesav === ctx.params.henter) {
-    				if (!if_block2) {
-    					if_block2 = create_if_block_2$3();
+    				if (if_block2) {
+    					if_block2.p(changed, ctx);
+    					transition_in(if_block2, 1);
+    				} else {
+    					if_block2 = create_if_block_2$3(ctx);
     					if_block2.c();
     					transition_in(if_block2, 1);
-    					if_block2.m(span5, null);
-    				} else {
-    									transition_in(if_block2, 1);
+    					if_block2.m(span6, t24);
     				}
     			} else if (if_block2) {
     				group_outros();
@@ -7546,16 +7774,27 @@ ${baseUrl}/henting/?jobb=${
     				check_outros();
     			}
 
-    			if (current_block_type !== (current_block_type = select_block_type(ctx))) {
-    				if (if_block3) if_block3.d(1);
-    				if_block3 = current_block_type && current_block_type(ctx);
-    				if (if_block3) {
+    			if (ctx.job.hentesav && ctx.job.hentesav !== ctx.params.henter) {
+    				if (!if_block3) {
+    					if_block3 = create_if_block_1$4();
     					if_block3.c();
     					if_block3.m(span6, null);
     				}
+    			} else if (if_block3) {
+    				if_block3.d(1);
+    				if_block3 = null;
     			}
 
-    			if ((!current || changed.$jobs) && section_class_value !== (section_class_value = "" + null_to_empty(ctx.job.status) + " svelte-13d3xze")) {
+    			if (current_block_type !== (current_block_type = select_block_type_1(ctx))) {
+    				if_block4.d(1);
+    				if_block4 = current_block_type(ctx);
+    				if (if_block4) {
+    					if_block4.c();
+    					if_block4.m(span7, null);
+    				}
+    			}
+
+    			if ((!current || changed.$jobs) && section_class_value !== (section_class_value = "" + null_to_empty(ctx.job.status) + " svelte-1l2x28v")) {
     				attr(section, "class", section_class_value);
     			}
     		},
@@ -7601,12 +7840,13 @@ ${baseUrl}/henting/?jobb=${
 
     			if (if_block2) if_block2.d();
     			if (if_block3) if_block3.d();
+    			if_block4.d();
     			run_all(dispose);
     		}
     	};
     }
 
-    // (98:16)   <div class="loading"><LoadingIcon /></div> {:then data}
+    // (146:16)   <div class="loading"><LoadingIcon /></div> {:then data}
     function create_pending_block$1(ctx) {
     	var div, current;
 
@@ -7616,8 +7856,8 @@ ${baseUrl}/henting/?jobb=${
     		c: function create() {
     			div = element("div");
     			loadingicon.$$.fragment.c();
-    			attr(div, "class", "loading svelte-13d3xze");
-    			add_location(div, file$e, 98, 1, 2489);
+    			attr(div, "class", "loading svelte-1l2x28v");
+    			add_location(div, file$e, 146, 1, 3518);
     		},
 
     		m: function mount(target, anchor) {
@@ -7724,17 +7964,35 @@ ${baseUrl}/henting/?jobb=${
     	};
     }
 
+    function normalizeJobList(jobs) {
+    	jobs = jobs.sort(
+    		(a, b) => a.adresseforhenting < b.adresseforhenting ? -1 : 1
+    	);
+    	jobs.forEach(job => {
+    		job.oldStatus = job.status === 'Hentes' ? null : job.status;
+    		job.admkom = job.admkom || '';
+    	});
+    	return jobs;
+    }
+
     async function getData$1(token, ids) {
     	const res = await fetch(`${apiUrl}/job/${encodeURIComponent(ids)}?token=${encodeURIComponent(token)}`);
     	let json = await res.json();
     	if (res.ok) {
-    		json = json.sort(
-    			(a, b) => a.adresseforhenting < b.adresseforhenting ? -1 : 1
-    		);
-    		json.forEach(job => {
-    			job.oldStatus = job.status === 'Hentes' ? null : job.status;
-    			job.admkom = job.admkom || '';
-    		});
+    		json = normalizeJobList(json);
+    		jobs.set(json);
+    	} else {
+    		let text = await res.text();
+    		console.log(text);
+    		throw new Error('Ingen tilgang');
+    	}
+    }
+
+    async function getDataByAssignee(token, number) {
+    	const res = await fetch(`${apiUrl}/byperson/${encodeURIComponent(number)}?token=${encodeURIComponent(token)}`);
+    	let json = await res.json();
+    	if (res.ok) {
+    		json = normalizeJobList(json);
     		jobs.set(json);
     	} else {
     		let text = await res.text();
@@ -7769,9 +8027,8 @@ ${baseUrl}/henting/?jobb=${
     	}
     	if (params && (params.token && params.jobb)) {
     		$$invalidate('promise', promise = getData$1(params.token, params.jobb));
-
     	}
-    	
+
     	function update(id, detail) {
     		return changeJobDetails(id, detail, params.token)
     		.catch(err => alert(err));
@@ -7807,6 +8064,12 @@ ${baseUrl}/henting/?jobb=${
     		return update(job.id, {status: 'Hentes', hentesav: params.henter});
     	}
 
+    	function click_handler_4(e) {
+    		const $$result = promise = getDataByAssignee(params.token, params.henter);
+    		$$invalidate('promise', promise);
+    		return $$result;
+    	}
+
     	return {
     		params,
     		promise,
@@ -7818,7 +8081,8 @@ ${baseUrl}/henting/?jobb=${
     		click_handler,
     		click_handler_1,
     		click_handler_2,
-    		click_handler_3
+    		click_handler_3,
+    		click_handler_4
     	};
     }
 
