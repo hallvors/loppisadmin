@@ -200,6 +200,10 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 							<em transition:fade><br>★ ★ ☺  Takk for at du hentet!  ☺ ★ ★</em>
 						{/if}
 					{/if}
+					{#if job.hentesav && job.hentesav !== params.henter}
+						<br>
+						<em><b>Merk: jobben er akseptert av en annen henter.</b></em>
+					{/if}
 				</span>
 			</p>
 			<p class="hideondone">
