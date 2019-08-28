@@ -74,6 +74,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 		display: table-cell;
 		border: 8px solid transparent;
 		vertical-align: top;
+		position: relative;
 	}
 	section p b:first-child {width: 5%;}
 	@media only screen and (min-width: 700px) {
@@ -86,12 +87,44 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 	}
 	button {
 		margin-bottom: 8px;
+		font-size: 1.2em;
 	}
 
 	.commonmap {
 		text-align: center;
 	}
 	textarea {height: 100px; width: 100%;font-size: 1em;}
+	.Hentet {
+		border-color: green;
+		background: #fefffe;
+		position: relative;
+		overflow: hidden;
+	}
+	.Hentet .hideondone {display: none;}
+	.Hentet:after {
+		position: absolute;
+		line-height: 32px;
+		text-align: center;
+		top: 24px;
+		right: 0px;
+		width: 30%;
+		transform-origin: 50% 50%;
+		opacity: 0.5;
+		transform: translate(25%, -20%) rotate(35deg);
+		font-size: 1.5em;
+	}
+	.Hentet:after {
+		content: 'Hentet';
+		background-color: yellow;
+	}
+	.jobnr {
+		display: inline-block;
+		height: 100%;
+		padding: 4px;
+		background: #aaa;
+		position: absolute;
+		right: 8px;
+	}
 
 </style>
 
@@ -116,6 +149,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 						<img src="/images/map.png" alt="adresse i kart" width="24">
 					</a>
 				</span>
+				<span class="jobnr">{itemData.jobnr}</span>
 			</p>
 			<p>
 				<b>Kontaktperson: </b>
@@ -123,14 +157,14 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 					<RenderPerson name={job.navnpåkontaktperson} number={job.telefonnummer} />
 				</span>
 			</p>
-			<p>
+			<p class="hideondone">
 				<b>Typer: </b> <span><RenderTypes types={job.typerlopper} showAll={true} /></span>
 			</p>
 			{#if job.informasjonomloppene} <p><b>Om loppene: </b><i>{job.informasjonomloppene}</i></p>{/if}
-			<p><b>Estimert kvalitet: </b><span>
+			<p class="hideondone"><b>Estimert kvalitet: </b><span>
 				<RenderStars qualityRanking={job.kvalitet}  on:qualityupdate={e => update(job.id, e.detail)} />
 			</span></p>
-			<p>
+			<p class="hideondone">
 				<b>Administrators/henteres kommentarer:</b>
 				<span>
 					<textarea
@@ -143,12 +177,17 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 				<b>Status: </b><span>
 					<em>{job.status}</em> <br>
 					{#if job.hentesav && job.hentesav === params.henter}
-						<br>
-						<em transition:fade><br>★ ★ ☺   Du har tatt på deg jobben - takk!  ☺ ★ ★</em>
+						{#if job.status === 'Hentes'}
+							<br>
+							<em transition:fade><br>★ ★ ☺   Du har tatt på deg jobben - takk!  ☺ ★ ★</em>
+						{:else}
+							<br>
+							<em transition:fade><br>★ ★ ☺  Takk for at du hentet!  ☺ ★ ★</em>
+						{/if}
 					{/if}
 				</span>
 			</p>
-			<p>
+			<p class="hideondone">
 				<b>Oppdater status:</b><span>
 					{#if job.hentesav === params.henter && job.status === 'Hentes'}
 						<button
@@ -169,7 +208,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 						>
 							Jobben skal ikke hentes
 						</button>
-					{:else if job.status !== 'Hentet'}
+					{:else}
 						<button
 							on:click={e => update(job.id, {status: 'Hentes', hentesav: params.henter})}
 							class="p8 br2"

@@ -125,7 +125,13 @@ button img {vertical-align: middle;}
 clear:left;
 }
 textarea {height: 150px; width: 100%;font-size: 1em;}
-
+.jobnr {
+	display: inline-block;
+	height: 100%;
+	padding: 4px;
+	background: #aaa;
+	margin-left: -14px;
+}
 </style>
 
 <tr class="job" 
@@ -134,6 +140,7 @@ textarea {height: 150px; width: 100%;font-size: 1em;}
 >
 <td class:expanded class:loading on:click="{e => expanded = !expanded}" tabindex="0" >
 {#if itemData.loading}<div><LoadingIcon w=24 h=24 /></div>{/if}
+<span class="jobnr">{itemData.jobnr}</span>
 {itemData.adresseforhenting}
 <a href="https://www.google.no/maps/?q={
 	encodeURIComponent(itemData.adresseforhenting)

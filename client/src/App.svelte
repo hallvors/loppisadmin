@@ -56,13 +56,14 @@
 		const res = await fetch(`${apiUrl}/jobs` + (forceReload ? '?refresh=1' : ''));
 		if (res.ok) {
 			let json = await res.json();
+			json.forEach((item, idx) => {
+				item.status = item.status || '';
+				item.admkom = item.admkom || '';
+				item.jobnr = item.jobnr || (idx + 1);
+			});
 			json.sort(
 				(a, b) => a.adresseforhenting < b.adresseforhenting ? -1 : 1
 			);
-			json.forEach(item => {
-				item.status = item.status || '';
-				item.admkom = item.admkom || '';
-			});
 			jobs.set(json);
 			return true;
 		} else {
