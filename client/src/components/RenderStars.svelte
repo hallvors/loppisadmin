@@ -1,15 +1,19 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();
-	export let qualityRanking = 0;
+	export let qualityRanking = undefined;
 	let img1 = '/images/star-empty.png';
 	let img2 = '/images/star-full.png';
 	let stars = [];
-	for(let i=0; i < qualityRanking; i++) {
-		stars.push(img2);
-	}
-	for(let i = qualityRanking; i < 3; i++) {
-		stars.push(img1);
+	if (qualityRanking === '' || qualityRanking === undefined) {
+		stars = [img1, img1, img1];
+	} else {
+		for(let i=0; i <= qualityRanking; i++) {
+			stars.push(img2);
+		}
+		for(let i = qualityRanking; i < 2; i++) {
+			stars.push(img1);
+		}
 	}
 	function handleClick(evt) {
 		let idx = parseInt(evt.target.getAttribute('data-index'));
