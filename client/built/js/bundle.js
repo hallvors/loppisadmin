@@ -1898,7 +1898,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (37:0) {#each stars as star, index}
+    // (41:0) {#each stars as star, index}
     function create_each_block$2(ctx) {
     	var img, img_src_value, img_alt_value, dispose;
 
@@ -1909,7 +1909,7 @@ var app = (function () {
     			attr(img, "alt", img_alt_value = "poeng: " + ctx.qualityRanking);
     			attr(img, "data-index", ctx.index);
     			attr(img, "class", "svelte-ssp047");
-    			add_location(img, file$5, 37, 1, 831);
+    			add_location(img, file$5, 41, 1, 951);
     			dispose = listen(img, "click", ctx.handleClick);
     		},
 
@@ -1955,7 +1955,7 @@ var app = (function () {
     			for (var i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
-    			add_location(div, file$5, 35, 0, 795);
+    			add_location(div, file$5, 39, 0, 915);
     		},
 
     		l: function claim(nodes) {
@@ -2012,13 +2012,17 @@ var app = (function () {
 
     function instance$5($$self, $$props, $$invalidate) {
     	const dispatch = createEventDispatcher();
-    	let { qualityRanking = 0 } = $$props;
+    	let { qualityRanking = undefined } = $$props;
     	let stars = [];
-    	for(let i=0; i < qualityRanking; i++) {
-    		stars.push(img2);
-    	}
-    	for(let i = qualityRanking; i < 3; i++) {
-    		stars.push(img1);
+    	if (qualityRanking === '' || qualityRanking === undefined) {
+    		$$invalidate('stars', stars = [img1, img1, img1]);
+    	} else {
+    		for(let i=0; i <= qualityRanking; i++) {
+    			stars.push(img2);
+    		}
+    		for(let i = qualityRanking; i < 2; i++) {
+    			stars.push(img1);
+    		}
     	}
     	function handleClick(evt) {
     		let idx = parseInt(evt.target.getAttribute('data-index'));
