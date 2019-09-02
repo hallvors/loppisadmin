@@ -1,0 +1,17 @@
+TODO:
+
+* configurable constants for property names (our very nice G Docs form generates odd names..)
+* add "Sendt til henter"-state to clarify distinction between "sent" and "accepted"
+* workflow - what happens after a message is sent? Unselect? Auto-status-updates?
+ - add auto-set status to "Sendt til henter" and "Kontaktet" on SMS sending, notify admin with flash popup and unselect items
+* document "hidden selectedness" - feature or bug? If documented, feature :)
+
+* make visibility a property of data items, leave updating list to Svelte-generated code. Refactor somewhat to remove code we don't need after this change.
+
+* focus handling, esp with menus and modals. 
+ - Implement proper "return focus to previously selected" on closing menus/modals
+
+
+* geolocation? How to implement/use coordinates? Useful or not?
+
+
