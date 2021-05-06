@@ -28,7 +28,7 @@
     "nconf": "^0.10.0",
     "request-promise": "^4.2.4",
     "sirv-cli": "^0.4.4",
-    "underscore": "^1.9.1"
+    "underscore": "^1.12.1"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
