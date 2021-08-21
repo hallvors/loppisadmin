@@ -20,9 +20,11 @@ _Merk også at regnearket med data i må deles med sørvis-kontoens epost-adress
 
 `google__spreadsheet`: ID til regnearket med data.
 
-_Merk: oppsettet forventer kolonne-overskriftene Google spreadsheet lager basert på Ila og Bolteløkka skolekorps' skjema for å melde inn loppehenting, pluss følgende ekstra overskrifter som må legges til manuelt: ```status	kvalitet	koordinater	hentesav	admkom	jobnr```._
+Lag `config/headerconstants.js` (basert på headerconstants.js.example) og sørg for at verdiene samsvarer med datamodellen fra Google.
 
-_Merk: kolonne `jobnr` bør fylles ut i regnearket. Admin-UI vil vise jobbnummer for alle jobber selv om feltet er tomt, men henter-UI vil ikke vise noe dersom feltet er tomt._
+_Merk: oppsettet forventer datamodellen Google spreadsheet lager basert på Ila og Bolteløkka skolekorps' skjema for å melde inn loppehenting, pluss følgende ekstra overskrifter som må legges til manuelt: ```status	kvalitet	koordinater	hentesav	admkom	jobnr```._ 
+
+(Forresten brukes ikke kolonne `koordinater` til noe foreløpig.)
 
 `site__authTokenSecret`: tilfeldig, hemmelig string som brukes til å signere autentiserings-data.
 
