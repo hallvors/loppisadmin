@@ -3,3 +3,4 @@ config/overrides.json
 config/gsecrets.json
 pw.txt
 .DS_Store
+config/headerconstants.js
