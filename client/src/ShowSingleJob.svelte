@@ -11,7 +11,7 @@
 	import {normalizeNumber} from './utils/helpers.js';
 
 	let params, promise;
-
+	let prefs;
 	if (typeof location !== "undefined") {
 		params = location.search
 			.substr(1)
@@ -28,17 +28,18 @@
 
 	function normalizeJobList(jobs) {
 		jobs = jobs.sort(
-			(a, b) => a.adresseforhenting < b.adresseforhenting ? -1 : 1
+			(a, b) => a[prefs.head.ADDRESS] < b[prefs.head.ADDRESS] ? -1 : 1
 		);
 		jobs.forEach(job => {
-			job.oldStatus = job.status === 'Hentes' ? null : job.status;
-			job.admkom = job.admkom || '';
+			job.oldStatus = job[prefs.head.STATUS] === 'Hentes' ? null : job[prefs.head.STATUS];
 		});
 		return jobs;
 	}
 
 	async function getData(token, ids) {
-		const res = await fetch(`${apiUrl}/job/${encodeURIComponent(ids)}?token=${encodeURIComponent(token)}`);
+		let res = await fetch(`${apiUrl}/prefs`)
+		prefs = await res.json();
+		res = await fetch(`${apiUrl}/job/${encodeURIComponent(ids)}?token=${encodeURIComponent(token)}`);
 		let json = await res.json();
 		if (res.ok) {
 			json = normalizeJobList(json);
@@ -62,8 +63,8 @@
 		}
 	}
 
-	function update(id, detail) {
-		return changeJobDetails(id, detail, params.token)
+	function update(jobnr, detail) {
+		return changeJobDetails(jobnr, prefs.head, detail, params.token)
 		.catch(err => alert(err));
 	}
 
@@ -150,87 +151,87 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 	<h1>Hentinger</h1>
 	{#if $jobs.length > 1}
 		<p class="commonmap"><a href={
-			gMapsDirection + $jobs.map(job => job.adresseforhenting).join('/')
-		} target="_blank">Kart med alle adresser: <br><img src="/images/map.png" alt="alle adresser i kart" width="36"></a></p>
+			gMapsDirection + $jobs.map(job => job[prefs.head.ADDRESS]).join('/')
+		} target="_blank">Kart med alle adresser: <br><img src="/images/map.png" alt="alle adresser i kart" width="36" ></a></p>
 	{/if}
 	{#each $jobs as job, i}
 		{#if job.loading}<div class="loading"><LoadingIcon /></div>{/if}
-		<section class={job.status}>
+		<section class={job[prefs.head.STATUS]}>
 			<p>
 				<b>Adresse: </b> <span>
-					{job.adresseforhenting}
+					{job[prefs.head.ADDRESS]}
 					<a href={
-								gMapsDirection + job.adresseforhenting
+								gMapsDirection + job[prefs.head.ADDRESS]
 					} target="_blank">
 						<img src="/images/map.png" alt="adresse i kart" width="24">
 					</a>
 				</span>
-				<span class="jobnr">{job.jobnr}</span>
+				<span class="jobnr">{job[prefs.head.JOBNR]}</span>
 			</p>
 			<p>
 				<b>Kontaktperson: </b>
 				<span>
-					<RenderPerson name={job.navnpåkontaktperson} number={job.telefonnummer} />
+					<RenderPerson name={job[prefs.head.CONTACT_PERSON]} number={job[prefs.head.PHONE]} />
 				</span>
 			</p>
 			<p class="hideondone">
-				<b>Typer: </b> <span><RenderTypes types={job.typerlopper} showAll={true} /></span>
+				<b>Typer: </b> <span><RenderTypes types={job[prefs.head.TYPES]} showAll={true} /></span>
 			</p>
-			{#if job.informasjonomloppene} <p><b>Om loppene: </b><i>{job.informasjonomloppene}</i></p>{/if}
+			{#if job[prefs.head.DESC]} <p><b>Om loppene: </b><i>{job[prefs.head.DESC]}</i></p>{/if}
 			<p class="hideondone"><b>Estimert kvalitet: </b><span>
-				<RenderStars qualityRanking={job.kvalitet}  on:qualityupdate={e => update(job.id, e.detail)} />
+				<RenderStars qualityRanking={job[prefs.head.QUALITY]}  on:qualityupdate={e => update(job[prefs.head.JOBNR], e.detail)} />
 			</span></p>
 			<p class="hideondone">
 				<b>Administrators/henteres kommentarer:</b>
 				<span>
 					<textarea
-						bind:value={job.admkom}
-						on:change={e => update(job.id, {admkom: e.target.value}) }
+						bind:value={job[prefs.head.ADMCOMMENT]}
+						on:change={e => update(job[prefs.head.JOBNR], {[prefs.head.ADMCOMMENT]: e.target.value}) }
 					></textarea>
 				</span>
 			</p>
 			<p>
 				<b>Status: </b><span>
-					<em>{job.status}</em> <br>
-					{#if job.hentesav && job.hentesav === params.henter}
-						{#if job.status === 'Hentes'}
+					<em>{job[prefs.head.STATUS]}</em> <br>
+					{#if job[prefs.head.ASSIGNEE] && job[prefs.head.ASSIGNEE] === params.henter}
+						{#if job[prefs.head.STATUS] === 'Hentes'}
 							<br>
 							<em transition:fade><br>★ ★ ☺   Du har tatt på deg jobben - takk!  ☺ ★ ★</em>
-						{:else if job.status === 'Hentet'}
+						{:else if job[prefs.head.STATUS] === 'Hentet'}
 							<br>
 							<em transition:fade><br>★ ★ ☺  Takk for at du hentet!  ☺ ★ ★</em>
 						{/if}
 					{/if}
-					{#if job.hentesav && job.hentesav !== params.henter}
+					{#if job[prefs.head.ASSIGNEE] && job[prefs.head.ASSIGNEE] !== params.henter}
 						<br>
-						<em><b>Merk: jobben er akseptert av en annen. Sjekk med <a href={'tel:' + normalizeNumber(job.hentesav)}>{normalizeNumber(job.hentesav)}</a> om du vurderer å hente.</b></em>
+						<em><b>Merk: jobben er akseptert av en annen. Sjekk med <a href={'tel:' + normalizeNumber(job[prefs.head.ASSIGNEE])}>{normalizeNumber(job[prefs.head.ASSIGNEE])}</a> om du vurderer å hente.</b></em>
 					{/if}
 				</span>
 			</p>
 			<p class="hideondone">
 				<b>Oppdater status:</b><span>
-					{#if job.hentesav === params.henter && job.status === 'Hentes'}
+					{#if job[prefs.head.ASSIGNEE] === params.henter && job[prefs.head.STATUS] === 'Hentes'}
 						<button
-							on:click={e => update(job.id, {status: 'Hentet', hentesav: params.henter})}
+							on:click={e => update(job[prefs.head.JOBNR], {[prefs.head.STATUS]: 'Hentet', [prefs.head.ASSIGNEE]: params.henter})}
 							class="p8 br2"
 						>
 							Ferdig hentet!
 						</button>
 						<button
-							on:click={e => update(job.id, {status: job.oldStatus || 'Ny', hentesav: ''})}
+							on:click={e => update(job[prefs.head.JOBNR], {[prefs.head.STATUS]: job.oldStatus || 'Ny', [prefs.head.ASSIGNEE]: ''})}
 							class="p8 br2"
 						>
 							Vi rekker ikke å hente likevel
 						</button>
 						<button
-							on:click={e => update(job.id, {status: 'Hentes ikke', hentesav: ''})}
+							on:click={e => update(job[prefs.head.JOBNR], {[prefs.head.STATUS]: 'Hentes ikke', [prefs.head.ASSIGNEE]: ''})}
 							class="p8 br2"
 						>
 							Jobben skal ikke hentes
 						</button>
 					{:else}
 						<button
-							on:click={e => update(job.id, {status: 'Hentes', hentesav: params.henter})}
+							on:click={e => update(job[prefs.head.JOBNR], {[prefs.head.STATUS]: 'Hentes', [prefs.head.ASSIGNEE]: params.henter})}
 							class="p8 br2"
 						>
 							Vi tar jobben!

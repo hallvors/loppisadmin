@@ -7,7 +7,10 @@ if (!process.env.google__auth) {
 }
 nconf.add('overrides', {type: 'file', file: `${__dirname}/overrides.json`});
 
+const head = require('./headerconstants');
+
 module.exports = {
 	nconf,
-	PORT: nconf.get('PORT') || 5544
+	PORT: nconf.get('PORT') || 5544,
+	head,
 };

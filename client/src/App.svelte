@@ -28,19 +28,8 @@
 	let thuActive = true;
 	let dayFilterExclusive = false;
 	let typeFilter = '';
-	let types = [
-		'',
-		'Møbler',
-		'Bøker',
-		'Musikk',
-		'Klær',
-		'Film',
-		'Sykler',
-		'Elektrisk',
-		'Sportsutstyr',
-		'Kjøkkenutstyr',
-		'Leker'
-	];
+	let prefs;
+	let head;
 	let selectedItems = [];
 	// SMS editor vars
 	let possibleRecipients;
@@ -53,16 +42,14 @@
 	let tempMsgQueue = [];
 
 	async function getData(forceReload) {
-		const res = await fetch(`${apiUrl}/jobs` + (forceReload ? '?refresh=1' : ''));
+		let res = await fetch(`${apiUrl}/prefs`);
+		prefs = await res.json();
+		head = prefs.head;
+		res = await fetch(`${apiUrl}/jobs` + (forceReload ? '?refresh=1' : ''));
 		if (res.ok) {
 			let json = await res.json();
-			json.forEach((item, idx) => {
-				item.status = item.status || '';
-				item.admkom = item.admkom || '';
-				item.jobnr = item.jobnr || (idx + 1);
-			});
 			json.sort(
-				(a, b) => a.adresseforhenting < b.adresseforhenting ? -1 : 1
+				(a, b) => a[head.ADDRESS] < b[head.ADDRESS] ? -1 : 1
 			);
 			jobs.set(json);
 			return true;
@@ -86,10 +73,10 @@
 
 	function updatedSelectedList(event) {
 		let detail = event.detail;
-		if (detail.selected && selectedItems.indexOf(detail.id) === -1) {
-			selectedItems = [...selectedItems, detail.id];
-		} else if (!detail.selected && selectedItems.indexOf(detail.id) > -1) {
-			selectedItems.splice(selectedItems.indexOf(detail.id), 1);
+		if (detail.selected && selectedItems.indexOf(detail.jobnr) === -1) {
+			selectedItems = [...selectedItems, detail.jobnr];
+		} else if (!detail.selected && selectedItems.indexOf(detail.jobnr) > -1) {
+			selectedItems.splice(selectedItems.indexOf(detail.jobnr), 1);
 			selectedItems = selectedItems;
 		}
 	}
@@ -99,16 +86,16 @@
 		if (showMenu) {
 			showMenu = false;
 		} else {
-			let jobId;
+			let jobNr;
 			let elm = targetElm;
-			while(elm && !jobId && elm.getAttribute) {
-				jobId = elm.getAttribute('data-id');
+			while(elm && !jobNr && elm.getAttribute) {
+				jobNr = elm.getAttribute('data-id');
 				elm = elm.parentNode;
 			}
-			if (jobId && selectedItems.indexOf(jobId) === -1) {
-				updatedSelectedList({detail: {selected: true, id: jobId}});
+			if (jobNr && selectedItems.indexOf(jobNr) === -1) {
+				updatedSelectedList({detail: {selected: true, jobnr: jobNr}});
 			}
-			if (jobId || selectedItems.length) {
+			if (jobNr || selectedItems.length) {
 				showMenu = true;
 			}
 		}
@@ -156,25 +143,25 @@
 	function initSms(type) {
 		showMenu = false;
 		let items = selectedItems
-			.map(item => $jobs.find(job => job.id === item));
+			.map(item => $jobs.find(job => job[head.JOBNR] === item));
 		if (type === 'donor') {
 			possibleRecipients = items.map(item => ({
-				name: item.navnpåkontaktperson, number: item.telefonnummer,
-				address: item.adresseforhenting,
+				name: item[head.CONTACT_PERSON], number: item[head.PHONE],
+				address: item[head.ADDRESS],
 			}));
-			recipients = items.map(item => item.telefonnummer);
+			recipients = items.map(item => item[head.PHONE]);
 			smsEditorType = type;
 		} else {
 			possibleRecipients = $drivers;
 			message = 'Hei, foreslår at du henter følgende jobb(er): \n\n' + 
-				items.map(item => `${item.adresseforhenting}
-${item.navnpåkontaktperson}, ${item.telefonnummer}`)
+				items.map(item => `${item[head.ADDRESS]}
+${item[head.CONTACT_PERSON]}, ${item[head.PHONE]}`)
 				.join('\n\n');
 			message += `
 
 Merk jobber som hentet her etterpå:
 ${baseUrl}/henting/?jobb=${
-	encodeURIComponent(items.map(item => getIdFromUrl(item.id)).join(','))
+	encodeURIComponent(items.map(item => getIdFromUrl(item[head.JOBNR])).join(','))
 }&token=${encodeURIComponent(helperToken)}&henter={number}`;
 			smsEditorType = type;
 		}
@@ -185,17 +172,17 @@ ${baseUrl}/henting/?jobb=${
 		$jobs.forEach(item => {
 			if (filter(freeTextFilter, {smallActive, bigActive}, 
 				{monActive, tueActive, wedActive, thuActive, dayFilterExclusive},
-				typeFilter, hideDoneJobs, drivers, item)
+				typeFilter, hideDoneJobs, drivers, item, head)
 			) {
-				selectedItems.push(item.id);
+				selectedItems.push(item[head.JOBNR]);
 			}
 		});
 	}
 
 	function openMap() {
 		let str = gMapsDirection + (selectedItems.map(item => {
-			let data = $jobs.find(job => job.id === item);
-			return data.adresseforhenting;
+			let data = $jobs.find(job => job[head.JOBNR] === item);
+			return data[head.ADDRESS];
 		})
 		.join('/'));
 		window.open(str);
@@ -317,7 +304,8 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 			</th>
 			<th>
 				<select bind:value={typeFilter}>
-					{#each types as theType}
+					<option value="">-</option>
+					{#each prefs.types as theType}
 						<option>{theType}</option>
 					{/each}
 				</select>
@@ -343,11 +331,12 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 	{#each $jobs as theJob, i}
 		{#if filter(freeTextFilter, {smallActive, bigActive}, 
 			{monActive, tueActive, wedActive, thuActive, dayFilterExclusive}, typeFilter,
-			hideDoneJobs, drivers, theJob)
+			hideDoneJobs, drivers, theJob, head)
 		}
 			<RenderJob 
 				itemData={theJob}
-				itemSelected={selectedItems.indexOf(theJob.id) > -1}
+				prefs={prefs}
+				itemSelected={selectedItems.indexOf(theJob[head.JOBNR]) > -1}
 				on:select={e => updatedSelectedList(e)}
 			/>
 		{/if}
@@ -362,9 +351,9 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 
 <p>
 	Antall jobber totalt: {$jobs.length}. 
-	Hentes nå: {$jobs.filter(item => item.status === 'Hentes').length}
-	Hentet: {$jobs.filter(item => item.status === 'Hentet').length}
-	Hentes ikke: {$jobs.filter(item => item.status === 'Hentes ikke').length}
+	Hentes nå: {$jobs.filter(item => item[head.STATUS] === 'Hentes').length}
+	Hentet: {$jobs.filter(item => item[head.STATUS] === 'Hentet').length}
+	Hentes ikke: {$jobs.filter(item => item[head.STATUS] === 'Hentes ikke').length}
 </p>
 
 {#if smsEditorType}
@@ -410,8 +399,8 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 			on:statusupdate={e => {
 				if (e.detail.newState) {
 					selectedItems.forEach(item => {
-						let data = $jobs.find(job => job.id === item);
-						if (data.hentesav) {
+						let data = $jobs.find(job => job[head.JOBNR] === item);
+						if (data[head.ASSIGNEE]) {
 							return; // don't update state behind assignee's back..
 						}
 						changeJobDetails(item, {status: e.detail.newState});

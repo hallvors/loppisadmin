@@ -1,24 +1,24 @@
 <script>
 export let job;
-
+export let head;
 import { createEventDispatcher, onMount } from 'svelte';
 const dispatch = createEventDispatcher();
 
 
-let number = job.telefonnummer;
-let info = job.informasjonomloppene;
-let time = job.hentetidspunktkryssavsåmangedukan.split(/,\s*/g);
-let address = job.adresseforhenting;
-let size = job.størrelse;
+let number = job[head.PHONE];
+let info = job[head.DESC];
+let time = job[head.PICKUP_DAYS].split(/,\s*/g);
+let address = job[head.ADDRESS];
+let size = job[head.SIZE];
 const bigStr = 'Store ting (vare-bil eller tilhenger kreves ved henting)';
 
 function update() {
 	dispatch('update', {
-		telefonnummer: number,
-		adresseforhenting: address,
-		informasjonomloppene: info,
-		hentetidspunktkryssavsåmangedukan: time.join(', '),
-		størrelse: size,
+		[head.PHONE]: number,
+		[head.ADDRESS]: address,
+		[head.DESC]: info,
+		[head.PICKUP_DAYS]: time.join(', '),
+		[head.SIZE]: size,
 	});
 }
 

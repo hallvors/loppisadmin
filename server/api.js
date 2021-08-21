@@ -3,7 +3,7 @@ const router = express.Router({mergeParams: true}); // eslint-disable-line
 const env = require('../config/env');
 const authTokenSecret = env.nconf.get('site:authTokenSecret');
 const jwt = require('jsonwebtoken');
-const {getFullListAsync, updateAsync} = require('./utils/google_client');
+const {getFullList, update} = require('./utils/google_client');
 const {requireValidSessionOrToken} = require('./utils/middleware');
 const sendSMS = require('./utils/smsapi_client').send;
 
@@ -39,6 +39,13 @@ router.get('/login', (req, res, next) => {
 	res.status(401);
 	throw new Error('not allowed');
 });
+// Note: no access restriction for /prefs, caveat emptor
+router.get('/prefs', (req, res, next) => {
+	res.json({
+		head: env.head,
+		types: env.nconf.get('types'),
+	});
+});
 
 // Require valid session for all end points defined below
 router.use(requireValidSessionOrToken);
@@ -49,22 +56,22 @@ router.get('/helpertoken', (req, res, next) => {
 });
 
 router.get('/jobs', (req, res,next) => {
-	return getFullListAsync(Boolean(req.query.refresh))
-	.then(result => res.json(result));
+	return getFullList(Boolean(req.query.refresh))
+	.then(result => res.json(result))
+	.catch(next);
 });
 
-// /job/:ids endpoint supports fetching one single row ID - or multiple, comma-separated ones
-router.get('/job/:ids', (req, res,next) => {
-	if (!req.params.ids) {
+// /job/:jobnrs endpoint supports fetching one single row ID - or multiple, comma-separated ones
+router.get('/job/:jobnrs', (req, res,next) => {
+	if (!req.params.jobnrs) {
 		res.status(401);
 		throw new Error('not allowed');
 	}
-	return getFullListAsync(false)
+	return getFullList(false)
 	.then(result => {
-		let ids = req.params.ids.split(/,/g)
-			.map(id => new RegExp(id + '$', ''));
-		result = result.filter(item => {
-			return ids.some(idRx => idRx.test(item.id));
+		let jobnrs = req.params.jobnrs.split(/,/g);
+		result = result.filter(row => {
+			return jobnrs.includes(row[env.head.JOBNR]);
 		});
 		res.json(result);
 	});
@@ -75,20 +82,22 @@ router.get('/byperson/:assignee', (req, res,next) => {
 		res.status(401);
 		throw new Error('not allowed');
 	}
-	return getFullListAsync(false)
+	return getFullList(false)
 	.then(result => {
 		result = result.filter(item => {
-			return item.hentesav === req.params.assignee;
+			return item[env.head.ASSIGNEE] === req.params.assignee;
 		});
 		res.json(result);
-	});
+	})
+	.catch(next);
 });
 
-router.post('/update', (req, res, next) => {
-	return updateAsync(req.body.id, req.body.details)
+router.post('/update/:jobnr', (req, res, next) => {
+	return update(req.params.jobnr, req.body.details)
 	.then(result => {
 		res.json(result);
-	});
+	})
+	.catch(next);
 });
 
 router.post('/sendsms', (req, res, next) => {
@@ -100,7 +109,8 @@ router.post('/sendsms', (req, res, next) => {
 	return sendSMS(req.body.to, req.body.from, req.body.message, req.body.param1)
 	.then(result => {
 		res.json(result);
-	});
+	})
+	.catch(next);
 });
 
 module.exports = router;

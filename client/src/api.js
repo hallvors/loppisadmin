@@ -3,26 +3,27 @@ import {jobs} from './store.js';
 
 const FROM = '4741238002';
 
-export function changeJobDetails(id, newState, token) {
+export function changeJobDetails(jobnr, head, newState, token) {
 	jobs.update(jobs => {
-		jobs.find(job => job.id === id).loading = true;
+		// TODO: job used to be object, is now array. This hack should fail..?
+		jobs.find(job => job[head.JOBNR] === jobnr).loading = true;
 		return jobs;
 	});
-	let url = apiUrl + '/update';
+	let url = apiUrl + '/update/' + jobnr;
 	if (token) {
 		url += '?token=' + token;
 	}
 	return fetch(url , {
 		method: 'post',
 		headers: {'Content-type': 'application/json'},
-		body: JSON.stringify({id, details:  newState}),
+		body: JSON.stringify({details:  newState}),
 	})
 	.then(response => response.json())
 	.then(data => {
 		console.log(data)
 		jobs.update(jobs => {
-			let theJob = jobs.find(job => job.id === data.id);
-			Object.assign(theJob, data.saved, {loading: false});
+			let theJob = jobs.find(job => job[head.JOBNR] === jobnr);
+			theJob.loading = false;
 			return jobs;
 		});
 		return data;

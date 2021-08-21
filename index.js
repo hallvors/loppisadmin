@@ -17,8 +17,11 @@ app.use('/api', require('./server/api'));
 app.use('/images', express.static('./client/images'));
 app.use('/js', express.static('./client/built/js'));
 app.use('/css', express.static('./client/built/css'));
-app.use('/', express.static('./client/'));
 app.use('/henting', express.static('./client/'));
+
+app.get('/', (req, res, next) => {
+	res.sendFile('./client/index.html', {root: __dirname});
+});
 
 const server = require('http').createServer();
 server.on('request', app);

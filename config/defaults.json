@@ -4,5 +4,17 @@
 	},
 	"site": {
 		"baseUrl": "https://loppis-admin.herokuapp.com"
-	}
+	},
+	"types": [
+		"Møbler",
+		"Bøker",
+		"Musikk",
+		"Klær",
+		"Film",
+		"Sykler",
+		"Elektrisk",
+		"Sportsutstyr",
+		"Kjøkkenutstyr",
+		"Leker"
+	]
 }
