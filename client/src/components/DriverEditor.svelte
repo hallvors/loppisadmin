@@ -53,7 +53,6 @@
 	span button:nth-child(2) {
 		margin-left: 8px;
 	}
-	textarea {height: 100px;}
 
 </style>
 <div>

@@ -38,8 +38,7 @@ function send() {
 	span button:nth-child(2) {
 		margin-left: 8px;
 	}
-	textarea {height: 100px;}
-	input, textarea, select {font-size: 1em;}
+	select {font-size: 1em;}
 </style>
 <form on:submit|preventDefault={e => send()}>
 	<p>
