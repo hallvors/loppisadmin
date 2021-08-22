@@ -4,6 +4,7 @@ import { createEventDispatcher } from 'svelte';
 export let recipients = [];
 export let message = '';
 export let possibleRecipients;
+export let smsEditorType;
 
 let showQuickReplies = !message;
 const dispatch = createEventDispatcher();
@@ -23,11 +24,13 @@ function send() {
 		dispatch('sms', {
 			recipients: recipients.split(/,\s*/g),
 			message,
+			smsEditorType,
 		});
 	} else {
 		dispatch('sms', {
 			recipients,
 			message,
+			smsEditorType,
 		});		
 	}
 }

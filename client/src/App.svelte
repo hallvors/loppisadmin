@@ -370,9 +370,13 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 				.then(() => {
 					flashMessage('SMS sendt til ' + e.detail.recipients );
 					return Promise.all(selectedItems.map(item => {
-						if (smsEditorType === 'worker') {
-							return changeJobDetails(item, cols, {[cols.STATUS]: 'Sendt til henter'})
+						const job = $jobs.find(job => job[cols.JOBNR] === item);
+						if (e.detail.smsEditorType === 'worker') {
+							return changeJobDetails(item, cols, {[cols.STATUS]: 'Sendt til henter'});
+						} else if (e.detail.smsEditorType === 'donor' && job && ['', 'Ny'].includes(job[cols.STATUS])) {
+							return changeJobDetails(item, cols, {[cols.STATUS]: 'Kontaktet'});
 						}
+						return Promise.resolve();
 					}))
 					.then(() => {
 						selectedItems.length = 0;
@@ -383,6 +387,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 				possibleRecipients = null;
 				smsEditorType = '';
 			}}
+			{smsEditorType}
 			{possibleRecipients}
 			{recipients}
 			{message}
