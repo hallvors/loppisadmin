@@ -173,7 +173,7 @@ textarea {height: 150px; width: 100%;font-size: 1em;}
 <label for="select{itemData[cols.JOBNR]}" tabindex="0">✓</label>
 <select
 	bind:value={itemData[cols.STATUS]}
-	on:change|stopPropagation="{e => update({detail: {status: e.target.value}})}"
+	on:change|stopPropagation="{e => update({detail: {[cols.STATUS]: e.target.value}})}"
 	disabled={Boolean(itemData[cols.ASSIGNEE])}
 >
 	{#each states as theState}
