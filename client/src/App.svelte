@@ -367,7 +367,17 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 			}}
 			on:sms={e => {
 				sendSms(e.detail.recipients, e.detail.message)
-				.then(() => flashMessage('SMS sendt til ' + e.detail.recipients ))
+				.then(() => {
+					flashMessage('SMS sendt til ' + e.detail.recipients );
+					return Promise.all(selectedItems.map(item => {
+						if (smsEditorType === 'worker') {
+							return changeJobDetails(item, cols, {[cols.STATUS]: 'Sendt til henter'})
+						}
+					}))
+					.then(() => {
+						selectedItems.length = 0;
+					})
+				})
 				.catch(err => flashMessage(err, true));
 				message = '';
 				possibleRecipients = null;
@@ -403,7 +413,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 						if (data[cols.ASSIGNEE]) {
 							return; // don't update state behind assignee's back..
 						}
-						changeJobDetails(item, {status: e.detail.newState});
+						changeJobDetails(item, cols, {[cols.STATUS]: e.detail.newState});
 					});
 				}
 				showStateEditor = false;

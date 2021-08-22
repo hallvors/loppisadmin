@@ -13,6 +13,7 @@ export const states = [
 	'Kontaktet',
 	'Mangler info',
 	'Klar til henting',
+	'Sendt til henter',
 	'Hentes',
 	'Hentet',
 	'Hentes ikke',
