@@ -23,7 +23,7 @@
     "express-handlebars": "^3.1.0",
     "express-jwt": "^5.3.1",
     "google-spreadsheet": "^3.1.15",
-    "googleapis": "39",
+    "googleapis": "84.0.0",
     "jsonwebtoken": "^8.5.1",
     "nconf": "^0.10.0",
     "request": "^2.88.2",

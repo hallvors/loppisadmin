@@ -20,9 +20,9 @@ export function filter(
 	hideDoneJobs,
 	fetchers,
 	job,
-	head
+	cols
 ) {
-	if (hideDoneJobs && ["Hentet", "Hentes ikke"].indexOf(job[head.STATUS]) > -1) {
+	if (hideDoneJobs && ["Hentet", "Hentes ikke"].indexOf(job[cols.STATUS]) > -1) {
 		return false;
 	}
 	// all the "defaults" set - noop
@@ -40,14 +40,14 @@ export function filter(
 		return true;
 	}
 
-	if (!sizePref.bigActive && job[head.SIZE]) {
+	if (!sizePref.bigActive && job[cols.SIZE]) {
 		return false;
 	}
-	if (!sizePref.smallActive && !job[head.SIZE]) {
+	if (!sizePref.smallActive && !job[cols.SIZE]) {
 		return false;
 	}
 
-	if (typeFilter && job[head.TYPES].indexOf(typeFilter) === -1) {
+	if (typeFilter && job[cols.TYPES].indexOf(typeFilter) === -1) {
 		return false;
 	}
 
@@ -59,14 +59,14 @@ export function filter(
 	].map((item) => {
 		if (dayPref.dayFilterExclusive) {
 			return (
-				job[head.PICKUP_DAYS].indexOf(item.str) >
+				job[cols.PICKUP_DAYS].indexOf(item.str) >
 					-1 ===
 				item.prop
 			);
 		}
 		return (
 			item.prop &&
-			job[head.PICKUP_DAYS].indexOf(item.str) > -1
+			job[cols.PICKUP_DAYS].indexOf(item.str) > -1
 		);
 	});
 	if (dayPref.dayFilterExclusive) {
@@ -78,7 +78,7 @@ export function filter(
 	if (!showDay) {
 		return false;
 	}
-	if (job[head.ASSIGNEE] && fetchers && fetchers.length && string) {
+	if (job[cols.ASSIGNEE] && fetchers && fetchers.length && string) {
 		if (
 			fetchers.find(
 				(person) =>
@@ -91,14 +91,14 @@ export function filter(
 
 	return (
 		[
-			head.ADDRESS,
-			head.TYPES,
-			head.CONTACT_PERSON,
-			head.PHONE,
-			head.DESC,
-			head.STATUS,
-			head.ADMCOMMENT,
-			head.ASSIGNEE,
+			cols.ADDRESS,
+			cols.TYPES,
+			cols.CONTACT_PERSON,
+			cols.PHONE,
+			cols.DESC,
+			cols.STATUS,
+			cols.ADMCOMMENT,
+			cols.ASSIGNEE,
 		]
 			.map((key) => {
 				return (

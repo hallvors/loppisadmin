@@ -20,12 +20,17 @@ _Merk også at regnearket med data i må deles med sørvis-kontoens epost-adress
 
 `google__spreadsheet`: ID til regnearket med data.
 
-Lag `config/headerconstants.js` (basert på headerconstants.js.example) og sørg for at verdiene samsvarer med datamodellen fra Google.
-
-_Merk: oppsettet forventer datamodellen Google spreadsheet lager basert på Ila og Bolteløkka skolekorps' skjema for å melde inn loppehenting, pluss følgende ekstra overskrifter som må legges til manuelt: ```status	kvalitet	koordinater	hentesav	admkom	jobnr```._ 
-
-(Forresten brukes ikke kolonne `koordinater` til noe foreløpig.)
-
 `site__authTokenSecret`: tilfeldig, hemmelig string som brukes til å signere autentiserings-data.
 
 `sms__token`: hemmelighet som gir tilgang til SMS-tilbyders API.
+
+## Regnearket
+
+_Merk: oppsettet forventer datamodellen Google spreadsheet lager basert på Ila og Bolteløkka skolekorps' skjema for å melde inn loppehenting, pluss følgende ekstra overskrifter som må legges til manuelt: ```status	kvalitet	koordinater	hentesav	admkom	jobnr```._ 
+
+Feltet jobnr brukes internt som en stabil ID for en spesifikk jobb. Det settes til radnummer dersom det ikke er satt manuelt.
+
+Merk at innstillinger i `config/defaults.json` bestemmer hvordan kolonner i regnearket brukes. Dersom appen skal kjøre mot et regneark som har andre kolonner eller en annen rekkefølge, lag en `config/overrides.json` som overstyrer `spreadsheet_columns` - innstillingene.
+
+(Forresten brukes ikke kolonne `koordinater` til noe foreløpig.)
+

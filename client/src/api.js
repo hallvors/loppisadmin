@@ -3,10 +3,10 @@ import {jobs} from './store.js';
 
 const FROM = '4741238002';
 
-export function changeJobDetails(jobnr, head, newState, token) {
+export function changeJobDetails(jobnr, cols, newState, token) {
 	jobs.update(jobs => {
 		// TODO: job used to be object, is now array. This hack should fail..?
-		jobs.find(job => job[head.JOBNR] === jobnr).loading = true;
+		jobs.find(job => job[cols.JOBNR] === jobnr).loading = true;
 		return jobs;
 	});
 	let url = apiUrl + '/update/' + jobnr;
@@ -22,7 +22,7 @@ export function changeJobDetails(jobnr, head, newState, token) {
 	.then(data => {
 		console.log(data)
 		jobs.update(jobs => {
-			let theJob = jobs.find(job => job[head.JOBNR] === jobnr);
+			let theJob = jobs.find(job => job[cols.JOBNR] === jobnr);
 			theJob.loading = false;
 			return jobs;
 		});

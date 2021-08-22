@@ -16,5 +16,21 @@
 		"Sportsutstyr",
 		"Kjøkkenutstyr",
 		"Leker"
-	]
+	],
+	"spreadsheet_columns": {
+		"TIMESTAMP": 0,
+		"TYPES": 1,
+		"DESC": 2,
+		"CONTACT_PERSON": 3,
+		"ADDRESS": 4,
+		"PHONE": 5,
+		"PICKUP_DAYS": 6,
+		"SIZE": 7,
+		"STATUS": 8,
+		"QUALITY": 9,
+		"COORDS": 10,
+		"ASSIGNEE": 11,
+		"ADMCOMMENT": 12,
+		"JOBNR": 13
+	}
 }

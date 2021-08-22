@@ -29,7 +29,7 @@
 	let dayFilterExclusive = false;
 	let typeFilter = '';
 	let prefs;
-	let head;
+	let cols;
 	let selectedItems = [];
 	// SMS editor vars
 	let possibleRecipients;
@@ -44,12 +44,12 @@
 	async function getData(forceReload) {
 		let res = await fetch(`${apiUrl}/prefs`);
 		prefs = await res.json();
-		head = prefs.head;
+		cols = prefs.cols;
 		res = await fetch(`${apiUrl}/jobs` + (forceReload ? '?refresh=1' : ''));
 		if (res.ok) {
 			let json = await res.json();
 			json.sort(
-				(a, b) => a[head.ADDRESS] < b[head.ADDRESS] ? -1 : 1
+				(a, b) => a[cols.ADDRESS] < b[cols.ADDRESS] ? -1 : 1
 			);
 			jobs.set(json);
 			return true;
@@ -143,25 +143,25 @@
 	function initSms(type) {
 		showMenu = false;
 		let items = selectedItems
-			.map(item => $jobs.find(job => job[head.JOBNR] === item));
+			.map(item => $jobs.find(job => job[cols.JOBNR] === item));
 		if (type === 'donor') {
 			possibleRecipients = items.map(item => ({
-				name: item[head.CONTACT_PERSON], number: item[head.PHONE],
-				address: item[head.ADDRESS],
+				name: item[cols.CONTACT_PERSON], number: item[cols.PHONE],
+				address: item[cols.ADDRESS],
 			}));
-			recipients = items.map(item => item[head.PHONE]);
+			recipients = items.map(item => item[cols.PHONE]);
 			smsEditorType = type;
 		} else {
 			possibleRecipients = $drivers;
 			message = 'Hei, foreslår at du henter følgende jobb(er): \n\n' + 
-				items.map(item => `${item[head.ADDRESS]}
-${item[head.CONTACT_PERSON]}, ${item[head.PHONE]}`)
+				items.map(item => `${item[cols.ADDRESS]}
+${item[cols.CONTACT_PERSON]}, ${item[cols.PHONE]}`)
 				.join('\n\n');
 			message += `
 
 Merk jobber som hentet her etterpå:
 ${baseUrl}/henting/?jobb=${
-	encodeURIComponent(items.map(item => getIdFromUrl(item[head.JOBNR])).join(','))
+	encodeURIComponent(items.map(item => getIdFromUrl(item[cols.JOBNR])).join(','))
 }&token=${encodeURIComponent(helperToken)}&henter={number}`;
 			smsEditorType = type;
 		}
@@ -172,17 +172,17 @@ ${baseUrl}/henting/?jobb=${
 		$jobs.forEach(item => {
 			if (filter(freeTextFilter, {smallActive, bigActive}, 
 				{monActive, tueActive, wedActive, thuActive, dayFilterExclusive},
-				typeFilter, hideDoneJobs, drivers, item, head)
+				typeFilter, hideDoneJobs, drivers, item, cols)
 			) {
-				selectedItems.push(item[head.JOBNR]);
+				selectedItems.push(item[cols.JOBNR]);
 			}
 		});
 	}
 
 	function openMap() {
 		let str = gMapsDirection + (selectedItems.map(item => {
-			let data = $jobs.find(job => job[head.JOBNR] === item);
-			return data[head.ADDRESS];
+			let data = $jobs.find(job => job[cols.JOBNR] === item);
+			return data[cols.ADDRESS];
 		})
 		.join('/'));
 		window.open(str);
@@ -331,12 +331,12 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 	{#each $jobs as theJob, i}
 		{#if filter(freeTextFilter, {smallActive, bigActive}, 
 			{monActive, tueActive, wedActive, thuActive, dayFilterExclusive}, typeFilter,
-			hideDoneJobs, drivers, theJob, head)
+			hideDoneJobs, drivers, theJob, cols)
 		}
 			<RenderJob 
 				itemData={theJob}
 				prefs={prefs}
-				itemSelected={selectedItems.indexOf(theJob[head.JOBNR]) > -1}
+				itemSelected={selectedItems.indexOf(theJob[cols.JOBNR]) > -1}
 				on:select={e => updatedSelectedList(e)}
 			/>
 		{/if}
@@ -351,9 +351,9 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 
 <p>
 	Antall jobber totalt: {$jobs.length}. 
-	Hentes nå: {$jobs.filter(item => item[head.STATUS] === 'Hentes').length}
-	Hentet: {$jobs.filter(item => item[head.STATUS] === 'Hentet').length}
-	Hentes ikke: {$jobs.filter(item => item[head.STATUS] === 'Hentes ikke').length}
+	Hentes nå: {$jobs.filter(item => item[cols.STATUS] === 'Hentes').length}
+	Hentet: {$jobs.filter(item => item[cols.STATUS] === 'Hentet').length}
+	Hentes ikke: {$jobs.filter(item => item[cols.STATUS] === 'Hentes ikke').length}
 </p>
 
 {#if smsEditorType}
@@ -399,8 +399,8 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 			on:statusupdate={e => {
 				if (e.detail.newState) {
 					selectedItems.forEach(item => {
-						let data = $jobs.find(job => job[head.JOBNR] === item);
-						if (data[head.ASSIGNEE]) {
+						let data = $jobs.find(job => job[cols.JOBNR] === item);
+						if (data[cols.ASSIGNEE]) {
 							return; // don't update state behind assignee's back..
 						}
 						changeJobDetails(item, {status: e.detail.newState});

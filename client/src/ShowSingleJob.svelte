@@ -28,10 +28,10 @@
 
 	function normalizeJobList(jobs) {
 		jobs = jobs.sort(
-			(a, b) => a[prefs.head.ADDRESS] < b[prefs.head.ADDRESS] ? -1 : 1
+			(a, b) => a[prefs.cols.ADDRESS] < b[prefs.cols.ADDRESS] ? -1 : 1
 		);
 		jobs.forEach(job => {
-			job.oldStatus = job[prefs.head.STATUS] === 'Hentes' ? null : job[prefs.head.STATUS];
+			job.oldStatus = job[prefs.cols.STATUS] === 'Hentes' ? null : job[prefs.cols.STATUS];
 		});
 		return jobs;
 	}
@@ -64,7 +64,7 @@
 	}
 
 	function update(jobnr, detail) {
-		return changeJobDetails(jobnr, prefs.head, detail, params.token)
+		return changeJobDetails(jobnr, prefs.cols, detail, params.token)
 		.catch(err => alert(err));
 	}
 
@@ -151,87 +151,87 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 	<h1>Hentinger</h1>
 	{#if $jobs.length > 1}
 		<p class="commonmap"><a href={
-			gMapsDirection + $jobs.map(job => job[prefs.head.ADDRESS]).join('/')
+			gMapsDirection + $jobs.map(job => job[prefs.cols.ADDRESS]).join('/')
 		} target="_blank">Kart med alle adresser: <br><img src="/images/map.png" alt="alle adresser i kart" width="36" ></a></p>
 	{/if}
 	{#each $jobs as job, i}
 		{#if job.loading}<div class="loading"><LoadingIcon /></div>{/if}
-		<section class={job[prefs.head.STATUS]}>
+		<section class={job[prefs.cols.STATUS]}>
 			<p>
 				<b>Adresse: </b> <span>
-					{job[prefs.head.ADDRESS]}
+					{job[prefs.cols.ADDRESS]}
 					<a href={
-								gMapsDirection + job[prefs.head.ADDRESS]
+								gMapsDirection + job[prefs.cols.ADDRESS]
 					} target="_blank">
 						<img src="/images/map.png" alt="adresse i kart" width="24">
 					</a>
 				</span>
-				<span class="jobnr">{job[prefs.head.JOBNR]}</span>
+				<span class="jobnr">{job[prefs.cols.JOBNR]}</span>
 			</p>
 			<p>
 				<b>Kontaktperson: </b>
 				<span>
-					<RenderPerson name={job[prefs.head.CONTACT_PERSON]} number={job[prefs.head.PHONE]} />
+					<RenderPerson name={job[prefs.cols.CONTACT_PERSON]} number={job[prefs.cols.PHONE]} />
 				</span>
 			</p>
 			<p class="hideondone">
-				<b>Typer: </b> <span><RenderTypes types={job[prefs.head.TYPES]} showAll={true} /></span>
+				<b>Typer: </b> <span><RenderTypes types={job[prefs.cols.TYPES]} showAll={true} /></span>
 			</p>
-			{#if job[prefs.head.DESC]} <p><b>Om loppene: </b><i>{job[prefs.head.DESC]}</i></p>{/if}
+			{#if job[prefs.cols.DESC]} <p><b>Om loppene: </b><i>{job[prefs.cols.DESC]}</i></p>{/if}
 			<p class="hideondone"><b>Estimert kvalitet: </b><span>
-				<RenderStars qualityRanking={job[prefs.head.QUALITY]}  on:qualityupdate={e => update(job[prefs.head.JOBNR], e.detail)} />
+				<RenderStars qualityRanking={job[prefs.cols.QUALITY]}  on:qualityupdate={e => update(job[prefs.cols.JOBNR], e.detail)} />
 			</span></p>
 			<p class="hideondone">
 				<b>Administrators/henteres kommentarer:</b>
 				<span>
 					<textarea
-						bind:value={job[prefs.head.ADMCOMMENT]}
-						on:change={e => update(job[prefs.head.JOBNR], {[prefs.head.ADMCOMMENT]: e.target.value}) }
+						bind:value={job[prefs.cols.ADMCOMMENT]}
+						on:change={e => update(job[prefs.cols.JOBNR], {[prefs.cols.ADMCOMMENT]: e.target.value}) }
 					></textarea>
 				</span>
 			</p>
 			<p>
 				<b>Status: </b><span>
-					<em>{job[prefs.head.STATUS]}</em> <br>
-					{#if job[prefs.head.ASSIGNEE] && job[prefs.head.ASSIGNEE] === params.henter}
-						{#if job[prefs.head.STATUS] === 'Hentes'}
+					<em>{job[prefs.cols.STATUS]}</em> <br>
+					{#if job[prefs.cols.ASSIGNEE] && job[prefs.cols.ASSIGNEE] === params.henter}
+						{#if job[prefs.cols.STATUS] === 'Hentes'}
 							<br>
 							<em transition:fade><br>★ ★ ☺   Du har tatt på deg jobben - takk!  ☺ ★ ★</em>
-						{:else if job[prefs.head.STATUS] === 'Hentet'}
+						{:else if job[prefs.cols.STATUS] === 'Hentet'}
 							<br>
 							<em transition:fade><br>★ ★ ☺  Takk for at du hentet!  ☺ ★ ★</em>
 						{/if}
 					{/if}
-					{#if job[prefs.head.ASSIGNEE] && job[prefs.head.ASSIGNEE] !== params.henter}
+					{#if job[prefs.cols.ASSIGNEE] && job[prefs.cols.ASSIGNEE] !== params.henter}
 						<br>
-						<em><b>Merk: jobben er akseptert av en annen. Sjekk med <a href={'tel:' + normalizeNumber(job[prefs.head.ASSIGNEE])}>{normalizeNumber(job[prefs.head.ASSIGNEE])}</a> om du vurderer å hente.</b></em>
+						<em><b>Merk: jobben er akseptert av en annen. Sjekk med <a href={'tel:' + normalizeNumber(job[prefs.cols.ASSIGNEE])}>{normalizeNumber(job[prefs.cols.ASSIGNEE])}</a> om du vurderer å hente.</b></em>
 					{/if}
 				</span>
 			</p>
 			<p class="hideondone">
 				<b>Oppdater status:</b><span>
-					{#if job[prefs.head.ASSIGNEE] === params.henter && job[prefs.head.STATUS] === 'Hentes'}
+					{#if job[prefs.cols.ASSIGNEE] === params.henter && job[prefs.cols.STATUS] === 'Hentes'}
 						<button
-							on:click={e => update(job[prefs.head.JOBNR], {[prefs.head.STATUS]: 'Hentet', [prefs.head.ASSIGNEE]: params.henter})}
+							on:click={e => update(job[prefs.cols.JOBNR], {[prefs.cols.STATUS]: 'Hentet', [prefs.cols.ASSIGNEE]: params.henter})}
 							class="p8 br2"
 						>
 							Ferdig hentet!
 						</button>
 						<button
-							on:click={e => update(job[prefs.head.JOBNR], {[prefs.head.STATUS]: job.oldStatus || 'Ny', [prefs.head.ASSIGNEE]: ''})}
+							on:click={e => update(job[prefs.cols.JOBNR], {[prefs.cols.STATUS]: job.oldStatus || 'Ny', [prefs.cols.ASSIGNEE]: ''})}
 							class="p8 br2"
 						>
 							Vi rekker ikke å hente likevel
 						</button>
 						<button
-							on:click={e => update(job[prefs.head.JOBNR], {[prefs.head.STATUS]: 'Hentes ikke', [prefs.head.ASSIGNEE]: ''})}
+							on:click={e => update(job[prefs.cols.JOBNR], {[prefs.cols.STATUS]: 'Hentes ikke', [prefs.cols.ASSIGNEE]: ''})}
 							class="p8 br2"
 						>
 							Jobben skal ikke hentes
 						</button>
 					{:else}
 						<button
-							on:click={e => update(job[prefs.head.JOBNR], {[prefs.head.STATUS]: 'Hentes', [prefs.head.ASSIGNEE]: params.henter})}
+							on:click={e => update(job[prefs.cols.JOBNR], {[prefs.cols.STATUS]: 'Hentes', [prefs.cols.ASSIGNEE]: params.henter})}
 							class="p8 br2"
 						>
 							Vi tar jobben!

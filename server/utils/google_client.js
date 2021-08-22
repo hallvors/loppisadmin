@@ -52,8 +52,8 @@ function getFullList(force) {
 			let promises = [];
 			let processed = result.map((row, idx) => {
 				const out = row._rawData;
-				if (!out[env.head.JOBNR]) {
-					row[headers[env.head.JOBNR]] = out[env.head.JOBNR] =
+				if (!out[env.cols.JOBNR]) {
+					row[headers[env.cols.JOBNR]] = out[env.cols.JOBNR] =
 						idx + 1;
 					promises.push(row.save());
 				}
@@ -72,9 +72,13 @@ function update(jobnr, details) {
 			let headers = doc.sheetsByIndex[0].headerValues;
 
 			let row = cachedList.find(
-				(row) => row[headers[env.head.JOBNR]] === jobnr
+				(row) => row[headers[env.cols.JOBNR]] === jobnr
 			);
 			if (row) {
+				/* Thanks to the crazy flexibility of JS, this loop will
+				   handle either sparse arrays or objects with numbers as
+				   property names.
+				*/
 				for (let prop in details) {
 					if (details[prop]) {
 						row[headers[prop]] = details[prop];

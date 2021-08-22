@@ -1,24 +1,24 @@
 <script>
 export let job;
-export let head;
+export let cols;
 import { createEventDispatcher, onMount } from 'svelte';
 const dispatch = createEventDispatcher();
 
 
-let number = job[head.PHONE];
-let info = job[head.DESC];
-let time = job[head.PICKUP_DAYS].split(/,\s*/g);
-let address = job[head.ADDRESS];
-let size = job[head.SIZE];
+let number = job[cols.PHONE];
+let info = job[cols.DESC];
+let time = job[cols.PICKUP_DAYS].split(/,\s*/g);
+let address = job[cols.ADDRESS];
+let size = job[cols.SIZE];
 const bigStr = 'Store ting (vare-bil eller tilhenger kreves ved henting)';
 
 function update() {
 	dispatch('update', {
-		[head.PHONE]: number,
-		[head.ADDRESS]: address,
-		[head.DESC]: info,
-		[head.PICKUP_DAYS]: time.join(', '),
-		[head.SIZE]: size,
+		[cols.PHONE]: number,
+		[cols.ADDRESS]: address,
+		[cols.DESC]: info,
+		[cols.PICKUP_DAYS]: time.join(', '),
+		[cols.SIZE]: size,
 	});
 }
 

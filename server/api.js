@@ -42,7 +42,7 @@ router.get('/login', (req, res, next) => {
 // Note: no access restriction for /prefs, caveat emptor
 router.get('/prefs', (req, res, next) => {
 	res.json({
-		head: env.head,
+		cols: env.cols,
 		types: env.nconf.get('types'),
 	});
 });
@@ -71,7 +71,7 @@ router.get('/job/:jobnrs', (req, res,next) => {
 	.then(result => {
 		let jobnrs = req.params.jobnrs.split(/,/g);
 		result = result.filter(row => {
-			return jobnrs.includes(row[env.head.JOBNR]);
+			return jobnrs.includes(row[env.cols.JOBNR]);
 		});
 		res.json(result);
 	});
@@ -85,7 +85,7 @@ router.get('/byperson/:assignee', (req, res,next) => {
 	return getFullList(false)
 	.then(result => {
 		result = result.filter(item => {
-			return item[env.head.ASSIGNEE] === req.params.assignee;
+			return item[env.cols.ASSIGNEE] === req.params.assignee;
 		});
 		res.json(result);
 	})
