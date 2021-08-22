@@ -5,8 +5,13 @@ const FROM = '4741238002';
 
 export function changeJobDetails(jobnr, cols, newState, token) {
 	jobs.update(jobs => {
+		let theJob = jobs.find(job => job[cols.JOBNR] === jobnr)
 		// TODO: job used to be object, is now array. This hack should fail..?
-		jobs.find(job => job[cols.JOBNR] === jobnr).loading = true;
+		// weirdly it works.. The flexibility of JS and Svelte is amazing
+		theJob.loading = true;
+		for (let prop in newState) {
+			theJob[prop] = newState[prop];
+		}
 		return jobs;
 	});
 	let url = apiUrl + '/update/' + jobnr;
