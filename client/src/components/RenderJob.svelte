@@ -188,7 +188,7 @@ textarea {height: 150px; width: 100%;font-size: 1em;}
 </td>
 </tr>
 {#if expanded}<tr data-id={itemData[cols.JOBNR]}><td></td><td colspan="3" class="extrainfo">
-	<RenderPerson name={itemData[cols.ASSIGNEE]} number={itemData[cols.PHONE]} />
+	<RenderPerson name={itemData[cols.CONTACT_PERSON]} number={itemData[cols.PHONE]} />
 	<p>{itemData[cols.TYPES]}</p>
 	<p><i>{itemData[cols.DESC]}</i></p>
 	<p class="cen">
