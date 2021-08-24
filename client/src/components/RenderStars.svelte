@@ -2,10 +2,11 @@
 	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();
 	export let qualityRanking = undefined;
+	export let cols;
 	let img1 = '/images/star-empty.png';
 	let img2 = '/images/star-full.png';
 	let stars = [];
-	if (qualityRanking === '' || qualityRanking === undefined) {
+	if (qualityRanking === '' || qualityRanking === undefined) {
 		stars = [img1, img1, img1];
 	} else {
 		for(let i=0; i <= qualityRanking; i++) {
@@ -18,7 +19,7 @@
 	function handleClick(evt) {
 		let idx = parseInt(evt.target.getAttribute('data-index'));
 		qualityRanking = idx + 1;
-		dispatch('qualityupdate', {kvalitet: idx});
+		dispatch('qualityupdate', {[cols.QUALITY]: idx});
 		for (let i = 0; i <= idx; i++) {
 			stars[i] = img2;
 		}

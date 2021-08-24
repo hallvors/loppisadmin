@@ -160,7 +160,7 @@ textarea {height: 150px; width: 100%;font-size: 1em;}
 {/if}
 </td>
 <td class="typefilter"><RenderTypes types={itemData[cols.TYPES]} /></td>
-<td><RenderStars qualityRanking={itemData[cols.QUALITY]} on:qualityupdate={update}/></td>
+<td><RenderStars {cols} qualityRanking={itemData[cols.QUALITY]} on:qualityupdate={update}/></td>
 <td>
 	<RenderDays days={itemData[cols.PICKUP_DAYS]}/>
 </td>
