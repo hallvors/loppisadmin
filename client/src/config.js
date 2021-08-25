@@ -17,4 +17,5 @@ export const states = [
 	'Hentes',
 	'Hentet',
 	'Hentes ikke',
+	'Utsettes - neste gang',
 ];
