@@ -22,6 +22,7 @@
 	let freeTextFilter = '';
 	let bigActive = true;
 	let smallActive = true;
+	let qualityFilter = '';
 	let monActive = true;
 	let tueActive = true;
 	let wedActive = true;
@@ -172,7 +173,7 @@ ${baseUrl}/henting/?jobb=${
 		$jobs.forEach(item => {
 			if (filter(freeTextFilter, {smallActive, bigActive}, 
 				{monActive, tueActive, wedActive, thuActive, dayFilterExclusive},
-				typeFilter, hideDoneJobs, drivers, item, cols)
+				typeFilter, qualityFilter, hideDoneJobs, drivers, item, cols)
 			) {
 				selectedItems.push(item[cols.JOBNR]);
 			}
@@ -311,9 +312,12 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 				</select>
 			</th>
 			<th>
-				<img src="/images/star-full.png" width="16" alt="antatt kvalitet">
-				<img src="/images/star-full.png" width="16" alt="">
-				<img src="/images/star-full.png" width="16" alt="">
+				<select bind:value={qualityFilter}>
+					<option value="">-</option>
+					<option value="0">&#9733;</option>
+					<option value="1">&#9733;&#9733;</option>
+					<option value="2">&#9733;&#9733;&#9733;</option>
+				</select>
 			</th>
 			<th>
 				<ol class="days">
@@ -331,6 +335,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 	{#each $jobs as theJob, i}
 		{#if filter(freeTextFilter, {smallActive, bigActive}, 
 			{monActive, tueActive, wedActive, thuActive, dayFilterExclusive}, typeFilter,
+			qualityFilter,
 			hideDoneJobs, drivers, theJob, cols)
 		}
 			<RenderJob 

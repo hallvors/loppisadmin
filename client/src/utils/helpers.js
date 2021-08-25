@@ -17,6 +17,7 @@ export function filter(
 	sizePref,
 	dayPref,
 	typeFilter,
+	qualityFilter,
 	hideDoneJobs,
 	fetchers,
 	job,
@@ -35,7 +36,8 @@ export function filter(
 		dayPref.thuActive &&
 		!dayPref.dayFilterExclusive &&
 		!string &&
-		!typeFilter
+		!typeFilter &&
+		qualityFilter === ''
 	) {
 		return true;
 	}
@@ -48,6 +50,10 @@ export function filter(
 	}
 
 	if (typeFilter && job[cols.TYPES].indexOf(typeFilter) === -1) {
+		return false;
+	}
+
+	if (qualityFilter !== '' && job[cols.QUALITY] !== qualityFilter) {
 		return false;
 	}
 
