@@ -32,6 +32,14 @@ export function changeJobDetails(jobnr, cols, newState, token) {
 			return jobs;
 		});
 		return data;
+	})
+	.catch(error => {
+		if (confirm('Beklager, kunne ikke oppdatere hentejobben.' +
+			'Sannsynligvis vil det fungere om vi laster sida på nytt, ' +
+			'men endringer du prøvde å lagre nå må du gjøre på nytt. ' +
+			'Klikk OK for å laste på nytt.')) {
+			location.reload();
+		}
 	});
 }
 
