@@ -22,7 +22,6 @@ function getDoc() {
 	return doc
 		.useServiceAccountAuth(gCred)
 		.then(() => doc.loadInfo())
-		.then(() => doc.loadInfo())
 		.then(() => doc.sheetsByIndex[0].loadHeaderRow())
 		.then(() => doc);
 }
@@ -68,7 +67,6 @@ function getFullList(force) {
 function update(jobnr, details) {
 	if (cachedList) {
 		return getDoc().then((doc) => {
-			console.log(doc.sheetsByIndex[0])
 			let headers = doc.sheetsByIndex[0].headerValues;
 
 			let row = cachedList.find(
@@ -80,13 +78,15 @@ function update(jobnr, details) {
 				   property names.
 				*/
 				for (let prop in details) {
-					if (details[prop]) {
+					if (typeof details[prop] !== 'undefined') {
 						row[headers[prop]] = details[prop];
 					}
 				}
 				return row.save().then(() => {
 					return { jobnr, details };
 				});
+			} else {
+				throw new Error("No job to update!");
 			}
 		});
 	} else {
