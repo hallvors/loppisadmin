@@ -74,7 +74,7 @@
 	}
 
 	function updatedSelectedList(event) {
-		let detail = event.detail;
+		let detail = event.detail; // {jobnr: 1, selected: true }
 		if (detail.selected && selectedItems.indexOf(detail.jobnr) === -1) {
 			selectedItems = [...selectedItems, detail.jobnr];
 		} else if (!detail.selected && selectedItems.indexOf(detail.jobnr) > -1) {
