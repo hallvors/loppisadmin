@@ -14,7 +14,7 @@ Data hentes fra og lagres i et regneark på Google docs. Backend kjører på Nod
 
 Følgende miljøvariabler må settes i Heroku:
 
-`google__auth`: JSON-data fra autentiseringsfil for Google "service account". Lastes ned fra https://console.developers.google.com/ . Fjern linjeskift fra JSON-fil om den skal legges til via kommando-linje (`heroku config:set google__auth='{...}'`). 
+`google__auth`: JSON-data fra autentiseringsfil for Google "service account". Lastes ned fra https://console.developers.google.com/ . Fjern linjeskift fra JSON-fil om den skal legges til via kommando-linje (`heroku config:set google__auth='{...}'`).
 
 _Merk også at regnearket med data i må deles med sørvis-kontoens epost-adresse._
 
@@ -26,11 +26,12 @@ _Merk også at regnearket med data i må deles med sørvis-kontoens epost-adress
 
 ## Regnearket
 
-_Merk: oppsettet forventer datamodellen Google spreadsheet lager basert på Ila og Bolteløkka skolekorps' skjema for å melde inn loppehenting, pluss følgende ekstra overskrifter som må legges til manuelt: ```status	kvalitet	koordinater	hentesav	admkom	jobnr```._ 
+_Merk: oppsettet forventer datamodellen Google spreadsheet lager basert på Ila og Bolteløkka skolekorps' skjema for å melde inn loppehenting, pluss følgende ekstra overskrifter som må legges til manuelt: ```status	kvalitet	område	hentesav	admkom	jobnr```._
 
 Feltet jobnr brukes internt som en stabil ID for en spesifikk jobb. Det settes til radnummer dersom det ikke er satt manuelt.
 
 Merk at innstillinger i `config/defaults.json` bestemmer hvordan kolonner i regnearket brukes. Dersom appen skal kjøre mot et regneark som har andre kolonner eller en annen rekkefølge, lag en `config/overrides.json` som overstyrer `spreadsheet_columns` - innstillingene.
 
-(Forresten brukes ikke kolonne `koordinater` til noe foreløpig.)
+## Lokal utvikling
 
+Det mest praktiske for lokal utvikling er å kjøre `yarn run autobuild` i en terminal og `node server.js` i en annen. Det kreves selvfølgelig korrekte innstillinger i `config/overrides.json` for å laste data fra et Google docs regneark.
