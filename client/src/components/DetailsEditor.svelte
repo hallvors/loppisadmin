@@ -2,6 +2,7 @@
 export let job;
 export let cols;
 import { createEventDispatcher, onMount } from 'svelte';
+import { SIZE_BIG, SIZE_MEDIUM, SIZE_SMALL } from '../config';
 const dispatch = createEventDispatcher();
 
 
@@ -10,7 +11,6 @@ let info = job[cols.DESC];
 let time = job[cols.PICKUP_DAYS].split(/,\s*/g);
 let address = job[cols.ADDRESS];
 let size = job[cols.SIZE];
-const bigStr = 'Store ting (vare-bil eller tilhenger kreves ved henting)';
 
 function update() {
 	dispatch('update', {
@@ -89,21 +89,28 @@ function update() {
 					type="radio"
 					name="size"
 					bind:group={size}
-					value={bigStr}>
+					value={SIZE_BIG}>
 						<img src="/images/bigcar.png" alt="stor bil" width="36">
 				</label>
 				<label><input
 					type="radio"
 					name="size"
 					bind:group={size}
-					value={''}>
+					value={SIZE_MEDIUM}>
 						<img src="/images/smallcar.png" alt="liten bil" width="36">
+				</label>
+				<label><input
+					type="radio"
+					name="size"
+					bind:group={size}
+					value={SIZE_SMALL}>
+						<img src="/images/boxes.png" alt="liten bil" width="36">
 				</label>
 			</span>
 		</p>
 		<p><span></span>
 		<span>
-			<button type="submit" class="p8 br2">Oppdater</button> 
+			<button type="submit" class="p8 br2">Oppdater</button>
 			<button type="button" class="p8 br2" on:click={e => dispatch('cancel')}>Avbryt</button>
 		</span></p>
 </form>

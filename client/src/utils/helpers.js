@@ -1,3 +1,5 @@
+import {doneStates, SIZE_BIG, SIZE_MEDIUM, SIZE_SMALL} from '../config';
+
 export function getIdFromUrl(url) {
 	return url
 		.split(/\//g)
@@ -23,12 +25,13 @@ export function filter(
 	job,
 	cols
 ) {
-	if (hideDoneJobs && ["Hentet", "Hentes ikke"].indexOf(job[cols.STATUS]) > -1) {
+	if (hideDoneJobs && doneStates.indexOf(job[cols.STATUS]) > -1) {
 		return false;
 	}
 	// all the "defaults" set - noop
 	if (
 		sizePref.smallActive &&
+		sizePref.mediumActive &&
 		sizePref.bigActive &&
 		dayPref.monActive &&
 		dayPref.tueActive &&
@@ -42,10 +45,14 @@ export function filter(
 		return true;
 	}
 
-	if (!sizePref.bigActive && job[cols.SIZE]) {
+	if (job[cols.SIZE] === SIZE_BIG && !sizePref.bigActive) {
 		return false;
 	}
-	if (!sizePref.smallActive && !job[cols.SIZE]) {
+	if (job[cols.SIZE] === SIZE_MEDIUM && !sizePref.mediumActive) {
+		return false;
+	}
+
+	if (job[cols.SIZE] === SIZE_SMALL && !sizePref.smallActive) {
 		return false;
 	}
 

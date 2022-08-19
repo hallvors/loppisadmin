@@ -19,3 +19,13 @@ export const states = [
 	'Hentes ikke',
 	'Utsettes - neste gang',
 ];
+
+export const doneStates = [
+	'Hentet',
+	'Hentes ikke',
+	'Utsettes - neste gang',
+	];
+
+export const SIZE_BIG = 'Trenger varebil';
+export const SIZE_MEDIUM = 'Kan hentes med stasjonsvogn';
+export const SIZE_SMALL = '1-3 kasser';

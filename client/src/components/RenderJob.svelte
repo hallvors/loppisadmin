@@ -9,7 +9,7 @@ import LoadingIcon from './LoadingIcon.svelte';
 import {changeJobDetails} from '../api.js';
 import {createEventDispatcher} from 'svelte';
 import {drivers} from '../store.js';
-import {states} from '../config.js';
+import {SIZE_BIG, SIZE_MEDIUM, states} from '../config.js';
 import {normalizeNumber} from '../utils/helpers.js';
 
 const dispatch = createEventDispatcher();
@@ -89,9 +89,9 @@ input[type="checkbox"]:checked + label {
 input[type="checkbox"]:checked + label:after {
 	content: " ";
 	display: block;
-	width: 0;   
-	height: 0; 
-	border-top: 30px solid transparent;     
+	width: 0;
+	height: 0;
+	border-top: 30px solid transparent;
 	border-right:30px solid black;
 	transform: rotate(-90deg);
 	position: absolute;
@@ -136,7 +136,7 @@ textarea {height: 150px; width: 100%;font-size: 1em;}
 }
 </style>
 
-<tr class="job" 
+<tr class="job"
 	class:itemSelected
 	data-id={itemData[cols.JOBNR]}
 >
@@ -153,10 +153,12 @@ textarea {height: 150px; width: 100%;font-size: 1em;}
 </div>
 </td>
 <td class="car">
-{#if itemData[cols.SIZE]}
-<img src="/images/bigcar.png" alt="stor bil" height="22">
+{#if itemData[cols.SIZE] === SIZE_BIG}
+<img src="/images/bigcar.png" alt="varebil" height="22">
+{:else if itemData[cols.SIZE] === SIZE_MEDIUM}
+<img src="/images/smallcar.png" alt="stasjonsvogn" height="22">
 {:else}
-<img src="/images/smallcar.png" alt="liten bil" height="22">
+<img src="/images/boxes.png" alt="1-3 bokser" height="22">
 {/if}
 </td>
 <td class="typefilter"><RenderTypes types={itemData[cols.TYPES]} /></td>
@@ -210,4 +212,3 @@ textarea {height: 150px; width: 100%;font-size: 1em;}
 </td>
 </tr>
 {/if}
-

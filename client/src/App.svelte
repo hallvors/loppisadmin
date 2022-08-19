@@ -21,6 +21,7 @@
 	let promise = getData();
 	let freeTextFilter = '';
 	let bigActive = true;
+	let mediumActive = true;
 	let smallActive = true;
 	let qualityFilter = '';
 	let monActive = true;
@@ -171,7 +172,7 @@ ${baseUrl}/henting/?jobb=${
 	function selectAllShown() {
 		selectedItems.length = 0;
 		$jobs.forEach(item => {
-			if (filter(freeTextFilter, {smallActive, bigActive}, 
+			if (filter(freeTextFilter, {smallActive, mediumActive, bigActive},
 				{monActive, tueActive, wedActive, thuActive, dayFilterExclusive},
 				typeFilter, qualityFilter, hideDoneJobs, drivers, item, cols)
 			) {
@@ -191,10 +192,10 @@ ${baseUrl}/henting/?jobb=${
 
 jobs.subscribe(data => {console.log('updated data! ', data)})
 </script>
-<div 
+<div
 	on:contextmenu|preventDefault={e => {
 		toggleMenu(e.target)
-	}} 
+	}}
 	on:click={e => considerClosingMenu(e)}
 	on:mousedown={e => onMouseDown(e)}
 	on:mousemove={e => onMouseDown(e)}
@@ -232,10 +233,10 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 		margin-left: 8px;
 		cursor: pointer;
 	}
-	.smallActive, .bigActive {
+	.smallActive, .mediumActive, .bigActive {
 		border: 1px solid black;
 	}
-	.smallActive, .bigActive, li.monActive, li.tueActive, li.wedActive, li.thuActive {
+	.smallActive, .mediumActive, .bigActive, li.monActive, li.tueActive, li.wedActive, li.thuActive {
 		border-color: black;
 		color: black;
 	}
@@ -248,7 +249,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 	th:nth-child(4) {display: none;}
 	th:nth-child(5) {display: none;}
 	table {width: 99%; margin: 0;}
-} 
+}
 
 @media only screen and (max-width: 700px) {
 	th:nth-child(3) {display: none;}
@@ -294,14 +295,18 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 		<tr>
 			<th><input type="search" bind:value={freeTextFilter} placeholder="Filtrer"></th>
 			<th>
-				<img src="/images/bigcar.png" alt="stor bil" height="22" 
-					class:bigActive 
-					on:click="{e => bigActive = !bigActive}" 
+				<img src="/images/bigcar.png" alt="stor bil" height="22"
+					class:bigActive
+					on:click="{e => bigActive = !bigActive}"
 					tabindex="0">
-				<img src="/images/smallcar.png" alt="liten bil" height="22"
-					class:smallActive 
-					on:click="{e => smallActive = !smallActive}" 
-					tabindex="0">				
+				<img src="/images/smallcar.png" alt="stasjonsvogn" height="22"
+					class:mediumActive
+					on:click="{e => mediumActive = !mediumActive}"
+					tabindex="0">
+				<img src="/images/boxes.png" alt="1-3 bokser" height="22"
+					class:smallActive
+					on:click="{e => smallActive = !smallActive}"
+					tabindex="0">
 			</th>
 			<th>
 				<select bind:value={typeFilter}>
@@ -333,12 +338,12 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 			</th>
 		</tr>
 	{#each $jobs as theJob, i}
-		{#if filter(freeTextFilter, {smallActive, bigActive}, 
+		{#if filter(freeTextFilter, {smallActive, mediumActive, bigActive},
 			{monActive, tueActive, wedActive, thuActive, dayFilterExclusive}, typeFilter,
 			qualityFilter,
 			hideDoneJobs, drivers, theJob, cols)
 		}
-			<RenderJob 
+			<RenderJob
 				itemData={theJob}
 				prefs={prefs}
 				itemSelected={selectedItems.indexOf(theJob[cols.JOBNR]) > -1}
@@ -355,7 +360,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 </table>
 
 <p>
-	Antall jobber totalt: {$jobs.length}. 
+	Antall jobber totalt: {$jobs.length}.
 	Hentes nå: {$jobs.filter(item => item[cols.STATUS] === 'Hentes').length}
 	Hentet: {$jobs.filter(item => item[cols.STATUS] === 'Hentet').length}
 	Hentes ikke: {$jobs.filter(item => item[cols.STATUS] === 'Hentes ikke').length}
@@ -364,7 +369,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 {#if smsEditorType}
 	<Modal on:close="{() => smsEditorType = ''}">
 		<h2 slot="header">Send SMS</h2>
-		<SMSEditor 
+		<SMSEditor
 			on:cancel={e => {
 				smsEditorType = '';
 				message = '';
@@ -402,7 +407,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 {#if showDriverEditor}
 	<Modal on:close="{() => showDriverEditor = false}">
 		<h2 slot="header">Oppdater hentere</h2>
-		<DriverEditor 
+		<DriverEditor
 			on:cancel={e => {
 				showDriverEditor = false;
 			}}
@@ -412,7 +417,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 {#if showStateEditor}
 	<Modal on:close="{() => showStateEditor = false}">
 		<h2 slot="header">Oppdater status</h2>
-		<StateEditor 
+		<StateEditor
 			on:cancel={e => {
 				showStateEditor = false;
 			}}
@@ -435,10 +440,10 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 {:catch error}
 	<p style="color: red">{error.message}</p>
 {/await}
-<Menu 
+<Menu
 	show={showMenu}
 	x={menuX}
-	y={menuY} 
+	y={menuY}
 	items={[
 		{
 			label: 'SMS til giver', icon: '/images/sms.png',
@@ -458,10 +463,10 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 		},
 	]}
 />
-<Menu 
+<Menu
 	show={showConfigMenu}
 	x={menuX}
-	y={menuY} 
+	y={menuY}
 	items={[
 		{
 			label: 'Hentere', icon: '/images/smallcar.png',
