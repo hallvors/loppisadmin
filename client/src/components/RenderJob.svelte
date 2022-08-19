@@ -65,8 +65,6 @@ function statusVerbString(state) {
 	tr.itemSelected {
 		font-weight: bold;
 	}
-	tr.itemSelected:after {
-	}
 .statuscell {
 	position: relative;
 	cursor: pointer;

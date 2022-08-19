@@ -155,7 +155,7 @@
 			smsEditorType = type;
 		} else {
 			possibleRecipients = $drivers;
-			message = 'Hei, foreslår at du henter følgende jobb(er): \n\n' + 
+			message = 'Hei, foreslår at du henter følgende jobb(er): \n\n' +
 				items.map(item => `${item[cols.ADDRESS]}
 ${item[cols.CONTACT_PERSON]}, ${item[cols.PHONE]}`)
 				.join('\n\n');
