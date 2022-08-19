@@ -126,11 +126,13 @@ clear:left;
 }
 textarea {height: 150px; width: 100%;font-size: 1em;}
 .jobnr {
-	display: inline-block;
-	height: 100%;
 	padding: 4px;
 	background: #aaa;
 	margin-left: -14px;
+}
+small.area {
+	font-size: x-small;
+	text-transform: capitalize;
 }
 </style>
 
@@ -138,13 +140,14 @@ textarea {height: 150px; width: 100%;font-size: 1em;}
 	class:itemSelected
 	data-id={itemData[cols.JOBNR]}
 >
+<td class="jobnr">{itemData[cols.JOBNR]}</td>
 <td class:expanded class:loading on:click="{e => expanded = !expanded}" tabindex="0" >
 {#if itemData.loading}<div><LoadingIcon w=24 h=24 /></div>{/if}
-<span class="jobnr">{itemData[cols.JOBNR]}</span>
 {itemData[cols.ADDRESS]}
 <a href="https://www.google.no/maps/?q={
 	encodeURIComponent(itemData[cols.ADDRESS])
 }" on:click|stopPropagation target="_blank">🔎</a>
+<br><small class="area">{itemData[cols.AREA]}</small>
 <br>
 <div class="smallscreen">
 <i>{itemData[cols.PICKUP_DAYS]}</i>

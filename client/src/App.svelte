@@ -261,6 +261,9 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 	table {width: 95%; margin: 2.5%;}
 }
 /* column styles */
+.jobnr {
+	width: 2%;
+}
 .address {
 	background: #eee;
 	width: 25%;
@@ -296,7 +299,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 {:then data}
 	<table class="main">
 		<tr>
-			<th><input type="search" bind:value={freeTextFilter} placeholder="Filtrer"></th>
+			<th colspan="2"><input type="search" bind:value={freeTextFilter} placeholder="Filtrer"></th>
 			<th>
 				<img src="/images/bigcar.png" alt="stor bil" height="22"
 					class:bigActive
@@ -354,6 +357,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 			/>
 		{/if}
 	{/each}
+	<col class="jobnr" />
 	<col class="address" />
 	<col class="cartype" />
 	<col class="stufftype" />

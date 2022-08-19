@@ -109,6 +109,7 @@ export function filter(
 			cols.CONTACT_PERSON,
 			cols.PHONE,
 			cols.DESC,
+			cols.AREA,
 			cols.STATUS,
 			cols.ADMCOMMENT,
 			cols.ASSIGNEE,

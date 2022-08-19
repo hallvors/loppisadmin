@@ -56,6 +56,13 @@ function getFullList(force) {
 						idx + 1;
 					promises.push(row.save());
 				}
+				if (!out[env.cols.AREA]) {
+					let area = getAreaName(out[env.cols.ADDRESS]);
+					if (area) {
+						row[headers[env.cols.AREA]] = out[env.cols.AREA] = area;
+						promises.push(row.save());
+					}
+				}
 				return out;
 			});
 			return Promise.resolve(promises).then(() => {
@@ -92,6 +99,16 @@ function update(jobnr, details) {
 	} else {
 		throw new Error("No cached object to update!");
 	}
+}
+
+function getAreaName(address) {
+	let match;
+	if (match = address.match(/^[^0-9]+\d+/)) {
+		if (env.osloData[match[0].toLowerCase()]) {
+			return env.osloData[match[0].toLowerCase()];
+		}
+	}
+	return '';
 }
 
 module.exports = {

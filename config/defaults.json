@@ -28,7 +28,7 @@
 		"SIZE": 7,
 		"STATUS": 8,
 		"QUALITY": 9,
-		"COORDS": 10,
+		"AREA": 10,
 		"ASSIGNEE": 11,
 		"ADMCOMMENT": 12,
 		"JOBNR": 13
