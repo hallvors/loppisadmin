@@ -145,7 +145,10 @@
 	function initSms(type) {
 		showMenu = false;
 		let items = selectedItems
-			.map(item => $jobs.find(job => job[cols.JOBNR] === item));
+			.map(item => $jobs.find(job => job[cols.JOBNR] === item))
+			.filter(item => filter(freeTextFilter, {smallActive, mediumActive, bigActive},
+				{monActive, tueActive, wedActive, thuActive, dayFilterExclusive},
+				typeFilter, qualityFilter, hideDoneJobs, drivers, item, cols));
 		if (type === 'donor') {
 			possibleRecipients = items.map(item => ({
 				name: item[cols.CONTACT_PERSON], number: item[cols.PHONE],
