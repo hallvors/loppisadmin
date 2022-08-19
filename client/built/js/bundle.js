@@ -1,2 +1,8070 @@
-var app=function(){"use strict";function e(){}const t=e=>e;function n(e,t){for(const n in t)e[n]=t[n];return e}function l(e){return e()}function s(){return Object.create(null)}function o(e){e.forEach(l)}function c(e){return"function"==typeof e}function r(e,t){return e!=e?t==t:e!==t||e&&"object"==typeof e||"function"==typeof e}let i;function a(e,t){return i||(i=document.createElement("a")),i.href=t,e===i.href}function u(t,n,l){t.$$.on_destroy.push(function(t,...n){if(null==t)return e;const l=t.subscribe(...n);return l.unsubscribe?()=>l.unsubscribe():l}(n,l))}function d(e,t,n,l){if(e){const s=p(e,t,n,l);return e[0](s)}}function p(e,t,l,s){return e[1]&&s?n(l.ctx.slice(),e[1](s(t))):l.ctx}function f(e,t,n,l){if(e[2]&&l){const s=e[2](l(n));if(void 0===t.dirty)return s;if("object"==typeof s){const e=[],n=Math.max(t.dirty.length,s.length);for(let l=0;l<n;l+=1)e[l]=t.dirty[l]|s[l];return e}return t.dirty|s}return t.dirty}function g(e,t,n,l,s,o){if(s){const c=p(t,n,l,o);e.p(c,s)}}function m(e){if(e.ctx.length>32){const t=[],n=e.ctx.length/32;for(let e=0;e<n;e++)t[e]=-1;return t}return-1}function h(e){return null==e?"":e}const v="undefined"!=typeof window;let b=v?()=>window.performance.now():()=>Date.now(),k=v?e=>requestAnimationFrame(e):e;const $=new Set;function x(e){$.forEach(t=>{t.c(e)||($.delete(t),t.f())}),0!==$.size&&k(x)}function S(e,t){e.appendChild(t)}function y(e){if(!e)return document;const t=e.getRootNode?e.getRootNode():e.ownerDocument;return t.host?t:document}function E(e){const t=N("style");return function(e,t){S(e.head||e,t)}(y(e),t),t}function A(e,t,n){e.insertBefore(t,n||null)}function w(e){e.parentNode.removeChild(e)}function _(e,t){for(let n=0;n<e.length;n+=1)e[n]&&e[n].d(t)}function N(e){return document.createElement(e)}function C(e){return document.createTextNode(e)}function O(){return C(" ")}function T(){return C("")}function j(e,t,n,l){return e.addEventListener(t,n,l),()=>e.removeEventListener(t,n,l)}function R(e){return function(t){return t.preventDefault(),e.call(this,t)}}function I(e){return function(t){return t.stopPropagation(),e.call(this,t)}}function D(e,t,n){null==n?e.removeAttribute(t):e.getAttribute(t)!==n&&e.setAttribute(t,n)}function M(e,t){t=""+t,e.wholeText!==t&&(e.data=t)}function B(e,t){e.value=null==t?"":t}function U(e,t,n,l){e.style.setProperty(t,n,l?"important":"")}function H(e,t){for(let n=0;n<e.options.length;n+=1){const l=e.options[n];if(l.__value===t)return void(l.selected=!0)}e.selectedIndex=-1}function P(e,t){for(let n=0;n<e.options.length;n+=1){const l=e.options[n];l.selected=~t.indexOf(l.__value)}}function J(e){const t=e.querySelector(":checked")||e.options[0];return t&&t.__value}function G(e){return[].map.call(e.querySelectorAll(":checked"),e=>e.__value)}function q(e,t,n){e.classList[n?"add":"remove"](t)}function L(e,t,n=!1){const l=document.createEvent("CustomEvent");return l.initCustomEvent(e,n,!1,t),l}const z=new Set;let Y,K=0;function V(e,t,n,l,s,o,c,r=0){const i=16.666/l;let a="{\n";for(let e=0;e<=1;e+=i){const l=t+(n-t)*o(e);a+=100*e+`%{${c(l,1-l)}}\n`}const u=a+`100% {${c(n,1-n)}}\n}`,d=`__svelte_${function(e){let t=5381,n=e.length;for(;n--;)t=(t<<5)-t^e.charCodeAt(n);return t>>>0}(u)}_${r}`,p=y(e);z.add(p);const f=p.__svelte_stylesheet||(p.__svelte_stylesheet=E(e).sheet),g=p.__svelte_rules||(p.__svelte_rules={});g[d]||(g[d]=!0,f.insertRule(`@keyframes ${d} ${u}`,f.cssRules.length));const m=e.style.animation||"";return e.style.animation=`${m?`${m}, `:""}${d} ${l}ms linear ${s}ms 1 both`,K+=1,d}function F(e,t){const n=(e.style.animation||"").split(", "),l=n.filter(t?e=>e.indexOf(t)<0:e=>-1===e.indexOf("__svelte")),s=n.length-l.length;s&&(e.style.animation=l.join(", "),(K-=s)||k(()=>{K||(z.forEach(e=>{const t=e.__svelte_stylesheet;let n=t.cssRules.length;for(;n--;)t.deleteRule(n);e.__svelte_rules={}}),z.clear())}))}function Z(e){Y=e}function Q(){if(!Y)throw new Error("Function called outside component initialization");return Y}function W(e){Q().$$.on_mount.push(e)}function X(){const e=Q();return(t,n)=>{const l=e.$$.callbacks[t];if(l){const s=L(t,n);l.slice().forEach(t=>{t.call(e,s)})}}}const ee=[],te=[],ne=[],le=[],se=Promise.resolve();let oe=!1;function ce(e){ne.push(e)}let re=!1;const ie=new Set;function ae(){if(!re){re=!0;do{for(let e=0;e<ee.length;e+=1){const t=ee[e];Z(t),ue(t.$$)}for(Z(null),ee.length=0;te.length;)te.pop()();for(let e=0;e<ne.length;e+=1){const t=ne[e];ie.has(t)||(ie.add(t),t())}ne.length=0}while(ee.length);for(;le.length;)le.pop()();oe=!1,re=!1,ie.clear()}}function ue(e){if(null!==e.fragment){e.update(),o(e.before_update);const t=e.dirty;e.dirty=[-1],e.fragment&&e.fragment.p(e.ctx,t),e.after_update.forEach(ce)}}let de;function pe(e,t,n){e.dispatchEvent(L(`${t?"intro":"outro"}${n}`))}const fe=new Set;let ge;function me(){ge={r:0,c:[],p:ge}}function he(){ge.r||o(ge.c),ge=ge.p}function ve(e,t){e&&e.i&&(fe.delete(e),e.i(t))}function be(e,t,n,l){if(e&&e.o){if(fe.has(e))return;fe.add(e),ge.c.push(()=>{fe.delete(e),l&&(n&&e.d(1),l())}),e.o(t)}}const ke={duration:0};function $e(n,l,s,r){let i=l(n,s),a=r?0:1,u=null,d=null,p=null;function f(){p&&F(n,p)}function g(e,t){const n=e.b-a;return t*=Math.abs(n),{a:a,b:e.b,d:n,duration:t,start:e.start,end:e.start+t,group:e.group}}function m(l){const{delay:s=0,duration:c=300,easing:r=t,tick:m=e,css:h}=i||ke,v={start:b()+s,b:l};l||(v.group=ge,ge.r+=1),u||d?d=v:(h&&(f(),p=V(n,a,l,c,s,r,h)),l&&m(0,1),u=g(v,c),ce(()=>pe(n,l,"start")),function(e){let t;0===$.size&&k(x),new Promise(n=>{$.add(t={c:e,f:n})})}(e=>{if(d&&e>d.start&&(u=g(d,c),d=null,pe(n,u.b,"start"),h&&(f(),p=V(n,a,u.b,u.duration,0,r,i.css))),u)if(e>=u.end)m(a=u.b,1-a),pe(n,u.b,"end"),d||(u.b?f():--u.group.r||o(u.group.c)),u=null;else if(e>=u.start){const t=e-u.start;a=u.a+u.d*r(t/u.duration),m(a,1-a)}return!(!u&&!d)}))}return{run(e){c(i)?(de||(de=Promise.resolve()).then(()=>{de=null}),de).then(()=>{i=i(),m(e)}):m(e)},end(){f(),u=d=null}}}function xe(e,t){const n=t.token={};function l(e,l,s,o){if(t.token!==n)return;t.resolved=o;let c=t.ctx;void 0!==s&&((c=c.slice())[s]=o);const r=e&&(t.current=e)(c);let i=!1;t.block&&(t.blocks?t.blocks.forEach((e,n)=>{n!==l&&e&&(me(),be(e,1,1,()=>{t.blocks[n]===e&&(t.blocks[n]=null)}),he())}):t.block.d(1),r.c(),ve(r,1),r.m(t.mount(),t.anchor),i=!0),t.block=r,t.blocks&&(t.blocks[l]=r),i&&ae()}if((s=e)&&"object"==typeof s&&"function"==typeof s.then){const n=Q();if(e.then(e=>{Z(n),l(t.then,1,t.value,e),Z(null)},e=>{if(Z(n),l(t.catch,2,t.error,e),Z(null),!t.hasCatch)throw e}),t.current!==t.pending)return l(t.pending,0),!0}else{if(t.current!==t.then)return l(t.then,1,t.value,e),!0;t.resolved=e}var s}function Se(e,t,n){const l=t.slice(),{resolved:s}=e;e.current===e.then&&(l[e.value]=s),e.current===e.catch&&(l[e.error]=s),e.block.p(l,n)}function ye(e){e&&e.c()}function Ee(e,t,n,s){const{fragment:r,on_mount:i,on_destroy:a,after_update:u}=e.$$;r&&r.m(t,n),s||ce(()=>{const t=i.map(l).filter(c);a?a.push(...t):o(t),e.$$.on_mount=[]}),u.forEach(ce)}function Ae(e,t){const n=e.$$;null!==n.fragment&&(o(n.on_destroy),n.fragment&&n.fragment.d(t),n.on_destroy=n.fragment=null,n.ctx=[])}function we(e,t){-1===e.$$.dirty[0]&&(ee.push(e),oe||(oe=!0,se.then(ae)),e.$$.dirty.fill(0)),e.$$.dirty[t/31|0]|=1<<t%31}function _e(t,n,l,c,r,i,a,u=[-1]){const d=Y;Z(t);const p=t.$$={fragment:null,ctx:null,props:i,update:e,not_equal:r,bound:s(),on_mount:[],on_destroy:[],on_disconnect:[],before_update:[],after_update:[],context:new Map(d?d.$$.context:n.context||[]),callbacks:s(),dirty:u,skip_bound:!1,root:n.target||d.$$.root};a&&a(p.root);let f=!1;if(p.ctx=l?l(t,n.props||{},(e,n,...l)=>{const s=l.length?l[0]:n;return p.ctx&&r(p.ctx[e],p.ctx[e]=s)&&(!p.skip_bound&&p.bound[e]&&p.bound[e](s),f&&we(t,e)),n}):[],p.update(),f=!0,o(p.before_update),p.fragment=!!c&&c(p.ctx),n.target){if(n.hydrate){const e=(g=n.target,Array.from(g.childNodes));p.fragment&&p.fragment.l(e),e.forEach(w)}else p.fragment&&p.fragment.c();n.intro&&ve(t.$$.fragment),Ee(t,n.target,n.anchor,n.customElement),ae()}var g;Z(d)}class Ne{$destroy(){Ae(this,1),this.$destroy=e}$on(e,t){const n=this.$$.callbacks[e]||(this.$$.callbacks[e]=[]);return n.push(t),()=>{const e=n.indexOf(t);-1!==e&&n.splice(e,1)}}$set(e){var t;this.$$set&&(t=e,0!==Object.keys(t).length)&&(this.$$.skip_bound=!0,this.$$set(e),this.$$.skip_bound=!1)}}function Ce(e){const t=e-1;return t*t*t+1}function Oe(e,{delay:n=0,duration:l=400,easing:s=t}={}){const o=+getComputedStyle(e).opacity;return{delay:n,duration:l,easing:s,css:e=>`opacity: ${e*o}`}}function Te(e,{delay:t=0,duration:n=400,easing:l=Ce,x:s=0,y:o=0,opacity:c=0}={}){const r=getComputedStyle(e),i=+r.opacity,a="none"===r.transform?"":r.transform,u=i*(1-c);return{delay:t,duration:n,easing:l,css:(e,t)=>`\n\t\t\ttransform: ${a} translate(${(1-e)*s}px, ${(1-e)*o}px);\n\t\t\topacity: ${i-u*t}`}}const je=location.protocol+"//"+location.host,Re=je+"/api",Ie="https://www.google.com/maps/dir//",De=["","Ny","Kontaktet","Mangler info","Klar til henting","Hentes","Hentet","Hentes ikke"];function Me(e,t,n){const l=e.slice();return l[2]=t[n],l}function Be(e){let t,n,l=e[2]+"";return{c(){t=N("li"),n=C(l),D(t,"class","svelte-urasfe"),q(t,"active",e[0][e[2]])},m(e,l){A(e,t,l),S(t,n)},p(e,s){1&s&&l!==(l=e[2]+"")&&M(n,l),1&s&&q(t,"active",e[0][e[2]])},d(e){e&&w(t)}}}function Ue(t){let n,l=Object.keys(t[0]),s=[];for(let e=0;e<l.length;e+=1)s[e]=Be(Me(t,l,e));return{c(){n=N("ol");for(let e=0;e<s.length;e+=1)s[e].c();D(n,"class","svelte-urasfe")},m(e,t){A(e,n,t);for(let e=0;e<s.length;e+=1)s[e].m(n,null)},p(e,[t]){if(1&t){let o;for(l=Object.keys(e[0]),o=0;o<l.length;o+=1){const c=Me(e,l,o);s[o]?s[o].p(c,t):(s[o]=Be(c),s[o].c(),s[o].m(n,null))}for(;o<s.length;o+=1)s[o].d(1);s.length=l.length}},i:e,o:e,d(e){e&&w(n),_(s,e)}}}function He(e,t,n){let{days:l}=t,s={Ti:!1,On:!1,To:!1};return l.split(/, ?/g).forEach(e=>{n(0,s[e.substr(0,2)]=!0,s)}),e.$$set=(e=>{"days"in e&&n(1,l=e.days)}),[s,l]}class Pe extends Ne{constructor(e){super(),_e(this,e,He,Ue,r,{days:1})}}function Je(e,t,n){const l=e.slice();return l[3]=t[n],l}function Ge(e){let t,n,l=e[3]+"";return{c(){t=N("br"),n=C(l)},m(e,l){A(e,t,l),A(e,n,l)},p(e,t){1&t&&l!==(l=e[3]+"")&&M(n,l)},d(e){e&&w(t),e&&w(n)}}}function qe(e){let t,n,l,s;return{c(){a((t=N("img")).src,n=e[2][e[3]])||D(t,"src",n),D(t,"alt",l=e[3]),D(t,"title",s=e[3]),D(t,"height","24")},m(e,n){A(e,t,n)},p(e,o){1&o&&!a(t.src,n=e[2][e[3]])&&D(t,"src",n),1&o&&l!==(l=e[3])&&D(t,"alt",l),1&o&&s!==(s=e[3])&&D(t,"title",s)},d(e){e&&w(t)}}}function Le(e){let t;function n(e,t){return e[2][e[3]]?qe:e[1]?Ge:void 0}let l=n(e),s=l&&l(e);return{c(){s&&s.c(),t=T()},m(e,n){s&&s.m(e,n),A(e,t,n)},p(e,o){l===(l=n(e))&&s?s.p(e,o):(s&&s.d(1),(s=l&&l(e))&&(s.c(),s.m(t.parentNode,t)))},d(e){s&&s.d(e),e&&w(t)}}}function ze(t){let n,l=t[0],s=[];for(let e=0;e<l.length;e+=1)s[e]=Le(Je(t,l,e));return{c(){for(let e=0;e<s.length;e+=1)s[e].c();n=T()},m(e,t){for(let n=0;n<s.length;n+=1)s[n].m(e,t);A(e,n,t)},p(e,[t]){if(7&t){let o;for(l=e[0],o=0;o<l.length;o+=1){const c=Je(e,l,o);s[o]?s[o].p(c,t):(s[o]=Le(c),s[o].c(),s[o].m(n.parentNode,n))}for(;o<s.length;o+=1)s[o].d(1);s.length=l.length}},i:e,o:e,d(e){_(s,e),e&&w(n)}}}function Ye(e,t,n){let{types:l=[]}=t,{showAll:s=!1}=t;var o;return o=(()=>{"string"==typeof l&&n(0,l=l.split(/,\s+/g))}),Q().$$.before_update.push(o),l=l.split(/,\s+/g),e.$$set=(e=>{"types"in e&&n(0,l=e.types),"showAll"in e&&n(1,s=e.showAll)}),[l,s,{"Møbler":"/images/mobler.png","Bøker":"/images/boker.png",Musikk:"/images/musikk.png","Klær":"/images/klaer.png",Film:"/images/film.png",Sykler:"/images/sykkel.png",Elektrisk:"/images/elektrisk.png",Sportsutstyr:"/images/sport.png","Kjøkkenutstyr":"/images/kjokken.png",Leker:"/images/leker.png"}]}class Ke extends Ne{constructor(e){super(),_e(this,e,Ye,ze,r,{types:0,showAll:1})}}const Ve=e=>({}),Fe=e=>({});function Ze(e){let t,n,l,s,o,c,r,i,a,u,p;const h=e[3].header,v=d(h,e,e[2],Fe),b=e[3].default,k=d(b,e,e[2],null);return{c(){t=N("div"),n=O(),l=N("div"),v&&v.c(),s=O(),o=N("hr"),c=O(),k&&k.c(),r=O(),i=N("hr"),D(t,"class","modal-background svelte-txoeo"),D(l,"class","modal svelte-txoeo")},m(d,f){A(d,t,f),A(d,n,f),A(d,l,f),v&&v.m(l,null),S(l,s),S(l,o),S(l,c),k&&k.m(l,null),S(l,r),S(l,i),e[5](l),a=!0,u||(p=j(t,"click",I(e[4])),u=!0)},p(e,[t]){v&&v.p&&(!a||4&t)&&g(v,h,e,e[2],a?f(h,e[2],t,Ve):m(e[2]),Fe),k&&k.p&&(!a||4&t)&&g(k,b,e,e[2],a?f(b,e[2],t,null):m(e[2]),null)},i(e){a||(ve(v,e),ve(k,e),a=!0)},o(e){be(v,e),be(k,e),a=!1},d(s){s&&w(t),s&&w(n),s&&w(l),v&&v.d(s),k&&k.d(s),e[5](null),u=!1,p()}}}function Qe(e,t,n){let{$$slots:l={},$$scope:s}=t;const o=X();let c,r;var i;W(()=>{c&&c.scrollIntoView&&c.scrollIntoView(),c&&c.querySelector&&(r=document.activeElement,c.querySelector("input, select, textarea, button").focus())}),i=(()=>{r&&r.focus&&r.focus()}),Q().$$.on_destroy.push(i);return e.$$set=(e=>{"$$scope"in e&&n(2,s=e.$$scope)}),[c,o,s,l,()=>o("close"),function(e){te[e?"unshift":"push"](()=>{n(0,c=e)})}]}class We extends Ne{constructor(e){super(),_e(this,e,Qe,Ze,r,{})}}function Xe(t){let n,l,s,c,r,i,u,d,p,f,g,m,h,v,b,k,$,x,y,E,_,C,T,I,M,U,H,J,G,q,L,z,Y,K,V,F,Z,Q,W,X,ee,te,ne,le,se,oe,re,ie,ae,ue;return{c(){n=N("form"),l=N("p"),(s=N("span")).textContent="Mobilnummer:",c=N("span"),r=N("input"),i=O(),u=N("p"),(d=N("span")).textContent="Adresse for henting:",p=N("span"),f=N("textarea"),g=O(),m=N("p"),(h=N("span")).textContent="Om loppene:",v=N("span"),b=N("textarea"),k=O(),$=N("p"),(x=N("span")).textContent="Hentetidspunkt:",y=N("span"),E=N("select"),(_=N("option")).textContent="Tirsdag kveld",(C=N("option")).textContent="Onsdag kveld",(T=N("option")).textContent="Torsdag kveld",I=O(),M=N("p"),(U=N("span")).textContent="Type bil:",H=O(),J=N("span"),G=N("label"),q=N("input"),L=O(),z=N("img"),K=O(),V=N("label"),F=N("input"),Q=O(),W=N("img"),ee=O(),te=N("p"),ne=N("span"),le=O(),se=N("span"),(oe=N("button")).textContent="Oppdater",re=O(),(ie=N("button")).textContent="Avbryt",D(s,"class","svelte-1hgccn9"),D(r,"inputmode","tel"),D(r,"class","svelte-1hgccn9"),D(c,"class","svelte-1hgccn9"),D(l,"class","svelte-1hgccn9"),D(d,"class","svelte-1hgccn9"),D(f,"class","svelte-1hgccn9"),D(p,"class","svelte-1hgccn9"),D(u,"class","svelte-1hgccn9"),D(h,"class","svelte-1hgccn9"),D(b,"class","svelte-1hgccn9"),D(v,"class","svelte-1hgccn9"),D(m,"class","svelte-1hgccn9"),D(x,"class","svelte-1hgccn9"),_.__value="Tirsdag kveld",_.value=_.__value,C.__value="Onsdag kveld",C.value=C.__value,T.__value="Torsdag kveld",T.value=T.__value,E.multiple=!0,D(E,"class","svelte-1hgccn9"),void 0===t[2]&&ce(()=>t[12].call(E)),D(y,"class","svelte-1hgccn9"),D($,"class","svelte-1hgccn9"),D(U,"class","svelte-1hgccn9"),D(q,"type","radio"),D(q,"name","size"),q.__value=et,q.value=q.__value,D(q,"class","svelte-1hgccn9"),t[14][0].push(q),a(z.src,Y="/images/bigcar.png")||D(z,"src","/images/bigcar.png"),D(z,"alt","stor bil"),D(z,"width","36"),D(z,"class","svelte-1hgccn9"),D(G,"class","svelte-1hgccn9"),D(F,"type","radio"),D(F,"name","size"),F.__value=Z="",F.value=F.__value,D(F,"class","svelte-1hgccn9"),t[14][0].push(F),a(W.src,X="/images/smallcar.png")||D(W,"src","/images/smallcar.png"),D(W,"alt","liten bil"),D(W,"width","36"),D(W,"class","svelte-1hgccn9"),D(V,"class","svelte-1hgccn9"),D(J,"class","svelte-1hgccn9"),D(M,"class","svelte-1hgccn9"),D(ne,"class","svelte-1hgccn9"),D(oe,"type","submit"),D(oe,"class","p8 br2 svelte-1hgccn9"),D(ie,"type","button"),D(ie,"class","p8 br2 svelte-1hgccn9"),D(se,"class","svelte-1hgccn9"),D(te,"class","svelte-1hgccn9"),D(n,"class","svelte-1hgccn9")},m(e,o){A(e,n,o),S(n,l),S(l,s),S(l,c),S(c,r),B(r,t[0]),S(n,i),S(n,u),S(u,d),S(u,p),S(p,f),B(f,t[3]),S(n,g),S(n,m),S(m,h),S(m,v),S(v,b),B(b,t[1]),S(n,k),S(n,$),S($,x),S($,y),S(y,E),S(E,_),S(E,C),S(E,T),P(E,t[2]),S(n,I),S(n,M),S(M,U),S(M,H),S(M,J),S(J,G),S(G,q),q.checked=q.__value===t[4],S(G,L),S(G,z),S(J,K),S(J,V),S(V,F),F.checked=F.__value===t[4],S(V,Q),S(V,W),S(n,ee),S(n,te),S(te,ne),S(te,le),S(te,se),S(se,oe),S(se,re),S(se,ie),ae||(ue=[j(r,"input",t[9]),j(f,"input",t[10]),j(b,"input",t[11]),j(E,"change",t[12]),j(q,"change",t[13]),j(F,"change",t[15]),j(ie,"click",t[16]),j(n,"submit",R(t[17]))],ae=!0)},p(e,[t]){1&t&&r.value!==e[0]&&B(r,e[0]),8&t&&B(f,e[3]),2&t&&B(b,e[1]),4&t&&P(E,e[2]),16&t&&(q.checked=q.__value===e[4]),16&t&&(F.checked=F.__value===e[4])},i:e,o:e,d(e){e&&w(n),t[14][0].splice(t[14][0].indexOf(q),1),t[14][0].splice(t[14][0].indexOf(F),1),ae=!1,o(ue)}}}const et="Store ting (vare-bil eller tilhenger kreves ved henting)";function tt(e,t,n){let{job:l}=t,{cols:s}=t;const o=X();let c=l[s.PHONE],r=l[s.DESC],i=l[s.PICKUP_DAYS].split(/,\s*/g),a=l[s.ADDRESS],u=l[s.SIZE];function d(){o("update",{[s.PHONE]:c,[s.ADDRESS]:a,[s.DESC]:r,[s.PICKUP_DAYS]:i.join(", "),[s.SIZE]:u})}return e.$$set=(e=>{"job"in e&&n(7,l=e.job),"cols"in e&&n(8,s=e.cols)}),[c,r,i,a,u,o,d,l,s,function(){c=this.value,n(0,c)},function(){a=this.value,n(3,a)},function(){r=this.value,n(1,r)},function(){i=G(this),n(2,i)},function(){u=this.__value,n(4,u)},[[]],function(){u=this.__value,n(4,u)},e=>o("cancel"),e=>d()]}class nt extends Ne{constructor(e){super(),_e(this,e,tt,Xe,r,{job:7,cols:8})}}function lt(t){let n,l,s,o,c,r,i,a,u,d,p,f,g,m,h,v,b,k,$,x,y;return{c(){n=C(t[0]),l=O(),s=N("a"),o=C("🔎"),r=O(),i=N("br"),a=O(),u=C(t[1]),d=O(),p=N("a"),f=C("☎"),m=O(),h=N("a"),v=C("✉"),k=O(),$=N("a"),x=C("🔎"),D(s,"href",c="https://www.gulesider.no/"+encodeURIComponent(t[0])+"/personer"),D(s,"target","_blank"),D(s,"title","Slå opp person på Gule sider"),D(s,"class","svelte-ablbnc"),D(p,"href",g="tel:"+t[1]),D(p,"title","Ring nummer"),D(p,"class","svelte-ablbnc"),D(h,"href",b="sms:"+t[1]),D(h,"title","Send SMS"),D(h,"class","svelte-ablbnc"),D($,"href",y="https://www.gulesider.no/"+t[1]+"/personer"),D($,"target","_blank"),D($,"title","slå opp nummer på Gule sider"),D($,"class","svelte-ablbnc")},m(e,t){A(e,n,t),A(e,l,t),A(e,s,t),S(s,o),A(e,r,t),A(e,i,t),A(e,a,t),A(e,u,t),A(e,d,t),A(e,p,t),S(p,f),A(e,m,t),A(e,h,t),S(h,v),A(e,k,t),A(e,$,t),S($,x)},p(e,[t]){1&t&&M(n,e[0]),1&t&&c!==(c="https://www.gulesider.no/"+encodeURIComponent(e[0])+"/personer")&&D(s,"href",c),2&t&&M(u,e[1]),2&t&&g!==(g="tel:"+e[1])&&D(p,"href",g),2&t&&b!==(b="sms:"+e[1])&&D(h,"href",b),2&t&&y!==(y="https://www.gulesider.no/"+e[1]+"/personer")&&D($,"href",y)},i:e,o:e,d(e){e&&w(n),e&&w(l),e&&w(s),e&&w(r),e&&w(i),e&&w(a),e&&w(u),e&&w(d),e&&w(p),e&&w(m),e&&w(h),e&&w(k),e&&w($)}}}function st(e,t,n){let{name:l}=t,{number:s}=t;return e.$$set=(e=>{"name"in e&&n(0,l=e.name),"number"in e&&n(1,s=e.number)}),[l,s]}class ot extends Ne{constructor(e){super(),_e(this,e,st,lt,r,{name:0,number:1})}}function ct(e,t,n){const l=e.slice();return l[4]=t[n],l[6]=n,l}function rt(e){let t,n,l,s,o,c;return{c(){a((t=N("img")).src,n=e[4])||D(t,"src",n),D(t,"alt",l="poeng: "+e[0]),D(t,"data-index",s=e[6]),D(t,"class","svelte-ssp047")},m(n,l){A(n,t,l),o||(c=j(t,"click",e[2]),o=!0)},p(e,s){2&s&&!a(t.src,n=e[4])&&D(t,"src",n),1&s&&l!==(l="poeng: "+e[0])&&D(t,"alt",l)},d(e){e&&w(t),o=!1,c()}}}function it(t){let n,l=t[1],s=[];for(let e=0;e<l.length;e+=1)s[e]=rt(ct(t,l,e));return{c(){n=N("div");for(let e=0;e<s.length;e+=1)s[e].c()},m(e,t){A(e,n,t);for(let e=0;e<s.length;e+=1)s[e].m(n,null)},p(e,[t]){if(7&t){let o;for(l=e[1],o=0;o<l.length;o+=1){const c=ct(e,l,o);s[o]?s[o].p(c,t):(s[o]=rt(c),s[o].c(),s[o].m(n,null))}for(;o<s.length;o+=1)s[o].d(1);s.length=l.length}},i:e,o:e,d(e){e&&w(n),_(s,e)}}}let at="/images/star-empty.png",ut="/images/star-full.png";function dt(e,t,n){const l=X();let{qualityRanking:s}=t,o=[];if(""===s||void 0===s)o=[at,at,at];else{for(let e=0;e<=s;e++)o.push(ut);for(let e=s;e<2;e++)o.push(at)}return e.$$set=(e=>{"qualityRanking"in e&&n(0,s=e.qualityRanking)}),[s,o,function(e){let t=parseInt(e.target.getAttribute("data-index"));n(0,s=t+1),l("qualityupdate",{kvalitet:t});for(let e=0;e<=t;e++)n(1,o[e]=ut,o);for(let e=t+1;e<o.length;e++)n(1,o[e]=at,o)}]}class pt extends Ne{constructor(e){super(),_e(this,e,dt,it,r,{qualityRanking:0})}}function ft(t){let n;return{c(){D(n=N("div"),"class","lds-dual-ring svelte-1sriuqy"),U(n,"width",t[0]+"px"),U(n,"height",t[1]+"px")},m(e,t){A(e,n,t)},p(e,[t]){1&t&&U(n,"width",e[0]+"px"),2&t&&U(n,"height",e[1]+"px")},i:e,o:e,d(e){e&&w(n)}}}function gt(e,t,n){let{w:l=32}=t,{h:s=32}=t;return e.$$set=(e=>{"w"in e&&n(0,l=e.w),"h"in e&&n(1,s=e.h)}),[l,s]}class mt extends Ne{constructor(e){super(),_e(this,e,gt,ft,r,{w:0,h:1})}}const ht=[];function vt(t,n=e){let l;const s=new Set;function o(e){if(r(t,e)&&(t=e,l)){const e=!ht.length;for(const e of s)e[1](),ht.push(e,t);if(e){for(let e=0;e<ht.length;e+=2)ht[e][0](ht[e+1]);ht.length=0}}}return{set:o,update:function(e){o(e(t))},subscribe:function(c,r=e){const i=[c,r];return s.add(i),1===s.size&&(l=n(o)||e),c(t),()=>{s.delete(i),0===s.size&&(l(),l=null)}}}}const bt=vt([]),kt=vt([]);if("undefined"!=typeof localStorage){let e=localStorage.getItem("drivers");e&&bt.set(JSON.parse(e));bt.subscribe(e=>{localStorage.setItem("drivers",JSON.stringify(e))})}const $t="4741238002";function xt(e,t,n,l){kt.update(l=>{let s=l.find(n=>n[t.JOBNR]===e);s.loading=!0;for(let e in n)s[e]=n[e];return l});let s=Re+"/update/"+e;return l&&(s+="?token="+l),fetch(s,{method:"post",headers:{"Content-type":"application/json"},body:JSON.stringify({details:n})}).then(e=>e.json()).then(n=>(console.log(n),kt.update(n=>{return n.find(n=>n[t.JOBNR]===e).loading=!1,n}),n))}function St(e){return e.replace(/\s*/g,"").substr(-8)}function yt(e,t,n,l,s,o,c,r){if(s&&["Hentet","Hentes ikke"].indexOf(c[r.STATUS])>-1)return!1;if(t.smallActive&&t.bigActive&&n.monActive&&n.tueActive&&n.wedActive&&n.thuActive&&!n.dayFilterExclusive&&!e&&!l)return!0;if(!t.bigActive&&c[r.SIZE])return!1;if(!t.smallActive&&!c[r.SIZE])return!1;if(l&&-1===c[r.TYPES].indexOf(l))return!1;let i=[{prop:n.tueActive,str:"Tirsdag"},{prop:n.wedActive,str:"Onsdag"},{prop:n.thuActive,str:"Torsdag"}].map(e=>n.dayFilterExclusive?c[r.PICKUP_DAYS].indexOf(e.str)>-1===e.prop:e.prop&&c[r.PICKUP_DAYS].indexOf(e.str)>-1);return!!(i=n.dayFilterExclusive?i.reduce((e,t)=>e&&t,!0):i.indexOf(!0)>-1)&&(!!(c[r.ASSIGNEE]&&o&&o.length&&e&&o.find(t=>t.name.toLowerCase().indexOf(e.toLowerCase())>-1))||[r.ADDRESS,r.TYPES,r.CONTACT_PERSON,r.PHONE,r.DESC,r.STATUS,r.ADMCOMMENT,r.ASSIGNEE].map(t=>(c[t]||"").toLowerCase().indexOf(e.toLowerCase())>-1).indexOf(!0)>-1)}function Et(e,t,n){const l=e.slice();return l[23]=t[n],l}function At(e){let t,n,l;return n=new mt({props:{w:"24",h:"24"}}),{c(){t=N("div"),ye(n.$$.fragment),D(t,"class","svelte-thhux8")},m(e,s){A(e,t,s),Ee(n,t,null),l=!0},i(e){l||(ve(n.$$.fragment,e),l=!0)},o(e){be(n.$$.fragment,e),l=!1},d(e){e&&w(t),Ae(n)}}}function wt(e){let t,n;return{c(){a((t=N("img")).src,n="/images/smallcar.png")||D(t,"src","/images/smallcar.png"),D(t,"alt","liten bil"),D(t,"height","22")},m(e,n){A(e,t,n)},d(e){e&&w(t)}}}function _t(e){let t,n;return{c(){a((t=N("img")).src,n="/images/bigcar.png")||D(t,"src","/images/bigcar.png"),D(t,"alt","stor bil"),D(t,"height","22")},m(e,n){A(e,t,n)},d(e){e&&w(t)}}}function Nt(t){let n,l,s,o=t[23]+"";return{c(){n=N("option"),l=C(o),n.__value=s=t[23],n.value=n.__value},m(e,t){A(e,n,t),S(n,l)},p:e,d(e){e&&w(n)}}}function Ct(e){let t,n,l,s,o,c,r=e[8](e[0][e[6].ASSIGNEE])+"",i=Dt(e[0][e[6].STATUS])+"";return{c(){t=N("div"),n=N("a"),l=C(r),o=O(),c=C(i),D(n,"href",s="tel:"+St(e[0][e[6].ASSIGNEE])),D(t,"class","hentesav svelte-thhux8")},m(e,s){A(e,t,s),S(t,n),S(n,l),S(t,o),S(t,c)},p(e,t){1&t&&r!==(r=e[8](e[0][e[6].ASSIGNEE])+"")&&M(l,r),1&t&&s!==(s="tel:"+St(e[0][e[6].ASSIGNEE]))&&D(n,"href",s),1&t&&i!==(i=Dt(e[0][e[6].STATUS])+"")&&M(c,i)},d(e){e&&w(t)}}}function Ot(e){let t,n,l,s,c,r,i,a,u,d,p,f,g,m,h,v,b,k,$,x,y,E,_,T,R,I=e[0][e[6].TYPES]+"",U=e[0][e[6].DESC]+"";s=new ot({props:{name:e[0][e[6].ASSIGNEE],number:e[0][e[6].PHONE]}});let H=e[3]&&Tt(e);return{c(){t=N("tr"),n=N("td"),l=N("td"),ye(s.$$.fragment),c=O(),r=N("p"),i=C(I),a=O(),u=N("p"),d=N("i"),p=C(U),f=O(),g=N("p"),(m=N("button")).innerHTML='<img src="/images/edit.png" alt="endre detaljer" width="36" class="svelte-thhux8"/>',h=O(),H&&H.c(),v=O(),b=N("td"),k=C("Kommentarer fra admin/hentere:"),$=N("br"),x=O(),y=N("textarea"),D(n,"class","svelte-thhux8"),D(m,"class","svelte-thhux8"),D(g,"class","cen svelte-thhux8"),D(l,"colspan","3"),D(l,"class","extrainfo svelte-thhux8"),D(y,"class","svelte-thhux8"),D(b,"colspan","2"),D(b,"class","svelte-thhux8"),D(t,"data-id",E=e[0][e[6].JOBNR])},m(o,E){A(o,t,E),S(t,n),S(t,l),Ee(s,l,null),S(l,c),S(l,r),S(r,i),S(l,a),S(l,u),S(u,d),S(d,p),S(l,f),S(l,g),S(g,m),S(l,h),H&&H.m(l,null),S(t,v),S(t,b),S(b,k),S(b,$),S(b,x),S(b,y),B(y,e[0][e[6].ADMCOMMENT]),_=!0,T||(R=[j(m,"click",e[17]),j(y,"input",e[20]),j(y,"change",e[21])],T=!0)},p(e,n){const o={};1&n&&(o.name=e[0][e[6].ASSIGNEE]),1&n&&(o.number=e[0][e[6].PHONE]),s.$set(o),(!_||1&n)&&I!==(I=e[0][e[6].TYPES]+"")&&M(i,I),(!_||1&n)&&U!==(U=e[0][e[6].DESC]+"")&&M(p,U),e[3]?H?(H.p(e,n),8&n&&ve(H,1)):((H=Tt(e)).c(),ve(H,1),H.m(l,null)):H&&(me(),be(H,1,1,()=>{H=null}),he()),65&n&&B(y,e[0][e[6].ADMCOMMENT]),(!_||1&n&&E!==(E=e[0][e[6].JOBNR]))&&D(t,"data-id",E)},i(e){_||(ve(s.$$.fragment,e),ve(H),_=!0)},o(e){be(s.$$.fragment,e),be(H),_=!1},d(e){e&&w(t),Ae(s),H&&H.d(),T=!1,o(R)}}}function Tt(e){let t,n;return(t=new We({props:{$$slots:{header:[Rt],default:[jt]},$$scope:{ctx:e}}})).$on("close",e[19]),{c(){ye(t.$$.fragment)},m(e,l){Ee(t,e,l),n=!0},p(e,n){const l={};67108873&n&&(l.$$scope={dirty:n,ctx:e}),t.$set(l)},i(e){n||(ve(t.$$.fragment,e),n=!0)},o(e){be(t.$$.fragment,e),n=!1},d(e){Ae(t,e)}}}function jt(e){let t,n;return(t=new nt({props:{job:e[0],cols:e[6]}})).$on("update",e[7]),t.$on("cancel",e[18]),{c(){ye(t.$$.fragment)},m(e,l){Ee(t,e,l),n=!0},p(e,n){const l={};1&n&&(l.job=e[0]),t.$set(l)},i(e){n||(ve(t.$$.fragment,e),n=!0)},o(e){be(t.$$.fragment,e),n=!1},d(e){Ae(t,e)}}}function Rt(e){let t;return{c(){(t=N("h2")).textContent="Endre detaljer",D(t,"slot","header")},m(e,n){A(e,t,n)},d(e){e&&w(t)}}}function It(e){let t,n,l,s,c,r,i,a,u,d,p,f,g,m,h,v,b,k,$,x,y,E,R,B,U,P,J,G,L,z,Y,K,V,F,Z,Q,W,X,ee,te,ne,le,se,oe,re,ie,ae=e[0][e[6].JOBNR]+"",ue=e[0][e[6].ADDRESS]+"",de=e[0][e[6].PICKUP_DAYS]+"",pe=e[0].loading&&At();function fe(e,t){return e[0][e[6].SIZE]?_t:wt}let ge=fe(e),ke=ge(e);E=new Ke({props:{types:e[0][e[6].TYPES]}}),(U=new pt({props:{qualityRanking:e[0][e[6].QUALITY]}})).$on("qualityupdate",e[7]),G=new Pe({props:{days:e[0][e[6].PICKUP_DAYS]}});let $e=De,xe=[];for(let t=0;t<$e.length;t+=1)xe[t]=Nt(Et(e,$e,t));let Se=e[0][e[6].ASSIGNEE]&&Ct(e),we=e[2]&&Ot(e);return{c(){t=N("tr"),n=N("td"),pe&&pe.c(),l=O(),s=N("span"),c=C(ae),r=O(),i=C(ue),a=O(),u=N("a"),d=C("🔎"),f=O(),g=N("br"),m=O(),h=N("div"),v=N("i"),b=C(de),k=O(),$=N("td"),ke.c(),x=O(),y=N("td"),ye(E.$$.fragment),R=O(),B=N("td"),ye(U.$$.fragment),P=O(),J=N("td"),ye(G.$$.fragment),L=O(),z=N("td"),Y=N("input"),V=O(),F=N("label"),Z=C("✓"),W=O(),X=N("select");for(let e=0;e<xe.length;e+=1)xe[e].c();te=O(),Se&&Se.c(),le=O(),we&&we.c(),se=T(),D(s,"class","jobnr svelte-thhux8"),D(u,"href",p="https://www.google.no/maps/?q="+encodeURIComponent(e[0][e[6].ADDRESS])),D(u,"target","_blank"),D(h,"class","smallscreen svelte-thhux8"),D(n,"tabindex","0"),D(n,"class","svelte-thhux8"),q(n,"expanded",e[2]),q(n,"loading",e[4]),D($,"class","car svelte-thhux8"),D(y,"class","typefilter svelte-thhux8"),D(B,"class","svelte-thhux8"),D(J,"class","svelte-thhux8"),D(Y,"type","checkbox"),D(Y,"id",K="select"+e[0][e[6].JOBNR]),D(Y,"class","svelte-thhux8"),D(F,"for",Q="select"+e[0][e[6].JOBNR]),D(F,"tabindex","0"),D(F,"class","svelte-thhux8"),X.disabled=ee=Boolean(e[0][e[6].ASSIGNEE]),D(X,"class","svelte-thhux8"),void 0===e[0][e[6].STATUS]&&ce(()=>e[14].call(X)),D(z,"class","statuscell svelte-thhux8"),D(t,"class","job svelte-thhux8"),D(t,"data-id",ne=e[0][e[6].JOBNR]),q(t,"itemSelected",e[1])},m(o,p){A(o,t,p),S(t,n),pe&&pe.m(n,null),S(n,l),S(n,s),S(s,c),S(n,r),S(n,i),S(n,a),S(n,u),S(u,d),S(n,f),S(n,g),S(n,m),S(n,h),S(h,v),S(v,b),S(t,k),S(t,$),ke.m($,null),S(t,x),S(t,y),Ee(E,y,null),S(t,R),S(t,B),Ee(U,B,null),S(t,P),S(t,J),Ee(G,J,null),S(t,L),S(t,z),S(z,Y),Y.checked=e[1],S(z,V),S(z,F),S(F,Z),S(z,W),S(z,X);for(let e=0;e<xe.length;e+=1)xe[e].m(X,null);H(X,e[0][e[6].STATUS]),S(z,te),Se&&Se.m(z,null),A(o,le,p),we&&we.m(o,p),A(o,se,p),oe=!0,re||(ie=[j(u,"click",I(e[10])),j(n,"click",e[11]),j(Y,"change",e[12]),j(Y,"change",e[13]),j(X,"change",e[14]),j(X,"change",I(e[15])),j(z,"click",e[16])],re=!0)},p(e,[s]){e[0].loading?pe?1&s&&ve(pe,1):((pe=At()).c(),ve(pe,1),pe.m(n,l)):pe&&(me(),be(pe,1,1,()=>{pe=null}),he()),(!oe||1&s)&&ae!==(ae=e[0][e[6].JOBNR]+"")&&M(c,ae),(!oe||1&s)&&ue!==(ue=e[0][e[6].ADDRESS]+"")&&M(i,ue),(!oe||1&s&&p!==(p="https://www.google.no/maps/?q="+encodeURIComponent(e[0][e[6].ADDRESS])))&&D(u,"href",p),(!oe||1&s)&&de!==(de=e[0][e[6].PICKUP_DAYS]+"")&&M(b,de),4&s&&q(n,"expanded",e[2]),16&s&&q(n,"loading",e[4]),ge!==(ge=fe(e))&&(ke.d(1),(ke=ge(e))&&(ke.c(),ke.m($,null)));const o={};1&s&&(o.types=e[0][e[6].TYPES]),E.$set(o);const r={};1&s&&(r.qualityRanking=e[0][e[6].QUALITY]),U.$set(r);const a={};if(1&s&&(a.days=e[0][e[6].PICKUP_DAYS]),G.$set(a),(!oe||1&s&&K!==(K="select"+e[0][e[6].JOBNR]))&&D(Y,"id",K),2&s&&(Y.checked=e[1]),(!oe||1&s&&Q!==(Q="select"+e[0][e[6].JOBNR]))&&D(F,"for",Q),0&s){let t;for($e=De,t=0;t<$e.length;t+=1){const n=Et(e,$e,t);xe[t]?xe[t].p(n,s):(xe[t]=Nt(n),xe[t].c(),xe[t].m(X,null))}for(;t<xe.length;t+=1)xe[t].d(1);xe.length=$e.length}(!oe||1&s&&ee!==(ee=Boolean(e[0][e[6].ASSIGNEE])))&&(X.disabled=ee),65&s&&H(X,e[0][e[6].STATUS]),e[0][e[6].ASSIGNEE]?Se?Se.p(e,s):((Se=Ct(e)).c(),Se.m(z,null)):Se&&(Se.d(1),Se=null),(!oe||1&s&&ne!==(ne=e[0][e[6].JOBNR]))&&D(t,"data-id",ne),2&s&&q(t,"itemSelected",e[1]),e[2]?we?(we.p(e,s),4&s&&ve(we,1)):((we=Ot(e)).c(),ve(we,1),we.m(se.parentNode,se)):we&&(me(),be(we,1,1,()=>{we=null}),he())},i(e){oe||(ve(pe),ve(E.$$.fragment,e),ve(U.$$.fragment,e),ve(G.$$.fragment,e),ve(we),oe=!0)},o(e){be(pe),be(E.$$.fragment,e),be(U.$$.fragment,e),be(G.$$.fragment,e),be(we),oe=!1},d(e){e&&w(t),pe&&pe.d(),ke.d(),Ae(E),Ae(U),Ae(G),_(xe,e),Se&&Se.d(),e&&w(le),we&&we.d(e),e&&w(se),re=!1,o(ie)}}}function Dt(e){return"Hentet"===e?"hentet":"henter nå"}function Mt(e,t,n){let l,s;u(e,bt,e=>n(22,s=e));const o=X();let{itemData:c}=t,{itemSelected:r=!1}=t,{prefs:i}=t,a=i.cols,d=!1,p=!1;function f(e){return n(3,p=!1),xt(c[a.JOBNR],a,e.detail).catch(e=>alert(e))}return e.$$set=(e=>{"itemData"in e&&n(0,c=e.itemData),"itemSelected"in e&&n(1,r=e.itemSelected),"prefs"in e&&n(9,i=e.prefs)}),e.$$.update=(()=>{1&e.$$.dirty&&n(4,l=c.loading)}),[c,r,d,p,l,o,a,f,function(e){let t=s.find(t=>t.number===St(e));return t?t.name:St(e)},i,function(t){(function(e,t){const n=e.$$.callbacks[t.type];n&&n.slice().forEach(e=>e.call(this,t))}).call(this,e,t)},e=>n(2,d=!d),function(){r=this.checked,n(1,r)},e=>o("select",{jobnr:c[a.JOBNR],selected:e.target.checked}),function(){c[a.STATUS]=J(this),n(0,c),n(6,a)},e=>f({detail:{[a.STATUS]:e.target.value}}),e=>{-1===["SELECT","LABEL","INPUT","OPTION","A"].indexOf(e.target.tagName)&&o("select",{jobnr:c[a.JOBNR],selected:!r})},e=>n(3,p=!0),e=>n(3,p=!1),()=>n(3,p=!1),function(){c[a.ADMCOMMENT]=this.value,n(0,c),n(6,a)},e=>xt(c[a.JOBNR],a,{[a.ADMCOMMENT]:e.target.value})]}class Bt extends Ne{constructor(e){super(),_e(this,e,Mt,It,r,{itemData:0,itemSelected:1,prefs:9})}}function Ut(e,t,n){const l=e.slice();return l[14]=t[n],l}function Ht(e,t,n){const l=e.slice();return l[17]=t[n],l}function Pt(e){let t,n,l;return{c(){D(t=N("textarea"),"pattern","[0-9 ,]"),t.required=!0,D(t,"class","svelte-72ojky")},m(s,o){A(s,t,o),B(t,e[0]),n||(l=j(t,"input",e[9]),n=!0)},p(e,n){5&n&&B(t,e[0])},d(e){e&&w(t),n=!1,l()}}}function Jt(e){let t,n,l,s=e[2],o=[];for(let t=0;t<s.length;t+=1)o[t]=qt(Ht(e,s,t));return{c(){t=N("select");for(let e=0;e<o.length;e+=1)o[e].c();t.multiple=!0,t.required=!0,D(t,"class","svelte-72ojky"),void 0===e[0]&&ce(()=>e[8].call(t))},m(s,c){A(s,t,c);for(let e=0;e<o.length;e+=1)o[e].m(t,null);P(t,e[0]),n||(l=j(t,"change",e[8]),n=!0)},p(e,n){if(4&n){let l;for(s=e[2],l=0;l<s.length;l+=1){const c=Ht(e,s,l);o[l]?o[l].p(c,n):(o[l]=qt(c),o[l].c(),o[l].m(t,null))}for(;l<o.length;l+=1)o[l].d(1);o.length=s.length}5&n&&P(t,e[0])},d(e){e&&w(t),_(o,e),n=!1,l()}}}function Gt(e){let t,n,l=e[17].address+"";return{c(){t=C("- "),n=C(l)},m(e,l){A(e,t,l),A(e,n,l)},p(e,t){4&t&&l!==(l=e[17].address+"")&&M(n,l)},d(e){e&&w(t),e&&w(n)}}}function qt(e){let t,n,l,s,o=e[17].name+"",c=e[17].address&&Gt(e);return{c(){t=N("option"),n=C(o),c&&c.c(),l=O(),t.__value=s=e[17].number,t.value=t.__value,D(t,"class","svelte-72ojky")},m(e,s){A(e,t,s),S(t,n),c&&c.m(t,null),S(t,l)},p(e,r){4&r&&o!==(o=e[17].name+"")&&M(n,o),e[17].address?c?c.p(e,r):((c=Gt(e)).c(),c.m(t,l)):c&&(c.d(1),c=null),4&r&&s!==(s=e[17].number)&&(t.__value=s,t.value=t.__value)},d(e){e&&w(t),c&&c.d()}}}function Lt(t){let n,l,s,o=t[14]+"";return{c(){n=N("option"),l=C(o),n.__value=s=t[14],n.value=n.__value,D(n,"class","svelte-72ojky")},m(e,t){A(e,n,t),S(n,l)},p:e,d(e){e&&w(n)}}}function zt(t){let n,l,s,c,r,i,a,u,d,p,f,g,m,h,v,b,k,$,x,y,E;function C(e,t){return e[2]&&e[2].length?Jt:Pt}let T=C(t),I=T(t),M=t[3]&&function(e){let t,n,l,s,o,c,r,i,a=Object.keys(e[5]),u=[];for(let t=0;t<a.length;t+=1)u[t]=Lt(Ut(e,a,t));return{c(){t=N("p"),(n=N("b")).textContent="Kjappe svar",l=O(),s=N("span"),o=N("select"),c=N("option");for(let e=0;e<u.length;e+=1)u[e].c();c.__value="",c.value=c.__value,D(c,"class","svelte-72ojky"),D(o,"class","svelte-72ojky"),D(s,"class","svelte-72ojky"),D(t,"class","svelte-72ojky")},m(a,d){A(a,t,d),S(t,n),S(t,l),S(t,s),S(s,o),S(o,c);for(let e=0;e<u.length;e+=1)u[e].m(o,null);r||(i=j(o,"change",e[11]),r=!0)},p(e,t){if(32&t){let n;for(a=Object.keys(e[5]),n=0;n<a.length;n+=1){const l=Ut(e,a,n);u[n]?u[n].p(l,t):(u[n]=Lt(l),u[n].c(),u[n].m(o,null))}for(;n<u.length;n+=1)u[n].d(1);u.length=a.length}},d(e){e&&w(t),_(u,e),r=!1,i()}}}(t);return{c(){n=N("form"),l=N("p"),(s=N("b")).textContent="Til",c=N("span"),I.c(),r=O(),i=N("p"),(a=N("b")).textContent="SMS",u=O(),d=N("span"),p=N("textarea"),f=O(),M&&M.c(),g=O(),m=N("p"),h=N("span"),v=O(),b=N("span"),(k=N("button")).textContent="Send",$=O(),(x=N("button")).textContent="Avbryt",D(c,"class","to svelte-72ojky"),D(l,"class","svelte-72ojky"),p.required=!0,D(p,"class","svelte-72ojky"),D(d,"class","sms svelte-72ojky"),D(i,"class","svelte-72ojky"),D(h,"class","svelte-72ojky"),D(k,"type","submit"),D(k,"class","p8 br2 svelte-72ojky"),D(x,"class","p8 br2 svelte-72ojky"),D(x,"type","button"),D(b,"class","svelte-72ojky"),D(m,"class","svelte-72ojky"),D(n,"class","svelte-72ojky")},m(e,o){A(e,n,o),S(n,l),S(l,s),S(l,c),I.m(c,null),S(n,r),S(n,i),S(i,a),S(i,u),S(i,d),S(d,p),B(p,t[1]),S(n,f),M&&M.m(n,null),S(n,g),S(n,m),S(m,h),S(m,v),S(m,b),S(b,k),S(b,$),S(b,x),y||(E=[j(p,"input",t[10]),j(x,"click",t[12]),j(n,"submit",R(t[13]))],y=!0)},p(e,[t]){T===(T=C(e))&&I?I.p(e,t):(I.d(1),(I=T(e))&&(I.c(),I.m(c,null))),2&t&&B(p,e[1]),e[3]&&M.p(e,t)},i:e,o:e,d(e){e&&w(n),I.d(),M&&M.d(),y=!1,o(E)}}}function Yt(e,t,n){let{recipients:l=[]}=t,{message:s=""}=t,{possibleRecipients:o}=t,c=!s;const r=X();let i={"Bekreft data mottatt":"Hei,\ntakk for at du har sendt inn skjema om loppehenting! :)\n\nVi henter hver kveld mellom 24. og 26. august. Vi kontakter deg på dette nummeret før henting.\n\nVennlig hilsen Ila og Bolteløkka skolekorps","Hentes snart":"Hei,\ntakk for at du vil gi korpset lopper. Passer det om noen kommer og henter hos deg snart?\n\nVennlig hilsen Ila og Bolteløkka skolekorps","Ikke IKEA":"Hei,\ntakk for at du vil gi korpset lopper! Dessverre har vi dårlig erfaring med å selge IKEA-møbler, så slike vil vi helst ikke ta imot.\n\nVennlig hilsen Ila og Bolteløkka skolekorps","Ikke sofa":"Hei,\ntakk for at du vil gi korpset lopper! Dessverre har vi dårlig erfaring med å selge sofaer på loppemarked. Vi vil helst ikke ta imot sofaer med mindre de er av spesielt god kvalitet.\n\nVennlig hilsen Ila og Bolteløkka skolekorps","Rekker ikke":"Hei,\ntakk for at du vil gi korpset lopper! Dessverre rekker vi ikke å hente loppene dine i kveld. Dersom du har mulighet til å levere i skolegården, er det supert.\n\nVennlig hilsen Ila og Bolteløkka skolekorps","For langt borte":"Hei,\ntakk for at du vil gi korpset lopper! Dessverre rekker vi ikke å hente tingene dine, fordi det er litt for langt borte fra vårt område. Vi foreslår at du  tar kontakt med et lokalt korps og spør om de skal hente lopper snart.\n\nVennlig hilsen Ila og Bolteløkka skolekorps","Send foto?":"Hei,\ntakk for at du vil gi korpset lopper! Kan du sende meg et foto av loppene?\n\nVennlig hilsen Ila og Bolteløkka skolekorps"};function a(){r("sms","string"==typeof l?{recipients:l.split(/,\s*/g),message:s}:{recipients:l,message:s})}function u(e){e&&i[e]&&n(1,s=i[e])}return e.$$set=(e=>{"recipients"in e&&n(0,l=e.recipients),"message"in e&&n(1,s=e.message),"possibleRecipients"in e&&n(2,o=e.possibleRecipients)}),[l,s,o,c,r,i,a,u,function(){l=G(this),n(0,l),n(2,o)},function(){l=this.value,n(0,l),n(2,o)},function(){s=this.value,n(1,s)},e=>u(e.target.value),e=>r("cancel"),e=>a()]}class Kt extends Ne{constructor(e){super(),_e(this,e,Yt,zt,r,{recipients:0,message:1,possibleRecipients:2})}}function Vt(e,t,n){const l=e.slice();return l[11]=t[n].name,l[12]=t[n].number,l}function Ft(e){let t,n=e[2],l=[];for(let t=0;t<n.length;t+=1)l[t]=Zt(Vt(e,n,t));return{c(){t=N("ul");for(let e=0;e<l.length;e+=1)l[e].c()},m(e,n){A(e,t,n);for(let e=0;e<l.length;e+=1)l[e].m(t,null)},p(e,s){if(36&s){let o;for(n=e[2],o=0;o<n.length;o+=1){const c=Vt(e,n,o);l[o]?l[o].p(c,s):(l[o]=Zt(c),l[o].c(),l[o].m(t,null))}for(;o<l.length;o+=1)l[o].d(1);l.length=n.length}},d(e){e&&w(t),_(l,e)}}}function Zt(e){let t,n,l,s,o,c,r,i,a,u,d,p=e[11]+"",f=e[12]+"";function g(...t){return e[6](e[11],e[12],...t)}return{c(){t=N("li"),n=N("b"),l=C(p),s=C(", "),o=N("a"),c=C(f),i=O(),(a=N("button")).textContent="X",D(o,"href",r="tel:"+e[12]),D(a,"class","cancel br2 svelte-4kixmb")},m(e,r){A(e,t,r),S(t,n),S(n,l),S(t,s),S(t,o),S(o,c),S(t,i),S(t,a),u||(d=j(a,"click",g),u=!0)},p(t,n){e=t,4&n&&p!==(p=e[11]+"")&&M(l,p),4&n&&f!==(f=e[12]+"")&&M(c,f),4&n&&r!==(r="tel:"+e[12])&&D(o,"href",r)},d(e){e&&w(t),u=!1,d()}}}function Qt(t){let n,l,s,c,r,i,a,u,d,p,f,g,m,h,v,b,k,$,x,y,E,_=t[2].length&&Ft(t);return{c(){n=N("div"),_&&_.c(),l=O(),s=N("form"),c=N("p"),(r=N("span")).textContent="Navn: ",i=N("span"),a=N("input"),u=O(),d=N("p"),(p=N("span")).textContent="Mobil: ",f=N("span"),g=N("input"),m=O(),h=N("p"),v=N("span"),b=N("span"),(k=N("button")).textContent="Legg til",$=O(),(x=N("button")).textContent="Lukk",D(r,"class","svelte-4kixmb"),a.required=!0,D(a,"class","svelte-4kixmb"),D(i,"class","svelte-4kixmb"),D(c,"class","svelte-4kixmb"),D(p,"class","svelte-4kixmb"),D(g,"inputmode","tel"),g.required=!0,D(g,"class","svelte-4kixmb"),D(f,"class","svelte-4kixmb"),D(d,"class","svelte-4kixmb"),D(v,"class","svelte-4kixmb"),D(k,"type","submit"),D(k,"class","p8 br2 svelte-4kixmb"),D(x,"class","p8 br2 svelte-4kixmb"),D(x,"type","button"),D(b,"class","svelte-4kixmb"),D(h,"class","svelte-4kixmb"),D(s,"class","svelte-4kixmb")},m(e,o){A(e,n,o),_&&_.m(n,null),S(n,l),S(n,s),S(s,c),S(c,r),S(c,i),S(i,a),B(a,t[0]),S(s,u),S(s,d),S(d,p),S(d,f),S(f,g),B(g,t[1]),S(s,m),S(s,h),S(h,v),S(h,b),S(b,k),S(b,$),S(b,x),y||(E=[j(a,"input",t[7]),j(g,"input",t[8]),j(x,"click",t[9]),j(s,"submit",R(t[10]))],y=!0)},p(e,[t]){e[2].length?_?_.p(e,t):((_=Ft(e)).c(),_.m(n,l)):_&&(_.d(1),_=null),1&t&&a.value!==e[0]&&B(a,e[0]),2&t&&g.value!==e[1]&&B(g,e[1])},i:e,o:e,d(e){e&&w(n),_&&_.d(),y=!1,o(E)}}}function Wt(e,t,n){let l;u(e,bt,e=>n(2,l=e));const s=X();let o="",c="";function r(e,t){bt.update(n=>(n.push({name:e,number:t}),n)),n(1,c=n(0,o=""))}function i(e,t){bt.update(n=>{let l=n.findIndex(n=>n.name===e&&n.number===t);return n.splice(l,1),n})}return[o,c,l,s,r,i,(e,t,n)=>i(e,t),function(){o=this.value,n(0,o)},function(){c=this.value,n(1,c)},e=>s("cancel"),e=>r(o,c)]}class Xt extends Ne{constructor(e){super(),_e(this,e,Wt,Qt,r,{})}}function en(e,t,n){const l=e.slice();return l[6]=t[n],l}function tn(t){let n,l,s,o=t[6]+"";return{c(){n=N("option"),l=C(o),n.__value=s=t[6],n.value=n.__value,D(n,"class","svelte-1j620z1")},m(e,t){A(e,n,t),S(n,l)},p:e,d(e){e&&w(n)}}}function nn(t){let n,l,s,c,r,i,a,u,d,p,f,g,m,h,v,b,k=De,$=[];for(let e=0;e<k.length;e+=1)$[e]=tn(en(t,k,e));return{c(){n=N("form"),l=N("p"),(s=N("b")).textContent="Ny status:",c=O(),r=N("span"),i=N("select");for(let e=0;e<$.length;e+=1)$[e].c();a=O(),u=N("p"),d=N("span"),p=O(),f=N("span"),(g=N("button")).textContent="Oppdater valgte",m=O(),(h=N("button")).textContent="Avbryt",D(s,"class","svelte-1j620z1"),D(i,"class","svelte-1j620z1"),void 0===t[0]&&ce(()=>t[3].call(i)),D(r,"class","svelte-1j620z1"),D(l,"class","svelte-1j620z1"),D(d,"class","svelte-1j620z1"),D(g,"type","submit"),D(g,"class","p8 br2 svelte-1j620z1"),D(h,"class","p8 br2 svelte-1j620z1"),D(h,"type","button"),D(f,"class","svelte-1j620z1"),D(u,"class","svelte-1j620z1"),D(n,"class","svelte-1j620z1")},m(e,o){A(e,n,o),S(n,l),S(l,s),S(l,c),S(l,r),S(r,i);for(let e=0;e<$.length;e+=1)$[e].m(i,null);H(i,t[0]),S(n,a),S(n,u),S(u,d),S(u,p),S(u,f),S(f,g),S(f,m),S(f,h),v||(b=[j(i,"change",t[3]),j(h,"click",t[4]),j(n,"submit",R(t[5]))],v=!0)},p(e,[t]){if(0&t){let n;for(k=De,n=0;n<k.length;n+=1){const l=en(e,k,n);$[n]?$[n].p(l,t):($[n]=tn(l),$[n].c(),$[n].m(i,null))}for(;n<$.length;n+=1)$[n].d(1);$.length=k.length}1&t&&H(i,e[0])},i:e,o:e,d(e){e&&w(n),_($,e),v=!1,o(b)}}}function ln(e,t,n){const l=X();let s="";function o(){l("statusupdate",{newState:s})}return[s,l,o,function(){s=J(this),n(0,s)},e=>l("cancel"),e=>o()]}class sn extends Ne{constructor(e){super(),_e(this,e,ln,nn,r,{})}}function on(e){let t,n,l,s;return{c(){t=N("div"),n=C(e[0]),U(t,"bottom",36*e[2]+"px"),D(t,"class","svelte-ni4itl"),q(t,"isError",e[1])},m(e,l){A(e,t,l),S(t,n),s=!0},p(e,[l]){(!s||1&l)&&M(n,e[0]),(!s||4&l)&&U(t,"bottom",36*e[2]+"px"),2&l&&q(t,"isError",e[1])},i(e){s||(ce(()=>{l||(l=$e(t,Te,{y:50,duration:500},!0)),l.run(1)}),s=!0)},o(e){l||(l=$e(t,Te,{y:50,duration:500},!1)),l.run(0),s=!1},d(e){e&&w(t),e&&l&&l.end()}}}function cn(e,t,n){let{message:l=""}=t,{isError:s=!1}=t,{index:o=0}=t;return e.$$set=(e=>{"message"in e&&n(0,l=e.message),"isError"in e&&n(1,s=e.isError),"index"in e&&n(2,o=e.index)}),[l,s,o]}class rn extends Ne{constructor(e){super(),_e(this,e,cn,on,r,{message:0,isError:1,index:2})}}function an(e,t,n){const l=e.slice();return l[4]=t[n],l}function un(e){let t,n;return{c(){a((t=N("img")).src,n=e[4].icon)||D(t,"src",n),D(t,"alt",""),D(t,"class","svelte-1s9tfhz")},m(e,n){A(e,t,n)},p(e,l){4&l&&!a(t.src,n=e[4].icon)&&D(t,"src",n)},d(e){e&&w(t)}}}function dn(e){let t,n,l,s,o,r,i=e[4].label+"",a=e[4].icon&&un(e);return{c(){t=N("button"),a&&a.c(),n=O(),l=C(i),s=O(),D(t,"class","menu svelte-1s9tfhz")},m(i,u){A(i,t,u),a&&a.m(t,null),S(t,n),S(t,l),S(t,s),o||(r=j(t,"click",function(){c(e[4].action)&&e[4].action.apply(this,arguments)}),o=!0)},p(s,o){(e=s)[4].icon?a?a.p(e,o):((a=un(e)).c(),a.m(t,n)):a&&(a.d(1),a=null),4&o&&i!==(i=e[4].label+"")&&M(l,i)},d(e){e&&w(t),a&&a.d(),o=!1,r()}}}function pn(t){let n,l=t[2],s=[];for(let e=0;e<l.length;e+=1)s[e]=dn(an(t,l,e));return{c(){n=N("div");for(let e=0;e<s.length;e+=1)s[e].c();D(n,"class","menu svelte-1s9tfhz"),U(n,"top",t[3]+"px"),U(n,"left",t[0]+"px"),U(n,"position","fixed"),q(n,"show",t[1])},m(e,t){A(e,n,t);for(let e=0;e<s.length;e+=1)s[e].m(n,null)},p(e,[t]){if(4&t){let o;for(l=e[2],o=0;o<l.length;o+=1){const c=an(e,l,o);s[o]?s[o].p(c,t):(s[o]=dn(c),s[o].c(),s[o].m(n,null))}for(;o<s.length;o+=1)s[o].d(1);s.length=l.length}8&t&&U(n,"top",e[3]+"px"),1&t&&U(n,"left",e[0]+"px"),2&t&&q(n,"show",e[1])},i:e,o:e,d(e){e&&w(n),_(s,e)}}}function fn(e,t,n){let{show:l=!1}=t,{items:s=[]}=t,{x:o=0}=t,{y:c=0}=t;return W(()=>document.getElementsByTagName("button")[0].focus()),o<=20&&(o=20),e.$$set=(e=>{"show"in e&&n(1,l=e.show),"items"in e&&n(2,s=e.items),"x"in e&&n(0,o=e.x),"y"in e&&n(3,c=e.y)}),[o,l,s,c]}class gn extends Ne{constructor(e){super(),_e(this,e,fn,pn,r,{show:1,items:2,x:0,y:3})}}function mn(e,t,n){const l=e.slice();return l[74]=t[n],l[76]=n,l}function hn(e,t,n){const l=e.slice();return l[78]=t[n],l[80]=n,l}function vn(e,t,n){const l=e.slice();return l[81]=t[n],l}function bn(t){let n,l,s=t[84].message+"";return{c(){n=N("p"),l=C(s),U(n,"color","red")},m(e,t){A(e,n,t),S(n,l)},p(e,t){32&t[0]&&s!==(s=e[84].message+"")&&M(l,s)},i:e,o:e,d(e){e&&w(n)}}}function kn(e){let t,n,l,s,c,r,i,u,d,p,f,g,m,h,v,b,k,$,x,y,E,R,I,U,P,J,G,L,z,Y,K,V,F,Z,Q,W,X,ee,te,ne,le,se,oe,re,ie,ae,ue,de,pe,fe,ge,ke,$e,xe,Se,ye,Ee,Ae,we,_e,Ne,Ce,Oe,Te,je,Re=e[24].length+"",Ie=e[24].filter(e[45]).length+"",De=e[24].filter(e[46]).length+"",Me=e[24].filter(e[47]).length+"",Be=e[14].types,Ue=[];for(let t=0;t<Be.length;t+=1)Ue[t]=$n(vn(e,Be,t));let He=e[24],Pe=[];for(let t=0;t<He.length;t+=1)Pe[t]=Sn(hn(e,He,t));const Je=e=>be(Pe[e],1,1,()=>{Pe[e]=null});let Ge=e[0]&&yn(e),qe=e[1]&&wn(e),Le=e[2]&&Cn(e);return{c(){t=N("table"),n=N("tr"),l=N("th"),s=N("input"),c=O(),r=N("th"),i=N("img"),d=O(),p=N("img"),g=O(),m=N("th"),h=N("select"),(v=N("option")).textContent="-";for(let e=0;e<Ue.length;e+=1)Ue[e].c();b=O(),(k=N("th")).innerHTML='<img src="/images/star-full.png" width="16" alt="antatt kvalitet"/> \n\t\t\t\t<img src="/images/star-full.png" width="16" alt=""/> \n\t\t\t\t<img src="/images/star-full.png" width="16" alt=""/>',$=O(),x=N("th"),y=N("ol"),(E=N("li")).textContent="Ti",R=O(),(I=N("li")).textContent="On",U=O(),(P=N("li")).textContent="To",J=O(),G=N("th"),L=N("label"),z=N("input"),Y=C("Bare valgte dager"),K=O(),V=N("br"),F=N("label"),Z=N("input"),Q=C("Skjul ferdige"),W=O();for(let e=0;e<Pe.length;e+=1)Pe[e].c();X=O(),ee=N("col"),te=O(),ne=N("col"),le=O(),se=N("col"),oe=O(),re=N("col"),ie=O(),ae=N("col"),ue=O(),de=N("col"),pe=O(),fe=N("p"),ge=C("Antall jobber totalt: "),ke=C(Re),$e=C(". \n\tHentes nå: "),xe=C(Ie),Se=C("\n\tHentet: "),ye=C(De),Ee=C("\n\tHentes ikke: "),Ae=C(Me),we=O(),Ge&&Ge.c(),_e=O(),qe&&qe.c(),Ne=O(),Le&&Le.c(),Ce=T(),D(s,"type","search"),D(s,"placeholder","Filtrer"),a(i.src,u="/images/bigcar.png")||D(i,"src","/images/bigcar.png"),D(i,"alt","stor bil"),D(i,"height","22"),D(i,"tabindex","0"),q(i,"bigActive",e[7]),a(p.src,f="/images/smallcar.png")||D(p,"src","/images/smallcar.png"),D(p,"alt","liten bil"),D(p,"height","22"),D(p,"tabindex","0"),q(p,"smallActive",e[8]),v.__value="",v.value=v.__value,void 0===e[13]&&ce(()=>e[38].call(h)),D(E,"tabindex","0"),q(E,"tueActive",e[9]),D(I,"tabindex","0"),q(I,"wedActive",e[10]),D(P,"tabindex","0"),q(P,"thuActive",e[11]),D(y,"class","days"),D(z,"type","checkbox"),D(Z,"type","checkbox"),D(ee,"class","address"),D(ne,"class","cartype"),D(se,"class","stufftype"),D(re,"class","quality"),D(ae,"class","dayscol"),D(de,"class","status"),D(t,"class","main")},m(o,a){A(o,t,a),S(t,n),S(n,l),S(l,s),B(s,e[6]),S(n,c),S(n,r),S(r,i),S(r,d),S(r,p),S(n,g),S(n,m),S(m,h),S(h,v);for(let e=0;e<Ue.length;e+=1)Ue[e].m(h,null);H(h,e[13]),S(n,b),S(n,k),S(n,$),S(n,x),S(x,y),S(y,E),S(y,R),S(y,I),S(y,U),S(y,P),S(n,J),S(n,G),S(G,L),S(L,z),z.checked=e[12],S(L,Y),S(G,K),S(G,V),S(G,F),S(F,Z),Z.checked=e[20],S(F,Q),S(t,W);for(let e=0;e<Pe.length;e+=1)Pe[e].m(t,null);S(t,X),S(t,ee),S(t,te),S(t,ne),S(t,le),S(t,se),S(t,oe),S(t,re),S(t,ie),S(t,ae),S(t,ue),S(t,de),A(o,pe,a),A(o,fe,a),S(fe,ge),S(fe,ke),S(fe,$e),S(fe,xe),S(fe,Se),S(fe,ye),S(fe,Ee),S(fe,Ae),A(o,we,a),Ge&&Ge.m(o,a),A(o,_e,a),qe&&qe.m(o,a),A(o,Ne,a),Le&&Le.m(o,a),A(o,Ce,a),Oe=!0,Te||(je=[j(s,"input",e[35]),j(i,"click",e[36]),j(p,"click",e[37]),j(h,"change",e[38]),j(E,"click",e[39]),j(I,"click",e[40]),j(P,"click",e[41]),j(z,"change",e[42]),j(Z,"change",e[43])],Te=!0)},p(e,n){if(64&n[0]&&B(s,e[6]),128&n[0]&&q(i,"bigActive",e[7]),256&n[0]&&q(p,"smallActive",e[8]),16384&n[0]){let t;for(Be=e[14].types,t=0;t<Be.length;t+=1){const l=vn(e,Be,t);Ue[t]?Ue[t].p(l,n):(Ue[t]=$n(l),Ue[t].c(),Ue[t].m(h,null))}for(;t<Ue.length;t+=1)Ue[t].d(1);Ue.length=Be.length}if(24576&n[0]&&H(h,e[13]),512&n[0]&&q(E,"tueActive",e[9]),1024&n[0]&&q(I,"wedActive",e[10]),2048&n[0]&&q(P,"thuActive",e[11]),4096&n[0]&&(z.checked=e[12]),1048576&n[0]&&(Z.checked=e[20]),85065664&n[0]){let l;for(He=e[24],l=0;l<He.length;l+=1){const s=hn(e,He,l);Pe[l]?(Pe[l].p(s,n),ve(Pe[l],1)):(Pe[l]=Sn(s),Pe[l].c(),ve(Pe[l],1),Pe[l].m(t,X))}for(me(),l=He.length;l<Pe.length;l+=1)Je(l);he()}(!Oe||16777216&n[0])&&Re!==(Re=e[24].length+"")&&M(ke,Re),(!Oe||16809984&n[0])&&Ie!==(Ie=e[24].filter(e[45]).length+"")&&M(xe,Ie),(!Oe||16809984&n[0])&&De!==(De=e[24].filter(e[46]).length+"")&&M(ye,De),(!Oe||16809984&n[0])&&Me!==(Me=e[24].filter(e[47]).length+"")&&M(Ae,Me),e[0]?Ge?(Ge.p(e,n),1&n[0]&&ve(Ge,1)):((Ge=yn(e)).c(),ve(Ge,1),Ge.m(_e.parentNode,_e)):Ge&&(me(),be(Ge,1,1,()=>{Ge=null}),he()),e[1]?qe?(qe.p(e,n),2&n[0]&&ve(qe,1)):((qe=wn(e)).c(),ve(qe,1),qe.m(Ne.parentNode,Ne)):qe&&(me(),be(qe,1,1,()=>{qe=null}),he()),e[2]?Le?(Le.p(e,n),4&n[0]&&ve(Le,1)):((Le=Cn(e)).c(),ve(Le,1),Le.m(Ce.parentNode,Ce)):Le&&(me(),be(Le,1,1,()=>{Le=null}),he())},i(e){if(!Oe){for(let e=0;e<He.length;e+=1)ve(Pe[e]);ve(Ge),ve(qe),ve(Le),Oe=!0}},o(e){Pe=Pe.filter(Boolean);for(let e=0;e<Pe.length;e+=1)be(Pe[e]);be(Ge),be(qe),be(Le),Oe=!1},d(e){e&&w(t),_(Ue,e),_(Pe,e),e&&w(pe),e&&w(fe),e&&w(we),Ge&&Ge.d(e),e&&w(_e),qe&&qe.d(e),e&&w(Ne),Le&&Le.d(e),e&&w(Ce),Te=!1,o(je)}}}function $n(e){let t,n,l,s=e[81]+"";return{c(){t=N("option"),n=C(s),t.__value=l=e[81],t.value=t.__value},m(e,l){A(e,t,l),S(t,n)},p(e,o){16384&o[0]&&s!==(s=e[81]+"")&&M(n,s),16384&o[0]&&l!==(l=e[81])&&(t.__value=l,t.value=t.__value)},d(e){e&&w(t)}}}function xn(e){let t,n;return(t=new Bt({props:{itemData:e[78],prefs:e[14],itemSelected:e[16].indexOf(e[78][e[15].JOBNR])>-1}})).$on("select",e[44]),{c(){ye(t.$$.fragment)},m(e,l){Ee(t,e,l),n=!0},p(e,n){const l={};16777216&n[0]&&(l.itemData=e[78]),16384&n[0]&&(l.prefs=e[14]),16875520&n[0]&&(l.itemSelected=e[16].indexOf(e[78][e[15].JOBNR])>-1),t.$set(l)},i(e){n||(ve(t.$$.fragment,e),n=!0)},o(e){be(t.$$.fragment,e),n=!1},d(e){Ae(t,e)}}}function Sn(e){let t,n,l=yt(e[6],{smallActive:e[8],bigActive:e[7]},{monActive:Dn,tueActive:e[9],wedActive:e[10],thuActive:e[11],dayFilterExclusive:e[12]},e[13],e[20],bt,e[78],e[15]),s=l&&xn(e);return{c(){s&&s.c(),t=T()},m(e,l){s&&s.m(e,l),A(e,t,l),n=!0},p(e,n){17874880&n[0]&&(l=yt(e[6],{smallActive:e[8],bigActive:e[7]},{monActive:Dn,tueActive:e[9],wedActive:e[10],thuActive:e[11],dayFilterExclusive:e[12]},e[13],e[20],bt,e[78],e[15])),l?s?(s.p(e,n),17874880&n[0]&&ve(s,1)):((s=xn(e)).c(),ve(s,1),s.m(t.parentNode,t)):s&&(me(),be(s,1,1,()=>{s=null}),he())},i(e){n||(ve(s),n=!0)},o(e){be(s),n=!1},d(e){s&&s.d(e),e&&w(t)}}}function yn(e){let t,n;return(t=new We({props:{$$slots:{header:[An],default:[En]},$$scope:{ctx:e}}})).$on("close",e[50]),{c(){ye(t.$$.fragment)},m(e,l){Ee(t,e,l),n=!0},p(e,n){const l={};917505&n[0]|8388608&n[2]&&(l.$$scope={dirty:n,ctx:e}),t.$set(l)},i(e){n||(ve(t.$$.fragment,e),n=!0)},o(e){be(t.$$.fragment,e),n=!1},d(e){Ae(t,e)}}}function En(e){let t,n;return(t=new Kt({props:{possibleRecipients:e[17],recipients:e[18],message:e[19]}})).$on("cancel",e[48]),t.$on("sms",e[49]),{c(){ye(t.$$.fragment)},m(e,l){Ee(t,e,l),n=!0},p(e,n){const l={};131072&n[0]&&(l.possibleRecipients=e[17]),262144&n[0]&&(l.recipients=e[18]),524288&n[0]&&(l.message=e[19]),t.$set(l)},i(e){n||(ve(t.$$.fragment,e),n=!0)},o(e){be(t.$$.fragment,e),n=!1},d(e){Ae(t,e)}}}function An(e){let t;return{c(){(t=N("h2")).textContent="Send SMS",D(t,"slot","header")},m(e,n){A(e,t,n)},d(e){e&&w(t)}}}function wn(e){let t,n;return(t=new We({props:{$$slots:{header:[Nn],default:[_n]},$$scope:{ctx:e}}})).$on("close",e[52]),{c(){ye(t.$$.fragment)},m(e,l){Ee(t,e,l),n=!0},p(e,n){const l={};2&n[0]|8388608&n[2]&&(l.$$scope={dirty:n,ctx:e}),t.$set(l)},i(e){n||(ve(t.$$.fragment,e),n=!0)},o(e){be(t.$$.fragment,e),n=!1},d(e){Ae(t,e)}}}function _n(t){let n,l;return(n=new Xt({})).$on("cancel",t[51]),{c(){ye(n.$$.fragment)},m(e,t){Ee(n,e,t),l=!0},p:e,i(e){l||(ve(n.$$.fragment,e),l=!0)},o(e){be(n.$$.fragment,e),l=!1},d(e){Ae(n,e)}}}function Nn(e){let t;return{c(){(t=N("h2")).textContent="Oppdater hentere",D(t,"slot","header")},m(e,n){A(e,t,n)},d(e){e&&w(t)}}}function Cn(e){let t,n;return(t=new We({props:{$$slots:{header:[Tn],default:[On]},$$scope:{ctx:e}}})).$on("close",e[55]),{c(){ye(t.$$.fragment)},m(e,l){Ee(t,e,l),n=!0},p(e,n){const l={};16875524&n[0]|8388608&n[2]&&(l.$$scope={dirty:n,ctx:e}),t.$set(l)},i(e){n||(ve(t.$$.fragment,e),n=!0)},o(e){be(t.$$.fragment,e),n=!1},d(e){Ae(t,e)}}}function On(t){let n,l;return(n=new sn({})).$on("cancel",t[53]),n.$on("statusupdate",t[54]),{c(){ye(n.$$.fragment)},m(e,t){Ee(n,e,t),l=!0},p:e,i(e){l||(ve(n.$$.fragment,e),l=!0)},o(e){be(n.$$.fragment,e),l=!1},d(e){Ae(n,e)}}}function Tn(e){let t;return{c(){(t=N("h2")).textContent="Oppdater status",D(t,"slot","header")},m(e,n){A(e,t,n)},d(e){e&&w(t)}}}function jn(t){let n,l,s,o,c;return l=new mt({}),{c(){n=N("div"),ye(l.$$.fragment),s=O(),(o=N("p")).textContent="...henter data",D(n,"class","dataloading"),U(o,"text-align","center")},m(e,t){A(e,n,t),Ee(l,n,null),A(e,s,t),A(e,o,t),c=!0},p:e,i(e){c||(ve(l.$$.fragment,e),c=!0)},o(e){be(l.$$.fragment,e),c=!1},d(e){e&&w(n),Ae(l),e&&w(s),e&&w(o)}}}function Rn(e){let t,l;const s=[e[74],{index:e[76]}];let o={};for(let e=0;e<s.length;e+=1)o=n(o,s[e]);return t=new rn({props:o}),{c(){ye(t.$$.fragment)},m(e,n){Ee(t,e,n),l=!0},p(e,n){const l=8388608&n[0]?function(e,t){const n={},l={},s={$$scope:1};let o=e.length;for(;o--;){const c=e[o],r=t[o];if(r){for(const e in c)e in r||(l[e]=1);for(const e in r)s[e]||(n[e]=r[e],s[e]=1);e[o]=r}else for(const e in c)s[e]=1}for(const e in l)e in n||(n[e]=void 0);return n}(s,[(o=e[74],"object"==typeof o&&null!==o?o:{}),s[1]]):{};var o;t.$set(l)},i(e){l||(ve(t.$$.fragment,e),l=!0)},o(e){be(t.$$.fragment,e),l=!1},d(e){Ae(t,e)}}}function In(e){let t,n,l,s,c,r,i,a,u,d,p,f,g,m,h,v,b={ctx:e,current:null,token:null,hasCatch:!0,pending:jn,then:kn,catch:bn,value:77,error:84,blocks:[,,,]};xe(a=e[5],b),d=new gn({props:{show:e[3],x:e[21],y:e[22],items:[{label:"SMS til giver",icon:"/images/sms.png",action:e[56]},{label:"SMS til henter",icon:"/images/sms.png",action:e[57]},{label:"Sett status",icon:"/images/wrench.png",action:e[58]},{label:"Vis på kart",icon:"/images/map.png",action:e[59]}]}}),f=new gn({props:{show:e[4],x:e[21],y:e[22],items:[{label:"Hentere",icon:"/images/smallcar.png",action:e[60]},{label:"Oppdater data",icon:"/images/wrench.png",action:e[61]},{label:"Merk alle",icon:"/images/check.png",action:e[62]},{label:"Fjern merking",icon:"/images/nocheck.png",action:e[63]},{label:"Tom SMS",icon:"/images/sms.png",action:e[64]}]}});let k=e[23],$=[];for(let t=0;t<k.length;t+=1)$[t]=Rn(mn(e,k,t));const x=e=>be($[e],1,1,()=>{$[e]=null});return{c(){t=N("div"),(n=N("button")).innerHTML='<img src="/images/wrench.png" width="24" alt="Innstillinger"/>',l=O(),(s=N("h1")).textContent="Loppisadmin",c=O(),(r=N("style")).textContent="h1 {text-align: center;}\n\t.conf {position: absolute; padding: 4px; right: 8em}\n\t.conf img {vertical-align: middle;}\n\ttable.main {\n\t\twidth: 80%;\n\t\tmargin-left: 10%;\n\t\tmargin-right: 10%;\n\t\tborder-collapse: collapse;\n\t\tborder: 1px solid grey;\n\t}\n\ttable.main tr:first-child {\n\t\tbackground: #eee;\n\t\tborder-bottom: 1px solid black;\n\t}\n\tth {text-align: left; padding-left: 16px; }\n\tth li {\n\t\tdisplay: inline-block;\n\t\theight: 20px;\n\t\twidth: 20px;\n\t\tborder-bottom: 1px solid grey;\n\t\tcolor: grey;\n\t\tfont-weight: lighter;\n\t\tmargin-left: 8px;\n\t\tcursor: pointer;\n\t}\n\t.smallActive, .bigActive {\n\t\tborder: 1px solid black;\n\t}\n\t.smallActive, .bigActive, li.monActive, li.tueActive, li.wedActive, li.thuActive {\n\t\tborder-color: black;\n\t\tcolor: black;\n\t}\n\tlabel {font-weight: lighter; font-style: italic;}\n\n\n/* Extra small devices (phones, 600px and down) */\n@media only screen and (max-width: 600px) {\n\tth:nth-child(3) {display: none;}\n\tth:nth-child(4) {display: none;}\n\tth:nth-child(5) {display: none;}\n\ttable {width: 99%; margin: 0;}\n} \n\n@media only screen and (max-width: 700px) {\n\tth:nth-child(3) {display: none;}\n\t.stufftype {width: 25%}\n\t.dayscol {width: 25%}\n\ttable {width: 95%; margin: 2.5%;}\n}\n/* column styles */\n.address {\n\tbackground: #eee;\n\twidth: 25%;\n}\n.cartype {\n\twidth: 5%;\n}\n.quality {\n\twidth: 10%;\n}\n.stufftype {\n\twidth: 10%;\n}\n.dayscol {\n\twidth: 20%;\n}\n.status {\n\twidth: 15%;\n}\n.dataloading {\n\tposition: fixed;\n\tleft: 45%;\n\tright: 50%;\n\ttop: 45%;\n\tbottom: 50%;\n}",i=O(),b.block.c(),u=O(),ye(d.$$.fragment),p=O(),ye(f.$$.fragment),g=O();for(let e=0;e<$.length;e+=1)$[e].c();D(n,"class","conf"),D(r,"type","text/css")},m(o,a){A(o,t,a),S(t,n),S(t,l),S(t,s),S(t,c),S(t,r),S(t,i),b.block.m(t,b.anchor=null),b.mount=(()=>t),b.anchor=u,S(t,u),Ee(d,t,null),S(t,p),Ee(f,t,null),S(t,g);for(let e=0;e<$.length;e+=1)$[e].m(t,null);m=!0,h||(v=[j(n,"click",I(e[34])),j(t,"contextmenu",R(e[65])),j(t,"click",e[66]),j(t,"mousedown",e[67]),j(t,"mousemove",e[68])],h=!0)},p(n,l){e=n,b.ctx=e,32&l[0]&&a!==(a=e[5])&&xe(a,b)||Se(b,e,l);const s={};8&l[0]&&(s.show=e[3]),2097152&l[0]&&(s.x=e[21]),4194304&l[0]&&(s.y=e[22]),12&l[0]&&(s.items=[{label:"SMS til giver",icon:"/images/sms.png",action:e[56]},{label:"SMS til henter",icon:"/images/sms.png",action:e[57]},{label:"Sett status",icon:"/images/wrench.png",action:e[58]},{label:"Vis på kart",icon:"/images/map.png",action:e[59]}]),d.$set(s);const o={};if(16&l[0]&&(o.show=e[4]),2097152&l[0]&&(o.x=e[21]),4194304&l[0]&&(o.y=e[22]),65555&l[0]&&(o.items=[{label:"Hentere",icon:"/images/smallcar.png",action:e[60]},{label:"Oppdater data",icon:"/images/wrench.png",action:e[61]},{label:"Merk alle",icon:"/images/check.png",action:e[62]},{label:"Fjern merking",icon:"/images/nocheck.png",action:e[63]},{label:"Tom SMS",icon:"/images/sms.png",action:e[64]}]),f.$set(o),8388608&l[0]){let n;for(k=e[23],n=0;n<k.length;n+=1){const s=mn(e,k,n);$[n]?($[n].p(s,l),ve($[n],1)):($[n]=Rn(s),$[n].c(),ve($[n],1),$[n].m(t,null))}for(me(),n=k.length;n<$.length;n+=1)x(n);he()}},i(e){if(!m){ve(b.block),ve(d.$$.fragment,e),ve(f.$$.fragment,e);for(let e=0;e<k.length;e+=1)ve($[e]);m=!0}},o(e){for(let e=0;e<3;e+=1){be(b.blocks[e])}be(d.$$.fragment,e),be(f.$$.fragment,e),$=$.filter(Boolean);for(let e=0;e<$.length;e+=1)be($[e]);m=!1},d(e){e&&w(t),b.block.d(),b.token=null,b=null,Ae(d),Ae(f),_($,e),h=!1,o(v)}}}let Dn=!0;function Mn(e,t,n){let l,s;u(e,kt,e=>n(24,l=e)),u(e,bt,e=>n(70,s=e));let o,c,r,i,a="",d=!1,p=!1,f=!1,g=!1,m=T(),h="",v=!0,b=!0,k=!0,$=!0,x=!0,S=!1,y="",E=[],A=[],w="",_=!0,N=0,C=0,O=[];async function T(e){let t=await fetch(`${Re}/prefs`);if(n(14,o=await t.json()),n(15,c=o.cols),(t=await fetch(`${Re}/jobs`+(e?"?refresh=1":""))).ok){let e=await t.json();return e.sort((e,t)=>e[c.ADDRESS]<t[c.ADDRESS]?-1:1),kt.set(e),!0}{let e=await t.text();throw console.log(e),new Error("Ingen tilgang")}}function j(){n(5,m=T(!0))}function R(e){let t=e.detail;t.selected&&-1===E.indexOf(t.jobnr)?n(16,E=[...E,t.jobnr]):!t.selected&&E.indexOf(t.jobnr)>-1&&(E.splice(E.indexOf(t.jobnr),1),n(16,E))}function I(e){if(f)n(3,f=!1);else{let t,l=e;for(;l&&!t&&l.getAttribute;)t=l.getAttribute("data-id"),l=l.parentNode;t&&-1===E.indexOf(t)&&R({detail:{selected:!0,jobnr:t}}),(t||E.length)&&n(3,f=!0)}}function D(e){let t=!1;if(!f&&!g)return;let l=e.target;for(console.log(l,l.className);l;)l.className&&l.className.indexOf("menu")>-1&&(t=!0),l=l.parentNode;t||(n(3,f=!1),n(4,g=!1))}function M(e){f||g||(n(21,N=event.clientX),N<.2*window.innerWidth&&n(21,N+=.1*window.innerWidth),N>=window.innerWidth-200&&n(21,N-=200),n(22,C=event.clientY))}function B(e,t){n(23,O=[...O,{message:e,isError:t}]),setTimeout(()=>n(23,O=O.slice(0,O.length-1)),5e3)}function U(e){n(3,f=!1);let t=E.map(e=>l.find(t=>t[c.JOBNR]===e));"donor"===e?(n(17,r=t.map(e=>({name:e[c.CONTACT_PERSON],number:e[c.PHONE],address:e[c.ADDRESS]}))),n(18,A=t.map(e=>e[c.PHONE])),n(0,a=e)):(n(17,r=s),n(19,w="Hei, foreslår at du henter følgende jobb(er): \n\n"+t.map(e=>`${e[c.ADDRESS]}\n${e[c.CONTACT_PERSON]}, ${e[c.PHONE]}`).join("\n\n")),n(19,w+=`\n\nMerk jobber som hentet her etterpå:\n${je}/henting/?jobb=${encodeURIComponent(t.map(e=>(function(e){return e.split(/\//g).splice(-2).join("/")})(e[c.JOBNR])).join(","))}&token=${encodeURIComponent(i)}&henter={number}`),n(0,a=e))}function H(){n(16,E.length=0,E),l.forEach(e=>{yt(h,{smallActive:b,bigActive:v},{monActive:Dn,tueActive:k,wedActive:$,thuActive:x,dayFilterExclusive:S},y,_,bt,e,c)&&E.push(e[c.JOBNR])})}function P(){let e=Ie+E.map(e=>{return l.find(t=>t[c.JOBNR]===e)[c.ADDRESS]}).join("/");window.open(e)}(async function(){const e=await fetch(`${Re}/helpertoken`);return(await e.json()).token})().then(e=>i=e),kt.subscribe(e=>{console.log("updated data! ",e)});return[a,d,p,f,g,m,h,v,b,k,$,x,S,y,o,c,E,r,A,w,_,N,C,O,l,j,R,I,D,M,B,U,H,P,e=>{n(4,g=!0)},function(){h=this.value,n(6,h)},e=>n(7,v=!v),e=>n(8,b=!b),function(){y=J(this),n(13,y),n(14,o)},e=>n(9,k=!k),e=>n(10,$=!$),e=>n(11,x=!x),function(){S=this.checked,n(12,S)},function(){_=this.checked,n(20,_)},e=>R(e),e=>"Hentes"===e[c.STATUS],e=>"Hentet"===e[c.STATUS],e=>"Hentes ikke"===e[c.STATUS],e=>{n(0,a=""),n(19,w=""),n(17,r=null)},e=>{(function(e,t){let n;return e=e.map(e=>"47"+(e=e.replace(/\s/g,""))).join(","),t.indexOf("{number}")&&(t=t.replace(/\{number\}/g,"[%1%]"),n=e.split(/,/g).join("|")),fetch(Re+"/sendsms",{method:"post",headers:{"Content-type":"application/json"},body:JSON.stringify({to:e,from:$t,message:t,param1:n})}).then(e=>e.json()).then(e=>{if(console.log(e),e.error)throw new Error(e.message);return e})})(e.detail.recipients,e.detail.message).then(()=>B("SMS sendt til "+e.detail.recipients)).catch(e=>B(e,!0)),n(19,w=""),n(17,r=null),n(0,a="")},()=>n(0,a=""),e=>{n(1,d=!1)},()=>n(1,d=!1),e=>{n(2,p=!1)},e=>{e.detail.newState&&E.forEach(t=>{l.find(e=>e[c.JOBNR]===t)[c.ASSIGNEE]||xt(t,{status:e.detail.newState})}),n(2,p=!1)},()=>n(2,p=!1),e=>U("donor"),e=>U("worker"),e=>(n(2,p=!0),n(3,f=!1)),e=>(P(),n(3,f=!1)),e=>(n(1,d=!0),n(4,g=!1)),e=>(n(4,g=!1),j()),e=>(n(4,g=!1),H()),e=>(n(4,g=!1),n(16,E.length=0,E)),e=>(n(4,g=!1),n(0,a="new")),e=>{I(e.target)},e=>D(e),e=>M(),e=>M()]}class Bn extends Ne{constructor(e){super(),_e(this,e,Mn,In,r,{},null,[-1,-1,-1])}}function Un(e,t,n){const l=e.slice();return l[18]=t[n],l[19]=t,l[20]=n,l}function Hn(t){let n,l,s=t[21].message+"";return{c(){n=N("p"),l=C(s),U(n,"color","red")},m(e,t){A(e,n,t),S(n,l)},p(e,t){2&t&&s!==(s=e[21].message+"")&&M(l,s)},i:e,o:e,d(e){e&&w(n)}}}function Pn(e){let t,n,l,s,o,c,r,i,a,u,d=e[3].length>1&&Jn(e),p=e[3],f=[];for(let t=0;t<p.length;t+=1)f[t]=Zn(Un(e,p,t));const g=e=>be(f[e],1,1,()=>{f[e]=null});return{c(){(t=N("h1")).textContent="Hentinger",n=O(),d&&d.c(),l=O();for(let e=0;e<f.length;e+=1)f[e].c();s=O(),o=N("hr"),c=O(),(r=N("button")).textContent="Alle mine jobber",D(t,"class","svelte-1l2x28v"),D(r,"class","p8 br2 svelte-1l2x28v")},m(p,g){A(p,t,g),A(p,n,g),d&&d.m(p,g),A(p,l,g);for(let e=0;e<f.length;e+=1)f[e].m(p,g);A(p,s,g),A(p,o,g),A(p,c,g),A(p,r,g),i=!0,a||(u=j(r,"click",e[14]),a=!0)},p(e,t){if(e[3].length>1?d?d.p(e,t):((d=Jn(e)).c(),d.m(l.parentNode,l)):d&&(d.d(1),d=null),45&t){let n;for(p=e[3],n=0;n<p.length;n+=1){const l=Un(e,p,n);f[n]?(f[n].p(l,t),ve(f[n],1)):(f[n]=Zn(l),f[n].c(),ve(f[n],1),f[n].m(s.parentNode,s))}for(me(),n=p.length;n<f.length;n+=1)g(n);he()}},i(e){if(!i){for(let e=0;e<p.length;e+=1)ve(f[e]);i=!0}},o(e){f=f.filter(Boolean);for(let e=0;e<f.length;e+=1)be(f[e]);i=!1},d(e){e&&w(t),e&&w(n),d&&d.d(e),e&&w(l),_(f,e),e&&w(s),e&&w(o),e&&w(c),e&&w(r),a=!1,u()}}}function Jn(e){let t,n,l,s,o,c,r;return{c(){t=N("p"),n=N("a"),l=C("Kart med alle adresser: "),s=N("br"),a((o=N("img")).src,c="/images/map.png")||D(o,"src","/images/map.png"),D(o,"alt","alle adresser i kart"),D(o,"width","36"),D(n,"href",r=Ie+e[3].map(e[6]).join("/")),D(n,"target","_blank"),D(t,"class","commonmap svelte-1l2x28v")},m(e,c){A(e,t,c),S(t,n),S(n,l),S(n,s),S(n,o)},p(e,t){12&t&&r!==(r=Ie+e[3].map(e[6]).join("/"))&&D(n,"href",r)},d(e){e&&w(t)}}}function Gn(e){let t,n,l;return n=new mt({}),{c(){t=N("div"),ye(n.$$.fragment),D(t,"class","loading svelte-1l2x28v")},m(e,s){A(e,t,s),Ee(n,t,null),l=!0},i(e){l||(ve(n.$$.fragment,e),l=!0)},o(e){be(n.$$.fragment,e),l=!1},d(e){e&&w(t),Ae(n)}}}function qn(e){let t,n,l,s,o=e[18][e[2].cols.DESC]+"";return{c(){t=N("p"),(n=N("b")).textContent="Om loppene: ",l=N("i"),s=C(o),D(n,"class","svelte-1l2x28v"),D(l,"class","svelte-1l2x28v"),D(t,"class","svelte-1l2x28v")},m(e,o){A(e,t,o),S(t,n),S(t,l),S(l,s)},p(e,t){12&t&&o!==(o=e[18][e[2].cols.DESC]+"")&&M(s,o)},d(e){e&&w(t)}}}function Ln(e){let t,n,l,s;const o=[Yn,zn],c=[];function r(e,t){return"Hentes"===e[18][e[2].cols.STATUS]?0:"Hentet"===e[18][e[2].cols.STATUS]?1:-1}return~(t=r(e))&&(n=c[t]=o[t](e)),{c(){n&&n.c(),l=T()},m(e,n){~t&&c[t].m(e,n),A(e,l,n),s=!0},p(e,s){let i=t;(t=r(e))!==i&&(n&&(me(),be(c[i],1,1,()=>{c[i]=null}),he()),~t?((n=c[t])||(n=c[t]=o[t](e)).c(),ve(n,1),n.m(l.parentNode,l)):n=null)},i(e){s||(ve(n),s=!0)},o(e){be(n),s=!1},d(e){~t&&c[t].d(e),e&&w(l)}}}function zn(e){let t,n,l,s,o;return{c(){t=N("br"),n=O(),(l=N("em")).innerHTML="<br/>★ ★ ☺  Takk for at du hentet!  ☺ ★ ★"},m(e,s){A(e,t,s),A(e,n,s),A(e,l,s),o=!0},i(e){o||(ce(()=>{s||(s=$e(l,Oe,{},!0)),s.run(1)}),o=!0)},o(e){s||(s=$e(l,Oe,{},!1)),s.run(0),o=!1},d(e){e&&w(t),e&&w(n),e&&w(l),e&&s&&s.end()}}}function Yn(e){let t,n,l,s,o;return{c(){t=N("br"),n=O(),(l=N("em")).innerHTML="<br/>★ ★ ☺   Du har tatt på deg jobben - takk!  ☺ ★ ★"},m(e,s){A(e,t,s),A(e,n,s),A(e,l,s),o=!0},i(e){o||(ce(()=>{s||(s=$e(l,Oe,{},!0)),s.run(1)}),o=!0)},o(e){s||(s=$e(l,Oe,{},!1)),s.run(0),o=!1},d(e){e&&w(t),e&&w(n),e&&w(l),e&&s&&s.end()}}}function Kn(e){let t,n,l,s,o,c,r,i,a,u=St(e[18][e[2].cols.ASSIGNEE])+"";return{c(){t=N("br"),n=O(),l=N("em"),s=N("b"),o=C("Merk: jobben er akseptert av en annen. Sjekk med "),c=N("a"),r=C(u),a=C(" om du vurderer å hente."),D(c,"href",i="tel:"+St(e[18][e[2].cols.ASSIGNEE])),D(s,"class","svelte-1l2x28v")},m(e,i){A(e,t,i),A(e,n,i),A(e,l,i),S(l,s),S(s,o),S(s,c),S(c,r),S(s,a)},p(e,t){12&t&&u!==(u=St(e[18][e[2].cols.ASSIGNEE])+"")&&M(r,u),12&t&&i!==(i="tel:"+St(e[18][e[2].cols.ASSIGNEE]))&&D(c,"href",i)},d(e){e&&w(t),e&&w(n),e&&w(l)}}}function Vn(e){let t,n,l;function s(...t){return e[13](e[18],...t)}return{c(){(t=N("button")).textContent="Vi tar jobben!",D(t,"class","p8 br2 svelte-1l2x28v")},m(e,o){A(e,t,o),n||(l=j(t,"click",s),n=!0)},p(t,n){e=t},d(e){e&&w(t),n=!1,l()}}}function Fn(e){let t,n,l,s,c,r,i;function a(...t){return e[10](e[18],...t)}function u(...t){return e[11](e[18],...t)}function d(...t){return e[12](e[18],...t)}return{c(){(t=N("button")).textContent="Ferdig hentet!",n=O(),(l=N("button")).textContent="Vi rekker ikke å hente likevel",s=O(),(c=N("button")).textContent="Jobben skal ikke hentes",D(t,"class","p8 br2 svelte-1l2x28v"),D(l,"class","p8 br2 svelte-1l2x28v"),D(c,"class","p8 br2 svelte-1l2x28v")},m(e,o){A(e,t,o),A(e,n,o),A(e,l,o),A(e,s,o),A(e,c,o),r||(i=[j(t,"click",a),j(l,"click",u),j(c,"click",d)],r=!0)},p(t,n){e=t},d(e){e&&w(t),e&&w(n),e&&w(l),e&&w(s),e&&w(c),r=!1,o(i)}}}function Zn(e){let t,n,l,s,c,r,i,u,d,p,f,g,m,v,b,k,$,x,y,E,_,T,R,I,U,H,P,J,G,q,L,z,Y,K,V,F,Z,Q,W,X,ee,te,ne,le,se,oe,ce,re,ie,ae,ue,de,pe,fe,ge,ke,$e,xe=e[18][e[2].cols.ADDRESS]+"",Se=e[18][e[2].cols.JOBNR]+"",we=e[18][e[2].cols.STATUS]+"",_e=e[18].loading&&Gn();_=new ot({props:{name:e[18][e[2].cols.CONTACT_PERSON],number:e[18][e[2].cols.PHONE]}}),P=new Ke({props:{types:e[18][e[2].cols.TYPES],showAll:!0}});let Ne=e[18][e[2].cols.DESC]&&qn(e);function Ce(){e[8].call(W,e[19],e[20])}function Oe(...t){return e[9](e[18],...t)}(Y=new pt({props:{qualityRanking:e[18][e[2].cols.QUALITY]}})).$on("qualityupdate",function(...t){return e[7](e[18],...t)});let Te=e[18][e[2].cols.ASSIGNEE]&&e[18][e[2].cols.ASSIGNEE]===e[0].henter&&Ln(e),je=e[18][e[2].cols.ASSIGNEE]&&e[18][e[2].cols.ASSIGNEE]!==e[0].henter&&Kn(e);function Re(e,t){return e[18][e[2].cols.ASSIGNEE]===e[0].henter&&"Hentes"===e[18][e[2].cols.STATUS]?Fn:Vn}let De=Re(e),Me=De(e);return{c(){_e&&_e.c(),t=O(),n=N("section"),l=N("p"),(s=N("b")).textContent="Adresse:",c=O(),r=N("span"),i=C(xe),u=O(),d=N("a"),p=N("img"),m=O(),v=N("span"),b=C(Se),k=O(),$=N("p"),(x=N("b")).textContent="Kontaktperson:",y=O(),E=N("span"),ye(_.$$.fragment),T=O(),R=N("p"),(I=N("b")).textContent="Typer:",U=O(),H=N("span"),ye(P.$$.fragment),J=O(),Ne&&Ne.c(),G=O(),q=N("p"),(L=N("b")).textContent="Estimert kvalitet: ",z=N("span"),ye(Y.$$.fragment),K=O(),V=N("p"),(F=N("b")).textContent="Administrators/henteres kommentarer:",Z=O(),Q=N("span"),W=N("textarea"),X=O(),ee=N("p"),(te=N("b")).textContent="Status: ",ne=N("span"),le=N("em"),se=C(we),oe=O(),ce=N("br"),re=O(),Te&&Te.c(),ie=O(),je&&je.c(),ae=O(),ue=N("p"),(de=N("b")).textContent="Oppdater status:",pe=N("span"),Me.c(),D(s,"class","svelte-1l2x28v"),a(p.src,f="/images/map.png")||D(p,"src","/images/map.png"),D(p,"alt","adresse i kart"),D(p,"width","24"),D(d,"href",g=Ie+e[18][e[2].cols.ADDRESS]),D(d,"target","_blank"),D(r,"class","svelte-1l2x28v"),D(v,"class","jobnr svelte-1l2x28v"),D(l,"class","svelte-1l2x28v"),D(x,"class","svelte-1l2x28v"),D(E,"class","svelte-1l2x28v"),D($,"class","svelte-1l2x28v"),D(I,"class","svelte-1l2x28v"),D(H,"class","svelte-1l2x28v"),D(R,"class","hideondone svelte-1l2x28v"),D(L,"class","svelte-1l2x28v"),D(z,"class","svelte-1l2x28v"),D(q,"class","hideondone svelte-1l2x28v"),D(F,"class","svelte-1l2x28v"),D(W,"class","svelte-1l2x28v"),D(Q,"class","svelte-1l2x28v"),D(V,"class","hideondone svelte-1l2x28v"),D(te,"class","svelte-1l2x28v"),D(ne,"class","svelte-1l2x28v"),D(ee,"class","svelte-1l2x28v"),D(de,"class","svelte-1l2x28v"),D(pe,"class","svelte-1l2x28v"),D(ue,"class","hideondone svelte-1l2x28v"),D(n,"class",fe=h(e[18][e[2].cols.STATUS])+" svelte-1l2x28v")},m(o,a){_e&&_e.m(o,a),A(o,t,a),A(o,n,a),S(n,l),S(l,s),S(l,c),S(l,r),S(r,i),S(r,u),S(r,d),S(d,p),S(l,m),S(l,v),S(v,b),S(n,k),S(n,$),S($,x),S($,y),S($,E),Ee(_,E,null),S(n,T),S(n,R),S(R,I),S(R,U),S(R,H),Ee(P,H,null),S(n,J),Ne&&Ne.m(n,null),S(n,G),S(n,q),S(q,L),S(q,z),Ee(Y,z,null),S(n,K),S(n,V),S(V,F),S(V,Z),S(V,Q),S(Q,W),B(W,e[18][e[2].cols.ADMCOMMENT]),S(n,X),S(n,ee),S(ee,te),S(ee,ne),S(ne,le),S(le,se),S(ne,oe),S(ne,ce),S(ne,re),Te&&Te.m(ne,null),S(ne,ie),je&&je.m(ne,null),S(n,ae),S(n,ue),S(ue,de),S(ue,pe),Me.m(pe,null),ge=!0,ke||($e=[j(W,"input",Ce),j(W,"change",Oe)],ke=!0)},p(l,s){(e=l)[18].loading?_e?8&s&&ve(_e,1):((_e=Gn()).c(),ve(_e,1),_e.m(t.parentNode,t)):_e&&(me(),be(_e,1,1,()=>{_e=null}),he()),(!ge||12&s)&&xe!==(xe=e[18][e[2].cols.ADDRESS]+"")&&M(i,xe),(!ge||12&s&&g!==(g=Ie+e[18][e[2].cols.ADDRESS]))&&D(d,"href",g),(!ge||12&s)&&Se!==(Se=e[18][e[2].cols.JOBNR]+"")&&M(b,Se);const o={};12&s&&(o.name=e[18][e[2].cols.CONTACT_PERSON]),12&s&&(o.number=e[18][e[2].cols.PHONE]),_.$set(o);const c={};12&s&&(c.types=e[18][e[2].cols.TYPES]),P.$set(c),e[18][e[2].cols.DESC]?Ne?Ne.p(e,s):((Ne=qn(e)).c(),Ne.m(n,G)):Ne&&(Ne.d(1),Ne=null);const r={};12&s&&(r.qualityRanking=e[18][e[2].cols.QUALITY]),Y.$set(r),12&s&&B(W,e[18][e[2].cols.ADMCOMMENT]),(!ge||12&s)&&we!==(we=e[18][e[2].cols.STATUS]+"")&&M(se,we),e[18][e[2].cols.ASSIGNEE]&&e[18][e[2].cols.ASSIGNEE]===e[0].henter?Te?(Te.p(e,s),13&s&&ve(Te,1)):((Te=Ln(e)).c(),ve(Te,1),Te.m(ne,ie)):Te&&(me(),be(Te,1,1,()=>{Te=null}),he()),e[18][e[2].cols.ASSIGNEE]&&e[18][e[2].cols.ASSIGNEE]!==e[0].henter?je?je.p(e,s):((je=Kn(e)).c(),je.m(ne,null)):je&&(je.d(1),je=null),De===(De=Re(e))&&Me?Me.p(e,s):(Me.d(1),(Me=De(e))&&(Me.c(),Me.m(pe,null))),(!ge||12&s&&fe!==(fe=h(e[18][e[2].cols.STATUS])+" svelte-1l2x28v"))&&D(n,"class",fe)},i(e){ge||(ve(_e),ve(_.$$.fragment,e),ve(P.$$.fragment,e),ve(Y.$$.fragment,e),ve(Te),ge=!0)},o(e){be(_e),be(_.$$.fragment,e),be(P.$$.fragment,e),be(Y.$$.fragment,e),be(Te),ge=!1},d(e){_e&&_e.d(e),e&&w(t),e&&w(n),Ae(_),Ae(P),Ne&&Ne.d(),Ae(Y),Te&&Te.d(),je&&je.d(),Me.d(),ke=!1,o($e)}}}function Qn(t){let n,l,s;return l=new mt({}),{c(){n=N("div"),ye(l.$$.fragment),D(n,"class","loading svelte-1l2x28v")},m(e,t){A(e,n,t),Ee(l,n,null),s=!0},p:e,i(e){s||(ve(l.$$.fragment,e),s=!0)},o(e){be(l.$$.fragment,e),s=!1},d(e){e&&w(n),Ae(l)}}}function Wn(e){let t,n,l,s={ctx:e,current:null,token:null,hasCatch:!0,pending:Qn,then:Pn,catch:Hn,value:17,error:21,blocks:[,,,]};return xe(n=e[1],s),{c(){t=T(),s.block.c()},m(e,n){A(e,t,n),s.block.m(e,s.anchor=n),s.mount=(()=>t.parentNode),s.anchor=t,l=!0},p(t,[l]){e=t,s.ctx=e,2&l&&n!==(n=e[1])&&xe(n,s)||Se(s,e,l)},i(e){l||(ve(s.block),l=!0)},o(e){for(let e=0;e<3;e+=1){be(s.blocks[e])}l=!1},d(e){e&&w(t),s.block.d(e),s.token=null,s=null}}}function Xn(e,t,n){let l,s,o,c;function r(e){return(e=e.sort((e,t)=>e[c.cols.ADDRESS]<t[c.cols.ADDRESS]?-1:1)).forEach(e=>{e.oldStatus="Hentes"===e[c.cols.STATUS]?null:e[c.cols.STATUS]}),e}async function i(e,t){const n=await fetch(`${Re}/byperson/${encodeURIComponent(t)}?token=${encodeURIComponent(e)}`);let l=await n.json();if(!n.ok){let e=await n.text();throw console.log(e),new Error("Ingen tilgang")}l=r(l),kt.set(l)}function a(e,t){return xt(e,c.cols,t,s.token).catch(e=>alert(e))}u(e,kt,e=>n(3,l=e)),"undefined"!=typeof location&&(s=location.search.substr(1).split(/&/g).map(e=>{let t=e.split(/=/);return{[t[0]]:decodeURIComponent(t[1])}}).reduce((e,t)=>Object.assign(e,t),{})),s&&s.token&&s.jobb&&(o=async function(e,t){let l=await fetch(`${Re}/prefs`);n(2,c=await l.json()),l=await fetch(`${Re}/job/${encodeURIComponent(t)}?token=${encodeURIComponent(e)}`);let s=await l.json();if(!l.ok){let e=await l.text();throw console.log(e),new Error("Ingen tilgang")}s=r(s),kt.set(s)}(s.token,s.jobb)),kt.subscribe(e=>{console.log("updated data! ",e)});return[s,o,c,l,i,a,e=>e[c.cols.ADDRESS],(e,t)=>a(e[c.cols.JOBNR],t.detail),function(e,t){e[t][c.cols.ADMCOMMENT]=this.value,kt.set(l),n(2,c)},(e,t)=>a(e[c.cols.JOBNR],{[c.cols.ADMCOMMENT]:t.target.value}),(e,t)=>a(e[c.cols.JOBNR],{[c.cols.STATUS]:"Hentet",[c.cols.ASSIGNEE]:s.henter}),(e,t)=>a(e[c.cols.JOBNR],{[c.cols.STATUS]:e.oldStatus||"Ny",[c.cols.ASSIGNEE]:""}),(e,t)=>a(e[c.cols.JOBNR],{[c.cols.STATUS]:"Hentes ikke",[c.cols.ASSIGNEE]:""}),(e,t)=>a(e[c.cols.JOBNR],{[c.cols.STATUS]:"Hentes",[c.cols.ASSIGNEE]:s.henter}),e=>n(1,o=i(s.token,s.henter))]}class el extends Ne{constructor(e){super(),_e(this,e,Xn,Wn,r,{})}}var tl;if("undefined"!=typeof location){tl=new(0,{"/":Bn,"/henting/":el}[location.pathname])({target:document.body})}else tl=new Bn({target:document.body});return tl}();
+
+(function(l, r) { if (!l || l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (self.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(self.document);
+var app = (function () {
+    'use strict';
+
+    function noop() { }
+    const identity = x => x;
+    function assign(tar, src) {
+        // @ts-ignore
+        for (const k in src)
+            tar[k] = src[k];
+        return tar;
+    }
+    function is_promise(value) {
+        return value && typeof value === 'object' && typeof value.then === 'function';
+    }
+    function run(fn) {
+        return fn();
+    }
+    function blank_object() {
+        return Object.create(null);
+    }
+    function run_all(fns) {
+        fns.forEach(run);
+    }
+    function is_function(thing) {
+        return typeof thing === 'function';
+    }
+    function safe_not_equal(a, b) {
+        return a != a ? b == b : a !== b || ((a && typeof a === 'object') || typeof a === 'function');
+    }
+    let src_url_equal_anchor;
+    function src_url_equal(element_src, url) {
+        if (!src_url_equal_anchor) {
+            src_url_equal_anchor = document.createElement('a');
+        }
+        src_url_equal_anchor.href = url;
+        return element_src === src_url_equal_anchor.href;
+    }
+    function is_empty(obj) {
+        return Object.keys(obj).length === 0;
+    }
+    function subscribe(store, ...callbacks) {
+        if (store == null) {
+            return noop;
+        }
+        const unsub = store.subscribe(...callbacks);
+        return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
+    }
+    function component_subscribe(component, store, callback) {
+        component.$$.on_destroy.push(subscribe(store, callback));
+    }
+    function create_slot(definition, ctx, $$scope, fn) {
+        if (definition) {
+            const slot_ctx = get_slot_context(definition, ctx, $$scope, fn);
+            return definition[0](slot_ctx);
+        }
+    }
+    function get_slot_context(definition, ctx, $$scope, fn) {
+        return definition[1] && fn
+            ? assign($$scope.ctx.slice(), definition[1](fn(ctx)))
+            : $$scope.ctx;
+    }
+    function get_slot_changes(definition, $$scope, dirty, fn) {
+        if (definition[2] && fn) {
+            const lets = definition[2](fn(dirty));
+            if ($$scope.dirty === undefined) {
+                return lets;
+            }
+            if (typeof lets === 'object') {
+                const merged = [];
+                const len = Math.max($$scope.dirty.length, lets.length);
+                for (let i = 0; i < len; i += 1) {
+                    merged[i] = $$scope.dirty[i] | lets[i];
+                }
+                return merged;
+            }
+            return $$scope.dirty | lets;
+        }
+        return $$scope.dirty;
+    }
+    function update_slot_base(slot, slot_definition, ctx, $$scope, slot_changes, get_slot_context_fn) {
+        if (slot_changes) {
+            const slot_context = get_slot_context(slot_definition, ctx, $$scope, get_slot_context_fn);
+            slot.p(slot_context, slot_changes);
+        }
+    }
+    function get_all_dirty_from_scope($$scope) {
+        if ($$scope.ctx.length > 32) {
+            const dirty = [];
+            const length = $$scope.ctx.length / 32;
+            for (let i = 0; i < length; i++) {
+                dirty[i] = -1;
+            }
+            return dirty;
+        }
+        return -1;
+    }
+    function null_to_empty(value) {
+        return value == null ? '' : value;
+    }
+
+    const is_client = typeof window !== 'undefined';
+    let now = is_client
+        ? () => window.performance.now()
+        : () => Date.now();
+    let raf = is_client ? cb => requestAnimationFrame(cb) : noop;
+
+    const tasks = new Set();
+    function run_tasks(now) {
+        tasks.forEach(task => {
+            if (!task.c(now)) {
+                tasks.delete(task);
+                task.f();
+            }
+        });
+        if (tasks.size !== 0)
+            raf(run_tasks);
+    }
+    /**
+     * Creates a new task that runs on each raf frame
+     * until it returns a falsy value or is aborted
+     */
+    function loop(callback) {
+        let task;
+        if (tasks.size === 0)
+            raf(run_tasks);
+        return {
+            promise: new Promise(fulfill => {
+                tasks.add(task = { c: callback, f: fulfill });
+            }),
+            abort() {
+                tasks.delete(task);
+            }
+        };
+    }
+    function append(target, node) {
+        target.appendChild(node);
+    }
+    function append_styles(target, style_sheet_id, styles) {
+        const append_styles_to = get_root_for_style(target);
+        if (!append_styles_to.getElementById(style_sheet_id)) {
+            const style = element('style');
+            style.id = style_sheet_id;
+            style.textContent = styles;
+            append_stylesheet(append_styles_to, style);
+        }
+    }
+    function get_root_for_style(node) {
+        if (!node)
+            return document;
+        const root = node.getRootNode ? node.getRootNode() : node.ownerDocument;
+        if (root && root.host) {
+            return root;
+        }
+        return node.ownerDocument;
+    }
+    function append_empty_stylesheet(node) {
+        const style_element = element('style');
+        append_stylesheet(get_root_for_style(node), style_element);
+        return style_element.sheet;
+    }
+    function append_stylesheet(node, style) {
+        append(node.head || node, style);
+    }
+    function insert(target, node, anchor) {
+        target.insertBefore(node, anchor || null);
+    }
+    function detach(node) {
+        node.parentNode.removeChild(node);
+    }
+    function destroy_each(iterations, detaching) {
+        for (let i = 0; i < iterations.length; i += 1) {
+            if (iterations[i])
+                iterations[i].d(detaching);
+        }
+    }
+    function element(name) {
+        return document.createElement(name);
+    }
+    function text(data) {
+        return document.createTextNode(data);
+    }
+    function space() {
+        return text(' ');
+    }
+    function empty() {
+        return text('');
+    }
+    function listen(node, event, handler, options) {
+        node.addEventListener(event, handler, options);
+        return () => node.removeEventListener(event, handler, options);
+    }
+    function prevent_default(fn) {
+        return function (event) {
+            event.preventDefault();
+            // @ts-ignore
+            return fn.call(this, event);
+        };
+    }
+    function stop_propagation(fn) {
+        return function (event) {
+            event.stopPropagation();
+            // @ts-ignore
+            return fn.call(this, event);
+        };
+    }
+    function attr(node, attribute, value) {
+        if (value == null)
+            node.removeAttribute(attribute);
+        else if (node.getAttribute(attribute) !== value)
+            node.setAttribute(attribute, value);
+    }
+    function children(element) {
+        return Array.from(element.childNodes);
+    }
+    function set_data(text, data) {
+        data = '' + data;
+        if (text.wholeText !== data)
+            text.data = data;
+    }
+    function set_input_value(input, value) {
+        input.value = value == null ? '' : value;
+    }
+    function set_style(node, key, value, important) {
+        if (value === null) {
+            node.style.removeProperty(key);
+        }
+        else {
+            node.style.setProperty(key, value, important ? 'important' : '');
+        }
+    }
+    function select_option(select, value) {
+        for (let i = 0; i < select.options.length; i += 1) {
+            const option = select.options[i];
+            if (option.__value === value) {
+                option.selected = true;
+                return;
+            }
+        }
+        select.selectedIndex = -1; // no option should be selected
+    }
+    function select_options(select, value) {
+        for (let i = 0; i < select.options.length; i += 1) {
+            const option = select.options[i];
+            option.selected = ~value.indexOf(option.__value);
+        }
+    }
+    function select_value(select) {
+        const selected_option = select.querySelector(':checked') || select.options[0];
+        return selected_option && selected_option.__value;
+    }
+    function select_multiple_value(select) {
+        return [].map.call(select.querySelectorAll(':checked'), option => option.__value);
+    }
+    function toggle_class(element, name, toggle) {
+        element.classList[toggle ? 'add' : 'remove'](name);
+    }
+    function custom_event(type, detail, { bubbles = false, cancelable = false } = {}) {
+        const e = document.createEvent('CustomEvent');
+        e.initCustomEvent(type, bubbles, cancelable, detail);
+        return e;
+    }
+
+    // we need to store the information for multiple documents because a Svelte application could also contain iframes
+    // https://github.com/sveltejs/svelte/issues/3624
+    const managed_styles = new Map();
+    let active = 0;
+    // https://github.com/darkskyapp/string-hash/blob/master/index.js
+    function hash(str) {
+        let hash = 5381;
+        let i = str.length;
+        while (i--)
+            hash = ((hash << 5) - hash) ^ str.charCodeAt(i);
+        return hash >>> 0;
+    }
+    function create_style_information(doc, node) {
+        const info = { stylesheet: append_empty_stylesheet(node), rules: {} };
+        managed_styles.set(doc, info);
+        return info;
+    }
+    function create_rule(node, a, b, duration, delay, ease, fn, uid = 0) {
+        const step = 16.666 / duration;
+        let keyframes = '{\n';
+        for (let p = 0; p <= 1; p += step) {
+            const t = a + (b - a) * ease(p);
+            keyframes += p * 100 + `%{${fn(t, 1 - t)}}\n`;
+        }
+        const rule = keyframes + `100% {${fn(b, 1 - b)}}\n}`;
+        const name = `__svelte_${hash(rule)}_${uid}`;
+        const doc = get_root_for_style(node);
+        const { stylesheet, rules } = managed_styles.get(doc) || create_style_information(doc, node);
+        if (!rules[name]) {
+            rules[name] = true;
+            stylesheet.insertRule(`@keyframes ${name} ${rule}`, stylesheet.cssRules.length);
+        }
+        const animation = node.style.animation || '';
+        node.style.animation = `${animation ? `${animation}, ` : ''}${name} ${duration}ms linear ${delay}ms 1 both`;
+        active += 1;
+        return name;
+    }
+    function delete_rule(node, name) {
+        const previous = (node.style.animation || '').split(', ');
+        const next = previous.filter(name
+            ? anim => anim.indexOf(name) < 0 // remove specific animation
+            : anim => anim.indexOf('__svelte') === -1 // remove all Svelte animations
+        );
+        const deleted = previous.length - next.length;
+        if (deleted) {
+            node.style.animation = next.join(', ');
+            active -= deleted;
+            if (!active)
+                clear_rules();
+        }
+    }
+    function clear_rules() {
+        raf(() => {
+            if (active)
+                return;
+            managed_styles.forEach(info => {
+                const { stylesheet } = info;
+                let i = stylesheet.cssRules.length;
+                while (i--)
+                    stylesheet.deleteRule(i);
+                info.rules = {};
+            });
+            managed_styles.clear();
+        });
+    }
+
+    let current_component;
+    function set_current_component(component) {
+        current_component = component;
+    }
+    function get_current_component() {
+        if (!current_component)
+            throw new Error('Function called outside component initialization');
+        return current_component;
+    }
+    function beforeUpdate(fn) {
+        get_current_component().$$.before_update.push(fn);
+    }
+    function onMount(fn) {
+        get_current_component().$$.on_mount.push(fn);
+    }
+    function onDestroy(fn) {
+        get_current_component().$$.on_destroy.push(fn);
+    }
+    function createEventDispatcher() {
+        const component = get_current_component();
+        return (type, detail, { cancelable = false } = {}) => {
+            const callbacks = component.$$.callbacks[type];
+            if (callbacks) {
+                // TODO are there situations where events could be dispatched
+                // in a server (non-DOM) environment?
+                const event = custom_event(type, detail, { cancelable });
+                callbacks.slice().forEach(fn => {
+                    fn.call(component, event);
+                });
+                return !event.defaultPrevented;
+            }
+            return true;
+        };
+    }
+    // TODO figure out if we still want to support
+    // shorthand events, or if we want to implement
+    // a real bubbling mechanism
+    function bubble(component, event) {
+        const callbacks = component.$$.callbacks[event.type];
+        if (callbacks) {
+            // @ts-ignore
+            callbacks.slice().forEach(fn => fn.call(this, event));
+        }
+    }
+
+    const dirty_components = [];
+    const binding_callbacks = [];
+    const render_callbacks = [];
+    const flush_callbacks = [];
+    const resolved_promise = Promise.resolve();
+    let update_scheduled = false;
+    function schedule_update() {
+        if (!update_scheduled) {
+            update_scheduled = true;
+            resolved_promise.then(flush);
+        }
+    }
+    function add_render_callback(fn) {
+        render_callbacks.push(fn);
+    }
+    // flush() calls callbacks in this order:
+    // 1. All beforeUpdate callbacks, in order: parents before children
+    // 2. All bind:this callbacks, in reverse order: children before parents.
+    // 3. All afterUpdate callbacks, in order: parents before children. EXCEPT
+    //    for afterUpdates called during the initial onMount, which are called in
+    //    reverse order: children before parents.
+    // Since callbacks might update component values, which could trigger another
+    // call to flush(), the following steps guard against this:
+    // 1. During beforeUpdate, any updated components will be added to the
+    //    dirty_components array and will cause a reentrant call to flush(). Because
+    //    the flush index is kept outside the function, the reentrant call will pick
+    //    up where the earlier call left off and go through all dirty components. The
+    //    current_component value is saved and restored so that the reentrant call will
+    //    not interfere with the "parent" flush() call.
+    // 2. bind:this callbacks cannot trigger new flush() calls.
+    // 3. During afterUpdate, any updated components will NOT have their afterUpdate
+    //    callback called a second time; the seen_callbacks set, outside the flush()
+    //    function, guarantees this behavior.
+    const seen_callbacks = new Set();
+    let flushidx = 0; // Do *not* move this inside the flush() function
+    function flush() {
+        const saved_component = current_component;
+        do {
+            // first, call beforeUpdate functions
+            // and update components
+            while (flushidx < dirty_components.length) {
+                const component = dirty_components[flushidx];
+                flushidx++;
+                set_current_component(component);
+                update(component.$$);
+            }
+            set_current_component(null);
+            dirty_components.length = 0;
+            flushidx = 0;
+            while (binding_callbacks.length)
+                binding_callbacks.pop()();
+            // then, once components are updated, call
+            // afterUpdate functions. This may cause
+            // subsequent updates...
+            for (let i = 0; i < render_callbacks.length; i += 1) {
+                const callback = render_callbacks[i];
+                if (!seen_callbacks.has(callback)) {
+                    // ...so guard against infinite loops
+                    seen_callbacks.add(callback);
+                    callback();
+                }
+            }
+            render_callbacks.length = 0;
+        } while (dirty_components.length);
+        while (flush_callbacks.length) {
+            flush_callbacks.pop()();
+        }
+        update_scheduled = false;
+        seen_callbacks.clear();
+        set_current_component(saved_component);
+    }
+    function update($$) {
+        if ($$.fragment !== null) {
+            $$.update();
+            run_all($$.before_update);
+            const dirty = $$.dirty;
+            $$.dirty = [-1];
+            $$.fragment && $$.fragment.p($$.ctx, dirty);
+            $$.after_update.forEach(add_render_callback);
+        }
+    }
+
+    let promise;
+    function wait() {
+        if (!promise) {
+            promise = Promise.resolve();
+            promise.then(() => {
+                promise = null;
+            });
+        }
+        return promise;
+    }
+    function dispatch(node, direction, kind) {
+        node.dispatchEvent(custom_event(`${direction ? 'intro' : 'outro'}${kind}`));
+    }
+    const outroing = new Set();
+    let outros;
+    function group_outros() {
+        outros = {
+            r: 0,
+            c: [],
+            p: outros // parent group
+        };
+    }
+    function check_outros() {
+        if (!outros.r) {
+            run_all(outros.c);
+        }
+        outros = outros.p;
+    }
+    function transition_in(block, local) {
+        if (block && block.i) {
+            outroing.delete(block);
+            block.i(local);
+        }
+    }
+    function transition_out(block, local, detach, callback) {
+        if (block && block.o) {
+            if (outroing.has(block))
+                return;
+            outroing.add(block);
+            outros.c.push(() => {
+                outroing.delete(block);
+                if (callback) {
+                    if (detach)
+                        block.d(1);
+                    callback();
+                }
+            });
+            block.o(local);
+        }
+        else if (callback) {
+            callback();
+        }
+    }
+    const null_transition = { duration: 0 };
+    function create_bidirectional_transition(node, fn, params, intro) {
+        let config = fn(node, params);
+        let t = intro ? 0 : 1;
+        let running_program = null;
+        let pending_program = null;
+        let animation_name = null;
+        function clear_animation() {
+            if (animation_name)
+                delete_rule(node, animation_name);
+        }
+        function init(program, duration) {
+            const d = (program.b - t);
+            duration *= Math.abs(d);
+            return {
+                a: t,
+                b: program.b,
+                d,
+                duration,
+                start: program.start,
+                end: program.start + duration,
+                group: program.group
+            };
+        }
+        function go(b) {
+            const { delay = 0, duration = 300, easing = identity, tick = noop, css } = config || null_transition;
+            const program = {
+                start: now() + delay,
+                b
+            };
+            if (!b) {
+                // @ts-ignore todo: improve typings
+                program.group = outros;
+                outros.r += 1;
+            }
+            if (running_program || pending_program) {
+                pending_program = program;
+            }
+            else {
+                // if this is an intro, and there's a delay, we need to do
+                // an initial tick and/or apply CSS animation immediately
+                if (css) {
+                    clear_animation();
+                    animation_name = create_rule(node, t, b, duration, delay, easing, css);
+                }
+                if (b)
+                    tick(0, 1);
+                running_program = init(program, duration);
+                add_render_callback(() => dispatch(node, b, 'start'));
+                loop(now => {
+                    if (pending_program && now > pending_program.start) {
+                        running_program = init(pending_program, duration);
+                        pending_program = null;
+                        dispatch(node, running_program.b, 'start');
+                        if (css) {
+                            clear_animation();
+                            animation_name = create_rule(node, t, running_program.b, running_program.duration, 0, easing, config.css);
+                        }
+                    }
+                    if (running_program) {
+                        if (now >= running_program.end) {
+                            tick(t = running_program.b, 1 - t);
+                            dispatch(node, running_program.b, 'end');
+                            if (!pending_program) {
+                                // we're done
+                                if (running_program.b) {
+                                    // intro — we can tidy up immediately
+                                    clear_animation();
+                                }
+                                else {
+                                    // outro — needs to be coordinated
+                                    if (!--running_program.group.r)
+                                        run_all(running_program.group.c);
+                                }
+                            }
+                            running_program = null;
+                        }
+                        else if (now >= running_program.start) {
+                            const p = now - running_program.start;
+                            t = running_program.a + running_program.d * easing(p / running_program.duration);
+                            tick(t, 1 - t);
+                        }
+                    }
+                    return !!(running_program || pending_program);
+                });
+            }
+        }
+        return {
+            run(b) {
+                if (is_function(config)) {
+                    wait().then(() => {
+                        // @ts-ignore
+                        config = config();
+                        go(b);
+                    });
+                }
+                else {
+                    go(b);
+                }
+            },
+            end() {
+                clear_animation();
+                running_program = pending_program = null;
+            }
+        };
+    }
+
+    function handle_promise(promise, info) {
+        const token = info.token = {};
+        function update(type, index, key, value) {
+            if (info.token !== token)
+                return;
+            info.resolved = value;
+            let child_ctx = info.ctx;
+            if (key !== undefined) {
+                child_ctx = child_ctx.slice();
+                child_ctx[key] = value;
+            }
+            const block = type && (info.current = type)(child_ctx);
+            let needs_flush = false;
+            if (info.block) {
+                if (info.blocks) {
+                    info.blocks.forEach((block, i) => {
+                        if (i !== index && block) {
+                            group_outros();
+                            transition_out(block, 1, 1, () => {
+                                if (info.blocks[i] === block) {
+                                    info.blocks[i] = null;
+                                }
+                            });
+                            check_outros();
+                        }
+                    });
+                }
+                else {
+                    info.block.d(1);
+                }
+                block.c();
+                transition_in(block, 1);
+                block.m(info.mount(), info.anchor);
+                needs_flush = true;
+            }
+            info.block = block;
+            if (info.blocks)
+                info.blocks[index] = block;
+            if (needs_flush) {
+                flush();
+            }
+        }
+        if (is_promise(promise)) {
+            const current_component = get_current_component();
+            promise.then(value => {
+                set_current_component(current_component);
+                update(info.then, 1, info.value, value);
+                set_current_component(null);
+            }, error => {
+                set_current_component(current_component);
+                update(info.catch, 2, info.error, error);
+                set_current_component(null);
+                if (!info.hasCatch) {
+                    throw error;
+                }
+            });
+            // if we previously had a then/catch block, destroy it
+            if (info.current !== info.pending) {
+                update(info.pending, 0);
+                return true;
+            }
+        }
+        else {
+            if (info.current !== info.then) {
+                update(info.then, 1, info.value, promise);
+                return true;
+            }
+            info.resolved = promise;
+        }
+    }
+    function update_await_block_branch(info, ctx, dirty) {
+        const child_ctx = ctx.slice();
+        const { resolved } = info;
+        if (info.current === info.then) {
+            child_ctx[info.value] = resolved;
+        }
+        if (info.current === info.catch) {
+            child_ctx[info.error] = resolved;
+        }
+        info.block.p(child_ctx, dirty);
+    }
+
+    function get_spread_update(levels, updates) {
+        const update = {};
+        const to_null_out = {};
+        const accounted_for = { $$scope: 1 };
+        let i = levels.length;
+        while (i--) {
+            const o = levels[i];
+            const n = updates[i];
+            if (n) {
+                for (const key in o) {
+                    if (!(key in n))
+                        to_null_out[key] = 1;
+                }
+                for (const key in n) {
+                    if (!accounted_for[key]) {
+                        update[key] = n[key];
+                        accounted_for[key] = 1;
+                    }
+                }
+                levels[i] = n;
+            }
+            else {
+                for (const key in o) {
+                    accounted_for[key] = 1;
+                }
+            }
+        }
+        for (const key in to_null_out) {
+            if (!(key in update))
+                update[key] = undefined;
+        }
+        return update;
+    }
+    function get_spread_object(spread_props) {
+        return typeof spread_props === 'object' && spread_props !== null ? spread_props : {};
+    }
+    function create_component(block) {
+        block && block.c();
+    }
+    function mount_component(component, target, anchor, customElement) {
+        const { fragment, on_mount, on_destroy, after_update } = component.$$;
+        fragment && fragment.m(target, anchor);
+        if (!customElement) {
+            // onMount happens before the initial afterUpdate
+            add_render_callback(() => {
+                const new_on_destroy = on_mount.map(run).filter(is_function);
+                if (on_destroy) {
+                    on_destroy.push(...new_on_destroy);
+                }
+                else {
+                    // Edge case - component was destroyed immediately,
+                    // most likely as a result of a binding initialising
+                    run_all(new_on_destroy);
+                }
+                component.$$.on_mount = [];
+            });
+        }
+        after_update.forEach(add_render_callback);
+    }
+    function destroy_component(component, detaching) {
+        const $$ = component.$$;
+        if ($$.fragment !== null) {
+            run_all($$.on_destroy);
+            $$.fragment && $$.fragment.d(detaching);
+            // TODO null out other refs, including component.$$ (but need to
+            // preserve final state?)
+            $$.on_destroy = $$.fragment = null;
+            $$.ctx = [];
+        }
+    }
+    function make_dirty(component, i) {
+        if (component.$$.dirty[0] === -1) {
+            dirty_components.push(component);
+            schedule_update();
+            component.$$.dirty.fill(0);
+        }
+        component.$$.dirty[(i / 31) | 0] |= (1 << (i % 31));
+    }
+    function init(component, options, instance, create_fragment, not_equal, props, append_styles, dirty = [-1]) {
+        const parent_component = current_component;
+        set_current_component(component);
+        const $$ = component.$$ = {
+            fragment: null,
+            ctx: null,
+            // state
+            props,
+            update: noop,
+            not_equal,
+            bound: blank_object(),
+            // lifecycle
+            on_mount: [],
+            on_destroy: [],
+            on_disconnect: [],
+            before_update: [],
+            after_update: [],
+            context: new Map(options.context || (parent_component ? parent_component.$$.context : [])),
+            // everything else
+            callbacks: blank_object(),
+            dirty,
+            skip_bound: false,
+            root: options.target || parent_component.$$.root
+        };
+        append_styles && append_styles($$.root);
+        let ready = false;
+        $$.ctx = instance
+            ? instance(component, options.props || {}, (i, ret, ...rest) => {
+                const value = rest.length ? rest[0] : ret;
+                if ($$.ctx && not_equal($$.ctx[i], $$.ctx[i] = value)) {
+                    if (!$$.skip_bound && $$.bound[i])
+                        $$.bound[i](value);
+                    if (ready)
+                        make_dirty(component, i);
+                }
+                return ret;
+            })
+            : [];
+        $$.update();
+        ready = true;
+        run_all($$.before_update);
+        // `false` as a special case of no DOM component
+        $$.fragment = create_fragment ? create_fragment($$.ctx) : false;
+        if (options.target) {
+            if (options.hydrate) {
+                const nodes = children(options.target);
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                $$.fragment && $$.fragment.l(nodes);
+                nodes.forEach(detach);
+            }
+            else {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                $$.fragment && $$.fragment.c();
+            }
+            if (options.intro)
+                transition_in(component.$$.fragment);
+            mount_component(component, options.target, options.anchor, options.customElement);
+            flush();
+        }
+        set_current_component(parent_component);
+    }
+    /**
+     * Base class for Svelte components. Used when dev=false.
+     */
+    class SvelteComponent {
+        $destroy() {
+            destroy_component(this, 1);
+            this.$destroy = noop;
+        }
+        $on(type, callback) {
+            const callbacks = (this.$$.callbacks[type] || (this.$$.callbacks[type] = []));
+            callbacks.push(callback);
+            return () => {
+                const index = callbacks.indexOf(callback);
+                if (index !== -1)
+                    callbacks.splice(index, 1);
+            };
+        }
+        $set($$props) {
+            if (this.$$set && !is_empty($$props)) {
+                this.$$.skip_bound = true;
+                this.$$set($$props);
+                this.$$.skip_bound = false;
+            }
+        }
+    }
+
+    function cubicOut(t) {
+        const f = t - 1.0;
+        return f * f * f + 1.0;
+    }
+
+    function fade(node, { delay = 0, duration = 400, easing = identity } = {}) {
+        const o = +getComputedStyle(node).opacity;
+        return {
+            delay,
+            duration,
+            easing,
+            css: t => `opacity: ${t * o}`
+        };
+    }
+    function fly(node, { delay = 0, duration = 400, easing = cubicOut, x = 0, y = 0, opacity = 0 } = {}) {
+        const style = getComputedStyle(node);
+        const target_opacity = +style.opacity;
+        const transform = style.transform === 'none' ? '' : style.transform;
+        const od = target_opacity * (1 - opacity);
+        return {
+            delay,
+            duration,
+            easing,
+            css: (t, u) => `
+			transform: ${transform} translate(${(1 - t) * x}px, ${(1 - t) * y}px);
+			opacity: ${target_opacity - (od * u)}`
+        };
+    }
+
+    // Put "static" config data here - stuff that updates while
+    // the app is running goes in store.js
+
+    // TODO: get baseUrl from config json file for server-side rendering..
+    const baseUrl = location.protocol + '//' + location.host;
+    const apiUrl = baseUrl + '/api';
+
+    const gMapsDirection = 'https://www.google.com/maps/dir//';
+
+    const states = [
+    	'',
+    	'Ny',
+    	'Kontaktet',
+    	'Mangler info',
+    	'Klar til henting',
+    	'Sendt til henter',
+    	'Hentes',
+    	'Hentet',
+    	'Hentes ikke',
+    	'Utsettes - neste gang',
+    ];
+
+    const doneStates = [
+    	'Hentet',
+    	'Hentes ikke',
+    	'Utsettes - neste gang',
+    	];
+
+    const SIZE_BIG = 'Trenger varebil';
+    const SIZE_MEDIUM = 'Kan hentes med stasjonsvogn';
+    const SIZE_SMALL = '1-3 kasser';
+
+    /* client/src/components/RenderDays.svelte generated by Svelte v3.49.0 */
+
+    function add_css$c(target) {
+    	append_styles(target, "svelte-urasfe", "ol.svelte-urasfe{list-style-type:none}li.svelte-urasfe{display:inline-block;height:20px;width:20px;color:grey;visibility:hidden;margin-left:8px}li.active.svelte-urasfe{color:black;visibility:visible}");
+    }
+
+    function get_each_context$9(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[2] = list[i];
+    	return child_ctx;
+    }
+
+    // (26:0) {#each Object.keys(state) as day}
+    function create_each_block$9(ctx) {
+    	let li;
+    	let t_value = /*day*/ ctx[2] + "";
+    	let t;
+
+    	return {
+    		c() {
+    			li = element("li");
+    			t = text(t_value);
+    			attr(li, "class", "svelte-urasfe");
+    			toggle_class(li, "active", /*state*/ ctx[0][/*day*/ ctx[2]]);
+    		},
+    		m(target, anchor) {
+    			insert(target, li, anchor);
+    			append(li, t);
+    		},
+    		p(ctx, dirty) {
+    			if (dirty & /*state*/ 1 && t_value !== (t_value = /*day*/ ctx[2] + "")) set_data(t, t_value);
+
+    			if (dirty & /*state, Object*/ 1) {
+    				toggle_class(li, "active", /*state*/ ctx[0][/*day*/ ctx[2]]);
+    			}
+    		},
+    		d(detaching) {
+    			if (detaching) detach(li);
+    		}
+    	};
+    }
+
+    function create_fragment$e(ctx) {
+    	let ol;
+    	let each_value = Object.keys(/*state*/ ctx[0]);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$9(get_each_context$9(ctx, each_value, i));
+    	}
+
+    	return {
+    		c() {
+    			ol = element("ol");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			attr(ol, "class", "svelte-urasfe");
+    		},
+    		m(target, anchor) {
+    			insert(target, ol, anchor);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(ol, null);
+    			}
+    		},
+    		p(ctx, [dirty]) {
+    			if (dirty & /*state, Object*/ 1) {
+    				each_value = Object.keys(/*state*/ ctx[0]);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$9(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$9(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(ol, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d(detaching) {
+    			if (detaching) detach(ol);
+    			destroy_each(each_blocks, detaching);
+    		}
+    	};
+    }
+
+    function instance$e($$self, $$props, $$invalidate) {
+    	let { days } = $$props;
+
+    	let state = {
+    		/*Ma: false,*/ Ti: false,
+    		On: false,
+    		To: false
+    	};
+
+    	days.split(/, ?/g).forEach(day => {
+    		$$invalidate(0, state[day.substr(0, 2)] = true, state);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ('days' in $$props) $$invalidate(1, days = $$props.days);
+    	};
+
+    	return [state, days];
+    }
+
+    class RenderDays extends SvelteComponent {
+    	constructor(options) {
+    		super();
+    		init(this, options, instance$e, create_fragment$e, safe_not_equal, { days: 1 }, add_css$c);
+    	}
+    }
+
+    /* client/src/components/RenderTypes.svelte generated by Svelte v3.49.0 */
+
+    function get_each_context$8(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[3] = list[i];
+    	return child_ctx;
+    }
+
+    // (27:18) 
+    function create_if_block_1$4(ctx) {
+    	let br;
+    	let t_value = /*typ*/ ctx[3] + "";
+    	let t;
+
+    	return {
+    		c() {
+    			br = element("br");
+    			t = text(t_value);
+    		},
+    		m(target, anchor) {
+    			insert(target, br, anchor);
+    			insert(target, t, anchor);
+    		},
+    		p(ctx, dirty) {
+    			if (dirty & /*types*/ 1 && t_value !== (t_value = /*typ*/ ctx[3] + "")) set_data(t, t_value);
+    		},
+    		d(detaching) {
+    			if (detaching) detach(br);
+    			if (detaching) detach(t);
+    		}
+    	};
+    }
+
+    // (25:0) {#if icons[typ]}
+    function create_if_block$6(ctx) {
+    	let img;
+    	let img_src_value;
+    	let img_alt_value;
+    	let img_title_value;
+
+    	return {
+    		c() {
+    			img = element("img");
+    			if (!src_url_equal(img.src, img_src_value = /*icons*/ ctx[2][/*typ*/ ctx[3]])) attr(img, "src", img_src_value);
+    			attr(img, "alt", img_alt_value = /*typ*/ ctx[3]);
+    			attr(img, "title", img_title_value = /*typ*/ ctx[3]);
+    			attr(img, "height", "24");
+    		},
+    		m(target, anchor) {
+    			insert(target, img, anchor);
+    		},
+    		p(ctx, dirty) {
+    			if (dirty & /*types*/ 1 && !src_url_equal(img.src, img_src_value = /*icons*/ ctx[2][/*typ*/ ctx[3]])) {
+    				attr(img, "src", img_src_value);
+    			}
+
+    			if (dirty & /*types*/ 1 && img_alt_value !== (img_alt_value = /*typ*/ ctx[3])) {
+    				attr(img, "alt", img_alt_value);
+    			}
+
+    			if (dirty & /*types*/ 1 && img_title_value !== (img_title_value = /*typ*/ ctx[3])) {
+    				attr(img, "title", img_title_value);
+    			}
+    		},
+    		d(detaching) {
+    			if (detaching) detach(img);
+    		}
+    	};
+    }
+
+    // (24:0) {#each types as typ}
+    function create_each_block$8(ctx) {
+    	let if_block_anchor;
+
+    	function select_block_type(ctx, dirty) {
+    		if (/*icons*/ ctx[2][/*typ*/ ctx[3]]) return create_if_block$6;
+    		if (/*showAll*/ ctx[1]) return create_if_block_1$4;
+    	}
+
+    	let current_block_type = select_block_type(ctx);
+    	let if_block = current_block_type && current_block_type(ctx);
+
+    	return {
+    		c() {
+    			if (if_block) if_block.c();
+    			if_block_anchor = empty();
+    		},
+    		m(target, anchor) {
+    			if (if_block) if_block.m(target, anchor);
+    			insert(target, if_block_anchor, anchor);
+    		},
+    		p(ctx, dirty) {
+    			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
+    				if_block.p(ctx, dirty);
+    			} else {
+    				if (if_block) if_block.d(1);
+    				if_block = current_block_type && current_block_type(ctx);
+
+    				if (if_block) {
+    					if_block.c();
+    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    				}
+    			}
+    		},
+    		d(detaching) {
+    			if (if_block) {
+    				if_block.d(detaching);
+    			}
+
+    			if (detaching) detach(if_block_anchor);
+    		}
+    	};
+    }
+
+    function create_fragment$d(ctx) {
+    	let each_1_anchor;
+    	let each_value = /*types*/ ctx[0];
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$8(get_each_context$8(ctx, each_value, i));
+    	}
+
+    	return {
+    		c() {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
+    		},
+    		m(target, anchor) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert(target, each_1_anchor, anchor);
+    		},
+    		p(ctx, [dirty]) {
+    			if (dirty & /*icons, types, showAll*/ 7) {
+    				each_value = /*types*/ ctx[0];
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$8(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$8(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d(detaching) {
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach(each_1_anchor);
+    		}
+    	};
+    }
+
+    function instance$d($$self, $$props, $$invalidate) {
+    	let { types = [] } = $$props;
+    	let { showAll = false } = $$props;
+
+    	let icons = {
+    		'Møbler': '/images/mobler.png',
+    		'Bøker': '/images/boker.png',
+    		'Musikk': '/images/musikk.png',
+    		'Klær': '/images/klaer.png',
+    		'Film': '/images/film.png',
+    		'Sykler': '/images/sykkel.png',
+    		'Elektrisk': '/images/elektrisk.png',
+    		'Sportsutstyr': '/images/sport.png',
+    		'Kjøkkenutstyr': '/images/kjokken.png',
+    		'Leker': '/images/leker.png'
+    	};
+
+    	beforeUpdate(() => {
+    		if (typeof types === 'string') {
+    			$$invalidate(0, types = types.split(/,\s+/g));
+    		}
+    	});
+
+    	types = types.split(/,\s+/g);
+
+    	$$self.$$set = $$props => {
+    		if ('types' in $$props) $$invalidate(0, types = $$props.types);
+    		if ('showAll' in $$props) $$invalidate(1, showAll = $$props.showAll);
+    	};
+
+    	return [types, showAll, icons];
+    }
+
+    class RenderTypes extends SvelteComponent {
+    	constructor(options) {
+    		super();
+    		init(this, options, instance$d, create_fragment$d, safe_not_equal, { types: 0, showAll: 1 });
+    	}
+    }
+
+    /* client/src/components/Modal.svelte generated by Svelte v3.49.0 */
+
+    function add_css$b(target) {
+    	append_styles(target, "svelte-txoeo", ".modal-background.svelte-txoeo{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.3);z-index:11}.modal.svelte-txoeo{position:fixed;left:50%;top:50%;width:calc(100vw - 4em);max-width:32em;max-height:calc(100vh - 4em);overflow:auto;transform:translate(-50%,-50%);padding:1em;border-radius:0.2em;background:white;z-index:12}");
+    }
+
+    const get_header_slot_changes = dirty => ({});
+    const get_header_slot_context = ctx => ({});
+
+    function create_fragment$c(ctx) {
+    	let div0;
+    	let t0;
+    	let div1;
+    	let t1;
+    	let hr0;
+    	let t2;
+    	let t3;
+    	let hr1;
+    	let current;
+    	let mounted;
+    	let dispose;
+    	const header_slot_template = /*#slots*/ ctx[3].header;
+    	const header_slot = create_slot(header_slot_template, ctx, /*$$scope*/ ctx[2], get_header_slot_context);
+    	const default_slot_template = /*#slots*/ ctx[3].default;
+    	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[2], null);
+
+    	return {
+    		c() {
+    			div0 = element("div");
+    			t0 = space();
+    			div1 = element("div");
+    			if (header_slot) header_slot.c();
+    			t1 = space();
+    			hr0 = element("hr");
+    			t2 = space();
+    			if (default_slot) default_slot.c();
+    			t3 = space();
+    			hr1 = element("hr");
+    			attr(div0, "class", "modal-background svelte-txoeo");
+    			attr(div1, "class", "modal svelte-txoeo");
+    		},
+    		m(target, anchor) {
+    			insert(target, div0, anchor);
+    			insert(target, t0, anchor);
+    			insert(target, div1, anchor);
+
+    			if (header_slot) {
+    				header_slot.m(div1, null);
+    			}
+
+    			append(div1, t1);
+    			append(div1, hr0);
+    			append(div1, t2);
+
+    			if (default_slot) {
+    				default_slot.m(div1, null);
+    			}
+
+    			append(div1, t3);
+    			append(div1, hr1);
+    			/*div1_binding*/ ctx[5](div1);
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = listen(div0, "click", stop_propagation(/*click_handler*/ ctx[4]));
+    				mounted = true;
+    			}
+    		},
+    		p(ctx, [dirty]) {
+    			if (header_slot) {
+    				if (header_slot.p && (!current || dirty & /*$$scope*/ 4)) {
+    					update_slot_base(
+    						header_slot,
+    						header_slot_template,
+    						ctx,
+    						/*$$scope*/ ctx[2],
+    						!current
+    						? get_all_dirty_from_scope(/*$$scope*/ ctx[2])
+    						: get_slot_changes(header_slot_template, /*$$scope*/ ctx[2], dirty, get_header_slot_changes),
+    						get_header_slot_context
+    					);
+    				}
+    			}
+
+    			if (default_slot) {
+    				if (default_slot.p && (!current || dirty & /*$$scope*/ 4)) {
+    					update_slot_base(
+    						default_slot,
+    						default_slot_template,
+    						ctx,
+    						/*$$scope*/ ctx[2],
+    						!current
+    						? get_all_dirty_from_scope(/*$$scope*/ ctx[2])
+    						: get_slot_changes(default_slot_template, /*$$scope*/ ctx[2], dirty, null),
+    						null
+    					);
+    				}
+    			}
+    		},
+    		i(local) {
+    			if (current) return;
+    			transition_in(header_slot, local);
+    			transition_in(default_slot, local);
+    			current = true;
+    		},
+    		o(local) {
+    			transition_out(header_slot, local);
+    			transition_out(default_slot, local);
+    			current = false;
+    		},
+    		d(detaching) {
+    			if (detaching) detach(div0);
+    			if (detaching) detach(t0);
+    			if (detaching) detach(div1);
+    			if (header_slot) header_slot.d(detaching);
+    			if (default_slot) default_slot.d(detaching);
+    			/*div1_binding*/ ctx[5](null);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+    }
+
+    function instance$c($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	const dispatch = createEventDispatcher();
+    	let modalElm;
+    	let lastActiveElement;
+
+    	onMount(() => {
+    		if (modalElm && modalElm.scrollIntoView) {
+    			modalElm.scrollIntoView();
+    		}
+
+    		if (modalElm && modalElm.querySelector) {
+    			// accessibility: focus management
+    			lastActiveElement = document.activeElement;
+
+    			modalElm.querySelector('input, select, textarea, button').focus();
+    		}
+    	});
+
+    	onDestroy(() => {
+    		// TODO: this doesn't truly work as intended because focus will have gone to
+    		// the right-clicked element or the menu element activated most of the time
+    		if (lastActiveElement && lastActiveElement.focus) {
+    			lastActiveElement.focus();
+    		}
+    	});
+
+    	const click_handler = () => dispatch("close");
+
+    	function div1_binding($$value) {
+    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+    			modalElm = $$value;
+    			$$invalidate(0, modalElm);
+    		});
+    	}
+
+    	$$self.$$set = $$props => {
+    		if ('$$scope' in $$props) $$invalidate(2, $$scope = $$props.$$scope);
+    	};
+
+    	return [modalElm, dispatch, $$scope, slots, click_handler, div1_binding];
+    }
+
+    class Modal extends SvelteComponent {
+    	constructor(options) {
+    		super();
+    		init(this, options, instance$c, create_fragment$c, safe_not_equal, {}, add_css$b);
+    	}
+    }
+
+    /* client/src/components/DetailsEditor.svelte generated by Svelte v3.49.0 */
+
+    function add_css$a(target) {
+    	append_styles(target, "svelte-1hgccn9", "form.svelte-1hgccn9.svelte-1hgccn9{display:table;width:90%;margin-left:5%\n\t}p.svelte-1hgccn9.svelte-1hgccn9{display:table-row;width:100%;margin-top:8px}span.svelte-1hgccn9.svelte-1hgccn9{display:table-cell;vertical-align:top;padding-top:8px}span.svelte-1hgccn9.svelte-1hgccn9:first-child{width:30%}span.svelte-1hgccn9>input.svelte-1hgccn9,span.svelte-1hgccn9>textarea.svelte-1hgccn9,span.svelte-1hgccn9>select.svelte-1hgccn9{width:100%}span.svelte-1hgccn9 button.svelte-1hgccn9{width:40%}span.svelte-1hgccn9 button.svelte-1hgccn9:nth-child(2){margin-left:8px}textarea.svelte-1hgccn9.svelte-1hgccn9{height:100px}input.svelte-1hgccn9.svelte-1hgccn9,textarea.svelte-1hgccn9.svelte-1hgccn9,select.svelte-1hgccn9.svelte-1hgccn9{font-size:1em}span.svelte-1hgccn9 label.svelte-1hgccn9{display:block;width:45%;float:left}span.svelte-1hgccn9 label img.svelte-1hgccn9{vertical-align:bottom}");
+    }
+
+    function create_fragment$b(ctx) {
+    	let form;
+    	let p0;
+    	let span0;
+    	let span1;
+    	let input0;
+    	let t1;
+    	let p1;
+    	let span2;
+    	let span3;
+    	let textarea0;
+    	let t3;
+    	let p2;
+    	let span4;
+    	let span5;
+    	let textarea1;
+    	let t5;
+    	let p3;
+    	let span6;
+    	let span7;
+    	let select;
+    	let option0;
+    	let option1;
+    	let option2;
+    	let t10;
+    	let p4;
+    	let span8;
+    	let t12;
+    	let span9;
+    	let label0;
+    	let input1;
+    	let t13;
+    	let img0;
+    	let img0_src_value;
+    	let t14;
+    	let label1;
+    	let input2;
+    	let t15;
+    	let img1;
+    	let img1_src_value;
+    	let t16;
+    	let label2;
+    	let input3;
+    	let t17;
+    	let img2;
+    	let img2_src_value;
+    	let t18;
+    	let p5;
+    	let span10;
+    	let t19;
+    	let span11;
+    	let button0;
+    	let t21;
+    	let button1;
+    	let mounted;
+    	let dispose;
+
+    	return {
+    		c() {
+    			form = element("form");
+    			p0 = element("p");
+    			span0 = element("span");
+    			span0.textContent = "Mobilnummer:";
+    			span1 = element("span");
+    			input0 = element("input");
+    			t1 = space();
+    			p1 = element("p");
+    			span2 = element("span");
+    			span2.textContent = "Adresse for henting:";
+    			span3 = element("span");
+    			textarea0 = element("textarea");
+    			t3 = space();
+    			p2 = element("p");
+    			span4 = element("span");
+    			span4.textContent = "Om loppene:";
+    			span5 = element("span");
+    			textarea1 = element("textarea");
+    			t5 = space();
+    			p3 = element("p");
+    			span6 = element("span");
+    			span6.textContent = "Hentetidspunkt:";
+    			span7 = element("span");
+    			select = element("select");
+    			option0 = element("option");
+    			option0.textContent = "Tirsdag kveld";
+    			option1 = element("option");
+    			option1.textContent = "Onsdag kveld";
+    			option2 = element("option");
+    			option2.textContent = "Torsdag kveld";
+    			t10 = space();
+    			p4 = element("p");
+    			span8 = element("span");
+    			span8.textContent = "Type bil:";
+    			t12 = space();
+    			span9 = element("span");
+    			label0 = element("label");
+    			input1 = element("input");
+    			t13 = space();
+    			img0 = element("img");
+    			t14 = space();
+    			label1 = element("label");
+    			input2 = element("input");
+    			t15 = space();
+    			img1 = element("img");
+    			t16 = space();
+    			label2 = element("label");
+    			input3 = element("input");
+    			t17 = space();
+    			img2 = element("img");
+    			t18 = space();
+    			p5 = element("p");
+    			span10 = element("span");
+    			t19 = space();
+    			span11 = element("span");
+    			button0 = element("button");
+    			button0.textContent = "Oppdater";
+    			t21 = space();
+    			button1 = element("button");
+    			button1.textContent = "Avbryt";
+    			attr(span0, "class", "svelte-1hgccn9");
+    			attr(input0, "inputmode", "tel");
+    			attr(input0, "class", "svelte-1hgccn9");
+    			attr(span1, "class", "svelte-1hgccn9");
+    			attr(p0, "class", "svelte-1hgccn9");
+    			attr(span2, "class", "svelte-1hgccn9");
+    			attr(textarea0, "class", "svelte-1hgccn9");
+    			attr(span3, "class", "svelte-1hgccn9");
+    			attr(p1, "class", "svelte-1hgccn9");
+    			attr(span4, "class", "svelte-1hgccn9");
+    			attr(textarea1, "class", "svelte-1hgccn9");
+    			attr(span5, "class", "svelte-1hgccn9");
+    			attr(p2, "class", "svelte-1hgccn9");
+    			attr(span6, "class", "svelte-1hgccn9");
+    			option0.__value = "Tirsdag kveld";
+    			option0.value = option0.__value;
+    			option1.__value = "Onsdag kveld";
+    			option1.value = option1.__value;
+    			option2.__value = "Torsdag kveld";
+    			option2.value = option2.__value;
+    			select.multiple = true;
+    			attr(select, "class", "svelte-1hgccn9");
+    			if (/*time*/ ctx[2] === void 0) add_render_callback(() => /*select_change_handler*/ ctx[12].call(select));
+    			attr(span7, "class", "svelte-1hgccn9");
+    			attr(p3, "class", "svelte-1hgccn9");
+    			attr(span8, "class", "svelte-1hgccn9");
+    			attr(input1, "type", "radio");
+    			attr(input1, "name", "size");
+    			input1.__value = SIZE_BIG;
+    			input1.value = input1.__value;
+    			attr(input1, "class", "svelte-1hgccn9");
+    			/*$$binding_groups*/ ctx[14][0].push(input1);
+    			if (!src_url_equal(img0.src, img0_src_value = "/images/bigcar.png")) attr(img0, "src", img0_src_value);
+    			attr(img0, "alt", "stor bil");
+    			attr(img0, "width", "36");
+    			attr(img0, "class", "svelte-1hgccn9");
+    			attr(label0, "class", "svelte-1hgccn9");
+    			attr(input2, "type", "radio");
+    			attr(input2, "name", "size");
+    			input2.__value = SIZE_MEDIUM;
+    			input2.value = input2.__value;
+    			attr(input2, "class", "svelte-1hgccn9");
+    			/*$$binding_groups*/ ctx[14][0].push(input2);
+    			if (!src_url_equal(img1.src, img1_src_value = "/images/smallcar.png")) attr(img1, "src", img1_src_value);
+    			attr(img1, "alt", "liten bil");
+    			attr(img1, "width", "36");
+    			attr(img1, "class", "svelte-1hgccn9");
+    			attr(label1, "class", "svelte-1hgccn9");
+    			attr(input3, "type", "radio");
+    			attr(input3, "name", "size");
+    			input3.__value = SIZE_SMALL;
+    			input3.value = input3.__value;
+    			attr(input3, "class", "svelte-1hgccn9");
+    			/*$$binding_groups*/ ctx[14][0].push(input3);
+    			if (!src_url_equal(img2.src, img2_src_value = "/images/boxes.png")) attr(img2, "src", img2_src_value);
+    			attr(img2, "alt", "liten bil");
+    			attr(img2, "width", "36");
+    			attr(img2, "class", "svelte-1hgccn9");
+    			attr(label2, "class", "svelte-1hgccn9");
+    			attr(span9, "class", "svelte-1hgccn9");
+    			attr(p4, "class", "svelte-1hgccn9");
+    			attr(span10, "class", "svelte-1hgccn9");
+    			attr(button0, "type", "submit");
+    			attr(button0, "class", "p8 br2 svelte-1hgccn9");
+    			attr(button1, "type", "button");
+    			attr(button1, "class", "p8 br2 svelte-1hgccn9");
+    			attr(span11, "class", "svelte-1hgccn9");
+    			attr(p5, "class", "svelte-1hgccn9");
+    			attr(form, "class", "svelte-1hgccn9");
+    		},
+    		m(target, anchor) {
+    			insert(target, form, anchor);
+    			append(form, p0);
+    			append(p0, span0);
+    			append(p0, span1);
+    			append(span1, input0);
+    			set_input_value(input0, /*number*/ ctx[0]);
+    			append(form, t1);
+    			append(form, p1);
+    			append(p1, span2);
+    			append(p1, span3);
+    			append(span3, textarea0);
+    			set_input_value(textarea0, /*address*/ ctx[3]);
+    			append(form, t3);
+    			append(form, p2);
+    			append(p2, span4);
+    			append(p2, span5);
+    			append(span5, textarea1);
+    			set_input_value(textarea1, /*info*/ ctx[1]);
+    			append(form, t5);
+    			append(form, p3);
+    			append(p3, span6);
+    			append(p3, span7);
+    			append(span7, select);
+    			append(select, option0);
+    			append(select, option1);
+    			append(select, option2);
+    			select_options(select, /*time*/ ctx[2]);
+    			append(form, t10);
+    			append(form, p4);
+    			append(p4, span8);
+    			append(p4, t12);
+    			append(p4, span9);
+    			append(span9, label0);
+    			append(label0, input1);
+    			input1.checked = input1.__value === /*size*/ ctx[4];
+    			append(label0, t13);
+    			append(label0, img0);
+    			append(span9, t14);
+    			append(span9, label1);
+    			append(label1, input2);
+    			input2.checked = input2.__value === /*size*/ ctx[4];
+    			append(label1, t15);
+    			append(label1, img1);
+    			append(span9, t16);
+    			append(span9, label2);
+    			append(label2, input3);
+    			input3.checked = input3.__value === /*size*/ ctx[4];
+    			append(label2, t17);
+    			append(label2, img2);
+    			append(form, t18);
+    			append(form, p5);
+    			append(p5, span10);
+    			append(p5, t19);
+    			append(p5, span11);
+    			append(span11, button0);
+    			append(span11, t21);
+    			append(span11, button1);
+
+    			if (!mounted) {
+    				dispose = [
+    					listen(input0, "input", /*input0_input_handler*/ ctx[9]),
+    					listen(textarea0, "input", /*textarea0_input_handler*/ ctx[10]),
+    					listen(textarea1, "input", /*textarea1_input_handler*/ ctx[11]),
+    					listen(select, "change", /*select_change_handler*/ ctx[12]),
+    					listen(input1, "change", /*input1_change_handler*/ ctx[13]),
+    					listen(input2, "change", /*input2_change_handler*/ ctx[15]),
+    					listen(input3, "change", /*input3_change_handler*/ ctx[16]),
+    					listen(button1, "click", /*click_handler*/ ctx[17]),
+    					listen(form, "submit", prevent_default(/*submit_handler*/ ctx[18]))
+    				];
+
+    				mounted = true;
+    			}
+    		},
+    		p(ctx, [dirty]) {
+    			if (dirty & /*number*/ 1 && input0.value !== /*number*/ ctx[0]) {
+    				set_input_value(input0, /*number*/ ctx[0]);
+    			}
+
+    			if (dirty & /*address*/ 8) {
+    				set_input_value(textarea0, /*address*/ ctx[3]);
+    			}
+
+    			if (dirty & /*info*/ 2) {
+    				set_input_value(textarea1, /*info*/ ctx[1]);
+    			}
+
+    			if (dirty & /*time*/ 4) {
+    				select_options(select, /*time*/ ctx[2]);
+    			}
+
+    			if (dirty & /*size*/ 16) {
+    				input1.checked = input1.__value === /*size*/ ctx[4];
+    			}
+
+    			if (dirty & /*size*/ 16) {
+    				input2.checked = input2.__value === /*size*/ ctx[4];
+    			}
+
+    			if (dirty & /*size*/ 16) {
+    				input3.checked = input3.__value === /*size*/ ctx[4];
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d(detaching) {
+    			if (detaching) detach(form);
+    			/*$$binding_groups*/ ctx[14][0].splice(/*$$binding_groups*/ ctx[14][0].indexOf(input1), 1);
+    			/*$$binding_groups*/ ctx[14][0].splice(/*$$binding_groups*/ ctx[14][0].indexOf(input2), 1);
+    			/*$$binding_groups*/ ctx[14][0].splice(/*$$binding_groups*/ ctx[14][0].indexOf(input3), 1);
+    			mounted = false;
+    			run_all(dispose);
+    		}
+    	};
+    }
+
+    function instance$b($$self, $$props, $$invalidate) {
+    	let { job } = $$props;
+    	let { cols } = $$props;
+    	const dispatch = createEventDispatcher();
+    	let number = job[cols.PHONE];
+    	let info = job[cols.DESC];
+    	let time = job[cols.PICKUP_DAYS].split(/,\s*/g);
+    	let address = job[cols.ADDRESS];
+    	let size = job[cols.SIZE];
+
+    	function update() {
+    		dispatch('update', {
+    			[cols.PHONE]: number,
+    			[cols.ADDRESS]: address,
+    			[cols.DESC]: info,
+    			[cols.PICKUP_DAYS]: time.join(', '),
+    			[cols.SIZE]: size
+    		});
+    	}
+
+    	const $$binding_groups = [[]];
+
+    	function input0_input_handler() {
+    		number = this.value;
+    		$$invalidate(0, number);
+    	}
+
+    	function textarea0_input_handler() {
+    		address = this.value;
+    		$$invalidate(3, address);
+    	}
+
+    	function textarea1_input_handler() {
+    		info = this.value;
+    		$$invalidate(1, info);
+    	}
+
+    	function select_change_handler() {
+    		time = select_multiple_value(this);
+    		$$invalidate(2, time);
+    	}
+
+    	function input1_change_handler() {
+    		size = this.__value;
+    		$$invalidate(4, size);
+    	}
+
+    	function input2_change_handler() {
+    		size = this.__value;
+    		$$invalidate(4, size);
+    	}
+
+    	function input3_change_handler() {
+    		size = this.__value;
+    		$$invalidate(4, size);
+    	}
+
+    	const click_handler = e => dispatch('cancel');
+    	const submit_handler = e => update();
+
+    	$$self.$$set = $$props => {
+    		if ('job' in $$props) $$invalidate(7, job = $$props.job);
+    		if ('cols' in $$props) $$invalidate(8, cols = $$props.cols);
+    	};
+
+    	return [
+    		number,
+    		info,
+    		time,
+    		address,
+    		size,
+    		dispatch,
+    		update,
+    		job,
+    		cols,
+    		input0_input_handler,
+    		textarea0_input_handler,
+    		textarea1_input_handler,
+    		select_change_handler,
+    		input1_change_handler,
+    		$$binding_groups,
+    		input2_change_handler,
+    		input3_change_handler,
+    		click_handler,
+    		submit_handler
+    	];
+    }
+
+    class DetailsEditor extends SvelteComponent {
+    	constructor(options) {
+    		super();
+    		init(this, options, instance$b, create_fragment$b, safe_not_equal, { job: 7, cols: 8 }, add_css$a);
+    	}
+    }
+
+    /* client/src/components/RenderPerson.svelte generated by Svelte v3.49.0 */
+
+    function add_css$9(target) {
+    	append_styles(target, "svelte-ablbnc", "a.svelte-ablbnc{display:inline-block;padding-right:1em}");
+    }
+
+    function create_fragment$a(ctx) {
+    	let t0;
+    	let t1;
+    	let a0;
+    	let t2;
+    	let a0_href_value;
+    	let t3;
+    	let br;
+    	let t4;
+    	let t5;
+    	let t6;
+    	let a1;
+    	let t7;
+    	let a1_href_value;
+    	let t8;
+    	let a2;
+    	let t9;
+    	let a2_href_value;
+    	let t10;
+    	let a3;
+    	let t11;
+    	let a3_href_value;
+
+    	return {
+    		c() {
+    			t0 = text(/*name*/ ctx[0]);
+    			t1 = space();
+    			a0 = element("a");
+    			t2 = text("🔎");
+    			t3 = space();
+    			br = element("br");
+    			t4 = space();
+    			t5 = text(/*number*/ ctx[1]);
+    			t6 = space();
+    			a1 = element("a");
+    			t7 = text("☎");
+    			t8 = space();
+    			a2 = element("a");
+    			t9 = text("✉");
+    			t10 = space();
+    			a3 = element("a");
+    			t11 = text("🔎");
+    			attr(a0, "href", a0_href_value = "https://www.gulesider.no/" + encodeURIComponent(/*name*/ ctx[0]) + "/personer");
+    			attr(a0, "target", "_blank");
+    			attr(a0, "title", "Slå opp person på Gule sider");
+    			attr(a0, "class", "svelte-ablbnc");
+    			attr(a1, "href", a1_href_value = "tel:" + /*number*/ ctx[1]);
+    			attr(a1, "title", "Ring nummer");
+    			attr(a1, "class", "svelte-ablbnc");
+    			attr(a2, "href", a2_href_value = "sms:" + /*number*/ ctx[1]);
+    			attr(a2, "title", "Send SMS");
+    			attr(a2, "class", "svelte-ablbnc");
+    			attr(a3, "href", a3_href_value = "https://www.gulesider.no/" + /*number*/ ctx[1] + "/personer");
+    			attr(a3, "target", "_blank");
+    			attr(a3, "title", "slå opp nummer på Gule sider");
+    			attr(a3, "class", "svelte-ablbnc");
+    		},
+    		m(target, anchor) {
+    			insert(target, t0, anchor);
+    			insert(target, t1, anchor);
+    			insert(target, a0, anchor);
+    			append(a0, t2);
+    			insert(target, t3, anchor);
+    			insert(target, br, anchor);
+    			insert(target, t4, anchor);
+    			insert(target, t5, anchor);
+    			insert(target, t6, anchor);
+    			insert(target, a1, anchor);
+    			append(a1, t7);
+    			insert(target, t8, anchor);
+    			insert(target, a2, anchor);
+    			append(a2, t9);
+    			insert(target, t10, anchor);
+    			insert(target, a3, anchor);
+    			append(a3, t11);
+    		},
+    		p(ctx, [dirty]) {
+    			if (dirty & /*name*/ 1) set_data(t0, /*name*/ ctx[0]);
+
+    			if (dirty & /*name*/ 1 && a0_href_value !== (a0_href_value = "https://www.gulesider.no/" + encodeURIComponent(/*name*/ ctx[0]) + "/personer")) {
+    				attr(a0, "href", a0_href_value);
+    			}
+
+    			if (dirty & /*number*/ 2) set_data(t5, /*number*/ ctx[1]);
+
+    			if (dirty & /*number*/ 2 && a1_href_value !== (a1_href_value = "tel:" + /*number*/ ctx[1])) {
+    				attr(a1, "href", a1_href_value);
+    			}
+
+    			if (dirty & /*number*/ 2 && a2_href_value !== (a2_href_value = "sms:" + /*number*/ ctx[1])) {
+    				attr(a2, "href", a2_href_value);
+    			}
+
+    			if (dirty & /*number*/ 2 && a3_href_value !== (a3_href_value = "https://www.gulesider.no/" + /*number*/ ctx[1] + "/personer")) {
+    				attr(a3, "href", a3_href_value);
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d(detaching) {
+    			if (detaching) detach(t0);
+    			if (detaching) detach(t1);
+    			if (detaching) detach(a0);
+    			if (detaching) detach(t3);
+    			if (detaching) detach(br);
+    			if (detaching) detach(t4);
+    			if (detaching) detach(t5);
+    			if (detaching) detach(t6);
+    			if (detaching) detach(a1);
+    			if (detaching) detach(t8);
+    			if (detaching) detach(a2);
+    			if (detaching) detach(t10);
+    			if (detaching) detach(a3);
+    		}
+    	};
+    }
+
+    function instance$a($$self, $$props, $$invalidate) {
+    	let { name } = $$props;
+    	let { number } = $$props;
+
+    	$$self.$$set = $$props => {
+    		if ('name' in $$props) $$invalidate(0, name = $$props.name);
+    		if ('number' in $$props) $$invalidate(1, number = $$props.number);
+    	};
+
+    	return [name, number];
+    }
+
+    class RenderPerson extends SvelteComponent {
+    	constructor(options) {
+    		super();
+    		init(this, options, instance$a, create_fragment$a, safe_not_equal, { name: 0, number: 1 }, add_css$9);
+    	}
+    }
+
+    /* client/src/components/RenderStars.svelte generated by Svelte v3.49.0 */
+
+    function add_css$8(target) {
+    	append_styles(target, "svelte-ssp047", "img.svelte-ssp047{width:16px;height:16px;transition:all .2s ease-in-out}img.svelte-ssp047:hover{transform:scale(1.1)}");
+    }
+
+    function get_each_context$7(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[5] = list[i];
+    	child_ctx[7] = i;
+    	return child_ctx;
+    }
+
+    // (42:0) {#each stars as star, index}
+    function create_each_block$7(ctx) {
+    	let img;
+    	let img_src_value;
+    	let img_alt_value;
+    	let mounted;
+    	let dispose;
+
+    	return {
+    		c() {
+    			img = element("img");
+    			if (!src_url_equal(img.src, img_src_value = /*star*/ ctx[5])) attr(img, "src", img_src_value);
+    			attr(img, "alt", img_alt_value = "poeng: " + /*qualityRanking*/ ctx[0]);
+    			attr(img, "data-index", /*index*/ ctx[7]);
+    			attr(img, "class", "svelte-ssp047");
+    		},
+    		m(target, anchor) {
+    			insert(target, img, anchor);
+
+    			if (!mounted) {
+    				dispose = listen(img, "click", /*handleClick*/ ctx[2]);
+    				mounted = true;
+    			}
+    		},
+    		p(ctx, dirty) {
+    			if (dirty & /*stars*/ 2 && !src_url_equal(img.src, img_src_value = /*star*/ ctx[5])) {
+    				attr(img, "src", img_src_value);
+    			}
+
+    			if (dirty & /*qualityRanking*/ 1 && img_alt_value !== (img_alt_value = "poeng: " + /*qualityRanking*/ ctx[0])) {
+    				attr(img, "alt", img_alt_value);
+    			}
+    		},
+    		d(detaching) {
+    			if (detaching) detach(img);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+    }
+
+    function create_fragment$9(ctx) {
+    	let div;
+    	let each_value = /*stars*/ ctx[1];
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$7(get_each_context$7(ctx, each_value, i));
+    	}
+
+    	return {
+    		c() {
+    			div = element("div");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+    		},
+    		m(target, anchor) {
+    			insert(target, div, anchor);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(div, null);
+    			}
+    		},
+    		p(ctx, [dirty]) {
+    			if (dirty & /*stars, qualityRanking, handleClick*/ 7) {
+    				each_value = /*stars*/ ctx[1];
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$7(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$7(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(div, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d(detaching) {
+    			if (detaching) detach(div);
+    			destroy_each(each_blocks, detaching);
+    		}
+    	};
+    }
+
+    let img1 = '/images/star-empty.png';
+    let img2 = '/images/star-full.png';
+
+    function instance$9($$self, $$props, $$invalidate) {
+    	const dispatch = createEventDispatcher();
+    	let { qualityRanking = undefined } = $$props;
+    	let { cols } = $$props;
+    	let stars = [];
+
+    	if (qualityRanking === '' || qualityRanking === undefined) {
+    		stars = [img1, img1, img1];
+    	} else {
+    		for (let i = 0; i <= qualityRanking; i++) {
+    			stars.push(img2);
+    		}
+
+    		for (let i = qualityRanking; i < 2; i++) {
+    			stars.push(img1);
+    		}
+    	}
+
+    	function handleClick(evt) {
+    		let idx = parseInt(evt.target.getAttribute('data-index'));
+    		$$invalidate(0, qualityRanking = idx + 1);
+    		dispatch('qualityupdate', { [cols.QUALITY]: idx });
+
+    		for (let i = 0; i <= idx; i++) {
+    			$$invalidate(1, stars[i] = img2, stars);
+    		}
+
+    		for (let i = idx + 1; i < stars.length; i++) {
+    			$$invalidate(1, stars[i] = img1, stars);
+    		}
+    	}
+
+    	$$self.$$set = $$props => {
+    		if ('qualityRanking' in $$props) $$invalidate(0, qualityRanking = $$props.qualityRanking);
+    		if ('cols' in $$props) $$invalidate(3, cols = $$props.cols);
+    	};
+
+    	return [qualityRanking, stars, handleClick, cols];
+    }
+
+    class RenderStars extends SvelteComponent {
+    	constructor(options) {
+    		super();
+    		init(this, options, instance$9, create_fragment$9, safe_not_equal, { qualityRanking: 0, cols: 3 }, add_css$8);
+    	}
+    }
+
+    /* client/src/components/LoadingIcon.svelte generated by Svelte v3.49.0 */
+
+    function add_css$7(target) {
+    	append_styles(target, "svelte-1sriuqy", ".lds-dual-ring.svelte-1sriuqy{display:inline-block}.lds-dual-ring.svelte-1sriuqy:after{content:\" \";display:block;width:26px;height:26px;margin:1px;border-radius:50%;border:5px solid #000;border-color:#000 transparent #000 transparent;animation:svelte-1sriuqy-lds-dual-ring 1.2s linear infinite}@keyframes svelte-1sriuqy-lds-dual-ring{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}");
+    }
+
+    function create_fragment$8(ctx) {
+    	let div;
+
+    	return {
+    		c() {
+    			div = element("div");
+    			attr(div, "class", "lds-dual-ring svelte-1sriuqy");
+    			set_style(div, "width", /*w*/ ctx[0] + "px");
+    			set_style(div, "height", /*h*/ ctx[1] + "px");
+    		},
+    		m(target, anchor) {
+    			insert(target, div, anchor);
+    		},
+    		p(ctx, [dirty]) {
+    			if (dirty & /*w*/ 1) {
+    				set_style(div, "width", /*w*/ ctx[0] + "px");
+    			}
+
+    			if (dirty & /*h*/ 2) {
+    				set_style(div, "height", /*h*/ ctx[1] + "px");
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d(detaching) {
+    			if (detaching) detach(div);
+    		}
+    	};
+    }
+
+    function instance$8($$self, $$props, $$invalidate) {
+    	let { w = 32 } = $$props;
+    	let { h = 32 } = $$props;
+
+    	$$self.$$set = $$props => {
+    		if ('w' in $$props) $$invalidate(0, w = $$props.w);
+    		if ('h' in $$props) $$invalidate(1, h = $$props.h);
+    	};
+
+    	return [w, h];
+    }
+
+    class LoadingIcon extends SvelteComponent {
+    	constructor(options) {
+    		super();
+    		init(this, options, instance$8, create_fragment$8, safe_not_equal, { w: 0, h: 1 }, add_css$7);
+    	}
+    }
+
+    const subscriber_queue = [];
+    /**
+     * Create a `Writable` store that allows both updating and reading by subscription.
+     * @param {*=}value initial value
+     * @param {StartStopNotifier=}start start and stop notifications for subscriptions
+     */
+    function writable(value, start = noop) {
+        let stop;
+        const subscribers = new Set();
+        function set(new_value) {
+            if (safe_not_equal(value, new_value)) {
+                value = new_value;
+                if (stop) { // store is ready
+                    const run_queue = !subscriber_queue.length;
+                    for (const subscriber of subscribers) {
+                        subscriber[1]();
+                        subscriber_queue.push(subscriber, value);
+                    }
+                    if (run_queue) {
+                        for (let i = 0; i < subscriber_queue.length; i += 2) {
+                            subscriber_queue[i][0](subscriber_queue[i + 1]);
+                        }
+                        subscriber_queue.length = 0;
+                    }
+                }
+            }
+        }
+        function update(fn) {
+            set(fn(value));
+        }
+        function subscribe(run, invalidate = noop) {
+            const subscriber = [run, invalidate];
+            subscribers.add(subscriber);
+            if (subscribers.size === 1) {
+                stop = start(set) || noop;
+            }
+            run(value);
+            return () => {
+                subscribers.delete(subscriber);
+                if (subscribers.size === 0) {
+                    stop();
+                    stop = null;
+                }
+            };
+        }
+        return { set, update, subscribe };
+    }
+
+    const drivers = writable([]);
+    const jobs = writable([]);
+
+    // contents of drivers are synced to localStorage
+    if (typeof localStorage !== 'undefined') {
+    	let existingData = localStorage.getItem('drivers');
+    	if (existingData) {
+    		drivers.set(JSON.parse(existingData));
+    	}
+    	drivers.subscribe(data => {
+    		localStorage.setItem('drivers', JSON.stringify(data));
+    	});
+    }
+
+    const FROM = '4741238002';
+
+    function changeJobDetails(jobnr, cols, newState, token) {
+    	jobs.update(jobs => {
+    		let theJob = jobs.find(job => job[cols.JOBNR] === jobnr);
+    		// TODO: job used to be object, is now array. This hack should fail..?
+    		// weirdly it works.. The flexibility of JS and Svelte is amazing
+    		theJob.loading = true;
+    		for (let prop in newState) {
+    			theJob[prop] = newState[prop];
+    		}
+    		return jobs;
+    	});
+    	let url = apiUrl + '/update/' + jobnr;
+    	if (token) {
+    		url += '?token=' + token;
+    	}
+    	return fetch(url , {
+    		method: 'post',
+    		headers: {'Content-type': 'application/json'},
+    		body: JSON.stringify({details:  newState}),
+    	})
+    	.then(response => response.json())
+    	.then(data => {
+    		console.log(data);
+    		jobs.update(jobs => {
+    			let theJob = jobs.find(job => job[cols.JOBNR] === jobnr);
+    			theJob.loading = false;
+    			return jobs;
+    		});
+    		return data;
+    	})
+    	.catch(error => {
+    		if (confirm('Beklager, kunne ikke oppdatere hentejobben.' +
+    			'Sannsynligvis vil det fungere om vi laster sida på nytt, ' +
+    			'men endringer du prøvde å lagre nå må du gjøre på nytt. ' +
+    			'Klikk OK for å laste på nytt.')) {
+    			location.reload();
+    		}
+    	});
+    }
+
+    function sendSms(recipients, message) {
+    	recipients = recipients.map(number => {
+    			number = number.replace(/\s/g, ''); // no spaces
+    			return '47' + number; // Norway prefix
+    		})
+    		.join(',');
+    	// support {number} substitution tag
+    	let param1;
+    	if (message.indexOf('{number}')) {
+    		message = message.replace(/\{number\}/g, '[%1%]');
+    		param1 = recipients.split(/,/g).join('|');
+    	}
+    	return fetch(apiUrl + '/sendsms', {
+    		method: 'post',
+    		headers: {'Content-type': 'application/json'},
+    		body: JSON.stringify({
+    			to: recipients,
+    			from: FROM,
+    			message,
+    			param1
+    		}),
+    	})
+    	.then(response => response.json())
+    	.then(data => {
+    		console.log(data);
+    		if (data.error) {
+    			throw new Error(data.message);
+    		}
+    		return data;
+    	})
+    }
+
+    function getIdFromUrl(url) {
+    	return url
+    		.split(/\//g)
+    		.splice(-2)
+    		.join("/");
+    }
+
+    // SMSapi uses the national 47 prefix but w/o +, we typically want to
+    // strip that out. I remove whitespace just in case we use this method
+    // on input form non-SMSapi sources..
+    function normalizeNumber(str) {
+    	return str.replace(/\s*/g, "").substr(-8);
+    }
+
+    function filter(
+    	string,
+    	sizePref,
+    	dayPref,
+    	typeFilter,
+    	qualityFilter,
+    	hideDoneJobs,
+    	fetchers,
+    	job,
+    	cols
+    ) {
+    	if (hideDoneJobs && doneStates.indexOf(job[cols.STATUS]) > -1) {
+    		return false;
+    	}
+    	// all the "defaults" set - noop
+    	if (
+    		sizePref.smallActive &&
+    		sizePref.mediumActive &&
+    		sizePref.bigActive &&
+    		dayPref.monActive &&
+    		dayPref.tueActive &&
+    		dayPref.wedActive &&
+    		dayPref.thuActive &&
+    		!dayPref.dayFilterExclusive &&
+    		!string &&
+    		!typeFilter &&
+    		qualityFilter === ''
+    	) {
+    		return true;
+    	}
+
+    	if (job[cols.SIZE] === SIZE_BIG && !sizePref.bigActive) {
+    		return false;
+    	}
+    	if (job[cols.SIZE] === SIZE_MEDIUM && !sizePref.mediumActive) {
+    		return false;
+    	}
+
+    	if (job[cols.SIZE] === SIZE_SMALL && !sizePref.smallActive) {
+    		return false;
+    	}
+
+    	if (typeFilter && job[cols.TYPES].indexOf(typeFilter) === -1) {
+    		return false;
+    	}
+
+    	if (qualityFilter !== '' && job[cols.QUALITY] !== qualityFilter) {
+    		return false;
+    	}
+
+    	let showDay = [
+    		//{prop: dayPref.monActive, str: 'Mandag'},
+    		{ prop: dayPref.tueActive, str: "Tirsdag" },
+    		{ prop: dayPref.wedActive, str: "Onsdag" },
+    		{ prop: dayPref.thuActive, str: "Torsdag" },
+    	].map((item) => {
+    		if (dayPref.dayFilterExclusive) {
+    			return (
+    				job[cols.PICKUP_DAYS].indexOf(item.str) >
+    					-1 ===
+    				item.prop
+    			);
+    		}
+    		return (
+    			item.prop &&
+    			job[cols.PICKUP_DAYS].indexOf(item.str) > -1
+    		);
+    	});
+    	if (dayPref.dayFilterExclusive) {
+    		// all must be true
+    		showDay = showDay.reduce((tot, now) => tot && now, true);
+    	} else {
+    		showDay = showDay.indexOf(true) > -1;
+    	}
+    	if (!showDay) {
+    		return false;
+    	}
+    	if (job[cols.ASSIGNEE] && fetchers && fetchers.length && string) {
+    		if (
+    			fetchers.find(
+    				(person) =>
+    					person.name.toLowerCase().indexOf(string.toLowerCase()) > -1
+    			)
+    		) {
+    			return true;
+    		}
+    	}
+
+    	return (
+    		[
+    			cols.ADDRESS,
+    			cols.TYPES,
+    			cols.CONTACT_PERSON,
+    			cols.PHONE,
+    			cols.DESC,
+    			cols.AREA,
+    			cols.STATUS,
+    			cols.ADMCOMMENT,
+    			cols.ASSIGNEE,
+    		]
+    			.map((key) => {
+    				return (
+    					(job[key] || "")
+    						.toLowerCase()
+    						.indexOf(string.toLowerCase()) > -1
+    				);
+    			})
+    			.indexOf(true) > -1
+    	);
+    }
+
+    /* client/src/components/RenderJob.svelte generated by Svelte v3.49.0 */
+
+    function add_css$6(target) {
+    	append_styles(target, "svelte-9gtksp", ".job.svelte-9gtksp.svelte-9gtksp{margin-bottom:8px;border-top:1px solid grey;border-collapse:collapse}.job.svelte-9gtksp.svelte-9gtksp:hover{background:#eee}td.svelte-9gtksp.svelte-9gtksp{padding-left:16px;padding-right:16px;vertical-align:top}.job.svelte-9gtksp td.svelte-9gtksp:first-child{cursor:pointer;overflow:hidden;text-overflow:ellipsis}.extrainfo.svelte-9gtksp.svelte-9gtksp{border-bottom:1px solid grey}tr.itemSelected.svelte-9gtksp.svelte-9gtksp{font-weight:bold}.statuscell.svelte-9gtksp.svelte-9gtksp{position:relative;cursor:pointer}.cen.svelte-9gtksp.svelte-9gtksp{text-align:center}label.svelte-9gtksp.svelte-9gtksp{cursor:pointer}input[type=\"checkbox\"].svelte-9gtksp.svelte-9gtksp{display:none}input[type=\"checkbox\"].svelte-9gtksp+label.svelte-9gtksp{float:right}input[type=\"checkbox\"].svelte-9gtksp:not(:checked)+label.svelte-9gtksp{color:grey}input[type=\"checkbox\"].svelte-9gtksp:checked+label.svelte-9gtksp{color:black}input[type=\"checkbox\"].svelte-9gtksp:checked+label.svelte-9gtksp:after{content:\" \";display:block;width:0;height:0;border-top:30px solid transparent;border-right:30px solid black;transform:rotate(-90deg);position:absolute;top:0;right:0}select.svelte-9gtksp.svelte-9gtksp{max-width:65%;float:left}.smallscreen.svelte-9gtksp.svelte-9gtksp{display:none}@media only screen and (max-width: 600px){td.svelte-9gtksp.svelte-9gtksp:nth-child(3){display:none}td.svelte-9gtksp.svelte-9gtksp:nth-child(4){display:none}td.svelte-9gtksp.svelte-9gtksp:nth-child(5){display:none}.smallscreen.svelte-9gtksp.svelte-9gtksp{display:block}}@media only screen and (max-width: 700px){td.svelte-9gtksp.svelte-9gtksp:nth-child(3){display:none}}button.svelte-9gtksp img.svelte-9gtksp{vertical-align:middle}.loading.svelte-9gtksp.svelte-9gtksp{position:relative}.loading.svelte-9gtksp div.svelte-9gtksp{position:absolute;right:16px;top:8px;z-index:10}.hentesav.svelte-9gtksp.svelte-9gtksp{font-size:x-small;max-width:65%;clear:left}textarea.svelte-9gtksp.svelte-9gtksp{height:150px;width:100%;font-size:1em}.jobnr.svelte-9gtksp.svelte-9gtksp{padding:4px;background:#aaa;margin-left:-14px}small.area.svelte-9gtksp.svelte-9gtksp{font-size:x-small;text-transform:capitalize}");
+    }
+
+    function get_each_context$6(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[23] = list[i];
+    	return child_ctx;
+    }
+
+    // (145:0) {#if itemData.loading}
+    function create_if_block_5$1(ctx) {
+    	let div;
+    	let loadingicon;
+    	let current;
+    	loadingicon = new LoadingIcon({ props: { w: "24", h: "24" } });
+
+    	return {
+    		c() {
+    			div = element("div");
+    			create_component(loadingicon.$$.fragment);
+    			attr(div, "class", "svelte-9gtksp");
+    		},
+    		m(target, anchor) {
+    			insert(target, div, anchor);
+    			mount_component(loadingicon, div, null);
+    			current = true;
+    		},
+    		i(local) {
+    			if (current) return;
+    			transition_in(loadingicon.$$.fragment, local);
+    			current = true;
+    		},
+    		o(local) {
+    			transition_out(loadingicon.$$.fragment, local);
+    			current = false;
+    		},
+    		d(detaching) {
+    			if (detaching) detach(div);
+    			destroy_component(loadingicon);
+    		}
+    	};
+    }
+
+    // (161:0) {:else}
+    function create_else_block$2(ctx) {
+    	let img;
+    	let img_src_value;
+
+    	return {
+    		c() {
+    			img = element("img");
+    			if (!src_url_equal(img.src, img_src_value = "/images/boxes.png")) attr(img, "src", img_src_value);
+    			attr(img, "alt", "1-3 bokser");
+    			attr(img, "height", "22");
+    		},
+    		m(target, anchor) {
+    			insert(target, img, anchor);
+    		},
+    		d(detaching) {
+    			if (detaching) detach(img);
+    		}
+    	};
+    }
+
+    // (159:46) 
+    function create_if_block_4$1(ctx) {
+    	let img;
+    	let img_src_value;
+
+    	return {
+    		c() {
+    			img = element("img");
+    			if (!src_url_equal(img.src, img_src_value = "/images/smallcar.png")) attr(img, "src", img_src_value);
+    			attr(img, "alt", "stasjonsvogn");
+    			attr(img, "height", "22");
+    		},
+    		m(target, anchor) {
+    			insert(target, img, anchor);
+    		},
+    		d(detaching) {
+    			if (detaching) detach(img);
+    		}
+    	};
+    }
+
+    // (157:0) {#if itemData[cols.SIZE] === SIZE_BIG}
+    function create_if_block_3$2(ctx) {
+    	let img;
+    	let img_src_value;
+
+    	return {
+    		c() {
+    			img = element("img");
+    			if (!src_url_equal(img.src, img_src_value = "/images/bigcar.png")) attr(img, "src", img_src_value);
+    			attr(img, "alt", "varebil");
+    			attr(img, "height", "22");
+    		},
+    		m(target, anchor) {
+    			insert(target, img, anchor);
+    		},
+    		d(detaching) {
+    			if (detaching) detach(img);
+    		}
+    	};
+    }
+
+    // (182:1) {#each states as theState}
+    function create_each_block$6(ctx) {
+    	let option;
+    	let t_value = /*theState*/ ctx[23] + "";
+    	let t;
+
+    	return {
+    		c() {
+    			option = element("option");
+    			t = text(t_value);
+    			option.__value = /*theState*/ ctx[23];
+    			option.value = option.__value;
+    		},
+    		m(target, anchor) {
+    			insert(target, option, anchor);
+    			append(option, t);
+    		},
+    		p: noop,
+    		d(detaching) {
+    			if (detaching) detach(option);
+    		}
+    	};
+    }
+
+    // (186:0) {#if itemData[cols.ASSIGNEE]}
+    function create_if_block_2$3(ctx) {
+    	let div;
+    	let a;
+    	let t0_value = /*getDriverName*/ ctx[8](/*itemData*/ ctx[0][/*cols*/ ctx[6].ASSIGNEE]) + "";
+    	let t0;
+    	let a_href_value;
+    	let t1;
+    	let t2_value = statusVerbString(/*itemData*/ ctx[0][/*cols*/ ctx[6].STATUS]) + "";
+    	let t2;
+
+    	return {
+    		c() {
+    			div = element("div");
+    			a = element("a");
+    			t0 = text(t0_value);
+    			t1 = space();
+    			t2 = text(t2_value);
+    			attr(a, "href", a_href_value = "tel:" + normalizeNumber(/*itemData*/ ctx[0][/*cols*/ ctx[6].ASSIGNEE]));
+    			attr(div, "class", "hentesav svelte-9gtksp");
+    		},
+    		m(target, anchor) {
+    			insert(target, div, anchor);
+    			append(div, a);
+    			append(a, t0);
+    			append(div, t1);
+    			append(div, t2);
+    		},
+    		p(ctx, dirty) {
+    			if (dirty & /*itemData*/ 1 && t0_value !== (t0_value = /*getDriverName*/ ctx[8](/*itemData*/ ctx[0][/*cols*/ ctx[6].ASSIGNEE]) + "")) set_data(t0, t0_value);
+
+    			if (dirty & /*itemData, states*/ 1 && a_href_value !== (a_href_value = "tel:" + normalizeNumber(/*itemData*/ ctx[0][/*cols*/ ctx[6].ASSIGNEE]))) {
+    				attr(a, "href", a_href_value);
+    			}
+
+    			if (dirty & /*itemData*/ 1 && t2_value !== (t2_value = statusVerbString(/*itemData*/ ctx[0][/*cols*/ ctx[6].STATUS]) + "")) set_data(t2, t2_value);
+    		},
+    		d(detaching) {
+    			if (detaching) detach(div);
+    		}
+    	};
+    }
+
+    // (193:0) {#if expanded}
+    function create_if_block$5(ctx) {
+    	let tr;
+    	let td0;
+    	let td1;
+    	let renderperson;
+    	let t0;
+    	let p0;
+    	let t1_value = /*itemData*/ ctx[0][/*cols*/ ctx[6].TYPES] + "";
+    	let t1;
+    	let t2;
+    	let p1;
+    	let i;
+    	let t3_value = /*itemData*/ ctx[0][/*cols*/ ctx[6].DESC] + "";
+    	let t3;
+    	let t4;
+    	let p2;
+    	let button;
+    	let t5;
+    	let t6;
+    	let td2;
+    	let t7;
+    	let br;
+    	let t8;
+    	let textarea;
+    	let tr_data_id_value;
+    	let current;
+    	let mounted;
+    	let dispose;
+
+    	renderperson = new RenderPerson({
+    			props: {
+    				name: /*itemData*/ ctx[0][/*cols*/ ctx[6].CONTACT_PERSON],
+    				number: /*itemData*/ ctx[0][/*cols*/ ctx[6].PHONE]
+    			}
+    		});
+
+    	let if_block = /*showEditor*/ ctx[3] && create_if_block_1$3(ctx);
+
+    	return {
+    		c() {
+    			tr = element("tr");
+    			td0 = element("td");
+    			td1 = element("td");
+    			create_component(renderperson.$$.fragment);
+    			t0 = space();
+    			p0 = element("p");
+    			t1 = text(t1_value);
+    			t2 = space();
+    			p1 = element("p");
+    			i = element("i");
+    			t3 = text(t3_value);
+    			t4 = space();
+    			p2 = element("p");
+    			button = element("button");
+    			button.innerHTML = `<img src="/images/edit.png" alt="endre detaljer" width="36" class="svelte-9gtksp"/>`;
+    			t5 = space();
+    			if (if_block) if_block.c();
+    			t6 = space();
+    			td2 = element("td");
+    			t7 = text("Kommentarer fra admin/hentere:");
+    			br = element("br");
+    			t8 = space();
+    			textarea = element("textarea");
+    			attr(td0, "class", "svelte-9gtksp");
+    			attr(button, "class", "svelte-9gtksp");
+    			attr(p2, "class", "cen svelte-9gtksp");
+    			attr(td1, "colspan", "3");
+    			attr(td1, "class", "extrainfo svelte-9gtksp");
+    			attr(textarea, "class", "svelte-9gtksp");
+    			attr(td2, "colspan", "2");
+    			attr(td2, "class", "svelte-9gtksp");
+    			attr(tr, "data-id", tr_data_id_value = /*itemData*/ ctx[0][/*cols*/ ctx[6].JOBNR]);
+    		},
+    		m(target, anchor) {
+    			insert(target, tr, anchor);
+    			append(tr, td0);
+    			append(tr, td1);
+    			mount_component(renderperson, td1, null);
+    			append(td1, t0);
+    			append(td1, p0);
+    			append(p0, t1);
+    			append(td1, t2);
+    			append(td1, p1);
+    			append(p1, i);
+    			append(i, t3);
+    			append(td1, t4);
+    			append(td1, p2);
+    			append(p2, button);
+    			append(td1, t5);
+    			if (if_block) if_block.m(td1, null);
+    			append(tr, t6);
+    			append(tr, td2);
+    			append(td2, t7);
+    			append(td2, br);
+    			append(td2, t8);
+    			append(td2, textarea);
+    			set_input_value(textarea, /*itemData*/ ctx[0][/*cols*/ ctx[6].ADMCOMMENT]);
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = [
+    					listen(button, "click", /*click_handler_3*/ ctx[17]),
+    					listen(textarea, "input", /*textarea_input_handler*/ ctx[20]),
+    					listen(textarea, "change", /*change_handler_2*/ ctx[21])
+    				];
+
+    				mounted = true;
+    			}
+    		},
+    		p(ctx, dirty) {
+    			const renderperson_changes = {};
+    			if (dirty & /*itemData*/ 1) renderperson_changes.name = /*itemData*/ ctx[0][/*cols*/ ctx[6].CONTACT_PERSON];
+    			if (dirty & /*itemData*/ 1) renderperson_changes.number = /*itemData*/ ctx[0][/*cols*/ ctx[6].PHONE];
+    			renderperson.$set(renderperson_changes);
+    			if ((!current || dirty & /*itemData*/ 1) && t1_value !== (t1_value = /*itemData*/ ctx[0][/*cols*/ ctx[6].TYPES] + "")) set_data(t1, t1_value);
+    			if ((!current || dirty & /*itemData*/ 1) && t3_value !== (t3_value = /*itemData*/ ctx[0][/*cols*/ ctx[6].DESC] + "")) set_data(t3, t3_value);
+
+    			if (/*showEditor*/ ctx[3]) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+
+    					if (dirty & /*showEditor*/ 8) {
+    						transition_in(if_block, 1);
+    					}
+    				} else {
+    					if_block = create_if_block_1$3(ctx);
+    					if_block.c();
+    					transition_in(if_block, 1);
+    					if_block.m(td1, null);
+    				}
+    			} else if (if_block) {
+    				group_outros();
+
+    				transition_out(if_block, 1, 1, () => {
+    					if_block = null;
+    				});
+
+    				check_outros();
+    			}
+
+    			if (dirty & /*itemData, cols, states*/ 65) {
+    				set_input_value(textarea, /*itemData*/ ctx[0][/*cols*/ ctx[6].ADMCOMMENT]);
+    			}
+
+    			if (!current || dirty & /*itemData, states*/ 1 && tr_data_id_value !== (tr_data_id_value = /*itemData*/ ctx[0][/*cols*/ ctx[6].JOBNR])) {
+    				attr(tr, "data-id", tr_data_id_value);
+    			}
+    		},
+    		i(local) {
+    			if (current) return;
+    			transition_in(renderperson.$$.fragment, local);
+    			transition_in(if_block);
+    			current = true;
+    		},
+    		o(local) {
+    			transition_out(renderperson.$$.fragment, local);
+    			transition_out(if_block);
+    			current = false;
+    		},
+    		d(detaching) {
+    			if (detaching) detach(tr);
+    			destroy_component(renderperson);
+    			if (if_block) if_block.d();
+    			mounted = false;
+    			run_all(dispose);
+    		}
+    	};
+    }
+
+    // (200:1) {#if showEditor}
+    function create_if_block_1$3(ctx) {
+    	let modal;
+    	let current;
+
+    	modal = new Modal({
+    			props: {
+    				$$slots: {
+    					header: [create_header_slot$1],
+    					default: [create_default_slot$1]
+    				},
+    				$$scope: { ctx }
+    			}
+    		});
+
+    	modal.$on("close", /*close_handler*/ ctx[19]);
+
+    	return {
+    		c() {
+    			create_component(modal.$$.fragment);
+    		},
+    		m(target, anchor) {
+    			mount_component(modal, target, anchor);
+    			current = true;
+    		},
+    		p(ctx, dirty) {
+    			const modal_changes = {};
+
+    			if (dirty & /*$$scope, itemData, showEditor*/ 67108873) {
+    				modal_changes.$$scope = { dirty, ctx };
+    			}
+
+    			modal.$set(modal_changes);
+    		},
+    		i(local) {
+    			if (current) return;
+    			transition_in(modal.$$.fragment, local);
+    			current = true;
+    		},
+    		o(local) {
+    			transition_out(modal.$$.fragment, local);
+    			current = false;
+    		},
+    		d(detaching) {
+    			destroy_component(modal, detaching);
+    		}
+    	};
+    }
+
+    // (201:2) <Modal on:close="{() => showEditor = false}" >
+    function create_default_slot$1(ctx) {
+    	let detailseditor;
+    	let current;
+
+    	detailseditor = new DetailsEditor({
+    			props: {
+    				job: /*itemData*/ ctx[0],
+    				cols: /*cols*/ ctx[6]
+    			}
+    		});
+
+    	detailseditor.$on("update", /*update*/ ctx[7]);
+    	detailseditor.$on("cancel", /*cancel_handler*/ ctx[18]);
+
+    	return {
+    		c() {
+    			create_component(detailseditor.$$.fragment);
+    		},
+    		m(target, anchor) {
+    			mount_component(detailseditor, target, anchor);
+    			current = true;
+    		},
+    		p(ctx, dirty) {
+    			const detailseditor_changes = {};
+    			if (dirty & /*itemData*/ 1) detailseditor_changes.job = /*itemData*/ ctx[0];
+    			detailseditor.$set(detailseditor_changes);
+    		},
+    		i(local) {
+    			if (current) return;
+    			transition_in(detailseditor.$$.fragment, local);
+    			current = true;
+    		},
+    		o(local) {
+    			transition_out(detailseditor.$$.fragment, local);
+    			current = false;
+    		},
+    		d(detaching) {
+    			destroy_component(detailseditor, detaching);
+    		}
+    	};
+    }
+
+    // (202:3) 
+    function create_header_slot$1(ctx) {
+    	let h2;
+
+    	return {
+    		c() {
+    			h2 = element("h2");
+    			h2.textContent = "Endre detaljer";
+    			attr(h2, "slot", "header");
+    		},
+    		m(target, anchor) {
+    			insert(target, h2, anchor);
+    		},
+    		p: noop,
+    		d(detaching) {
+    			if (detaching) detach(h2);
+    		}
+    	};
+    }
+
+    function create_fragment$7(ctx) {
+    	let tr;
+    	let td0;
+    	let t0_value = /*itemData*/ ctx[0][/*cols*/ ctx[6].JOBNR] + "";
+    	let t0;
+    	let t1;
+    	let td1;
+    	let t2;
+    	let t3_value = /*itemData*/ ctx[0][/*cols*/ ctx[6].ADDRESS] + "";
+    	let t3;
+    	let t4;
+    	let a;
+    	let t5;
+    	let a_href_value;
+    	let t6;
+    	let br0;
+    	let small;
+    	let t7_value = /*itemData*/ ctx[0][/*cols*/ ctx[6].AREA] + "";
+    	let t7;
+    	let t8;
+    	let br1;
+    	let t9;
+    	let div;
+    	let i;
+    	let t10_value = /*itemData*/ ctx[0][/*cols*/ ctx[6].PICKUP_DAYS] + "";
+    	let t10;
+    	let t11;
+    	let td2;
+    	let t12;
+    	let td3;
+    	let rendertypes;
+    	let t13;
+    	let td4;
+    	let renderstars;
+    	let t14;
+    	let td5;
+    	let renderdays;
+    	let t15;
+    	let td6;
+    	let input;
+    	let input_id_value;
+    	let t16;
+    	let label;
+    	let t17;
+    	let label_for_value;
+    	let t18;
+    	let select;
+    	let select_disabled_value;
+    	let t19;
+    	let tr_data_id_value;
+    	let t20;
+    	let if_block3_anchor;
+    	let current;
+    	let mounted;
+    	let dispose;
+    	let if_block0 = /*itemData*/ ctx[0].loading && create_if_block_5$1();
+
+    	function select_block_type(ctx, dirty) {
+    		if (/*itemData*/ ctx[0][/*cols*/ ctx[6].SIZE] === SIZE_BIG) return create_if_block_3$2;
+    		if (/*itemData*/ ctx[0][/*cols*/ ctx[6].SIZE] === SIZE_MEDIUM) return create_if_block_4$1;
+    		return create_else_block$2;
+    	}
+
+    	let current_block_type = select_block_type(ctx);
+    	let if_block1 = current_block_type(ctx);
+
+    	rendertypes = new RenderTypes({
+    			props: {
+    				types: /*itemData*/ ctx[0][/*cols*/ ctx[6].TYPES]
+    			}
+    		});
+
+    	renderstars = new RenderStars({
+    			props: {
+    				cols: /*cols*/ ctx[6],
+    				qualityRanking: /*itemData*/ ctx[0][/*cols*/ ctx[6].QUALITY]
+    			}
+    		});
+
+    	renderstars.$on("qualityupdate", /*update*/ ctx[7]);
+
+    	renderdays = new RenderDays({
+    			props: {
+    				days: /*itemData*/ ctx[0][/*cols*/ ctx[6].PICKUP_DAYS]
+    			}
+    		});
+
+    	let each_value = states;
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$6(get_each_context$6(ctx, each_value, i));
+    	}
+
+    	let if_block2 = /*itemData*/ ctx[0][/*cols*/ ctx[6].ASSIGNEE] && create_if_block_2$3(ctx);
+    	let if_block3 = /*expanded*/ ctx[2] && create_if_block$5(ctx);
+
+    	return {
+    		c() {
+    			tr = element("tr");
+    			td0 = element("td");
+    			t0 = text(t0_value);
+    			t1 = space();
+    			td1 = element("td");
+    			if (if_block0) if_block0.c();
+    			t2 = space();
+    			t3 = text(t3_value);
+    			t4 = space();
+    			a = element("a");
+    			t5 = text("🔎");
+    			t6 = space();
+    			br0 = element("br");
+    			small = element("small");
+    			t7 = text(t7_value);
+    			t8 = space();
+    			br1 = element("br");
+    			t9 = space();
+    			div = element("div");
+    			i = element("i");
+    			t10 = text(t10_value);
+    			t11 = space();
+    			td2 = element("td");
+    			if_block1.c();
+    			t12 = space();
+    			td3 = element("td");
+    			create_component(rendertypes.$$.fragment);
+    			t13 = space();
+    			td4 = element("td");
+    			create_component(renderstars.$$.fragment);
+    			t14 = space();
+    			td5 = element("td");
+    			create_component(renderdays.$$.fragment);
+    			t15 = space();
+    			td6 = element("td");
+    			input = element("input");
+    			t16 = space();
+    			label = element("label");
+    			t17 = text("✓");
+    			t18 = space();
+    			select = element("select");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			t19 = space();
+    			if (if_block2) if_block2.c();
+    			t20 = space();
+    			if (if_block3) if_block3.c();
+    			if_block3_anchor = empty();
+    			attr(td0, "class", "jobnr svelte-9gtksp");
+    			attr(a, "href", a_href_value = "https://www.google.no/maps/?q=" + encodeURIComponent(/*itemData*/ ctx[0][/*cols*/ ctx[6].ADDRESS]));
+    			attr(a, "target", "_blank");
+    			attr(small, "class", "area svelte-9gtksp");
+    			attr(div, "class", "smallscreen svelte-9gtksp");
+    			attr(td1, "tabindex", "0");
+    			attr(td1, "class", "svelte-9gtksp");
+    			toggle_class(td1, "expanded", /*expanded*/ ctx[2]);
+    			toggle_class(td1, "loading", /*loading*/ ctx[4]);
+    			attr(td2, "class", "car svelte-9gtksp");
+    			attr(td3, "class", "typefilter svelte-9gtksp");
+    			attr(td4, "class", "svelte-9gtksp");
+    			attr(td5, "class", "svelte-9gtksp");
+    			attr(input, "type", "checkbox");
+    			attr(input, "id", input_id_value = "select" + /*itemData*/ ctx[0][/*cols*/ ctx[6].JOBNR]);
+    			attr(input, "class", "svelte-9gtksp");
+    			attr(label, "for", label_for_value = "select" + /*itemData*/ ctx[0][/*cols*/ ctx[6].JOBNR]);
+    			attr(label, "tabindex", "0");
+    			attr(label, "class", "svelte-9gtksp");
+    			select.disabled = select_disabled_value = Boolean(/*itemData*/ ctx[0][/*cols*/ ctx[6].ASSIGNEE]);
+    			attr(select, "class", "svelte-9gtksp");
+    			if (/*itemData*/ ctx[0][/*cols*/ ctx[6].STATUS] === void 0) add_render_callback(() => /*select_change_handler*/ ctx[14].call(select));
+    			attr(td6, "class", "statuscell svelte-9gtksp");
+    			attr(tr, "class", "job svelte-9gtksp");
+    			attr(tr, "data-id", tr_data_id_value = /*itemData*/ ctx[0][/*cols*/ ctx[6].JOBNR]);
+    			toggle_class(tr, "itemSelected", /*itemSelected*/ ctx[1]);
+    		},
+    		m(target, anchor) {
+    			insert(target, tr, anchor);
+    			append(tr, td0);
+    			append(td0, t0);
+    			append(tr, t1);
+    			append(tr, td1);
+    			if (if_block0) if_block0.m(td1, null);
+    			append(td1, t2);
+    			append(td1, t3);
+    			append(td1, t4);
+    			append(td1, a);
+    			append(a, t5);
+    			append(td1, t6);
+    			append(td1, br0);
+    			append(td1, small);
+    			append(small, t7);
+    			append(td1, t8);
+    			append(td1, br1);
+    			append(td1, t9);
+    			append(td1, div);
+    			append(div, i);
+    			append(i, t10);
+    			append(tr, t11);
+    			append(tr, td2);
+    			if_block1.m(td2, null);
+    			append(tr, t12);
+    			append(tr, td3);
+    			mount_component(rendertypes, td3, null);
+    			append(tr, t13);
+    			append(tr, td4);
+    			mount_component(renderstars, td4, null);
+    			append(tr, t14);
+    			append(tr, td5);
+    			mount_component(renderdays, td5, null);
+    			append(tr, t15);
+    			append(tr, td6);
+    			append(td6, input);
+    			input.checked = /*itemSelected*/ ctx[1];
+    			append(td6, t16);
+    			append(td6, label);
+    			append(label, t17);
+    			append(td6, t18);
+    			append(td6, select);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(select, null);
+    			}
+
+    			select_option(select, /*itemData*/ ctx[0][/*cols*/ ctx[6].STATUS]);
+    			append(td6, t19);
+    			if (if_block2) if_block2.m(td6, null);
+    			insert(target, t20, anchor);
+    			if (if_block3) if_block3.m(target, anchor);
+    			insert(target, if_block3_anchor, anchor);
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = [
+    					listen(a, "click", stop_propagation(/*click_handler*/ ctx[10])),
+    					listen(td1, "click", /*click_handler_1*/ ctx[11]),
+    					listen(input, "change", /*input_change_handler*/ ctx[12]),
+    					listen(input, "change", /*change_handler*/ ctx[13]),
+    					listen(select, "change", /*select_change_handler*/ ctx[14]),
+    					listen(select, "change", stop_propagation(/*change_handler_1*/ ctx[15])),
+    					listen(td6, "click", /*click_handler_2*/ ctx[16])
+    				];
+
+    				mounted = true;
+    			}
+    		},
+    		p(ctx, [dirty]) {
+    			if ((!current || dirty & /*itemData*/ 1) && t0_value !== (t0_value = /*itemData*/ ctx[0][/*cols*/ ctx[6].JOBNR] + "")) set_data(t0, t0_value);
+
+    			if (/*itemData*/ ctx[0].loading) {
+    				if (if_block0) {
+    					if (dirty & /*itemData*/ 1) {
+    						transition_in(if_block0, 1);
+    					}
+    				} else {
+    					if_block0 = create_if_block_5$1();
+    					if_block0.c();
+    					transition_in(if_block0, 1);
+    					if_block0.m(td1, t2);
+    				}
+    			} else if (if_block0) {
+    				group_outros();
+
+    				transition_out(if_block0, 1, 1, () => {
+    					if_block0 = null;
+    				});
+
+    				check_outros();
+    			}
+
+    			if ((!current || dirty & /*itemData*/ 1) && t3_value !== (t3_value = /*itemData*/ ctx[0][/*cols*/ ctx[6].ADDRESS] + "")) set_data(t3, t3_value);
+
+    			if (!current || dirty & /*itemData, states*/ 1 && a_href_value !== (a_href_value = "https://www.google.no/maps/?q=" + encodeURIComponent(/*itemData*/ ctx[0][/*cols*/ ctx[6].ADDRESS]))) {
+    				attr(a, "href", a_href_value);
+    			}
+
+    			if ((!current || dirty & /*itemData*/ 1) && t7_value !== (t7_value = /*itemData*/ ctx[0][/*cols*/ ctx[6].AREA] + "")) set_data(t7, t7_value);
+    			if ((!current || dirty & /*itemData*/ 1) && t10_value !== (t10_value = /*itemData*/ ctx[0][/*cols*/ ctx[6].PICKUP_DAYS] + "")) set_data(t10, t10_value);
+
+    			if (dirty & /*expanded*/ 4) {
+    				toggle_class(td1, "expanded", /*expanded*/ ctx[2]);
+    			}
+
+    			if (dirty & /*loading*/ 16) {
+    				toggle_class(td1, "loading", /*loading*/ ctx[4]);
+    			}
+
+    			if (current_block_type !== (current_block_type = select_block_type(ctx))) {
+    				if_block1.d(1);
+    				if_block1 = current_block_type(ctx);
+
+    				if (if_block1) {
+    					if_block1.c();
+    					if_block1.m(td2, null);
+    				}
+    			}
+
+    			const rendertypes_changes = {};
+    			if (dirty & /*itemData*/ 1) rendertypes_changes.types = /*itemData*/ ctx[0][/*cols*/ ctx[6].TYPES];
+    			rendertypes.$set(rendertypes_changes);
+    			const renderstars_changes = {};
+    			if (dirty & /*itemData*/ 1) renderstars_changes.qualityRanking = /*itemData*/ ctx[0][/*cols*/ ctx[6].QUALITY];
+    			renderstars.$set(renderstars_changes);
+    			const renderdays_changes = {};
+    			if (dirty & /*itemData*/ 1) renderdays_changes.days = /*itemData*/ ctx[0][/*cols*/ ctx[6].PICKUP_DAYS];
+    			renderdays.$set(renderdays_changes);
+
+    			if (!current || dirty & /*itemData, states*/ 1 && input_id_value !== (input_id_value = "select" + /*itemData*/ ctx[0][/*cols*/ ctx[6].JOBNR])) {
+    				attr(input, "id", input_id_value);
+    			}
+
+    			if (dirty & /*itemSelected*/ 2) {
+    				input.checked = /*itemSelected*/ ctx[1];
+    			}
+
+    			if (!current || dirty & /*itemData, states*/ 1 && label_for_value !== (label_for_value = "select" + /*itemData*/ ctx[0][/*cols*/ ctx[6].JOBNR])) {
+    				attr(label, "for", label_for_value);
+    			}
+
+    			if (dirty & /*states*/ 0) {
+    				each_value = states;
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$6(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$6(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(select, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+
+    			if (!current || dirty & /*itemData, states*/ 1 && select_disabled_value !== (select_disabled_value = Boolean(/*itemData*/ ctx[0][/*cols*/ ctx[6].ASSIGNEE]))) {
+    				select.disabled = select_disabled_value;
+    			}
+
+    			if (dirty & /*itemData, cols, states*/ 65) {
+    				select_option(select, /*itemData*/ ctx[0][/*cols*/ ctx[6].STATUS]);
+    			}
+
+    			if (/*itemData*/ ctx[0][/*cols*/ ctx[6].ASSIGNEE]) {
+    				if (if_block2) {
+    					if_block2.p(ctx, dirty);
+    				} else {
+    					if_block2 = create_if_block_2$3(ctx);
+    					if_block2.c();
+    					if_block2.m(td6, null);
+    				}
+    			} else if (if_block2) {
+    				if_block2.d(1);
+    				if_block2 = null;
+    			}
+
+    			if (!current || dirty & /*itemData, states*/ 1 && tr_data_id_value !== (tr_data_id_value = /*itemData*/ ctx[0][/*cols*/ ctx[6].JOBNR])) {
+    				attr(tr, "data-id", tr_data_id_value);
+    			}
+
+    			if (dirty & /*itemSelected*/ 2) {
+    				toggle_class(tr, "itemSelected", /*itemSelected*/ ctx[1]);
+    			}
+
+    			if (/*expanded*/ ctx[2]) {
+    				if (if_block3) {
+    					if_block3.p(ctx, dirty);
+
+    					if (dirty & /*expanded*/ 4) {
+    						transition_in(if_block3, 1);
+    					}
+    				} else {
+    					if_block3 = create_if_block$5(ctx);
+    					if_block3.c();
+    					transition_in(if_block3, 1);
+    					if_block3.m(if_block3_anchor.parentNode, if_block3_anchor);
+    				}
+    			} else if (if_block3) {
+    				group_outros();
+
+    				transition_out(if_block3, 1, 1, () => {
+    					if_block3 = null;
+    				});
+
+    				check_outros();
+    			}
+    		},
+    		i(local) {
+    			if (current) return;
+    			transition_in(if_block0);
+    			transition_in(rendertypes.$$.fragment, local);
+    			transition_in(renderstars.$$.fragment, local);
+    			transition_in(renderdays.$$.fragment, local);
+    			transition_in(if_block3);
+    			current = true;
+    		},
+    		o(local) {
+    			transition_out(if_block0);
+    			transition_out(rendertypes.$$.fragment, local);
+    			transition_out(renderstars.$$.fragment, local);
+    			transition_out(renderdays.$$.fragment, local);
+    			transition_out(if_block3);
+    			current = false;
+    		},
+    		d(detaching) {
+    			if (detaching) detach(tr);
+    			if (if_block0) if_block0.d();
+    			if_block1.d();
+    			destroy_component(rendertypes);
+    			destroy_component(renderstars);
+    			destroy_component(renderdays);
+    			destroy_each(each_blocks, detaching);
+    			if (if_block2) if_block2.d();
+    			if (detaching) detach(t20);
+    			if (if_block3) if_block3.d(detaching);
+    			if (detaching) detach(if_block3_anchor);
+    			mounted = false;
+    			run_all(dispose);
+    		}
+    	};
+    }
+
+    function statusVerbString(state) {
+    	return state === 'Hentet' ? 'hentet' : 'henter nå';
+    }
+
+    function instance$7($$self, $$props, $$invalidate) {
+    	let loading;
+    	let $drivers;
+    	component_subscribe($$self, drivers, $$value => $$invalidate(22, $drivers = $$value));
+    	const dispatch = createEventDispatcher();
+    	let { itemData } = $$props;
+    	let { itemSelected = false } = $$props;
+    	let { prefs } = $$props;
+    	let cols = prefs.cols;
+    	let expanded = false;
+    	let showEditor = false;
+
+    	function update(event) {
+    		$$invalidate(3, showEditor = false);
+    		return changeJobDetails(itemData[cols.JOBNR], cols, event.detail).catch(err => alert(err));
+    	}
+
+    	function getDriverName(number) {
+    		let driver = $drivers.find(driver => driver.number === normalizeNumber(number));
+    		return driver ? driver.name : normalizeNumber(number);
+    	}
+
+    	function click_handler(event) {
+    		bubble.call(this, $$self, event);
+    	}
+
+    	const click_handler_1 = e => $$invalidate(2, expanded = !expanded);
+
+    	function input_change_handler() {
+    		itemSelected = this.checked;
+    		$$invalidate(1, itemSelected);
+    	}
+
+    	const change_handler = e => dispatch('select', {
+    		jobnr: itemData[cols.JOBNR],
+    		selected: e.target.checked
+    	});
+
+    	function select_change_handler() {
+    		itemData[cols.STATUS] = select_value(this);
+    		$$invalidate(0, itemData);
+    	}
+
+    	const change_handler_1 = e => update({
+    		detail: { [cols.STATUS]: e.target.value }
+    	});
+
+    	const click_handler_2 = e => {
+    		if (['SELECT', 'LABEL', 'INPUT', 'OPTION', 'A'].indexOf(e.target.tagName) === -1) {
+    			dispatch('select', {
+    				jobnr: itemData[cols.JOBNR],
+    				selected: !itemSelected
+    			});
+    		}
+    	};
+
+    	const click_handler_3 = e => $$invalidate(3, showEditor = true);
+    	const cancel_handler = e => $$invalidate(3, showEditor = false);
+    	const close_handler = () => $$invalidate(3, showEditor = false);
+
+    	function textarea_input_handler() {
+    		itemData[cols.ADMCOMMENT] = this.value;
+    		$$invalidate(0, itemData);
+    	}
+
+    	const change_handler_2 = e => changeJobDetails(itemData[cols.JOBNR], cols, { [cols.ADMCOMMENT]: e.target.value });
+
+    	$$self.$$set = $$props => {
+    		if ('itemData' in $$props) $$invalidate(0, itemData = $$props.itemData);
+    		if ('itemSelected' in $$props) $$invalidate(1, itemSelected = $$props.itemSelected);
+    		if ('prefs' in $$props) $$invalidate(9, prefs = $$props.prefs);
+    	};
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*itemData*/ 1) {
+    			$$invalidate(4, loading = itemData.loading);
+    		}
+    	};
+
+    	return [
+    		itemData,
+    		itemSelected,
+    		expanded,
+    		showEditor,
+    		loading,
+    		dispatch,
+    		cols,
+    		update,
+    		getDriverName,
+    		prefs,
+    		click_handler,
+    		click_handler_1,
+    		input_change_handler,
+    		change_handler,
+    		select_change_handler,
+    		change_handler_1,
+    		click_handler_2,
+    		click_handler_3,
+    		cancel_handler,
+    		close_handler,
+    		textarea_input_handler,
+    		change_handler_2
+    	];
+    }
+
+    class RenderJob extends SvelteComponent {
+    	constructor(options) {
+    		super();
+    		init(this, options, instance$7, create_fragment$7, safe_not_equal, { itemData: 0, itemSelected: 1, prefs: 9 }, add_css$6);
+    	}
+    }
+
+    /* client/src/components/SMSEditor.svelte generated by Svelte v3.49.0 */
+
+    function add_css$5(target) {
+    	append_styles(target, "svelte-72ojky", "form.svelte-72ojky.svelte-72ojky{display:table;width:90%;margin-left:5%\n\t}p.svelte-72ojky.svelte-72ojky{display:table-row;width:100%;margin-top:8px}span.svelte-72ojky.svelte-72ojky{display:table-cell;vertical-align:top;padding-top:8px}span.svelte-72ojky.svelte-72ojky:first-child{width:30%}span.svelte-72ojky .svelte-72ojky{width:100%}span.svelte-72ojky button.svelte-72ojky{width:40%}span.svelte-72ojky button.svelte-72ojky:nth-child(2){margin-left:8px}textarea.svelte-72ojky.svelte-72ojky{height:100px}textarea.svelte-72ojky.svelte-72ojky,select.svelte-72ojky.svelte-72ojky{font-size:1em}.to.svelte-72ojky textarea.svelte-72ojky{width:90%;height:3em}.sms.svelte-72ojky textarea.svelte-72ojky{width:90%;height:200px}select.svelte-72ojky.svelte-72ojky{font-size:1em}");
+    }
+
+    function get_each_context$5(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[15] = list[i];
+    	return child_ctx;
+    }
+
+    function get_each_context_1$1(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[18] = list[i];
+    	return child_ctx;
+    }
+
+    // (91:3) {:else}
+    function create_else_block$1(ctx) {
+    	let textarea;
+    	let mounted;
+    	let dispose;
+
+    	return {
+    		c() {
+    			textarea = element("textarea");
+    			attr(textarea, "pattern", "[0-9 ,]");
+    			textarea.required = true;
+    			attr(textarea, "class", "svelte-72ojky");
+    		},
+    		m(target, anchor) {
+    			insert(target, textarea, anchor);
+    			set_input_value(textarea, /*recipients*/ ctx[0]);
+
+    			if (!mounted) {
+    				dispose = listen(textarea, "input", /*textarea_input_handler*/ ctx[10]);
+    				mounted = true;
+    			}
+    		},
+    		p(ctx, dirty) {
+    			if (dirty & /*recipients, possibleRecipients*/ 5) {
+    				set_input_value(textarea, /*recipients*/ ctx[0]);
+    			}
+    		},
+    		d(detaching) {
+    			if (detaching) detach(textarea);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+    }
+
+    // (83:3) {#if possibleRecipients && possibleRecipients.length}
+    function create_if_block_1$2(ctx) {
+    	let select;
+    	let mounted;
+    	let dispose;
+    	let each_value_1 = /*possibleRecipients*/ ctx[2];
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value_1.length; i += 1) {
+    		each_blocks[i] = create_each_block_1$1(get_each_context_1$1(ctx, each_value_1, i));
+    	}
+
+    	return {
+    		c() {
+    			select = element("select");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			select.multiple = true;
+    			select.required = true;
+    			attr(select, "class", "svelte-72ojky");
+    			if (/*recipients*/ ctx[0] === void 0) add_render_callback(() => /*select_change_handler*/ ctx[9].call(select));
+    		},
+    		m(target, anchor) {
+    			insert(target, select, anchor);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(select, null);
+    			}
+
+    			select_options(select, /*recipients*/ ctx[0]);
+
+    			if (!mounted) {
+    				dispose = listen(select, "change", /*select_change_handler*/ ctx[9]);
+    				mounted = true;
+    			}
+    		},
+    		p(ctx, dirty) {
+    			if (dirty & /*possibleRecipients*/ 4) {
+    				each_value_1 = /*possibleRecipients*/ ctx[2];
+    				let i;
+
+    				for (i = 0; i < each_value_1.length; i += 1) {
+    					const child_ctx = get_each_context_1$1(ctx, each_value_1, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block_1$1(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(select, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value_1.length;
+    			}
+
+    			if (dirty & /*recipients, possibleRecipients*/ 5) {
+    				select_options(select, /*recipients*/ ctx[0]);
+    			}
+    		},
+    		d(detaching) {
+    			if (detaching) detach(select);
+    			destroy_each(each_blocks, detaching);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+    }
+
+    // (87:23) {#if recipient.address}
+    function create_if_block_2$2(ctx) {
+    	let t0;
+    	let t1_value = /*recipient*/ ctx[18].address + "";
+    	let t1;
+
+    	return {
+    		c() {
+    			t0 = text("- ");
+    			t1 = text(t1_value);
+    		},
+    		m(target, anchor) {
+    			insert(target, t0, anchor);
+    			insert(target, t1, anchor);
+    		},
+    		p(ctx, dirty) {
+    			if (dirty & /*possibleRecipients*/ 4 && t1_value !== (t1_value = /*recipient*/ ctx[18].address + "")) set_data(t1, t1_value);
+    		},
+    		d(detaching) {
+    			if (detaching) detach(t0);
+    			if (detaching) detach(t1);
+    		}
+    	};
+    }
+
+    // (85:5) {#each possibleRecipients as recipient}
+    function create_each_block_1$1(ctx) {
+    	let option;
+    	let t0_value = /*recipient*/ ctx[18].name + "";
+    	let t0;
+    	let t1;
+    	let option_value_value;
+    	let if_block = /*recipient*/ ctx[18].address && create_if_block_2$2(ctx);
+
+    	return {
+    		c() {
+    			option = element("option");
+    			t0 = text(t0_value);
+    			if (if_block) if_block.c();
+    			t1 = space();
+    			option.__value = option_value_value = /*recipient*/ ctx[18].number;
+    			option.value = option.__value;
+    			attr(option, "class", "svelte-72ojky");
+    		},
+    		m(target, anchor) {
+    			insert(target, option, anchor);
+    			append(option, t0);
+    			if (if_block) if_block.m(option, null);
+    			append(option, t1);
+    		},
+    		p(ctx, dirty) {
+    			if (dirty & /*possibleRecipients*/ 4 && t0_value !== (t0_value = /*recipient*/ ctx[18].name + "")) set_data(t0, t0_value);
+
+    			if (/*recipient*/ ctx[18].address) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block_2$2(ctx);
+    					if_block.c();
+    					if_block.m(option, t1);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+
+    			if (dirty & /*possibleRecipients*/ 4 && option_value_value !== (option_value_value = /*recipient*/ ctx[18].number)) {
+    				option.__value = option_value_value;
+    				option.value = option.__value;
+    			}
+    		},
+    		d(detaching) {
+    			if (detaching) detach(option);
+    			if (if_block) if_block.d();
+    		}
+    	};
+    }
+
+    // (103:1) {#if showQuickReplies}
+    function create_if_block$4(ctx) {
+    	let p;
+    	let b;
+    	let t1;
+    	let span;
+    	let select;
+    	let option;
+    	let mounted;
+    	let dispose;
+    	let each_value = Object.keys(/*stdMessages*/ ctx[5]);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$5(get_each_context$5(ctx, each_value, i));
+    	}
+
+    	return {
+    		c() {
+    			p = element("p");
+    			b = element("b");
+    			b.textContent = "Kjappe svar";
+    			t1 = space();
+    			span = element("span");
+    			select = element("select");
+    			option = element("option");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			option.__value = "";
+    			option.value = option.__value;
+    			attr(option, "class", "svelte-72ojky");
+    			attr(select, "class", "svelte-72ojky");
+    			attr(span, "class", "svelte-72ojky");
+    			attr(p, "class", "svelte-72ojky");
+    		},
+    		m(target, anchor) {
+    			insert(target, p, anchor);
+    			append(p, b);
+    			append(p, t1);
+    			append(p, span);
+    			append(span, select);
+    			append(select, option);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(select, null);
+    			}
+
+    			if (!mounted) {
+    				dispose = listen(select, "change", /*change_handler*/ ctx[12]);
+    				mounted = true;
+    			}
+    		},
+    		p(ctx, dirty) {
+    			if (dirty & /*Object, stdMessages*/ 32) {
+    				each_value = Object.keys(/*stdMessages*/ ctx[5]);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$5(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$5(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(select, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+    		d(detaching) {
+    			if (detaching) detach(p);
+    			destroy_each(each_blocks, detaching);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+    }
+
+    // (109:4) {#each Object.keys(stdMessages) as name}
+    function create_each_block$5(ctx) {
+    	let option;
+    	let t_value = /*name*/ ctx[15] + "";
+    	let t;
+
+    	return {
+    		c() {
+    			option = element("option");
+    			t = text(t_value);
+    			option.__value = /*name*/ ctx[15];
+    			option.value = option.__value;
+    			attr(option, "class", "svelte-72ojky");
+    		},
+    		m(target, anchor) {
+    			insert(target, option, anchor);
+    			append(option, t);
+    		},
+    		p: noop,
+    		d(detaching) {
+    			if (detaching) detach(option);
+    		}
+    	};
+    }
+
+    function create_fragment$6(ctx) {
+    	let form;
+    	let p0;
+    	let b0;
+    	let span0;
+    	let t1;
+    	let p1;
+    	let b1;
+    	let t3;
+    	let span1;
+    	let textarea;
+    	let t4;
+    	let t5;
+    	let p2;
+    	let span2;
+    	let t6;
+    	let span3;
+    	let button0;
+    	let t8;
+    	let button1;
+    	let mounted;
+    	let dispose;
+
+    	function select_block_type(ctx, dirty) {
+    		if (/*possibleRecipients*/ ctx[2] && /*possibleRecipients*/ ctx[2].length) return create_if_block_1$2;
+    		return create_else_block$1;
+    	}
+
+    	let current_block_type = select_block_type(ctx);
+    	let if_block0 = current_block_type(ctx);
+    	let if_block1 = /*showQuickReplies*/ ctx[3] && create_if_block$4(ctx);
+
+    	return {
+    		c() {
+    			form = element("form");
+    			p0 = element("p");
+    			b0 = element("b");
+    			b0.textContent = "Til";
+    			span0 = element("span");
+    			if_block0.c();
+    			t1 = space();
+    			p1 = element("p");
+    			b1 = element("b");
+    			b1.textContent = "SMS";
+    			t3 = space();
+    			span1 = element("span");
+    			textarea = element("textarea");
+    			t4 = space();
+    			if (if_block1) if_block1.c();
+    			t5 = space();
+    			p2 = element("p");
+    			span2 = element("span");
+    			t6 = space();
+    			span3 = element("span");
+    			button0 = element("button");
+    			button0.textContent = "Send";
+    			t8 = space();
+    			button1 = element("button");
+    			button1.textContent = "Avbryt";
+    			attr(span0, "class", "to svelte-72ojky");
+    			attr(p0, "class", "svelte-72ojky");
+    			textarea.required = true;
+    			attr(textarea, "class", "svelte-72ojky");
+    			attr(span1, "class", "sms svelte-72ojky");
+    			attr(p1, "class", "svelte-72ojky");
+    			attr(span2, "class", "svelte-72ojky");
+    			attr(button0, "type", "submit");
+    			attr(button0, "class", "p8 br2 svelte-72ojky");
+    			attr(button1, "class", "p8 br2 svelte-72ojky");
+    			attr(button1, "type", "button");
+    			attr(span3, "class", "svelte-72ojky");
+    			attr(p2, "class", "svelte-72ojky");
+    			attr(form, "class", "svelte-72ojky");
+    		},
+    		m(target, anchor) {
+    			insert(target, form, anchor);
+    			append(form, p0);
+    			append(p0, b0);
+    			append(p0, span0);
+    			if_block0.m(span0, null);
+    			append(form, t1);
+    			append(form, p1);
+    			append(p1, b1);
+    			append(p1, t3);
+    			append(p1, span1);
+    			append(span1, textarea);
+    			set_input_value(textarea, /*message*/ ctx[1]);
+    			append(form, t4);
+    			if (if_block1) if_block1.m(form, null);
+    			append(form, t5);
+    			append(form, p2);
+    			append(p2, span2);
+    			append(p2, t6);
+    			append(p2, span3);
+    			append(span3, button0);
+    			append(span3, t8);
+    			append(span3, button1);
+
+    			if (!mounted) {
+    				dispose = [
+    					listen(textarea, "input", /*textarea_input_handler_1*/ ctx[11]),
+    					listen(button1, "click", /*click_handler*/ ctx[13]),
+    					listen(form, "submit", prevent_default(/*submit_handler*/ ctx[14]))
+    				];
+
+    				mounted = true;
+    			}
+    		},
+    		p(ctx, [dirty]) {
+    			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block0) {
+    				if_block0.p(ctx, dirty);
+    			} else {
+    				if_block0.d(1);
+    				if_block0 = current_block_type(ctx);
+
+    				if (if_block0) {
+    					if_block0.c();
+    					if_block0.m(span0, null);
+    				}
+    			}
+
+    			if (dirty & /*message*/ 2) {
+    				set_input_value(textarea, /*message*/ ctx[1]);
+    			}
+
+    			if (/*showQuickReplies*/ ctx[3]) if_block1.p(ctx, dirty);
+    		},
+    		i: noop,
+    		o: noop,
+    		d(detaching) {
+    			if (detaching) detach(form);
+    			if_block0.d();
+    			if (if_block1) if_block1.d();
+    			mounted = false;
+    			run_all(dispose);
+    		}
+    	};
+    }
+
+    function instance$6($$self, $$props, $$invalidate) {
+    	let { recipients = [] } = $$props;
+    	let { message = '' } = $$props;
+    	let { possibleRecipients } = $$props;
+    	let { smsEditorType } = $$props;
+    	let showQuickReplies = !message;
+    	const dispatch = createEventDispatcher();
+
+    	let stdMessages = {
+    		'Bekreft data mottatt': 'Hei,\ntakk for at du har sendt inn skjema om loppehenting! :)\n\nVi henter hver kveld mellom 24. og 26. august. Vi kontakter deg på dette nummeret før henting.\n\nVennlig hilsen Ila og Bolteløkka skolekorps',
+    		'Hentes snart': 'Hei,\ntakk for at du vil gi korpset lopper. Passer det om noen kommer og henter hos deg snart?\n\nVennlig hilsen Ila og Bolteløkka skolekorps',
+    		'Ikke IKEA': 'Hei,\ntakk for at du vil gi korpset lopper! Dessverre har vi dårlig erfaring med å selge IKEA-møbler, så slike vil vi helst ikke ta imot.\n\nVennlig hilsen Ila og Bolteløkka skolekorps',
+    		'Ikke sofa': 'Hei,\ntakk for at du vil gi korpset lopper! Dessverre har vi dårlig erfaring med å selge sofaer på loppemarked. Vi vil helst ikke ta imot sofaer med mindre de er av spesielt god kvalitet.\n\nVennlig hilsen Ila og Bolteløkka skolekorps',
+    		'Rekker ikke': 'Hei,\ntakk for at du vil gi korpset lopper! Dessverre rekker vi ikke å hente loppene dine i kveld. Dersom du har mulighet til å levere i skolegården, er det supert.\n\nVennlig hilsen Ila og Bolteløkka skolekorps',
+    		'For langt borte': 'Hei,\ntakk for at du vil gi korpset lopper! Dessverre rekker vi ikke å hente tingene dine, fordi det er litt for langt borte fra vårt område. Vi foreslår at du  tar kontakt med et lokalt korps og spør om de skal hente lopper snart.\n\nVennlig hilsen Ila og Bolteløkka skolekorps',
+    		'Send foto?': 'Hei,\ntakk for at du vil gi korpset lopper! Kan du sende meg et foto av loppene?\n\nVennlig hilsen Ila og Bolteløkka skolekorps'
+    	};
+
+    	function send() {
+    		if (typeof recipients === 'string') {
+    			dispatch('sms', {
+    				recipients: recipients.split(/,\s*/g),
+    				message,
+    				smsEditorType
+    			});
+    		} else {
+    			dispatch('sms', { recipients, message, smsEditorType });
+    		}
+    	}
+
+    	function addMessage(name) {
+    		if (name && stdMessages[name]) {
+    			$$invalidate(1, message = stdMessages[name]);
+    		}
+    	}
+
+    	function select_change_handler() {
+    		recipients = select_multiple_value(this);
+    		$$invalidate(0, recipients);
+    		$$invalidate(2, possibleRecipients);
+    	}
+
+    	function textarea_input_handler() {
+    		recipients = this.value;
+    		$$invalidate(0, recipients);
+    		$$invalidate(2, possibleRecipients);
+    	}
+
+    	function textarea_input_handler_1() {
+    		message = this.value;
+    		$$invalidate(1, message);
+    	}
+
+    	const change_handler = e => addMessage(e.target.value);
+    	const click_handler = e => dispatch('cancel');
+    	const submit_handler = e => send();
+
+    	$$self.$$set = $$props => {
+    		if ('recipients' in $$props) $$invalidate(0, recipients = $$props.recipients);
+    		if ('message' in $$props) $$invalidate(1, message = $$props.message);
+    		if ('possibleRecipients' in $$props) $$invalidate(2, possibleRecipients = $$props.possibleRecipients);
+    		if ('smsEditorType' in $$props) $$invalidate(8, smsEditorType = $$props.smsEditorType);
+    	};
+
+    	return [
+    		recipients,
+    		message,
+    		possibleRecipients,
+    		showQuickReplies,
+    		dispatch,
+    		stdMessages,
+    		send,
+    		addMessage,
+    		smsEditorType,
+    		select_change_handler,
+    		textarea_input_handler,
+    		textarea_input_handler_1,
+    		change_handler,
+    		click_handler,
+    		submit_handler
+    	];
+    }
+
+    class SMSEditor extends SvelteComponent {
+    	constructor(options) {
+    		super();
+
+    		init(
+    			this,
+    			options,
+    			instance$6,
+    			create_fragment$6,
+    			safe_not_equal,
+    			{
+    				recipients: 0,
+    				message: 1,
+    				possibleRecipients: 2,
+    				smsEditorType: 8
+    			},
+    			add_css$5
+    		);
+    	}
+    }
+
+    /* client/src/components/DriverEditor.svelte generated by Svelte v3.49.0 */
+
+    function add_css$4(target) {
+    	append_styles(target, "svelte-nfxprn", "button.cancel.svelte-nfxprn.svelte-nfxprn{color:red;font-size:small;vertical-align:super}form.svelte-nfxprn.svelte-nfxprn{display:table;width:90%;margin-left:5%\n\t}p.svelte-nfxprn.svelte-nfxprn{display:table-row;width:100%;margin-top:8px}span.svelte-nfxprn.svelte-nfxprn{display:table-cell;vertical-align:top;padding-top:8px}span.svelte-nfxprn.svelte-nfxprn:first-child{width:30%}span.svelte-nfxprn .svelte-nfxprn{width:100%}span.svelte-nfxprn button.svelte-nfxprn{width:40%}span.svelte-nfxprn button.svelte-nfxprn:nth-child(2){margin-left:8px}");
+    }
+
+    function get_each_context$4(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[11] = list[i].name;
+    	child_ctx[12] = list[i].number;
+    	return child_ctx;
+    }
+
+    // (59:2) {#if $drivers.length}
+    function create_if_block$3(ctx) {
+    	let ul;
+    	let each_value = /*$drivers*/ ctx[2];
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$4(get_each_context$4(ctx, each_value, i));
+    	}
+
+    	return {
+    		c() {
+    			ul = element("ul");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+    		},
+    		m(target, anchor) {
+    			insert(target, ul, anchor);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(ul, null);
+    			}
+    		},
+    		p(ctx, dirty) {
+    			if (dirty & /*removeDriver, $drivers*/ 36) {
+    				each_value = /*$drivers*/ ctx[2];
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$4(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$4(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(ul, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+    		d(detaching) {
+    			if (detaching) detach(ul);
+    			destroy_each(each_blocks, detaching);
+    		}
+    	};
+    }
+
+    // (61:2) {#each $drivers as {name, number}}
+    function create_each_block$4(ctx) {
+    	let li;
+    	let b;
+    	let t0_value = /*name*/ ctx[11] + "";
+    	let t0;
+    	let t1;
+    	let a;
+    	let t2_value = /*number*/ ctx[12] + "";
+    	let t2;
+    	let a_href_value;
+    	let t3;
+    	let button;
+    	let mounted;
+    	let dispose;
+
+    	function click_handler(...args) {
+    		return /*click_handler*/ ctx[6](/*name*/ ctx[11], /*number*/ ctx[12], ...args);
+    	}
+
+    	return {
+    		c() {
+    			li = element("li");
+    			b = element("b");
+    			t0 = text(t0_value);
+    			t1 = text(", ");
+    			a = element("a");
+    			t2 = text(t2_value);
+    			t3 = space();
+    			button = element("button");
+    			button.textContent = "X";
+    			attr(a, "href", a_href_value = "tel:" + /*number*/ ctx[12]);
+    			attr(button, "class", "cancel br2 svelte-nfxprn");
+    		},
+    		m(target, anchor) {
+    			insert(target, li, anchor);
+    			append(li, b);
+    			append(b, t0);
+    			append(li, t1);
+    			append(li, a);
+    			append(a, t2);
+    			append(li, t3);
+    			append(li, button);
+
+    			if (!mounted) {
+    				dispose = listen(button, "click", click_handler);
+    				mounted = true;
+    			}
+    		},
+    		p(new_ctx, dirty) {
+    			ctx = new_ctx;
+    			if (dirty & /*$drivers*/ 4 && t0_value !== (t0_value = /*name*/ ctx[11] + "")) set_data(t0, t0_value);
+    			if (dirty & /*$drivers*/ 4 && t2_value !== (t2_value = /*number*/ ctx[12] + "")) set_data(t2, t2_value);
+
+    			if (dirty & /*$drivers*/ 4 && a_href_value !== (a_href_value = "tel:" + /*number*/ ctx[12])) {
+    				attr(a, "href", a_href_value);
+    			}
+    		},
+    		d(detaching) {
+    			if (detaching) detach(li);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+    }
+
+    function create_fragment$5(ctx) {
+    	let div;
+    	let t0;
+    	let form;
+    	let p0;
+    	let span0;
+    	let span1;
+    	let input0;
+    	let t2;
+    	let p1;
+    	let span2;
+    	let span3;
+    	let input1;
+    	let t4;
+    	let p2;
+    	let span4;
+    	let span5;
+    	let button0;
+    	let t6;
+    	let button1;
+    	let mounted;
+    	let dispose;
+    	let if_block = /*$drivers*/ ctx[2].length && create_if_block$3(ctx);
+
+    	return {
+    		c() {
+    			div = element("div");
+    			if (if_block) if_block.c();
+    			t0 = space();
+    			form = element("form");
+    			p0 = element("p");
+    			span0 = element("span");
+    			span0.textContent = "Navn: ";
+    			span1 = element("span");
+    			input0 = element("input");
+    			t2 = space();
+    			p1 = element("p");
+    			span2 = element("span");
+    			span2.textContent = "Mobil: ";
+    			span3 = element("span");
+    			input1 = element("input");
+    			t4 = space();
+    			p2 = element("p");
+    			span4 = element("span");
+    			span5 = element("span");
+    			button0 = element("button");
+    			button0.textContent = "Legg til";
+    			t6 = space();
+    			button1 = element("button");
+    			button1.textContent = "Lukk";
+    			attr(span0, "class", "svelte-nfxprn");
+    			input0.required = true;
+    			attr(input0, "class", "svelte-nfxprn");
+    			attr(span1, "class", "svelte-nfxprn");
+    			attr(p0, "class", "svelte-nfxprn");
+    			attr(span2, "class", "svelte-nfxprn");
+    			attr(input1, "inputmode", "tel");
+    			input1.required = true;
+    			attr(input1, "class", "svelte-nfxprn");
+    			attr(span3, "class", "svelte-nfxprn");
+    			attr(p1, "class", "svelte-nfxprn");
+    			attr(span4, "class", "svelte-nfxprn");
+    			attr(button0, "type", "submit");
+    			attr(button0, "class", "p8 br2 svelte-nfxprn");
+    			attr(button1, "class", "p8 br2 svelte-nfxprn");
+    			attr(button1, "type", "button");
+    			attr(span5, "class", "svelte-nfxprn");
+    			attr(p2, "class", "svelte-nfxprn");
+    			attr(form, "class", "svelte-nfxprn");
+    		},
+    		m(target, anchor) {
+    			insert(target, div, anchor);
+    			if (if_block) if_block.m(div, null);
+    			append(div, t0);
+    			append(div, form);
+    			append(form, p0);
+    			append(p0, span0);
+    			append(p0, span1);
+    			append(span1, input0);
+    			set_input_value(input0, /*addName*/ ctx[0]);
+    			append(form, t2);
+    			append(form, p1);
+    			append(p1, span2);
+    			append(p1, span3);
+    			append(span3, input1);
+    			set_input_value(input1, /*addNumber*/ ctx[1]);
+    			append(form, t4);
+    			append(form, p2);
+    			append(p2, span4);
+    			append(p2, span5);
+    			append(span5, button0);
+    			append(span5, t6);
+    			append(span5, button1);
+
+    			if (!mounted) {
+    				dispose = [
+    					listen(input0, "input", /*input0_input_handler*/ ctx[7]),
+    					listen(input1, "input", /*input1_input_handler*/ ctx[8]),
+    					listen(button1, "click", /*click_handler_1*/ ctx[9]),
+    					listen(form, "submit", prevent_default(/*submit_handler*/ ctx[10]))
+    				];
+
+    				mounted = true;
+    			}
+    		},
+    		p(ctx, [dirty]) {
+    			if (/*$drivers*/ ctx[2].length) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block$3(ctx);
+    					if_block.c();
+    					if_block.m(div, t0);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+
+    			if (dirty & /*addName*/ 1 && input0.value !== /*addName*/ ctx[0]) {
+    				set_input_value(input0, /*addName*/ ctx[0]);
+    			}
+
+    			if (dirty & /*addNumber*/ 2 && input1.value !== /*addNumber*/ ctx[1]) {
+    				set_input_value(input1, /*addNumber*/ ctx[1]);
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d(detaching) {
+    			if (detaching) detach(div);
+    			if (if_block) if_block.d();
+    			mounted = false;
+    			run_all(dispose);
+    		}
+    	};
+    }
+
+    function instance$5($$self, $$props, $$invalidate) {
+    	let $drivers;
+    	component_subscribe($$self, drivers, $$value => $$invalidate(2, $drivers = $$value));
+    	const dispatch = createEventDispatcher();
+    	let addName = '';
+    	let addNumber = '';
+
+    	function createDriver(name, number) {
+    		drivers.update(drivers => {
+    			drivers.push({ name, number });
+    			return drivers;
+    		});
+
+    		$$invalidate(1, addNumber = $$invalidate(0, addName = ''));
+    	}
+
+    	function removeDriver(name, number) {
+    		drivers.update(drivers => {
+    			let idx = drivers.findIndex(driver => driver.name === name && driver.number === number);
+    			drivers.splice(idx, 1);
+    			return drivers;
+    		});
+    	}
+
+    	const click_handler = (name, number, e) => removeDriver(name, number);
+
+    	function input0_input_handler() {
+    		addName = this.value;
+    		$$invalidate(0, addName);
+    	}
+
+    	function input1_input_handler() {
+    		addNumber = this.value;
+    		$$invalidate(1, addNumber);
+    	}
+
+    	const click_handler_1 = e => dispatch('cancel');
+    	const submit_handler = e => createDriver(addName, addNumber);
+
+    	return [
+    		addName,
+    		addNumber,
+    		$drivers,
+    		dispatch,
+    		createDriver,
+    		removeDriver,
+    		click_handler,
+    		input0_input_handler,
+    		input1_input_handler,
+    		click_handler_1,
+    		submit_handler
+    	];
+    }
+
+    class DriverEditor extends SvelteComponent {
+    	constructor(options) {
+    		super();
+    		init(this, options, instance$5, create_fragment$5, safe_not_equal, {}, add_css$4);
+    	}
+    }
+
+    /* client/src/components/StateEditor.svelte generated by Svelte v3.49.0 */
+
+    function add_css$3(target) {
+    	append_styles(target, "svelte-p9d98j", "form.svelte-p9d98j.svelte-p9d98j{display:table;width:90%;margin-left:5%\n\t}p.svelte-p9d98j.svelte-p9d98j{display:table-row;width:100%;margin-top:8px}span.svelte-p9d98j.svelte-p9d98j,b.svelte-p9d98j.svelte-p9d98j{display:table-cell;vertical-align:top;padding-top:8px}span.svelte-p9d98j.svelte-p9d98j:first-child{width:30%;font-weight:bold}span.svelte-p9d98j .svelte-p9d98j{width:100%}span.svelte-p9d98j button.svelte-p9d98j{width:40%}span.svelte-p9d98j button.svelte-p9d98j:nth-child(2){margin-left:8px}select.svelte-p9d98j.svelte-p9d98j{font-size:1em}");
+    }
+
+    function get_each_context$3(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[6] = list[i];
+    	return child_ctx;
+    }
+
+    // (48:4) {#each states as theState}
+    function create_each_block$3(ctx) {
+    	let option;
+    	let t_value = /*theState*/ ctx[6] + "";
+    	let t;
+
+    	return {
+    		c() {
+    			option = element("option");
+    			t = text(t_value);
+    			option.__value = /*theState*/ ctx[6];
+    			option.value = option.__value;
+    			attr(option, "class", "svelte-p9d98j");
+    		},
+    		m(target, anchor) {
+    			insert(target, option, anchor);
+    			append(option, t);
+    		},
+    		p: noop,
+    		d(detaching) {
+    			if (detaching) detach(option);
+    		}
+    	};
+    }
+
+    function create_fragment$4(ctx) {
+    	let form;
+    	let p0;
+    	let b;
+    	let t1;
+    	let span0;
+    	let select;
+    	let t2;
+    	let p1;
+    	let span1;
+    	let t3;
+    	let span2;
+    	let button0;
+    	let t5;
+    	let button1;
+    	let mounted;
+    	let dispose;
+    	let each_value = states;
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$3(get_each_context$3(ctx, each_value, i));
+    	}
+
+    	return {
+    		c() {
+    			form = element("form");
+    			p0 = element("p");
+    			b = element("b");
+    			b.textContent = "Ny status:";
+    			t1 = space();
+    			span0 = element("span");
+    			select = element("select");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			t2 = space();
+    			p1 = element("p");
+    			span1 = element("span");
+    			t3 = space();
+    			span2 = element("span");
+    			button0 = element("button");
+    			button0.textContent = "Oppdater valgte";
+    			t5 = space();
+    			button1 = element("button");
+    			button1.textContent = "Avbryt";
+    			attr(b, "class", "svelte-p9d98j");
+    			attr(select, "class", "svelte-p9d98j");
+    			if (/*newState*/ ctx[0] === void 0) add_render_callback(() => /*select_change_handler*/ ctx[3].call(select));
+    			attr(span0, "class", "svelte-p9d98j");
+    			attr(p0, "class", "svelte-p9d98j");
+    			attr(span1, "class", "svelte-p9d98j");
+    			attr(button0, "type", "submit");
+    			attr(button0, "class", "p8 br2 svelte-p9d98j");
+    			attr(button1, "class", "p8 br2 svelte-p9d98j");
+    			attr(button1, "type", "button");
+    			attr(span2, "class", "svelte-p9d98j");
+    			attr(p1, "class", "svelte-p9d98j");
+    			attr(form, "class", "svelte-p9d98j");
+    		},
+    		m(target, anchor) {
+    			insert(target, form, anchor);
+    			append(form, p0);
+    			append(p0, b);
+    			append(p0, t1);
+    			append(p0, span0);
+    			append(span0, select);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(select, null);
+    			}
+
+    			select_option(select, /*newState*/ ctx[0]);
+    			append(form, t2);
+    			append(form, p1);
+    			append(p1, span1);
+    			append(p1, t3);
+    			append(p1, span2);
+    			append(span2, button0);
+    			append(span2, t5);
+    			append(span2, button1);
+
+    			if (!mounted) {
+    				dispose = [
+    					listen(select, "change", /*select_change_handler*/ ctx[3]),
+    					listen(button1, "click", /*click_handler*/ ctx[4]),
+    					listen(form, "submit", prevent_default(/*submit_handler*/ ctx[5]))
+    				];
+
+    				mounted = true;
+    			}
+    		},
+    		p(ctx, [dirty]) {
+    			if (dirty & /*states*/ 0) {
+    				each_value = states;
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$3(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$3(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(select, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+
+    			if (dirty & /*newState, states*/ 1) {
+    				select_option(select, /*newState*/ ctx[0]);
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d(detaching) {
+    			if (detaching) detach(form);
+    			destroy_each(each_blocks, detaching);
+    			mounted = false;
+    			run_all(dispose);
+    		}
+    	};
+    }
+
+    function instance$4($$self, $$props, $$invalidate) {
+    	const dispatch = createEventDispatcher();
+    	let newState = '';
+
+    	function send() {
+    		dispatch('statusupdate', { newState });
+    	}
+
+    	function select_change_handler() {
+    		newState = select_value(this);
+    		$$invalidate(0, newState);
+    	}
+
+    	const click_handler = e => dispatch('cancel');
+    	const submit_handler = e => send();
+    	return [newState, dispatch, send, select_change_handler, click_handler, submit_handler];
+    }
+
+    class StateEditor extends SvelteComponent {
+    	constructor(options) {
+    		super();
+    		init(this, options, instance$4, create_fragment$4, safe_not_equal, {}, add_css$3);
+    	}
+    }
+
+    /* client/src/components/FlashMessage.svelte generated by Svelte v3.49.0 */
+
+    function add_css$2(target) {
+    	append_styles(target, "svelte-ni4itl", "div.svelte-ni4itl{position:fixed;bottom:0;left:0;width:100%;background:PowderBlue;font-size:1.1em;padding-top:8px;padding-bottom:8px;padding-left:8px;border-top:1px solid black}.isError.svelte-ni4itl{background:#ff7f7f}");
+    }
+
+    function create_fragment$3(ctx) {
+    	let div;
+    	let t;
+    	let div_transition;
+    	let current;
+
+    	return {
+    		c() {
+    			div = element("div");
+    			t = text(/*message*/ ctx[0]);
+    			set_style(div, "bottom", 36 * /*index*/ ctx[2] + "px");
+    			attr(div, "class", "svelte-ni4itl");
+    			toggle_class(div, "isError", /*isError*/ ctx[1]);
+    		},
+    		m(target, anchor) {
+    			insert(target, div, anchor);
+    			append(div, t);
+    			current = true;
+    		},
+    		p(ctx, [dirty]) {
+    			if (!current || dirty & /*message*/ 1) set_data(t, /*message*/ ctx[0]);
+
+    			if (!current || dirty & /*index*/ 4) {
+    				set_style(div, "bottom", 36 * /*index*/ ctx[2] + "px");
+    			}
+
+    			if (dirty & /*isError*/ 2) {
+    				toggle_class(div, "isError", /*isError*/ ctx[1]);
+    			}
+    		},
+    		i(local) {
+    			if (current) return;
+
+    			add_render_callback(() => {
+    				if (!div_transition) div_transition = create_bidirectional_transition(div, fly, { y: 50, duration: 500 }, true);
+    				div_transition.run(1);
+    			});
+
+    			current = true;
+    		},
+    		o(local) {
+    			if (!div_transition) div_transition = create_bidirectional_transition(div, fly, { y: 50, duration: 500 }, false);
+    			div_transition.run(0);
+    			current = false;
+    		},
+    		d(detaching) {
+    			if (detaching) detach(div);
+    			if (detaching && div_transition) div_transition.end();
+    		}
+    	};
+    }
+
+    function instance$3($$self, $$props, $$invalidate) {
+    	let { message = '' } = $$props;
+    	let { isError = false } = $$props;
+    	let { index = 0 } = $$props;
+
+    	$$self.$$set = $$props => {
+    		if ('message' in $$props) $$invalidate(0, message = $$props.message);
+    		if ('isError' in $$props) $$invalidate(1, isError = $$props.isError);
+    		if ('index' in $$props) $$invalidate(2, index = $$props.index);
+    	};
+
+    	return [message, isError, index];
+    }
+
+    class FlashMessage extends SvelteComponent {
+    	constructor(options) {
+    		super();
+    		init(this, options, instance$3, create_fragment$3, safe_not_equal, { message: 0, isError: 1, index: 2 }, add_css$2);
+    	}
+    }
+
+    /* client/src/components/Menu.svelte generated by Svelte v3.49.0 */
+
+    function add_css$1(target) {
+    	append_styles(target, "svelte-1s9tfhz", "div.svelte-1s9tfhz{width:15%;background:#fff;padding:0px;min-width:140px;box-shadow:3px 6px 2px 0px rgba(189,182,189,1);position:fixed;z-index:10;display:none}.show.svelte-1s9tfhz{display:block}button.svelte-1s9tfhz{width:100%;background:transparent;border:1px solid grey;padding:6px;font-size:1.2em;margin:0;cursor:pointer;text-align:left}button.svelte-1s9tfhz:hover{border-color:black}img.svelte-1s9tfhz{width:24px;height:24px;vertical-align:middle}");
+    }
+
+    function get_each_context$2(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[4] = list[i];
+    	return child_ctx;
+    }
+
+    // (50:3) {#if item.icon}
+    function create_if_block$2(ctx) {
+    	let img;
+    	let img_src_value;
+
+    	return {
+    		c() {
+    			img = element("img");
+    			if (!src_url_equal(img.src, img_src_value = /*item*/ ctx[4].icon)) attr(img, "src", img_src_value);
+    			attr(img, "alt", "");
+    			attr(img, "class", "svelte-1s9tfhz");
+    		},
+    		m(target, anchor) {
+    			insert(target, img, anchor);
+    		},
+    		p(ctx, dirty) {
+    			if (dirty & /*items*/ 4 && !src_url_equal(img.src, img_src_value = /*item*/ ctx[4].icon)) {
+    				attr(img, "src", img_src_value);
+    			}
+    		},
+    		d(detaching) {
+    			if (detaching) detach(img);
+    		}
+    	};
+    }
+
+    // (48:1) {#each items as item}
+    function create_each_block$2(ctx) {
+    	let button;
+    	let t0;
+    	let t1_value = /*item*/ ctx[4].label + "";
+    	let t1;
+    	let t2;
+    	let mounted;
+    	let dispose;
+    	let if_block = /*item*/ ctx[4].icon && create_if_block$2(ctx);
+
+    	return {
+    		c() {
+    			button = element("button");
+    			if (if_block) if_block.c();
+    			t0 = space();
+    			t1 = text(t1_value);
+    			t2 = space();
+    			attr(button, "class", "menu svelte-1s9tfhz");
+    		},
+    		m(target, anchor) {
+    			insert(target, button, anchor);
+    			if (if_block) if_block.m(button, null);
+    			append(button, t0);
+    			append(button, t1);
+    			append(button, t2);
+
+    			if (!mounted) {
+    				dispose = listen(button, "click", function () {
+    					if (is_function(/*item*/ ctx[4].action)) /*item*/ ctx[4].action.apply(this, arguments);
+    				});
+
+    				mounted = true;
+    			}
+    		},
+    		p(new_ctx, dirty) {
+    			ctx = new_ctx;
+
+    			if (/*item*/ ctx[4].icon) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block$2(ctx);
+    					if_block.c();
+    					if_block.m(button, t0);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+
+    			if (dirty & /*items*/ 4 && t1_value !== (t1_value = /*item*/ ctx[4].label + "")) set_data(t1, t1_value);
+    		},
+    		d(detaching) {
+    			if (detaching) detach(button);
+    			if (if_block) if_block.d();
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+    }
+
+    function create_fragment$2(ctx) {
+    	let div;
+    	let each_value = /*items*/ ctx[2];
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$2(get_each_context$2(ctx, each_value, i));
+    	}
+
+    	return {
+    		c() {
+    			div = element("div");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			attr(div, "class", "menu svelte-1s9tfhz");
+    			set_style(div, "top", /*y*/ ctx[3] + "px");
+    			set_style(div, "left", /*x*/ ctx[0] + "px");
+    			set_style(div, "position", "fixed");
+    			toggle_class(div, "show", /*show*/ ctx[1]);
+    		},
+    		m(target, anchor) {
+    			insert(target, div, anchor);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(div, null);
+    			}
+    		},
+    		p(ctx, [dirty]) {
+    			if (dirty & /*items*/ 4) {
+    				each_value = /*items*/ ctx[2];
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$2(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$2(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(div, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+
+    			if (dirty & /*y*/ 8) {
+    				set_style(div, "top", /*y*/ ctx[3] + "px");
+    			}
+
+    			if (dirty & /*x*/ 1) {
+    				set_style(div, "left", /*x*/ ctx[0] + "px");
+    			}
+
+    			if (dirty & /*show*/ 2) {
+    				toggle_class(div, "show", /*show*/ ctx[1]);
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d(detaching) {
+    			if (detaching) detach(div);
+    			destroy_each(each_blocks, detaching);
+    		}
+    	};
+    }
+
+    function instance$2($$self, $$props, $$invalidate) {
+    	let { show = false } = $$props;
+    	let { items = [] } = $$props;
+    	let { x = 0 } = $$props;
+    	let { y = 0 } = $$props;
+    	onMount(() => document.getElementsByTagName('button')[0].focus());
+
+    	if (x <= 20) {
+    		x = 20;
+    	}
+
+    	$$self.$$set = $$props => {
+    		if ('show' in $$props) $$invalidate(1, show = $$props.show);
+    		if ('items' in $$props) $$invalidate(2, items = $$props.items);
+    		if ('x' in $$props) $$invalidate(0, x = $$props.x);
+    		if ('y' in $$props) $$invalidate(3, y = $$props.y);
+    	};
+
+    	return [x, show, items, y];
+    }
+
+    class Menu extends SvelteComponent {
+    	constructor(options) {
+    		super();
+    		init(this, options, instance$2, create_fragment$2, safe_not_equal, { show: 1, items: 2, x: 0, y: 3 }, add_css$1);
+    	}
+    }
+
+    /* client/src/App.svelte generated by Svelte v3.49.0 */
+
+    function get_each_context$1(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[78] = list[i];
+    	child_ctx[80] = i;
+    	return child_ctx;
+    }
+
+    function get_each_context_1(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[82] = list[i];
+    	child_ctx[84] = i;
+    	return child_ctx;
+    }
+
+    function get_each_context_2(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[85] = list[i];
+    	return child_ctx;
+    }
+
+    // (447:0) {:catch error}
+    function create_catch_block$1(ctx) {
+    	let p;
+    	let t_value = /*error*/ ctx[88].message + "";
+    	let t;
+
+    	return {
+    		c() {
+    			p = element("p");
+    			t = text(t_value);
+    			set_style(p, "color", "red");
+    		},
+    		m(target, anchor) {
+    			insert(target, p, anchor);
+    			append(p, t);
+    		},
+    		p(ctx, dirty) {
+    			if (dirty[0] & /*promise*/ 32 && t_value !== (t_value = /*error*/ ctx[88].message + "")) set_data(t, t_value);
+    		},
+    		i: noop,
+    		o: noop,
+    		d(detaching) {
+    			if (detaching) detach(p);
+    		}
+    	};
+    }
+
+    // (299:0) {:then data}
+    function create_then_block$1(ctx) {
+    	let table;
+    	let tr;
+    	let th0;
+    	let input0;
+    	let t0;
+    	let th1;
+    	let img0;
+    	let img0_src_value;
+    	let t1;
+    	let img1;
+    	let img1_src_value;
+    	let t2;
+    	let img2;
+    	let img2_src_value;
+    	let t3;
+    	let th2;
+    	let select0;
+    	let option0;
+    	let t5;
+    	let th3;
+    	let select1;
+    	let option1;
+    	let option2;
+    	let option3;
+    	let option4;
+    	let t10;
+    	let th4;
+    	let ol;
+    	let li0;
+    	let t12;
+    	let li1;
+    	let t14;
+    	let li2;
+    	let t16;
+    	let th5;
+    	let label0;
+    	let input1;
+    	let t17;
+    	let t18;
+    	let br;
+    	let label1;
+    	let input2;
+    	let t19;
+    	let t20;
+    	let t21;
+    	let col0;
+    	let t22;
+    	let col1;
+    	let t23;
+    	let col2;
+    	let t24;
+    	let col3;
+    	let t25;
+    	let col4;
+    	let t26;
+    	let col5;
+    	let t27;
+    	let col6;
+    	let t28;
+    	let p;
+    	let t29;
+    	let t30_value = /*$jobs*/ ctx[26].length + "";
+    	let t30;
+    	let t31;
+    	let t32_value = /*$jobs*/ ctx[26].filter(/*func*/ ctx[49]).length + "";
+    	let t32;
+    	let t33;
+    	let t34_value = /*$jobs*/ ctx[26].filter(/*func_1*/ ctx[50]).length + "";
+    	let t34;
+    	let t35;
+    	let t36_value = /*$jobs*/ ctx[26].filter(/*func_2*/ ctx[51]).length + "";
+    	let t36;
+    	let t37;
+    	let t38;
+    	let t39;
+    	let if_block2_anchor;
+    	let current;
+    	let mounted;
+    	let dispose;
+    	let each_value_2 = /*prefs*/ ctx[16].types;
+    	let each_blocks_1 = [];
+
+    	for (let i = 0; i < each_value_2.length; i += 1) {
+    		each_blocks_1[i] = create_each_block_2(get_each_context_2(ctx, each_value_2, i));
+    	}
+
+    	let each_value_1 = /*$jobs*/ ctx[26];
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value_1.length; i += 1) {
+    		each_blocks[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
+    	}
+
+    	const out = i => transition_out(each_blocks[i], 1, 1, () => {
+    		each_blocks[i] = null;
+    	});
+
+    	let if_block0 = /*smsEditorType*/ ctx[0] && create_if_block_2$1(ctx);
+    	let if_block1 = /*showDriverEditor*/ ctx[1] && create_if_block_1$1(ctx);
+    	let if_block2 = /*showStateEditor*/ ctx[2] && create_if_block$1(ctx);
+
+    	return {
+    		c() {
+    			table = element("table");
+    			tr = element("tr");
+    			th0 = element("th");
+    			input0 = element("input");
+    			t0 = space();
+    			th1 = element("th");
+    			img0 = element("img");
+    			t1 = space();
+    			img1 = element("img");
+    			t2 = space();
+    			img2 = element("img");
+    			t3 = space();
+    			th2 = element("th");
+    			select0 = element("select");
+    			option0 = element("option");
+    			option0.textContent = "-";
+
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].c();
+    			}
+
+    			t5 = space();
+    			th3 = element("th");
+    			select1 = element("select");
+    			option1 = element("option");
+    			option1.textContent = "-";
+    			option2 = element("option");
+    			option2.textContent = "★";
+    			option3 = element("option");
+    			option3.textContent = "★★";
+    			option4 = element("option");
+    			option4.textContent = "★★★";
+    			t10 = space();
+    			th4 = element("th");
+    			ol = element("ol");
+    			li0 = element("li");
+    			li0.textContent = "Ti";
+    			t12 = space();
+    			li1 = element("li");
+    			li1.textContent = "On";
+    			t14 = space();
+    			li2 = element("li");
+    			li2.textContent = "To";
+    			t16 = space();
+    			th5 = element("th");
+    			label0 = element("label");
+    			input1 = element("input");
+    			t17 = text("Bare valgte dager");
+    			t18 = space();
+    			br = element("br");
+    			label1 = element("label");
+    			input2 = element("input");
+    			t19 = text("Skjul ferdige");
+    			t20 = space();
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			t21 = space();
+    			col0 = element("col");
+    			t22 = space();
+    			col1 = element("col");
+    			t23 = space();
+    			col2 = element("col");
+    			t24 = space();
+    			col3 = element("col");
+    			t25 = space();
+    			col4 = element("col");
+    			t26 = space();
+    			col5 = element("col");
+    			t27 = space();
+    			col6 = element("col");
+    			t28 = space();
+    			p = element("p");
+    			t29 = text("Antall jobber totalt: ");
+    			t30 = text(t30_value);
+    			t31 = text(".\n\tHentes nå: ");
+    			t32 = text(t32_value);
+    			t33 = text("\n\tHentet: ");
+    			t34 = text(t34_value);
+    			t35 = text("\n\tHentes ikke: ");
+    			t36 = text(t36_value);
+    			t37 = space();
+    			if (if_block0) if_block0.c();
+    			t38 = space();
+    			if (if_block1) if_block1.c();
+    			t39 = space();
+    			if (if_block2) if_block2.c();
+    			if_block2_anchor = empty();
+    			attr(input0, "type", "search");
+    			attr(input0, "placeholder", "Filtrer");
+    			attr(th0, "colspan", "2");
+    			if (!src_url_equal(img0.src, img0_src_value = "/images/bigcar.png")) attr(img0, "src", img0_src_value);
+    			attr(img0, "alt", "stor bil");
+    			attr(img0, "height", "22");
+    			attr(img0, "tabindex", "0");
+    			toggle_class(img0, "bigActive", /*bigActive*/ ctx[7]);
+    			if (!src_url_equal(img1.src, img1_src_value = "/images/smallcar.png")) attr(img1, "src", img1_src_value);
+    			attr(img1, "alt", "stasjonsvogn");
+    			attr(img1, "height", "22");
+    			attr(img1, "tabindex", "0");
+    			toggle_class(img1, "mediumActive", /*mediumActive*/ ctx[8]);
+    			if (!src_url_equal(img2.src, img2_src_value = "/images/boxes.png")) attr(img2, "src", img2_src_value);
+    			attr(img2, "alt", "1-3 bokser");
+    			attr(img2, "height", "22");
+    			attr(img2, "tabindex", "0");
+    			toggle_class(img2, "smallActive", /*smallActive*/ ctx[9]);
+    			option0.__value = "";
+    			option0.value = option0.__value;
+    			if (/*typeFilter*/ ctx[15] === void 0) add_render_callback(() => /*select0_change_handler*/ ctx[41].call(select0));
+    			option1.__value = "";
+    			option1.value = option1.__value;
+    			option2.__value = "0";
+    			option2.value = option2.__value;
+    			option3.__value = "1";
+    			option3.value = option3.__value;
+    			option4.__value = "2";
+    			option4.value = option4.__value;
+    			if (/*qualityFilter*/ ctx[10] === void 0) add_render_callback(() => /*select1_change_handler*/ ctx[42].call(select1));
+    			attr(li0, "tabindex", "0");
+    			toggle_class(li0, "tueActive", /*tueActive*/ ctx[11]);
+    			attr(li1, "tabindex", "0");
+    			toggle_class(li1, "wedActive", /*wedActive*/ ctx[12]);
+    			attr(li2, "tabindex", "0");
+    			toggle_class(li2, "thuActive", /*thuActive*/ ctx[13]);
+    			attr(ol, "class", "days");
+    			attr(input1, "type", "checkbox");
+    			attr(input2, "type", "checkbox");
+    			attr(col0, "class", "jobnr");
+    			attr(col1, "class", "address");
+    			attr(col2, "class", "cartype");
+    			attr(col3, "class", "stufftype");
+    			attr(col4, "class", "quality");
+    			attr(col5, "class", "dayscol");
+    			attr(col6, "class", "status");
+    			attr(table, "class", "main");
+    		},
+    		m(target, anchor) {
+    			insert(target, table, anchor);
+    			append(table, tr);
+    			append(tr, th0);
+    			append(th0, input0);
+    			set_input_value(input0, /*freeTextFilter*/ ctx[6]);
+    			append(tr, t0);
+    			append(tr, th1);
+    			append(th1, img0);
+    			append(th1, t1);
+    			append(th1, img1);
+    			append(th1, t2);
+    			append(th1, img2);
+    			append(tr, t3);
+    			append(tr, th2);
+    			append(th2, select0);
+    			append(select0, option0);
+
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].m(select0, null);
+    			}
+
+    			select_option(select0, /*typeFilter*/ ctx[15]);
+    			append(tr, t5);
+    			append(tr, th3);
+    			append(th3, select1);
+    			append(select1, option1);
+    			append(select1, option2);
+    			append(select1, option3);
+    			append(select1, option4);
+    			select_option(select1, /*qualityFilter*/ ctx[10]);
+    			append(tr, t10);
+    			append(tr, th4);
+    			append(th4, ol);
+    			append(ol, li0);
+    			append(ol, t12);
+    			append(ol, li1);
+    			append(ol, t14);
+    			append(ol, li2);
+    			append(tr, t16);
+    			append(tr, th5);
+    			append(th5, label0);
+    			append(label0, input1);
+    			input1.checked = /*dayFilterExclusive*/ ctx[14];
+    			append(label0, t17);
+    			append(th5, t18);
+    			append(th5, br);
+    			append(th5, label1);
+    			append(label1, input2);
+    			input2.checked = /*hideDoneJobs*/ ctx[22];
+    			append(label1, t19);
+    			append(table, t20);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(table, null);
+    			}
+
+    			append(table, t21);
+    			append(table, col0);
+    			append(table, t22);
+    			append(table, col1);
+    			append(table, t23);
+    			append(table, col2);
+    			append(table, t24);
+    			append(table, col3);
+    			append(table, t25);
+    			append(table, col4);
+    			append(table, t26);
+    			append(table, col5);
+    			append(table, t27);
+    			append(table, col6);
+    			insert(target, t28, anchor);
+    			insert(target, p, anchor);
+    			append(p, t29);
+    			append(p, t30);
+    			append(p, t31);
+    			append(p, t32);
+    			append(p, t33);
+    			append(p, t34);
+    			append(p, t35);
+    			append(p, t36);
+    			insert(target, t37, anchor);
+    			if (if_block0) if_block0.m(target, anchor);
+    			insert(target, t38, anchor);
+    			if (if_block1) if_block1.m(target, anchor);
+    			insert(target, t39, anchor);
+    			if (if_block2) if_block2.m(target, anchor);
+    			insert(target, if_block2_anchor, anchor);
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = [
+    					listen(input0, "input", /*input0_input_handler*/ ctx[37]),
+    					listen(img0, "click", /*click_handler_1*/ ctx[38]),
+    					listen(img1, "click", /*click_handler_2*/ ctx[39]),
+    					listen(img2, "click", /*click_handler_3*/ ctx[40]),
+    					listen(select0, "change", /*select0_change_handler*/ ctx[41]),
+    					listen(select1, "change", /*select1_change_handler*/ ctx[42]),
+    					listen(li0, "click", /*click_handler_4*/ ctx[43]),
+    					listen(li1, "click", /*click_handler_5*/ ctx[44]),
+    					listen(li2, "click", /*click_handler_6*/ ctx[45]),
+    					listen(input1, "change", /*input1_change_handler*/ ctx[46]),
+    					listen(input2, "change", /*input2_change_handler*/ ctx[47])
+    				];
+
+    				mounted = true;
+    			}
+    		},
+    		p(ctx, dirty) {
+    			if (dirty[0] & /*freeTextFilter*/ 64) {
+    				set_input_value(input0, /*freeTextFilter*/ ctx[6]);
+    			}
+
+    			if (dirty[0] & /*bigActive*/ 128) {
+    				toggle_class(img0, "bigActive", /*bigActive*/ ctx[7]);
+    			}
+
+    			if (dirty[0] & /*mediumActive*/ 256) {
+    				toggle_class(img1, "mediumActive", /*mediumActive*/ ctx[8]);
+    			}
+
+    			if (dirty[0] & /*smallActive*/ 512) {
+    				toggle_class(img2, "smallActive", /*smallActive*/ ctx[9]);
+    			}
+
+    			if (dirty[0] & /*prefs*/ 65536) {
+    				each_value_2 = /*prefs*/ ctx[16].types;
+    				let i;
+
+    				for (i = 0; i < each_value_2.length; i += 1) {
+    					const child_ctx = get_each_context_2(ctx, each_value_2, i);
+
+    					if (each_blocks_1[i]) {
+    						each_blocks_1[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks_1[i] = create_each_block_2(child_ctx);
+    						each_blocks_1[i].c();
+    						each_blocks_1[i].m(select0, null);
+    					}
+    				}
+
+    				for (; i < each_blocks_1.length; i += 1) {
+    					each_blocks_1[i].d(1);
+    				}
+
+    				each_blocks_1.length = each_value_2.length;
+    			}
+
+    			if (dirty[0] & /*typeFilter, prefs*/ 98304) {
+    				select_option(select0, /*typeFilter*/ ctx[15]);
+    			}
+
+    			if (dirty[0] & /*qualityFilter*/ 1024) {
+    				select_option(select1, /*qualityFilter*/ ctx[10]);
+    			}
+
+    			if (dirty[0] & /*tueActive*/ 2048) {
+    				toggle_class(li0, "tueActive", /*tueActive*/ ctx[11]);
+    			}
+
+    			if (dirty[0] & /*wedActive*/ 4096) {
+    				toggle_class(li1, "wedActive", /*wedActive*/ ctx[12]);
+    			}
+
+    			if (dirty[0] & /*thuActive*/ 8192) {
+    				toggle_class(li2, "thuActive", /*thuActive*/ ctx[13]);
+    			}
+
+    			if (dirty[0] & /*dayFilterExclusive*/ 16384) {
+    				input1.checked = /*dayFilterExclusive*/ ctx[14];
+    			}
+
+    			if (dirty[0] & /*hideDoneJobs*/ 4194304) {
+    				input2.checked = /*hideDoneJobs*/ ctx[22];
+    			}
+
+    			if (dirty[0] & /*$jobs, prefs, selectedItems, cols, updatedSelectedList, freeTextFilter, smallActive, mediumActive, bigActive, tueActive, wedActive, thuActive, dayFilterExclusive, typeFilter, qualityFilter, hideDoneJobs*/ 340262848) {
+    				each_value_1 = /*$jobs*/ ctx[26];
+    				let i;
+
+    				for (i = 0; i < each_value_1.length; i += 1) {
+    					const child_ctx = get_each_context_1(ctx, each_value_1, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    						transition_in(each_blocks[i], 1);
+    					} else {
+    						each_blocks[i] = create_each_block_1(child_ctx);
+    						each_blocks[i].c();
+    						transition_in(each_blocks[i], 1);
+    						each_blocks[i].m(table, t21);
+    					}
+    				}
+
+    				group_outros();
+
+    				for (i = each_value_1.length; i < each_blocks.length; i += 1) {
+    					out(i);
+    				}
+
+    				check_outros();
+    			}
+
+    			if ((!current || dirty[0] & /*$jobs*/ 67108864) && t30_value !== (t30_value = /*$jobs*/ ctx[26].length + "")) set_data(t30, t30_value);
+    			if ((!current || dirty[0] & /*$jobs, cols*/ 67239936) && t32_value !== (t32_value = /*$jobs*/ ctx[26].filter(/*func*/ ctx[49]).length + "")) set_data(t32, t32_value);
+    			if ((!current || dirty[0] & /*$jobs, cols*/ 67239936) && t34_value !== (t34_value = /*$jobs*/ ctx[26].filter(/*func_1*/ ctx[50]).length + "")) set_data(t34, t34_value);
+    			if ((!current || dirty[0] & /*$jobs, cols*/ 67239936) && t36_value !== (t36_value = /*$jobs*/ ctx[26].filter(/*func_2*/ ctx[51]).length + "")) set_data(t36, t36_value);
+
+    			if (/*smsEditorType*/ ctx[0]) {
+    				if (if_block0) {
+    					if_block0.p(ctx, dirty);
+
+    					if (dirty[0] & /*smsEditorType*/ 1) {
+    						transition_in(if_block0, 1);
+    					}
+    				} else {
+    					if_block0 = create_if_block_2$1(ctx);
+    					if_block0.c();
+    					transition_in(if_block0, 1);
+    					if_block0.m(t38.parentNode, t38);
+    				}
+    			} else if (if_block0) {
+    				group_outros();
+
+    				transition_out(if_block0, 1, 1, () => {
+    					if_block0 = null;
+    				});
+
+    				check_outros();
+    			}
+
+    			if (/*showDriverEditor*/ ctx[1]) {
+    				if (if_block1) {
+    					if_block1.p(ctx, dirty);
+
+    					if (dirty[0] & /*showDriverEditor*/ 2) {
+    						transition_in(if_block1, 1);
+    					}
+    				} else {
+    					if_block1 = create_if_block_1$1(ctx);
+    					if_block1.c();
+    					transition_in(if_block1, 1);
+    					if_block1.m(t39.parentNode, t39);
+    				}
+    			} else if (if_block1) {
+    				group_outros();
+
+    				transition_out(if_block1, 1, 1, () => {
+    					if_block1 = null;
+    				});
+
+    				check_outros();
+    			}
+
+    			if (/*showStateEditor*/ ctx[2]) {
+    				if (if_block2) {
+    					if_block2.p(ctx, dirty);
+
+    					if (dirty[0] & /*showStateEditor*/ 4) {
+    						transition_in(if_block2, 1);
+    					}
+    				} else {
+    					if_block2 = create_if_block$1(ctx);
+    					if_block2.c();
+    					transition_in(if_block2, 1);
+    					if_block2.m(if_block2_anchor.parentNode, if_block2_anchor);
+    				}
+    			} else if (if_block2) {
+    				group_outros();
+
+    				transition_out(if_block2, 1, 1, () => {
+    					if_block2 = null;
+    				});
+
+    				check_outros();
+    			}
+    		},
+    		i(local) {
+    			if (current) return;
+
+    			for (let i = 0; i < each_value_1.length; i += 1) {
+    				transition_in(each_blocks[i]);
+    			}
+
+    			transition_in(if_block0);
+    			transition_in(if_block1);
+    			transition_in(if_block2);
+    			current = true;
+    		},
+    		o(local) {
+    			each_blocks = each_blocks.filter(Boolean);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				transition_out(each_blocks[i]);
+    			}
+
+    			transition_out(if_block0);
+    			transition_out(if_block1);
+    			transition_out(if_block2);
+    			current = false;
+    		},
+    		d(detaching) {
+    			if (detaching) detach(table);
+    			destroy_each(each_blocks_1, detaching);
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach(t28);
+    			if (detaching) detach(p);
+    			if (detaching) detach(t37);
+    			if (if_block0) if_block0.d(detaching);
+    			if (detaching) detach(t38);
+    			if (if_block1) if_block1.d(detaching);
+    			if (detaching) detach(t39);
+    			if (if_block2) if_block2.d(detaching);
+    			if (detaching) detach(if_block2_anchor);
+    			mounted = false;
+    			run_all(dispose);
+    		}
+    	};
+    }
+
+    // (320:5) {#each prefs.types as theType}
+    function create_each_block_2(ctx) {
+    	let option;
+    	let t_value = /*theType*/ ctx[85] + "";
+    	let t;
+    	let option_value_value;
+
+    	return {
+    		c() {
+    			option = element("option");
+    			t = text(t_value);
+    			option.__value = option_value_value = /*theType*/ ctx[85];
+    			option.value = option.__value;
+    		},
+    		m(target, anchor) {
+    			insert(target, option, anchor);
+    			append(option, t);
+    		},
+    		p(ctx, dirty) {
+    			if (dirty[0] & /*prefs*/ 65536 && t_value !== (t_value = /*theType*/ ctx[85] + "")) set_data(t, t_value);
+
+    			if (dirty[0] & /*prefs*/ 65536 && option_value_value !== (option_value_value = /*theType*/ ctx[85])) {
+    				option.__value = option_value_value;
+    				option.value = option.__value;
+    			}
+    		},
+    		d(detaching) {
+    			if (detaching) detach(option);
+    		}
+    	};
+    }
+
+    // (347:2) {#if filter(freeTextFilter, {smallActive, mediumActive, bigActive},    {monActive, tueActive, wedActive, thuActive, dayFilterExclusive}, typeFilter,    qualityFilter,    hideDoneJobs, drivers, theJob, cols)   }
+    function create_if_block_3$1(ctx) {
+    	let renderjob;
+    	let current;
+
+    	renderjob = new RenderJob({
+    			props: {
+    				itemData: /*theJob*/ ctx[82],
+    				prefs: /*prefs*/ ctx[16],
+    				itemSelected: /*selectedItems*/ ctx[18].indexOf(/*theJob*/ ctx[82][/*cols*/ ctx[17].JOBNR]) > -1
+    			}
+    		});
+
+    	renderjob.$on("select", /*select_handler*/ ctx[48]);
+
+    	return {
+    		c() {
+    			create_component(renderjob.$$.fragment);
+    		},
+    		m(target, anchor) {
+    			mount_component(renderjob, target, anchor);
+    			current = true;
+    		},
+    		p(ctx, dirty) {
+    			const renderjob_changes = {};
+    			if (dirty[0] & /*$jobs*/ 67108864) renderjob_changes.itemData = /*theJob*/ ctx[82];
+    			if (dirty[0] & /*prefs*/ 65536) renderjob_changes.prefs = /*prefs*/ ctx[16];
+    			if (dirty[0] & /*selectedItems, $jobs, cols*/ 67502080) renderjob_changes.itemSelected = /*selectedItems*/ ctx[18].indexOf(/*theJob*/ ctx[82][/*cols*/ ctx[17].JOBNR]) > -1;
+    			renderjob.$set(renderjob_changes);
+    		},
+    		i(local) {
+    			if (current) return;
+    			transition_in(renderjob.$$.fragment, local);
+    			current = true;
+    		},
+    		o(local) {
+    			transition_out(renderjob.$$.fragment, local);
+    			current = false;
+    		},
+    		d(detaching) {
+    			destroy_component(renderjob, detaching);
+    		}
+    	};
+    }
+
+    // (346:1) {#each $jobs as theJob, i}
+    function create_each_block_1(ctx) {
+    	let show_if = filter(
+    		/*freeTextFilter*/ ctx[6],
+    		{
+    			smallActive: /*smallActive*/ ctx[9],
+    			mediumActive: /*mediumActive*/ ctx[8],
+    			bigActive: /*bigActive*/ ctx[7]
+    		},
+    		{
+    			monActive,
+    			tueActive: /*tueActive*/ ctx[11],
+    			wedActive: /*wedActive*/ ctx[12],
+    			thuActive: /*thuActive*/ ctx[13],
+    			dayFilterExclusive: /*dayFilterExclusive*/ ctx[14]
+    		},
+    		/*typeFilter*/ ctx[15],
+    		/*qualityFilter*/ ctx[10],
+    		/*hideDoneJobs*/ ctx[22],
+    		drivers,
+    		/*theJob*/ ctx[82],
+    		/*cols*/ ctx[17]
+    	);
+
+    	let if_block_anchor;
+    	let current;
+    	let if_block = show_if && create_if_block_3$1(ctx);
+
+    	return {
+    		c() {
+    			if (if_block) if_block.c();
+    			if_block_anchor = empty();
+    		},
+    		m(target, anchor) {
+    			if (if_block) if_block.m(target, anchor);
+    			insert(target, if_block_anchor, anchor);
+    			current = true;
+    		},
+    		p(ctx, dirty) {
+    			if (dirty[0] & /*freeTextFilter, smallActive, mediumActive, bigActive, tueActive, wedActive, thuActive, dayFilterExclusive, typeFilter, qualityFilter, hideDoneJobs, $jobs, cols*/ 71499712) show_if = filter(
+    				/*freeTextFilter*/ ctx[6],
+    				{
+    					smallActive: /*smallActive*/ ctx[9],
+    					mediumActive: /*mediumActive*/ ctx[8],
+    					bigActive: /*bigActive*/ ctx[7]
+    				},
+    				{
+    					monActive,
+    					tueActive: /*tueActive*/ ctx[11],
+    					wedActive: /*wedActive*/ ctx[12],
+    					thuActive: /*thuActive*/ ctx[13],
+    					dayFilterExclusive: /*dayFilterExclusive*/ ctx[14]
+    				},
+    				/*typeFilter*/ ctx[15],
+    				/*qualityFilter*/ ctx[10],
+    				/*hideDoneJobs*/ ctx[22],
+    				drivers,
+    				/*theJob*/ ctx[82],
+    				/*cols*/ ctx[17]
+    			);
+
+    			if (show_if) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+
+    					if (dirty[0] & /*freeTextFilter, smallActive, mediumActive, bigActive, tueActive, wedActive, thuActive, dayFilterExclusive, typeFilter, qualityFilter, hideDoneJobs, $jobs, cols*/ 71499712) {
+    						transition_in(if_block, 1);
+    					}
+    				} else {
+    					if_block = create_if_block_3$1(ctx);
+    					if_block.c();
+    					transition_in(if_block, 1);
+    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    				}
+    			} else if (if_block) {
+    				group_outros();
+
+    				transition_out(if_block, 1, 1, () => {
+    					if_block = null;
+    				});
+
+    				check_outros();
+    			}
+    		},
+    		i(local) {
+    			if (current) return;
+    			transition_in(if_block);
+    			current = true;
+    		},
+    		o(local) {
+    			transition_out(if_block);
+    			current = false;
+    		},
+    		d(detaching) {
+    			if (if_block) if_block.d(detaching);
+    			if (detaching) detach(if_block_anchor);
+    		}
+    	};
+    }
+
+    // (376:0) {#if smsEditorType}
+    function create_if_block_2$1(ctx) {
+    	let modal;
+    	let current;
+
+    	modal = new Modal({
+    			props: {
+    				$$slots: {
+    					header: [create_header_slot_2],
+    					default: [create_default_slot_2]
+    				},
+    				$$scope: { ctx }
+    			}
+    		});
+
+    	modal.$on("close", /*close_handler*/ ctx[54]);
+
+    	return {
+    		c() {
+    			create_component(modal.$$.fragment);
+    		},
+    		m(target, anchor) {
+    			mount_component(modal, target, anchor);
+    			current = true;
+    		},
+    		p(ctx, dirty) {
+    			const modal_changes = {};
+
+    			if (dirty[0] & /*smsEditorType, possibleRecipients, recipients, message, selectedItems, $jobs, cols*/ 71172097 | dirty[2] & /*$$scope*/ 134217728) {
+    				modal_changes.$$scope = { dirty, ctx };
+    			}
+
+    			modal.$set(modal_changes);
+    		},
+    		i(local) {
+    			if (current) return;
+    			transition_in(modal.$$.fragment, local);
+    			current = true;
+    		},
+    		o(local) {
+    			transition_out(modal.$$.fragment, local);
+    			current = false;
+    		},
+    		d(detaching) {
+    			destroy_component(modal, detaching);
+    		}
+    	};
+    }
+
+    // (377:1) <Modal on:close="{() => smsEditorType = ''}">
+    function create_default_slot_2(ctx) {
+    	let smseditor;
+    	let current;
+
+    	smseditor = new SMSEditor({
+    			props: {
+    				smsEditorType: /*smsEditorType*/ ctx[0],
+    				possibleRecipients: /*possibleRecipients*/ ctx[19],
+    				recipients: /*recipients*/ ctx[20],
+    				message: /*message*/ ctx[21]
+    			}
+    		});
+
+    	smseditor.$on("cancel", /*cancel_handler*/ ctx[52]);
+    	smseditor.$on("sms", /*sms_handler*/ ctx[53]);
+
+    	return {
+    		c() {
+    			create_component(smseditor.$$.fragment);
+    		},
+    		m(target, anchor) {
+    			mount_component(smseditor, target, anchor);
+    			current = true;
+    		},
+    		p(ctx, dirty) {
+    			const smseditor_changes = {};
+    			if (dirty[0] & /*smsEditorType*/ 1) smseditor_changes.smsEditorType = /*smsEditorType*/ ctx[0];
+    			if (dirty[0] & /*possibleRecipients*/ 524288) smseditor_changes.possibleRecipients = /*possibleRecipients*/ ctx[19];
+    			if (dirty[0] & /*recipients*/ 1048576) smseditor_changes.recipients = /*recipients*/ ctx[20];
+    			if (dirty[0] & /*message*/ 2097152) smseditor_changes.message = /*message*/ ctx[21];
+    			smseditor.$set(smseditor_changes);
+    		},
+    		i(local) {
+    			if (current) return;
+    			transition_in(smseditor.$$.fragment, local);
+    			current = true;
+    		},
+    		o(local) {
+    			transition_out(smseditor.$$.fragment, local);
+    			current = false;
+    		},
+    		d(detaching) {
+    			destroy_component(smseditor, detaching);
+    		}
+    	};
+    }
+
+    // (378:2) 
+    function create_header_slot_2(ctx) {
+    	let h2;
+
+    	return {
+    		c() {
+    			h2 = element("h2");
+    			h2.textContent = "Send SMS";
+    			attr(h2, "slot", "header");
+    		},
+    		m(target, anchor) {
+    			insert(target, h2, anchor);
+    		},
+    		p: noop,
+    		d(detaching) {
+    			if (detaching) detach(h2);
+    		}
+    	};
+    }
+
+    // (414:0) {#if showDriverEditor}
+    function create_if_block_1$1(ctx) {
+    	let modal;
+    	let current;
+
+    	modal = new Modal({
+    			props: {
+    				$$slots: {
+    					header: [create_header_slot_1],
+    					default: [create_default_slot_1]
+    				},
+    				$$scope: { ctx }
+    			}
+    		});
+
+    	modal.$on("close", /*close_handler_1*/ ctx[56]);
+
+    	return {
+    		c() {
+    			create_component(modal.$$.fragment);
+    		},
+    		m(target, anchor) {
+    			mount_component(modal, target, anchor);
+    			current = true;
+    		},
+    		p(ctx, dirty) {
+    			const modal_changes = {};
+
+    			if (dirty[0] & /*showDriverEditor*/ 2 | dirty[2] & /*$$scope*/ 134217728) {
+    				modal_changes.$$scope = { dirty, ctx };
+    			}
+
+    			modal.$set(modal_changes);
+    		},
+    		i(local) {
+    			if (current) return;
+    			transition_in(modal.$$.fragment, local);
+    			current = true;
+    		},
+    		o(local) {
+    			transition_out(modal.$$.fragment, local);
+    			current = false;
+    		},
+    		d(detaching) {
+    			destroy_component(modal, detaching);
+    		}
+    	};
+    }
+
+    // (415:1) <Modal on:close="{() => showDriverEditor = false}">
+    function create_default_slot_1(ctx) {
+    	let drivereditor;
+    	let current;
+    	drivereditor = new DriverEditor({});
+    	drivereditor.$on("cancel", /*cancel_handler_1*/ ctx[55]);
+
+    	return {
+    		c() {
+    			create_component(drivereditor.$$.fragment);
+    		},
+    		m(target, anchor) {
+    			mount_component(drivereditor, target, anchor);
+    			current = true;
+    		},
+    		p: noop,
+    		i(local) {
+    			if (current) return;
+    			transition_in(drivereditor.$$.fragment, local);
+    			current = true;
+    		},
+    		o(local) {
+    			transition_out(drivereditor.$$.fragment, local);
+    			current = false;
+    		},
+    		d(detaching) {
+    			destroy_component(drivereditor, detaching);
+    		}
+    	};
+    }
+
+    // (416:2) 
+    function create_header_slot_1(ctx) {
+    	let h2;
+
+    	return {
+    		c() {
+    			h2 = element("h2");
+    			h2.textContent = "Oppdater hentere";
+    			attr(h2, "slot", "header");
+    		},
+    		m(target, anchor) {
+    			insert(target, h2, anchor);
+    		},
+    		p: noop,
+    		d(detaching) {
+    			if (detaching) detach(h2);
+    		}
+    	};
+    }
+
+    // (424:0) {#if showStateEditor}
+    function create_if_block$1(ctx) {
+    	let modal;
+    	let current;
+
+    	modal = new Modal({
+    			props: {
+    				$$slots: {
+    					header: [create_header_slot],
+    					default: [create_default_slot]
+    				},
+    				$$scope: { ctx }
+    			}
+    		});
+
+    	modal.$on("close", /*close_handler_2*/ ctx[59]);
+
+    	return {
+    		c() {
+    			create_component(modal.$$.fragment);
+    		},
+    		m(target, anchor) {
+    			mount_component(modal, target, anchor);
+    			current = true;
+    		},
+    		p(ctx, dirty) {
+    			const modal_changes = {};
+
+    			if (dirty[0] & /*showStateEditor, selectedItems, $jobs, cols*/ 67502084 | dirty[2] & /*$$scope*/ 134217728) {
+    				modal_changes.$$scope = { dirty, ctx };
+    			}
+
+    			modal.$set(modal_changes);
+    		},
+    		i(local) {
+    			if (current) return;
+    			transition_in(modal.$$.fragment, local);
+    			current = true;
+    		},
+    		o(local) {
+    			transition_out(modal.$$.fragment, local);
+    			current = false;
+    		},
+    		d(detaching) {
+    			destroy_component(modal, detaching);
+    		}
+    	};
+    }
+
+    // (425:1) <Modal on:close="{() => showStateEditor = false}">
+    function create_default_slot(ctx) {
+    	let stateeditor;
+    	let current;
+    	stateeditor = new StateEditor({});
+    	stateeditor.$on("cancel", /*cancel_handler_2*/ ctx[57]);
+    	stateeditor.$on("statusupdate", /*statusupdate_handler*/ ctx[58]);
+
+    	return {
+    		c() {
+    			create_component(stateeditor.$$.fragment);
+    		},
+    		m(target, anchor) {
+    			mount_component(stateeditor, target, anchor);
+    			current = true;
+    		},
+    		p: noop,
+    		i(local) {
+    			if (current) return;
+    			transition_in(stateeditor.$$.fragment, local);
+    			current = true;
+    		},
+    		o(local) {
+    			transition_out(stateeditor.$$.fragment, local);
+    			current = false;
+    		},
+    		d(detaching) {
+    			destroy_component(stateeditor, detaching);
+    		}
+    	};
+    }
+
+    // (426:2) 
+    function create_header_slot(ctx) {
+    	let h2;
+
+    	return {
+    		c() {
+    			h2 = element("h2");
+    			h2.textContent = "Oppdater status";
+    			attr(h2, "slot", "header");
+    		},
+    		m(target, anchor) {
+    			insert(target, h2, anchor);
+    		},
+    		p: noop,
+    		d(detaching) {
+    			if (detaching) detach(h2);
+    		}
+    	};
+    }
+
+    // (296:16)   <div class="dataloading"><LoadingIcon /></div>  <p style="text-align: center;">...henter data</p> {:then data}
+    function create_pending_block$1(ctx) {
+    	let div;
+    	let loadingicon;
+    	let t0;
+    	let p;
+    	let current;
+    	loadingicon = new LoadingIcon({});
+
+    	return {
+    		c() {
+    			div = element("div");
+    			create_component(loadingicon.$$.fragment);
+    			t0 = space();
+    			p = element("p");
+    			p.textContent = "...henter data";
+    			attr(div, "class", "dataloading");
+    			set_style(p, "text-align", "center");
+    		},
+    		m(target, anchor) {
+    			insert(target, div, anchor);
+    			mount_component(loadingicon, div, null);
+    			insert(target, t0, anchor);
+    			insert(target, p, anchor);
+    			current = true;
+    		},
+    		p: noop,
+    		i(local) {
+    			if (current) return;
+    			transition_in(loadingicon.$$.fragment, local);
+    			current = true;
+    		},
+    		o(local) {
+    			transition_out(loadingicon.$$.fragment, local);
+    			current = false;
+    		},
+    		d(detaching) {
+    			if (detaching) detach(div);
+    			destroy_component(loadingicon);
+    			if (detaching) detach(t0);
+    			if (detaching) detach(p);
+    		}
+    	};
+    }
+
+    // (501:0) {#each tempMsgQueue as msg, idx}
+    function create_each_block$1(ctx) {
+    	let flashmessage;
+    	let current;
+    	const flashmessage_spread_levels = [/*msg*/ ctx[78], { index: /*idx*/ ctx[80] }];
+    	let flashmessage_props = {};
+
+    	for (let i = 0; i < flashmessage_spread_levels.length; i += 1) {
+    		flashmessage_props = assign(flashmessage_props, flashmessage_spread_levels[i]);
+    	}
+
+    	flashmessage = new FlashMessage({ props: flashmessage_props });
+
+    	return {
+    		c() {
+    			create_component(flashmessage.$$.fragment);
+    		},
+    		m(target, anchor) {
+    			mount_component(flashmessage, target, anchor);
+    			current = true;
+    		},
+    		p(ctx, dirty) {
+    			const flashmessage_changes = (dirty[0] & /*tempMsgQueue*/ 33554432)
+    			? get_spread_update(flashmessage_spread_levels, [get_spread_object(/*msg*/ ctx[78]), flashmessage_spread_levels[1]])
+    			: {};
+
+    			flashmessage.$set(flashmessage_changes);
+    		},
+    		i(local) {
+    			if (current) return;
+    			transition_in(flashmessage.$$.fragment, local);
+    			current = true;
+    		},
+    		o(local) {
+    			transition_out(flashmessage.$$.fragment, local);
+    			current = false;
+    		},
+    		d(detaching) {
+    			destroy_component(flashmessage, detaching);
+    		}
+    	};
+    }
+
+    function create_fragment$1(ctx) {
+    	let div;
+    	let button;
+    	let t0;
+    	let h1;
+    	let t2;
+    	let style;
+    	let t4;
+    	let promise_1;
+    	let t5;
+    	let menu0;
+    	let t6;
+    	let menu1;
+    	let t7;
+    	let current;
+    	let mounted;
+    	let dispose;
+
+    	let info = {
+    		ctx,
+    		current: null,
+    		token: null,
+    		hasCatch: true,
+    		pending: create_pending_block$1,
+    		then: create_then_block$1,
+    		catch: create_catch_block$1,
+    		value: 81,
+    		error: 88,
+    		blocks: [,,,]
+    	};
+
+    	handle_promise(promise_1 = /*promise*/ ctx[5], info);
+
+    	menu0 = new Menu({
+    			props: {
+    				show: /*showMenu*/ ctx[3],
+    				x: /*menuX*/ ctx[23],
+    				y: /*menuY*/ ctx[24],
+    				items: [
+    					{
+    						label: 'SMS til giver',
+    						icon: '/images/sms.png',
+    						action: /*func_3*/ ctx[60]
+    					},
+    					{
+    						label: 'SMS til henter',
+    						icon: '/images/sms.png',
+    						action: /*func_4*/ ctx[61]
+    					},
+    					{
+    						label: 'Sett status',
+    						icon: '/images/wrench.png',
+    						action: /*func_5*/ ctx[62]
+    					},
+    					{
+    						label: 'Vis på kart',
+    						icon: '/images/map.png',
+    						action: /*func_6*/ ctx[63]
+    					}
+    				]
+    			}
+    		});
+
+    	menu1 = new Menu({
+    			props: {
+    				show: /*showConfigMenu*/ ctx[4],
+    				x: /*menuX*/ ctx[23],
+    				y: /*menuY*/ ctx[24],
+    				items: [
+    					{
+    						label: 'Hentere',
+    						icon: '/images/smallcar.png',
+    						action: /*func_7*/ ctx[64]
+    					},
+    					{
+    						label: 'Oppdater data',
+    						icon: '/images/wrench.png',
+    						action: /*func_8*/ ctx[65]
+    					},
+    					{
+    						label: 'Merk alle',
+    						icon: '/images/check.png',
+    						action: /*func_9*/ ctx[66]
+    					},
+    					{
+    						label: 'Fjern merking',
+    						icon: '/images/nocheck.png',
+    						action: /*func_10*/ ctx[67]
+    					},
+    					{
+    						label: 'Tom SMS',
+    						icon: '/images/sms.png',
+    						action: /*func_11*/ ctx[68]
+    					}
+    				]
+    			}
+    		});
+
+    	let each_value = /*tempMsgQueue*/ ctx[25];
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$1(get_each_context$1(ctx, each_value, i));
+    	}
+
+    	const out = i => transition_out(each_blocks[i], 1, 1, () => {
+    		each_blocks[i] = null;
+    	});
+
+    	return {
+    		c() {
+    			div = element("div");
+    			button = element("button");
+    			button.innerHTML = `<img src="/images/wrench.png" width="24" alt="Innstillinger"/>`;
+    			t0 = space();
+    			h1 = element("h1");
+    			h1.textContent = "Loppisadmin";
+    			t2 = space();
+    			style = element("style");
+    			style.textContent = "h1 {text-align: center;}\n\t.conf {position: absolute; padding: 4px; right: 8em}\n\t.conf img {vertical-align: middle;}\n\ttable.main {\n\t\twidth: 80%;\n\t\tmargin-left: 10%;\n\t\tmargin-right: 10%;\n\t\tborder-collapse: collapse;\n\t\tborder: 1px solid grey;\n\t}\n\ttable.main tr:first-child {\n\t\tbackground: #eee;\n\t\tborder-bottom: 1px solid black;\n\t}\n\tth {text-align: left; padding-left: 16px; }\n\tth li {\n\t\tdisplay: inline-block;\n\t\theight: 20px;\n\t\twidth: 20px;\n\t\tborder-bottom: 1px solid grey;\n\t\tcolor: grey;\n\t\tfont-weight: lighter;\n\t\tmargin-left: 8px;\n\t\tcursor: pointer;\n\t}\n\t.smallActive, .mediumActive, .bigActive {\n\t\tborder: 1px solid black;\n\t}\n\t.smallActive, .mediumActive, .bigActive, li.monActive, li.tueActive, li.wedActive, li.thuActive {\n\t\tborder-color: black;\n\t\tcolor: black;\n\t}\n\tlabel {font-weight: lighter; font-style: italic;}\n\n\n/* Extra small devices (phones, 600px and down) */\n@media only screen and (max-width: 600px) {\n\tth:nth-child(3) {display: none;}\n\tth:nth-child(4) {display: none;}\n\tth:nth-child(5) {display: none;}\n\ttable {width: 99%; margin: 0;}\n}\n\n@media only screen and (max-width: 700px) {\n\tth:nth-child(3) {display: none;}\n\t.stufftype {width: 25%}\n\t.dayscol {width: 25%}\n\ttable {width: 95%; margin: 2.5%;}\n}\n/* column styles */\n.jobnr {\n\twidth: 2%;\n}\n.address {\n\tbackground: #eee;\n\twidth: 25%;\n}\n.cartype {\n\twidth: 5%;\n}\n.quality {\n\twidth: 10%;\n}\n.stufftype {\n\twidth: 10%;\n}\n.dayscol {\n\twidth: 20%;\n}\n.status {\n\twidth: 15%;\n}\n.dataloading {\n\tposition: fixed;\n\tleft: 45%;\n\tright: 50%;\n\ttop: 45%;\n\tbottom: 50%;\n}";
+    			t4 = space();
+    			info.block.c();
+    			t5 = space();
+    			create_component(menu0.$$.fragment);
+    			t6 = space();
+    			create_component(menu1.$$.fragment);
+    			t7 = space();
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			attr(button, "class", "conf");
+    			attr(style, "type", "text/css");
+    		},
+    		m(target, anchor) {
+    			insert(target, div, anchor);
+    			append(div, button);
+    			append(div, t0);
+    			append(div, h1);
+    			append(div, t2);
+    			append(div, style);
+    			append(div, t4);
+    			info.block.m(div, info.anchor = null);
+    			info.mount = () => div;
+    			info.anchor = t5;
+    			append(div, t5);
+    			mount_component(menu0, div, null);
+    			append(div, t6);
+    			mount_component(menu1, div, null);
+    			append(div, t7);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(div, null);
+    			}
+
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = [
+    					listen(button, "click", stop_propagation(/*click_handler*/ ctx[36])),
+    					listen(div, "contextmenu", prevent_default(/*contextmenu_handler*/ ctx[69])),
+    					listen(div, "click", /*click_handler_7*/ ctx[70]),
+    					listen(div, "mousedown", /*mousedown_handler*/ ctx[71]),
+    					listen(div, "mousemove", /*mousemove_handler*/ ctx[72])
+    				];
+
+    				mounted = true;
+    			}
+    		},
+    		p(new_ctx, dirty) {
+    			ctx = new_ctx;
+    			info.ctx = ctx;
+
+    			if (dirty[0] & /*promise*/ 32 && promise_1 !== (promise_1 = /*promise*/ ctx[5]) && handle_promise(promise_1, info)) ; else {
+    				update_await_block_branch(info, ctx, dirty);
+    			}
+
+    			const menu0_changes = {};
+    			if (dirty[0] & /*showMenu*/ 8) menu0_changes.show = /*showMenu*/ ctx[3];
+    			if (dirty[0] & /*menuX*/ 8388608) menu0_changes.x = /*menuX*/ ctx[23];
+    			if (dirty[0] & /*menuY*/ 16777216) menu0_changes.y = /*menuY*/ ctx[24];
+
+    			if (dirty[0] & /*showStateEditor, showMenu*/ 12) menu0_changes.items = [
+    				{
+    					label: 'SMS til giver',
+    					icon: '/images/sms.png',
+    					action: /*func_3*/ ctx[60]
+    				},
+    				{
+    					label: 'SMS til henter',
+    					icon: '/images/sms.png',
+    					action: /*func_4*/ ctx[61]
+    				},
+    				{
+    					label: 'Sett status',
+    					icon: '/images/wrench.png',
+    					action: /*func_5*/ ctx[62]
+    				},
+    				{
+    					label: 'Vis på kart',
+    					icon: '/images/map.png',
+    					action: /*func_6*/ ctx[63]
+    				}
+    			];
+
+    			menu0.$set(menu0_changes);
+    			const menu1_changes = {};
+    			if (dirty[0] & /*showConfigMenu*/ 16) menu1_changes.show = /*showConfigMenu*/ ctx[4];
+    			if (dirty[0] & /*menuX*/ 8388608) menu1_changes.x = /*menuX*/ ctx[23];
+    			if (dirty[0] & /*menuY*/ 16777216) menu1_changes.y = /*menuY*/ ctx[24];
+
+    			if (dirty[0] & /*showDriverEditor, showConfigMenu, selectedItems, smsEditorType*/ 262163) menu1_changes.items = [
+    				{
+    					label: 'Hentere',
+    					icon: '/images/smallcar.png',
+    					action: /*func_7*/ ctx[64]
+    				},
+    				{
+    					label: 'Oppdater data',
+    					icon: '/images/wrench.png',
+    					action: /*func_8*/ ctx[65]
+    				},
+    				{
+    					label: 'Merk alle',
+    					icon: '/images/check.png',
+    					action: /*func_9*/ ctx[66]
+    				},
+    				{
+    					label: 'Fjern merking',
+    					icon: '/images/nocheck.png',
+    					action: /*func_10*/ ctx[67]
+    				},
+    				{
+    					label: 'Tom SMS',
+    					icon: '/images/sms.png',
+    					action: /*func_11*/ ctx[68]
+    				}
+    			];
+
+    			menu1.$set(menu1_changes);
+
+    			if (dirty[0] & /*tempMsgQueue*/ 33554432) {
+    				each_value = /*tempMsgQueue*/ ctx[25];
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$1(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    						transition_in(each_blocks[i], 1);
+    					} else {
+    						each_blocks[i] = create_each_block$1(child_ctx);
+    						each_blocks[i].c();
+    						transition_in(each_blocks[i], 1);
+    						each_blocks[i].m(div, null);
+    					}
+    				}
+
+    				group_outros();
+
+    				for (i = each_value.length; i < each_blocks.length; i += 1) {
+    					out(i);
+    				}
+
+    				check_outros();
+    			}
+    		},
+    		i(local) {
+    			if (current) return;
+    			transition_in(info.block);
+    			transition_in(menu0.$$.fragment, local);
+    			transition_in(menu1.$$.fragment, local);
+
+    			for (let i = 0; i < each_value.length; i += 1) {
+    				transition_in(each_blocks[i]);
+    			}
+
+    			current = true;
+    		},
+    		o(local) {
+    			for (let i = 0; i < 3; i += 1) {
+    				const block = info.blocks[i];
+    				transition_out(block);
+    			}
+
+    			transition_out(menu0.$$.fragment, local);
+    			transition_out(menu1.$$.fragment, local);
+    			each_blocks = each_blocks.filter(Boolean);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				transition_out(each_blocks[i]);
+    			}
+
+    			current = false;
+    		},
+    		d(detaching) {
+    			if (detaching) detach(div);
+    			info.block.d();
+    			info.token = null;
+    			info = null;
+    			destroy_component(menu0);
+    			destroy_component(menu1);
+    			destroy_each(each_blocks, detaching);
+    			mounted = false;
+    			run_all(dispose);
+    		}
+    	};
+    }
+
+    let monActive = true;
+
+    function instance$1($$self, $$props, $$invalidate) {
+    	let $jobs;
+    	let $drivers;
+    	component_subscribe($$self, jobs, $$value => $$invalidate(26, $jobs = $$value));
+    	component_subscribe($$self, drivers, $$value => $$invalidate(74, $drivers = $$value));
+    	let smsEditorType = '';
+    	let showDriverEditor = false;
+    	let showStateEditor = false;
+    	let showMenu = false;
+    	let showConfigMenu = false;
+    	let promise = getData();
+    	let freeTextFilter = '';
+    	let bigActive = true;
+    	let mediumActive = true;
+    	let smallActive = true;
+    	let qualityFilter = '';
+    	let tueActive = true;
+    	let wedActive = true;
+    	let thuActive = true;
+    	let dayFilterExclusive = false;
+    	let typeFilter = '';
+    	let prefs;
+    	let cols;
+    	let selectedItems = [];
+
+    	// SMS editor vars
+    	let possibleRecipients;
+
+    	let recipients = [];
+    	let message = '';
+    	let hideDoneJobs = true;
+    	let menuX = 0;
+    	let menuY = 0;
+    	let helperToken;
+    	let tempMsgQueue = [];
+
+    	async function getData(forceReload) {
+    		let res = await fetch(`${apiUrl}/prefs`);
+    		$$invalidate(16, prefs = await res.json());
+    		$$invalidate(17, cols = prefs.cols);
+    		res = await fetch(`${apiUrl}/jobs` + (forceReload ? '?refresh=1' : ''));
+
+    		if (res.ok) {
+    			let json = await res.json();
+    			json.sort((a, b) => a[cols.ADDRESS] < b[cols.ADDRESS] ? -1 : 1);
+    			jobs.set(json);
+    			return true;
+    		} else {
+    			let text = await res.text();
+    			console.log(text);
+    			throw new Error('Ingen tilgang');
+    		}
+    	}
+
+    	async function getToken() {
+    		const res = await fetch(`${apiUrl}/helpertoken`);
+    		const data = await res.json();
+    		return data.token;
+    	}
+
+    	getToken().then(t => helperToken = t);
+
+    	function reload() {
+    		$$invalidate(5, promise = getData(true));
+    	}
+
+    	function updatedSelectedList(event) {
+    		let detail = event.detail; // {jobnr: 1, selected: true }
+
+    		if (detail.selected && selectedItems.indexOf(detail.jobnr) === -1) {
+    			$$invalidate(18, selectedItems = [...selectedItems, detail.jobnr]);
+    		} else if (!detail.selected && selectedItems.indexOf(detail.jobnr) > -1) {
+    			selectedItems.splice(selectedItems.indexOf(detail.jobnr), 1);
+    			$$invalidate(18, selectedItems);
+    		}
+    	}
+
+    	function toggleMenu(targetElm) {
+    		if (showMenu) {
+    			$$invalidate(3, showMenu = false);
+    		} else {
+    			let jobNr;
+    			let elm = targetElm;
+
+    			while (elm && !jobNr && elm.getAttribute) {
+    				jobNr = elm.getAttribute('data-id');
+    				elm = elm.parentNode;
+    			}
+
+    			if (jobNr && selectedItems.indexOf(jobNr) === -1) {
+    				updatedSelectedList({ detail: { selected: true, jobnr: jobNr } });
+    			}
+
+    			if (jobNr || selectedItems.length) {
+    				$$invalidate(3, showMenu = true);
+    			}
+    		}
+    	}
+
+    	function considerClosingMenu(event) {
+    		let insideMenu = false;
+
+    		if (!(showMenu || showConfigMenu)) {
+    			return; // nothing to do
+    		}
+
+    		let elm = event.target;
+    		console.log(elm, elm.className);
+
+    		while (elm) {
+    			if (elm.className && elm.className.indexOf('menu') > -1) {
+    				insideMenu = true;
+    			}
+
+    			elm = elm.parentNode;
+    		}
+
+    		if (insideMenu) {
+    			return;
+    		}
+
+    		$$invalidate(3, showMenu = false);
+    		$$invalidate(4, showConfigMenu = false);
+    	}
+
+    	function onMouseDown(evt) {
+    		if (showMenu || showConfigMenu) {
+    			return;
+    		}
+
+    		$$invalidate(23, menuX = event.clientX);
+
+    		// nudge menu left- og rightwards if the touch or
+    		//mouse cursor is too near edge
+    		if (menuX < window.innerWidth * 0.2) {
+    			$$invalidate(23, menuX += window.innerWidth * 0.1);
+    		}
+
+    		if (menuX >= window.innerWidth - 200) {
+    			$$invalidate(23, menuX -= 200);
+    		}
+
+    		$$invalidate(24, menuY = event.clientY);
+    	}
+
+    	function flashMessage(message, isError) {
+    		$$invalidate(25, tempMsgQueue = [...tempMsgQueue, { message, isError }]);
+    		setTimeout(() => $$invalidate(25, tempMsgQueue = tempMsgQueue.slice(0, tempMsgQueue.length - 1)), 5000);
+    	}
+
+    	function initSms(type) {
+    		$$invalidate(3, showMenu = false);
+
+    		let items = selectedItems.map(item => $jobs.find(job => job[cols.JOBNR] === item)).filter(item => filter(
+    			freeTextFilter,
+    			{ smallActive, mediumActive, bigActive },
+    			{
+    				monActive,
+    				tueActive,
+    				wedActive,
+    				thuActive,
+    				dayFilterExclusive
+    			},
+    			typeFilter,
+    			qualityFilter,
+    			hideDoneJobs,
+    			drivers,
+    			item,
+    			cols
+    		));
+
+    		if (type === 'donor') {
+    			$$invalidate(19, possibleRecipients = items.map(item => ({
+    				name: item[cols.CONTACT_PERSON],
+    				number: item[cols.PHONE],
+    				address: item[cols.ADDRESS]
+    			})));
+
+    			$$invalidate(20, recipients = items.map(item => item[cols.PHONE]));
+    			$$invalidate(0, smsEditorType = type);
+    		} else {
+    			$$invalidate(19, possibleRecipients = $drivers);
+
+    			$$invalidate(21, message = 'Hei, foreslår at du henter følgende jobb(er): \n\n' + items.map(item => `${item[cols.ADDRESS]}
+${item[cols.CONTACT_PERSON]}, ${item[cols.PHONE]}`).join('\n\n'));
+
+    			$$invalidate(21, message += `
+
+Merk jobber som hentet her etterpå:
+${baseUrl}/henting/?jobb=${encodeURIComponent(items.map(item => getIdFromUrl(item[cols.JOBNR])).join(','))}&token=${encodeURIComponent(helperToken)}&henter={number}`);
+
+    			$$invalidate(0, smsEditorType = type);
+    		}
+    	}
+
+    	function selectAllShown() {
+    		$$invalidate(18, selectedItems.length = 0, selectedItems);
+
+    		$jobs.forEach(item => {
+    			if (filter(
+    				freeTextFilter,
+    				{ smallActive, mediumActive, bigActive },
+    				{
+    					monActive,
+    					tueActive,
+    					wedActive,
+    					thuActive,
+    					dayFilterExclusive
+    				},
+    				typeFilter,
+    				qualityFilter,
+    				hideDoneJobs,
+    				drivers,
+    				item,
+    				cols
+    			)) {
+    				selectedItems.push(item[cols.JOBNR]);
+    			}
+    		});
+    	}
+
+    	function openMap() {
+    		let str = gMapsDirection + selectedItems.map(item => {
+    			let data = $jobs.find(job => job[cols.JOBNR] === item);
+    			return data[cols.ADDRESS];
+    		}).join('/');
+
+    		window.open(str);
+    	}
+
+    	jobs.subscribe(data => {
+    		console.log('updated data! ', data);
+    	});
+
+    	const click_handler = e => {
+    		$$invalidate(4, showConfigMenu = true);
+    	};
+
+    	function input0_input_handler() {
+    		freeTextFilter = this.value;
+    		$$invalidate(6, freeTextFilter);
+    	}
+
+    	const click_handler_1 = e => $$invalidate(7, bigActive = !bigActive);
+    	const click_handler_2 = e => $$invalidate(8, mediumActive = !mediumActive);
+    	const click_handler_3 = e => $$invalidate(9, smallActive = !smallActive);
+
+    	function select0_change_handler() {
+    		typeFilter = select_value(this);
+    		$$invalidate(15, typeFilter);
+    		$$invalidate(16, prefs);
+    	}
+
+    	function select1_change_handler() {
+    		qualityFilter = select_value(this);
+    		$$invalidate(10, qualityFilter);
+    	}
+
+    	const click_handler_4 = e => $$invalidate(11, tueActive = !tueActive);
+    	const click_handler_5 = e => $$invalidate(12, wedActive = !wedActive);
+    	const click_handler_6 = e => $$invalidate(13, thuActive = !thuActive);
+
+    	function input1_change_handler() {
+    		dayFilterExclusive = this.checked;
+    		$$invalidate(14, dayFilterExclusive);
+    	}
+
+    	function input2_change_handler() {
+    		hideDoneJobs = this.checked;
+    		$$invalidate(22, hideDoneJobs);
+    	}
+
+    	const select_handler = e => updatedSelectedList(e);
+    	const func = item => item[cols.STATUS] === 'Hentes';
+    	const func_1 = item => item[cols.STATUS] === 'Hentet';
+    	const func_2 = item => item[cols.STATUS] === 'Hentes ikke';
+
+    	const cancel_handler = e => {
+    		$$invalidate(0, smsEditorType = '');
+    		$$invalidate(21, message = '');
+    		$$invalidate(19, possibleRecipients = null);
+    	};
+
+    	const sms_handler = e => {
+    		sendSms(e.detail.recipients, e.detail.message).then(() => {
+    			flashMessage('SMS sendt til ' + e.detail.recipients);
+
+    			return Promise.all(selectedItems.map(item => {
+    				const job = $jobs.find(job => job[cols.JOBNR] === item);
+
+    				if (e.detail.smsEditorType === 'worker') {
+    					return changeJobDetails(item, cols, { [cols.STATUS]: 'Sendt til henter' });
+    				} else if (e.detail.smsEditorType === 'donor' && job && ['', 'Ny'].includes(job[cols.STATUS])) {
+    					return changeJobDetails(item, cols, { [cols.STATUS]: 'Kontaktet' });
+    				}
+
+    				return Promise.resolve();
+    			})).then(() => {
+    				$$invalidate(18, selectedItems.length = 0, selectedItems);
+    			});
+    		}).catch(err => flashMessage(err, true));
+
+    		$$invalidate(21, message = '');
+    		$$invalidate(19, possibleRecipients = null);
+    		$$invalidate(0, smsEditorType = '');
+    	};
+
+    	const close_handler = () => $$invalidate(0, smsEditorType = '');
+
+    	const cancel_handler_1 = e => {
+    		$$invalidate(1, showDriverEditor = false);
+    	};
+
+    	const close_handler_1 = () => $$invalidate(1, showDriverEditor = false);
+
+    	const cancel_handler_2 = e => {
+    		$$invalidate(2, showStateEditor = false);
+    	};
+
+    	const statusupdate_handler = e => {
+    		if (e.detail.newState) {
+    			selectedItems.forEach(item => {
+    				let data = $jobs.find(job => job[cols.JOBNR] === item);
+
+    				if (data[cols.ASSIGNEE]) {
+    					return; // don't update state behind assignee's back..
+    				}
+
+    				changeJobDetails(item, cols, { [cols.STATUS]: e.detail.newState });
+    			});
+    		}
+
+    		$$invalidate(2, showStateEditor = false);
+    	};
+
+    	const close_handler_2 = () => $$invalidate(2, showStateEditor = false);
+    	const func_3 = e => initSms('donor');
+    	const func_4 = e => initSms('worker');
+    	const func_5 = e => ($$invalidate(2, showStateEditor = true), $$invalidate(3, showMenu = false));
+    	const func_6 = e => (openMap(), $$invalidate(3, showMenu = false));
+    	const func_7 = e => ($$invalidate(1, showDriverEditor = true), $$invalidate(4, showConfigMenu = false));
+    	const func_8 = e => ($$invalidate(4, showConfigMenu = false), reload());
+    	const func_9 = e => ($$invalidate(4, showConfigMenu = false), selectAllShown());
+    	const func_10 = e => ($$invalidate(4, showConfigMenu = false), $$invalidate(18, selectedItems.length = 0, selectedItems));
+    	const func_11 = e => ($$invalidate(4, showConfigMenu = false), $$invalidate(0, smsEditorType = 'new'));
+
+    	const contextmenu_handler = e => {
+    		toggleMenu(e.target);
+    	};
+
+    	const click_handler_7 = e => considerClosingMenu(e);
+    	const mousedown_handler = e => onMouseDown();
+    	const mousemove_handler = e => onMouseDown();
+
+    	return [
+    		smsEditorType,
+    		showDriverEditor,
+    		showStateEditor,
+    		showMenu,
+    		showConfigMenu,
+    		promise,
+    		freeTextFilter,
+    		bigActive,
+    		mediumActive,
+    		smallActive,
+    		qualityFilter,
+    		tueActive,
+    		wedActive,
+    		thuActive,
+    		dayFilterExclusive,
+    		typeFilter,
+    		prefs,
+    		cols,
+    		selectedItems,
+    		possibleRecipients,
+    		recipients,
+    		message,
+    		hideDoneJobs,
+    		menuX,
+    		menuY,
+    		tempMsgQueue,
+    		$jobs,
+    		reload,
+    		updatedSelectedList,
+    		toggleMenu,
+    		considerClosingMenu,
+    		onMouseDown,
+    		flashMessage,
+    		initSms,
+    		selectAllShown,
+    		openMap,
+    		click_handler,
+    		input0_input_handler,
+    		click_handler_1,
+    		click_handler_2,
+    		click_handler_3,
+    		select0_change_handler,
+    		select1_change_handler,
+    		click_handler_4,
+    		click_handler_5,
+    		click_handler_6,
+    		input1_change_handler,
+    		input2_change_handler,
+    		select_handler,
+    		func,
+    		func_1,
+    		func_2,
+    		cancel_handler,
+    		sms_handler,
+    		close_handler,
+    		cancel_handler_1,
+    		close_handler_1,
+    		cancel_handler_2,
+    		statusupdate_handler,
+    		close_handler_2,
+    		func_3,
+    		func_4,
+    		func_5,
+    		func_6,
+    		func_7,
+    		func_8,
+    		func_9,
+    		func_10,
+    		func_11,
+    		contextmenu_handler,
+    		click_handler_7,
+    		mousedown_handler,
+    		mousemove_handler
+    	];
+    }
+
+    class App extends SvelteComponent {
+    	constructor(options) {
+    		super();
+    		init(this, options, instance$1, create_fragment$1, safe_not_equal, {}, null, [-1, -1, -1]);
+    	}
+    }
+
+    /* client/src/ShowSingleJob.svelte generated by Svelte v3.49.0 */
+
+    function add_css(target) {
+    	append_styles(target, "svelte-uo1le0", ".loading.svelte-uo1le0.svelte-uo1le0{position:fixed;left:45%;right:50%;top:45%;bottom:50%}h1.svelte-uo1le0.svelte-uo1le0{text-align:center}section.svelte-uo1le0.svelte-uo1le0{display:table;width:90%;margin-left:5%;border:1px solid black;padding:8px}section.svelte-uo1le0 p.svelte-uo1le0{display:table-row;border-bottom:1px solid grey}section.svelte-uo1le0 p b.svelte-uo1le0,section.svelte-uo1le0 p span.svelte-uo1le0,section.svelte-uo1le0 p i.svelte-uo1le0{display:table-cell;border:8px solid transparent;vertical-align:top}section.svelte-uo1le0 p b.svelte-uo1le0:first-child{width:5%}@media only screen and (min-width: 700px){section.svelte-uo1le0.svelte-uo1le0{width:60%;margin-left:20%}section.svelte-uo1le0 p b.svelte-uo1le0:first-child{width:15%}section.svelte-uo1le0 p b.svelte-uo1le0,section.svelte-uo1le0 p span.svelte-uo1le0,section.svelte-uo1le0 p i.svelte-uo1le0{border:16px solid transparent}}button.svelte-uo1le0.svelte-uo1le0{margin-bottom:8px;font-size:1.2em}.commonmap.svelte-uo1le0.svelte-uo1le0{text-align:center}textarea.svelte-uo1le0.svelte-uo1le0{height:100px;width:100%;font-size:1em}.Hentet.svelte-uo1le0.svelte-uo1le0{border-color:green;background:#fefffe;position:relative;overflow:hidden}.Hentet.svelte-uo1le0 .hideondone.svelte-uo1le0{display:none}.Hentet.svelte-uo1le0.svelte-uo1le0:after{position:absolute;line-height:32px;text-align:center;top:24px;right:40px;width:70%;transform-origin:40% 90%;opacity:0.5;transform:translate(35%, -30%) rotate(35deg);font-size:1.5em}.Hentet.svelte-uo1le0.svelte-uo1le0:after{content:'Hentet';background-color:yellow}.jobnr.svelte-uo1le0.svelte-uo1le0{display:inline-block;height:100%;padding:4px;background:#aaa;float:right}");
+    }
+
+    function get_each_context(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[18] = list[i];
+    	child_ctx[19] = list;
+    	child_ctx[20] = i;
+    	return child_ctx;
+    }
+
+    // (251:0) {:catch error}
+    function create_catch_block(ctx) {
+    	let p;
+    	let t_value = /*error*/ ctx[21].message + "";
+    	let t;
+
+    	return {
+    		c() {
+    			p = element("p");
+    			t = text(t_value);
+    			set_style(p, "color", "red");
+    		},
+    		m(target, anchor) {
+    			insert(target, p, anchor);
+    			append(p, t);
+    		},
+    		p(ctx, dirty) {
+    			if (dirty & /*promise*/ 2 && t_value !== (t_value = /*error*/ ctx[21].message + "")) set_data(t, t_value);
+    		},
+    		i: noop,
+    		o: noop,
+    		d(detaching) {
+    			if (detaching) detach(p);
+    		}
+    	};
+    }
+
+    // (150:0) {:then data}
+    function create_then_block(ctx) {
+    	let h1;
+    	let t1;
+    	let t2;
+    	let t3;
+    	let hr;
+    	let t4;
+    	let button;
+    	let current;
+    	let mounted;
+    	let dispose;
+    	let if_block = /*$jobs*/ ctx[3].length > 1 && create_if_block_7(ctx);
+    	let each_value = /*$jobs*/ ctx[3];
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
+    	}
+
+    	const out = i => transition_out(each_blocks[i], 1, 1, () => {
+    		each_blocks[i] = null;
+    	});
+
+    	return {
+    		c() {
+    			h1 = element("h1");
+    			h1.textContent = "Hentinger";
+    			t1 = space();
+    			if (if_block) if_block.c();
+    			t2 = space();
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			t3 = space();
+    			hr = element("hr");
+    			t4 = space();
+    			button = element("button");
+    			button.textContent = "Alle mine jobber";
+    			attr(h1, "class", "svelte-uo1le0");
+    			attr(button, "class", "p8 br2 svelte-uo1le0");
+    		},
+    		m(target, anchor) {
+    			insert(target, h1, anchor);
+    			insert(target, t1, anchor);
+    			if (if_block) if_block.m(target, anchor);
+    			insert(target, t2, anchor);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert(target, t3, anchor);
+    			insert(target, hr, anchor);
+    			insert(target, t4, anchor);
+    			insert(target, button, anchor);
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = listen(button, "click", /*click_handler_4*/ ctx[14]);
+    				mounted = true;
+    			}
+    		},
+    		p(ctx, dirty) {
+    			if (/*$jobs*/ ctx[3].length > 1) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block_7(ctx);
+    					if_block.c();
+    					if_block.m(t2.parentNode, t2);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+
+    			if (dirty & /*$jobs, prefs, update, params, normalizeNumber, gMapsDirection*/ 45) {
+    				each_value = /*$jobs*/ ctx[3];
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    						transition_in(each_blocks[i], 1);
+    					} else {
+    						each_blocks[i] = create_each_block(child_ctx);
+    						each_blocks[i].c();
+    						transition_in(each_blocks[i], 1);
+    						each_blocks[i].m(t3.parentNode, t3);
+    					}
+    				}
+
+    				group_outros();
+
+    				for (i = each_value.length; i < each_blocks.length; i += 1) {
+    					out(i);
+    				}
+
+    				check_outros();
+    			}
+    		},
+    		i(local) {
+    			if (current) return;
+
+    			for (let i = 0; i < each_value.length; i += 1) {
+    				transition_in(each_blocks[i]);
+    			}
+
+    			current = true;
+    		},
+    		o(local) {
+    			each_blocks = each_blocks.filter(Boolean);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				transition_out(each_blocks[i]);
+    			}
+
+    			current = false;
+    		},
+    		d(detaching) {
+    			if (detaching) detach(h1);
+    			if (detaching) detach(t1);
+    			if (if_block) if_block.d(detaching);
+    			if (detaching) detach(t2);
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach(t3);
+    			if (detaching) detach(hr);
+    			if (detaching) detach(t4);
+    			if (detaching) detach(button);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+    }
+
+    // (152:1) {#if $jobs.length > 1}
+    function create_if_block_7(ctx) {
+    	let p;
+    	let a;
+    	let t;
+    	let br;
+    	let img;
+    	let img_src_value;
+    	let a_href_value;
+
+    	return {
+    		c() {
+    			p = element("p");
+    			a = element("a");
+    			t = text("Kart med alle adresser: ");
+    			br = element("br");
+    			img = element("img");
+    			if (!src_url_equal(img.src, img_src_value = "/images/map.png")) attr(img, "src", img_src_value);
+    			attr(img, "alt", "alle adresser i kart");
+    			attr(img, "width", "36");
+    			attr(a, "href", a_href_value = gMapsDirection + /*$jobs*/ ctx[3].map(/*func*/ ctx[6]).join('/'));
+    			attr(a, "target", "_blank");
+    			attr(p, "class", "commonmap svelte-uo1le0");
+    		},
+    		m(target, anchor) {
+    			insert(target, p, anchor);
+    			append(p, a);
+    			append(a, t);
+    			append(a, br);
+    			append(a, img);
+    		},
+    		p(ctx, dirty) {
+    			if (dirty & /*$jobs, prefs*/ 12 && a_href_value !== (a_href_value = gMapsDirection + /*$jobs*/ ctx[3].map(/*func*/ ctx[6]).join('/'))) {
+    				attr(a, "href", a_href_value);
+    			}
+    		},
+    		d(detaching) {
+    			if (detaching) detach(p);
+    		}
+    	};
+    }
+
+    // (158:2) {#if job.loading}
+    function create_if_block_6(ctx) {
+    	let div;
+    	let loadingicon;
+    	let current;
+    	loadingicon = new LoadingIcon({});
+
+    	return {
+    		c() {
+    			div = element("div");
+    			create_component(loadingicon.$$.fragment);
+    			attr(div, "class", "loading svelte-uo1le0");
+    		},
+    		m(target, anchor) {
+    			insert(target, div, anchor);
+    			mount_component(loadingicon, div, null);
+    			current = true;
+    		},
+    		i(local) {
+    			if (current) return;
+    			transition_in(loadingicon.$$.fragment, local);
+    			current = true;
+    		},
+    		o(local) {
+    			transition_out(loadingicon.$$.fragment, local);
+    			current = false;
+    		},
+    		d(detaching) {
+    			if (detaching) detach(div);
+    			destroy_component(loadingicon);
+    		}
+    	};
+    }
+
+    // (180:3) {#if job[prefs.cols.DESC]}
+    function create_if_block_5(ctx) {
+    	let p;
+    	let b;
+    	let i;
+    	let t1_value = /*job*/ ctx[18][/*prefs*/ ctx[2].cols.DESC] + "";
+    	let t1;
+
+    	return {
+    		c() {
+    			p = element("p");
+    			b = element("b");
+    			b.textContent = "Om loppene: ";
+    			i = element("i");
+    			t1 = text(t1_value);
+    			attr(b, "class", "svelte-uo1le0");
+    			attr(i, "class", "svelte-uo1le0");
+    			attr(p, "class", "svelte-uo1le0");
+    		},
+    		m(target, anchor) {
+    			insert(target, p, anchor);
+    			append(p, b);
+    			append(p, i);
+    			append(i, t1);
+    		},
+    		p(ctx, dirty) {
+    			if (dirty & /*$jobs, prefs*/ 12 && t1_value !== (t1_value = /*job*/ ctx[18][/*prefs*/ ctx[2].cols.DESC] + "")) set_data(t1, t1_value);
+    		},
+    		d(detaching) {
+    			if (detaching) detach(p);
+    		}
+    	};
+    }
+
+    // (196:5) {#if job[prefs.cols.ASSIGNEE] && job[prefs.cols.ASSIGNEE] === params.henter}
+    function create_if_block_2(ctx) {
+    	let current_block_type_index;
+    	let if_block;
+    	let if_block_anchor;
+    	let current;
+    	const if_block_creators = [create_if_block_3, create_if_block_4];
+    	const if_blocks = [];
+
+    	function select_block_type(ctx, dirty) {
+    		if (/*job*/ ctx[18][/*prefs*/ ctx[2].cols.STATUS] === 'Hentes') return 0;
+    		if (/*job*/ ctx[18][/*prefs*/ ctx[2].cols.STATUS] === 'Hentet') return 1;
+    		return -1;
+    	}
+
+    	if (~(current_block_type_index = select_block_type(ctx))) {
+    		if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    	}
+
+    	return {
+    		c() {
+    			if (if_block) if_block.c();
+    			if_block_anchor = empty();
+    		},
+    		m(target, anchor) {
+    			if (~current_block_type_index) {
+    				if_blocks[current_block_type_index].m(target, anchor);
+    			}
+
+    			insert(target, if_block_anchor, anchor);
+    			current = true;
+    		},
+    		p(ctx, dirty) {
+    			let previous_block_index = current_block_type_index;
+    			current_block_type_index = select_block_type(ctx);
+
+    			if (current_block_type_index !== previous_block_index) {
+    				if (if_block) {
+    					group_outros();
+
+    					transition_out(if_blocks[previous_block_index], 1, 1, () => {
+    						if_blocks[previous_block_index] = null;
+    					});
+
+    					check_outros();
+    				}
+
+    				if (~current_block_type_index) {
+    					if_block = if_blocks[current_block_type_index];
+
+    					if (!if_block) {
+    						if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    						if_block.c();
+    					}
+
+    					transition_in(if_block, 1);
+    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    				} else {
+    					if_block = null;
+    				}
+    			}
+    		},
+    		i(local) {
+    			if (current) return;
+    			transition_in(if_block);
+    			current = true;
+    		},
+    		o(local) {
+    			transition_out(if_block);
+    			current = false;
+    		},
+    		d(detaching) {
+    			if (~current_block_type_index) {
+    				if_blocks[current_block_type_index].d(detaching);
+    			}
+
+    			if (detaching) detach(if_block_anchor);
+    		}
+    	};
+    }
+
+    // (200:52) 
+    function create_if_block_4(ctx) {
+    	let br0;
+    	let t0;
+    	let em;
+    	let em_transition;
+    	let current;
+
+    	return {
+    		c() {
+    			br0 = element("br");
+    			t0 = space();
+    			em = element("em");
+    			em.innerHTML = `<br/>★ ★ ☺  Takk for at du hentet!  ☺ ★ ★`;
+    		},
+    		m(target, anchor) {
+    			insert(target, br0, anchor);
+    			insert(target, t0, anchor);
+    			insert(target, em, anchor);
+    			current = true;
+    		},
+    		i(local) {
+    			if (current) return;
+
+    			add_render_callback(() => {
+    				if (!em_transition) em_transition = create_bidirectional_transition(em, fade, {}, true);
+    				em_transition.run(1);
+    			});
+
+    			current = true;
+    		},
+    		o(local) {
+    			if (!em_transition) em_transition = create_bidirectional_transition(em, fade, {}, false);
+    			em_transition.run(0);
+    			current = false;
+    		},
+    		d(detaching) {
+    			if (detaching) detach(br0);
+    			if (detaching) detach(t0);
+    			if (detaching) detach(em);
+    			if (detaching && em_transition) em_transition.end();
+    		}
+    	};
+    }
+
+    // (197:6) {#if job[prefs.cols.STATUS] === 'Hentes'}
+    function create_if_block_3(ctx) {
+    	let br0;
+    	let t0;
+    	let em;
+    	let em_transition;
+    	let current;
+
+    	return {
+    		c() {
+    			br0 = element("br");
+    			t0 = space();
+    			em = element("em");
+    			em.innerHTML = `<br/>★ ★ ☺   Du har tatt på deg jobben - takk!  ☺ ★ ★`;
+    		},
+    		m(target, anchor) {
+    			insert(target, br0, anchor);
+    			insert(target, t0, anchor);
+    			insert(target, em, anchor);
+    			current = true;
+    		},
+    		i(local) {
+    			if (current) return;
+
+    			add_render_callback(() => {
+    				if (!em_transition) em_transition = create_bidirectional_transition(em, fade, {}, true);
+    				em_transition.run(1);
+    			});
+
+    			current = true;
+    		},
+    		o(local) {
+    			if (!em_transition) em_transition = create_bidirectional_transition(em, fade, {}, false);
+    			em_transition.run(0);
+    			current = false;
+    		},
+    		d(detaching) {
+    			if (detaching) detach(br0);
+    			if (detaching) detach(t0);
+    			if (detaching) detach(em);
+    			if (detaching && em_transition) em_transition.end();
+    		}
+    	};
+    }
+
+    // (205:5) {#if job[prefs.cols.ASSIGNEE] && job[prefs.cols.ASSIGNEE] !== params.henter}
+    function create_if_block_1(ctx) {
+    	let br;
+    	let t0;
+    	let em;
+    	let b;
+    	let t1;
+    	let a;
+    	let t2_value = normalizeNumber(/*job*/ ctx[18][/*prefs*/ ctx[2].cols.ASSIGNEE]) + "";
+    	let t2;
+    	let a_href_value;
+    	let t3;
+
+    	return {
+    		c() {
+    			br = element("br");
+    			t0 = space();
+    			em = element("em");
+    			b = element("b");
+    			t1 = text("Merk: jobben er akseptert av en annen. Sjekk med ");
+    			a = element("a");
+    			t2 = text(t2_value);
+    			t3 = text(" om du vurderer å hente.");
+    			attr(a, "href", a_href_value = 'tel:' + normalizeNumber(/*job*/ ctx[18][/*prefs*/ ctx[2].cols.ASSIGNEE]));
+    			attr(b, "class", "svelte-uo1le0");
+    		},
+    		m(target, anchor) {
+    			insert(target, br, anchor);
+    			insert(target, t0, anchor);
+    			insert(target, em, anchor);
+    			append(em, b);
+    			append(b, t1);
+    			append(b, a);
+    			append(a, t2);
+    			append(b, t3);
+    		},
+    		p(ctx, dirty) {
+    			if (dirty & /*$jobs, prefs*/ 12 && t2_value !== (t2_value = normalizeNumber(/*job*/ ctx[18][/*prefs*/ ctx[2].cols.ASSIGNEE]) + "")) set_data(t2, t2_value);
+
+    			if (dirty & /*$jobs, prefs*/ 12 && a_href_value !== (a_href_value = 'tel:' + normalizeNumber(/*job*/ ctx[18][/*prefs*/ ctx[2].cols.ASSIGNEE]))) {
+    				attr(a, "href", a_href_value);
+    			}
+    		},
+    		d(detaching) {
+    			if (detaching) detach(br);
+    			if (detaching) detach(t0);
+    			if (detaching) detach(em);
+    		}
+    	};
+    }
+
+    // (232:5) {:else}
+    function create_else_block(ctx) {
+    	let button;
+    	let mounted;
+    	let dispose;
+
+    	function click_handler_3(...args) {
+    		return /*click_handler_3*/ ctx[13](/*job*/ ctx[18], ...args);
+    	}
+
+    	return {
+    		c() {
+    			button = element("button");
+    			button.textContent = "Vi tar jobben!";
+    			attr(button, "class", "p8 br2 svelte-uo1le0");
+    		},
+    		m(target, anchor) {
+    			insert(target, button, anchor);
+
+    			if (!mounted) {
+    				dispose = listen(button, "click", click_handler_3);
+    				mounted = true;
+    			}
+    		},
+    		p(new_ctx, dirty) {
+    			ctx = new_ctx;
+    		},
+    		d(detaching) {
+    			if (detaching) detach(button);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+    }
+
+    // (213:5) {#if job[prefs.cols.ASSIGNEE] === params.henter && job[prefs.cols.STATUS] === 'Hentes'}
+    function create_if_block(ctx) {
+    	let button0;
+    	let t1;
+    	let button1;
+    	let t3;
+    	let button2;
+    	let mounted;
+    	let dispose;
+
+    	function click_handler(...args) {
+    		return /*click_handler*/ ctx[10](/*job*/ ctx[18], ...args);
+    	}
+
+    	function click_handler_1(...args) {
+    		return /*click_handler_1*/ ctx[11](/*job*/ ctx[18], ...args);
+    	}
+
+    	function click_handler_2(...args) {
+    		return /*click_handler_2*/ ctx[12](/*job*/ ctx[18], ...args);
+    	}
+
+    	return {
+    		c() {
+    			button0 = element("button");
+    			button0.textContent = "Ferdig hentet!";
+    			t1 = space();
+    			button1 = element("button");
+    			button1.textContent = "Vi rekker ikke å hente likevel";
+    			t3 = space();
+    			button2 = element("button");
+    			button2.textContent = "Jobben skal ikke hentes";
+    			attr(button0, "class", "p8 br2 svelte-uo1le0");
+    			attr(button1, "class", "p8 br2 svelte-uo1le0");
+    			attr(button2, "class", "p8 br2 svelte-uo1le0");
+    		},
+    		m(target, anchor) {
+    			insert(target, button0, anchor);
+    			insert(target, t1, anchor);
+    			insert(target, button1, anchor);
+    			insert(target, t3, anchor);
+    			insert(target, button2, anchor);
+
+    			if (!mounted) {
+    				dispose = [
+    					listen(button0, "click", click_handler),
+    					listen(button1, "click", click_handler_1),
+    					listen(button2, "click", click_handler_2)
+    				];
+
+    				mounted = true;
+    			}
+    		},
+    		p(new_ctx, dirty) {
+    			ctx = new_ctx;
+    		},
+    		d(detaching) {
+    			if (detaching) detach(button0);
+    			if (detaching) detach(t1);
+    			if (detaching) detach(button1);
+    			if (detaching) detach(t3);
+    			if (detaching) detach(button2);
+    			mounted = false;
+    			run_all(dispose);
+    		}
+    	};
+    }
+
+    // (157:1) {#each $jobs as job, i}
+    function create_each_block(ctx) {
+    	let t0;
+    	let section;
+    	let p0;
+    	let b0;
+    	let t2;
+    	let span0;
+    	let t3_value = /*job*/ ctx[18][/*prefs*/ ctx[2].cols.ADDRESS] + "";
+    	let t3;
+    	let t4;
+    	let a;
+    	let img;
+    	let img_src_value;
+    	let a_href_value;
+    	let t5;
+    	let span1;
+    	let t6_value = /*job*/ ctx[18][/*prefs*/ ctx[2].cols.JOBNR] + "";
+    	let t6;
+    	let t7;
+    	let p1;
+    	let b1;
+    	let t9;
+    	let span2;
+    	let renderperson;
+    	let t10;
+    	let p2;
+    	let b2;
+    	let t12;
+    	let span3;
+    	let rendertypes;
+    	let t13;
+    	let t14;
+    	let p3;
+    	let b3;
+    	let span4;
+    	let renderstars;
+    	let t16;
+    	let p4;
+    	let b4;
+    	let t18;
+    	let span5;
+    	let textarea;
+    	let t19;
+    	let p5;
+    	let b5;
+    	let span6;
+    	let em;
+    	let t21_value = /*job*/ ctx[18][/*prefs*/ ctx[2].cols.STATUS] + "";
+    	let t21;
+    	let t22;
+    	let br;
+    	let t23;
+    	let t24;
+    	let t25;
+    	let p6;
+    	let b6;
+    	let span7;
+    	let section_class_value;
+    	let current;
+    	let mounted;
+    	let dispose;
+    	let if_block0 = /*job*/ ctx[18].loading && create_if_block_6();
+
+    	renderperson = new RenderPerson({
+    			props: {
+    				name: /*job*/ ctx[18][/*prefs*/ ctx[2].cols.CONTACT_PERSON],
+    				number: /*job*/ ctx[18][/*prefs*/ ctx[2].cols.PHONE]
+    			}
+    		});
+
+    	rendertypes = new RenderTypes({
+    			props: {
+    				types: /*job*/ ctx[18][/*prefs*/ ctx[2].cols.TYPES],
+    				showAll: true
+    			}
+    		});
+
+    	let if_block1 = /*job*/ ctx[18][/*prefs*/ ctx[2].cols.DESC] && create_if_block_5(ctx);
+
+    	function qualityupdate_handler(...args) {
+    		return /*qualityupdate_handler*/ ctx[7](/*job*/ ctx[18], ...args);
+    	}
+
+    	renderstars = new RenderStars({
+    			props: {
+    				qualityRanking: /*job*/ ctx[18][/*prefs*/ ctx[2].cols.QUALITY]
+    			}
+    		});
+
+    	renderstars.$on("qualityupdate", qualityupdate_handler);
+
+    	function textarea_input_handler() {
+    		/*textarea_input_handler*/ ctx[8].call(textarea, /*each_value*/ ctx[19], /*i*/ ctx[20]);
+    	}
+
+    	function change_handler(...args) {
+    		return /*change_handler*/ ctx[9](/*job*/ ctx[18], ...args);
+    	}
+
+    	let if_block2 = /*job*/ ctx[18][/*prefs*/ ctx[2].cols.ASSIGNEE] && /*job*/ ctx[18][/*prefs*/ ctx[2].cols.ASSIGNEE] === /*params*/ ctx[0].henter && create_if_block_2(ctx);
+    	let if_block3 = /*job*/ ctx[18][/*prefs*/ ctx[2].cols.ASSIGNEE] && /*job*/ ctx[18][/*prefs*/ ctx[2].cols.ASSIGNEE] !== /*params*/ ctx[0].henter && create_if_block_1(ctx);
+
+    	function select_block_type_1(ctx, dirty) {
+    		if (/*job*/ ctx[18][/*prefs*/ ctx[2].cols.ASSIGNEE] === /*params*/ ctx[0].henter && /*job*/ ctx[18][/*prefs*/ ctx[2].cols.STATUS] === 'Hentes') return create_if_block;
+    		return create_else_block;
+    	}
+
+    	let current_block_type = select_block_type_1(ctx);
+    	let if_block4 = current_block_type(ctx);
+
+    	return {
+    		c() {
+    			if (if_block0) if_block0.c();
+    			t0 = space();
+    			section = element("section");
+    			p0 = element("p");
+    			b0 = element("b");
+    			b0.textContent = "Adresse:";
+    			t2 = space();
+    			span0 = element("span");
+    			t3 = text(t3_value);
+    			t4 = space();
+    			a = element("a");
+    			img = element("img");
+    			t5 = space();
+    			span1 = element("span");
+    			t6 = text(t6_value);
+    			t7 = space();
+    			p1 = element("p");
+    			b1 = element("b");
+    			b1.textContent = "Kontaktperson:";
+    			t9 = space();
+    			span2 = element("span");
+    			create_component(renderperson.$$.fragment);
+    			t10 = space();
+    			p2 = element("p");
+    			b2 = element("b");
+    			b2.textContent = "Typer:";
+    			t12 = space();
+    			span3 = element("span");
+    			create_component(rendertypes.$$.fragment);
+    			t13 = space();
+    			if (if_block1) if_block1.c();
+    			t14 = space();
+    			p3 = element("p");
+    			b3 = element("b");
+    			b3.textContent = "Estimert kvalitet: ";
+    			span4 = element("span");
+    			create_component(renderstars.$$.fragment);
+    			t16 = space();
+    			p4 = element("p");
+    			b4 = element("b");
+    			b4.textContent = "Administrators/henteres kommentarer:";
+    			t18 = space();
+    			span5 = element("span");
+    			textarea = element("textarea");
+    			t19 = space();
+    			p5 = element("p");
+    			b5 = element("b");
+    			b5.textContent = "Status: ";
+    			span6 = element("span");
+    			em = element("em");
+    			t21 = text(t21_value);
+    			t22 = space();
+    			br = element("br");
+    			t23 = space();
+    			if (if_block2) if_block2.c();
+    			t24 = space();
+    			if (if_block3) if_block3.c();
+    			t25 = space();
+    			p6 = element("p");
+    			b6 = element("b");
+    			b6.textContent = "Oppdater status:";
+    			span7 = element("span");
+    			if_block4.c();
+    			attr(b0, "class", "svelte-uo1le0");
+    			if (!src_url_equal(img.src, img_src_value = "/images/map.png")) attr(img, "src", img_src_value);
+    			attr(img, "alt", "adresse i kart");
+    			attr(img, "width", "24");
+    			attr(a, "href", a_href_value = gMapsDirection + /*job*/ ctx[18][/*prefs*/ ctx[2].cols.ADDRESS]);
+    			attr(a, "target", "_blank");
+    			attr(span0, "class", "svelte-uo1le0");
+    			attr(span1, "class", "jobnr svelte-uo1le0");
+    			attr(p0, "class", "svelte-uo1le0");
+    			attr(b1, "class", "svelte-uo1le0");
+    			attr(span2, "class", "svelte-uo1le0");
+    			attr(p1, "class", "svelte-uo1le0");
+    			attr(b2, "class", "svelte-uo1le0");
+    			attr(span3, "class", "svelte-uo1le0");
+    			attr(p2, "class", "hideondone svelte-uo1le0");
+    			attr(b3, "class", "svelte-uo1le0");
+    			attr(span4, "class", "svelte-uo1le0");
+    			attr(p3, "class", "hideondone svelte-uo1le0");
+    			attr(b4, "class", "svelte-uo1le0");
+    			attr(textarea, "class", "svelte-uo1le0");
+    			attr(span5, "class", "svelte-uo1le0");
+    			attr(p4, "class", "hideondone svelte-uo1le0");
+    			attr(b5, "class", "svelte-uo1le0");
+    			attr(span6, "class", "svelte-uo1le0");
+    			attr(p5, "class", "svelte-uo1le0");
+    			attr(b6, "class", "svelte-uo1le0");
+    			attr(span7, "class", "svelte-uo1le0");
+    			attr(p6, "class", "hideondone svelte-uo1le0");
+    			attr(section, "class", section_class_value = "" + (null_to_empty(/*job*/ ctx[18][/*prefs*/ ctx[2].cols.STATUS]) + " svelte-uo1le0"));
+    		},
+    		m(target, anchor) {
+    			if (if_block0) if_block0.m(target, anchor);
+    			insert(target, t0, anchor);
+    			insert(target, section, anchor);
+    			append(section, p0);
+    			append(p0, b0);
+    			append(p0, t2);
+    			append(p0, span0);
+    			append(span0, t3);
+    			append(span0, t4);
+    			append(span0, a);
+    			append(a, img);
+    			append(p0, t5);
+    			append(p0, span1);
+    			append(span1, t6);
+    			append(section, t7);
+    			append(section, p1);
+    			append(p1, b1);
+    			append(p1, t9);
+    			append(p1, span2);
+    			mount_component(renderperson, span2, null);
+    			append(section, t10);
+    			append(section, p2);
+    			append(p2, b2);
+    			append(p2, t12);
+    			append(p2, span3);
+    			mount_component(rendertypes, span3, null);
+    			append(section, t13);
+    			if (if_block1) if_block1.m(section, null);
+    			append(section, t14);
+    			append(section, p3);
+    			append(p3, b3);
+    			append(p3, span4);
+    			mount_component(renderstars, span4, null);
+    			append(section, t16);
+    			append(section, p4);
+    			append(p4, b4);
+    			append(p4, t18);
+    			append(p4, span5);
+    			append(span5, textarea);
+    			set_input_value(textarea, /*job*/ ctx[18][/*prefs*/ ctx[2].cols.ADMCOMMENT]);
+    			append(section, t19);
+    			append(section, p5);
+    			append(p5, b5);
+    			append(p5, span6);
+    			append(span6, em);
+    			append(em, t21);
+    			append(span6, t22);
+    			append(span6, br);
+    			append(span6, t23);
+    			if (if_block2) if_block2.m(span6, null);
+    			append(span6, t24);
+    			if (if_block3) if_block3.m(span6, null);
+    			append(section, t25);
+    			append(section, p6);
+    			append(p6, b6);
+    			append(p6, span7);
+    			if_block4.m(span7, null);
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = [
+    					listen(textarea, "input", textarea_input_handler),
+    					listen(textarea, "change", change_handler)
+    				];
+
+    				mounted = true;
+    			}
+    		},
+    		p(new_ctx, dirty) {
+    			ctx = new_ctx;
+
+    			if (/*job*/ ctx[18].loading) {
+    				if (if_block0) {
+    					if (dirty & /*$jobs*/ 8) {
+    						transition_in(if_block0, 1);
+    					}
+    				} else {
+    					if_block0 = create_if_block_6();
+    					if_block0.c();
+    					transition_in(if_block0, 1);
+    					if_block0.m(t0.parentNode, t0);
+    				}
+    			} else if (if_block0) {
+    				group_outros();
+
+    				transition_out(if_block0, 1, 1, () => {
+    					if_block0 = null;
+    				});
+
+    				check_outros();
+    			}
+
+    			if ((!current || dirty & /*$jobs, prefs*/ 12) && t3_value !== (t3_value = /*job*/ ctx[18][/*prefs*/ ctx[2].cols.ADDRESS] + "")) set_data(t3, t3_value);
+
+    			if (!current || dirty & /*$jobs, prefs*/ 12 && a_href_value !== (a_href_value = gMapsDirection + /*job*/ ctx[18][/*prefs*/ ctx[2].cols.ADDRESS])) {
+    				attr(a, "href", a_href_value);
+    			}
+
+    			if ((!current || dirty & /*$jobs, prefs*/ 12) && t6_value !== (t6_value = /*job*/ ctx[18][/*prefs*/ ctx[2].cols.JOBNR] + "")) set_data(t6, t6_value);
+    			const renderperson_changes = {};
+    			if (dirty & /*$jobs, prefs*/ 12) renderperson_changes.name = /*job*/ ctx[18][/*prefs*/ ctx[2].cols.CONTACT_PERSON];
+    			if (dirty & /*$jobs, prefs*/ 12) renderperson_changes.number = /*job*/ ctx[18][/*prefs*/ ctx[2].cols.PHONE];
+    			renderperson.$set(renderperson_changes);
+    			const rendertypes_changes = {};
+    			if (dirty & /*$jobs, prefs*/ 12) rendertypes_changes.types = /*job*/ ctx[18][/*prefs*/ ctx[2].cols.TYPES];
+    			rendertypes.$set(rendertypes_changes);
+
+    			if (/*job*/ ctx[18][/*prefs*/ ctx[2].cols.DESC]) {
+    				if (if_block1) {
+    					if_block1.p(ctx, dirty);
+    				} else {
+    					if_block1 = create_if_block_5(ctx);
+    					if_block1.c();
+    					if_block1.m(section, t14);
+    				}
+    			} else if (if_block1) {
+    				if_block1.d(1);
+    				if_block1 = null;
+    			}
+
+    			const renderstars_changes = {};
+    			if (dirty & /*$jobs, prefs*/ 12) renderstars_changes.qualityRanking = /*job*/ ctx[18][/*prefs*/ ctx[2].cols.QUALITY];
+    			renderstars.$set(renderstars_changes);
+
+    			if (dirty & /*$jobs, prefs*/ 12) {
+    				set_input_value(textarea, /*job*/ ctx[18][/*prefs*/ ctx[2].cols.ADMCOMMENT]);
+    			}
+
+    			if ((!current || dirty & /*$jobs, prefs*/ 12) && t21_value !== (t21_value = /*job*/ ctx[18][/*prefs*/ ctx[2].cols.STATUS] + "")) set_data(t21, t21_value);
+
+    			if (/*job*/ ctx[18][/*prefs*/ ctx[2].cols.ASSIGNEE] && /*job*/ ctx[18][/*prefs*/ ctx[2].cols.ASSIGNEE] === /*params*/ ctx[0].henter) {
+    				if (if_block2) {
+    					if_block2.p(ctx, dirty);
+
+    					if (dirty & /*$jobs, prefs, params*/ 13) {
+    						transition_in(if_block2, 1);
+    					}
+    				} else {
+    					if_block2 = create_if_block_2(ctx);
+    					if_block2.c();
+    					transition_in(if_block2, 1);
+    					if_block2.m(span6, t24);
+    				}
+    			} else if (if_block2) {
+    				group_outros();
+
+    				transition_out(if_block2, 1, 1, () => {
+    					if_block2 = null;
+    				});
+
+    				check_outros();
+    			}
+
+    			if (/*job*/ ctx[18][/*prefs*/ ctx[2].cols.ASSIGNEE] && /*job*/ ctx[18][/*prefs*/ ctx[2].cols.ASSIGNEE] !== /*params*/ ctx[0].henter) {
+    				if (if_block3) {
+    					if_block3.p(ctx, dirty);
+    				} else {
+    					if_block3 = create_if_block_1(ctx);
+    					if_block3.c();
+    					if_block3.m(span6, null);
+    				}
+    			} else if (if_block3) {
+    				if_block3.d(1);
+    				if_block3 = null;
+    			}
+
+    			if (current_block_type === (current_block_type = select_block_type_1(ctx)) && if_block4) {
+    				if_block4.p(ctx, dirty);
+    			} else {
+    				if_block4.d(1);
+    				if_block4 = current_block_type(ctx);
+
+    				if (if_block4) {
+    					if_block4.c();
+    					if_block4.m(span7, null);
+    				}
+    			}
+
+    			if (!current || dirty & /*$jobs, prefs*/ 12 && section_class_value !== (section_class_value = "" + (null_to_empty(/*job*/ ctx[18][/*prefs*/ ctx[2].cols.STATUS]) + " svelte-uo1le0"))) {
+    				attr(section, "class", section_class_value);
+    			}
+    		},
+    		i(local) {
+    			if (current) return;
+    			transition_in(if_block0);
+    			transition_in(renderperson.$$.fragment, local);
+    			transition_in(rendertypes.$$.fragment, local);
+    			transition_in(renderstars.$$.fragment, local);
+    			transition_in(if_block2);
+    			current = true;
+    		},
+    		o(local) {
+    			transition_out(if_block0);
+    			transition_out(renderperson.$$.fragment, local);
+    			transition_out(rendertypes.$$.fragment, local);
+    			transition_out(renderstars.$$.fragment, local);
+    			transition_out(if_block2);
+    			current = false;
+    		},
+    		d(detaching) {
+    			if (if_block0) if_block0.d(detaching);
+    			if (detaching) detach(t0);
+    			if (detaching) detach(section);
+    			destroy_component(renderperson);
+    			destroy_component(rendertypes);
+    			if (if_block1) if_block1.d();
+    			destroy_component(renderstars);
+    			if (if_block2) if_block2.d();
+    			if (if_block3) if_block3.d();
+    			if_block4.d();
+    			mounted = false;
+    			run_all(dispose);
+    		}
+    	};
+    }
+
+    // (148:16)   <div class="loading"><LoadingIcon /></div> {:then data}
+    function create_pending_block(ctx) {
+    	let div;
+    	let loadingicon;
+    	let current;
+    	loadingicon = new LoadingIcon({});
+
+    	return {
+    		c() {
+    			div = element("div");
+    			create_component(loadingicon.$$.fragment);
+    			attr(div, "class", "loading svelte-uo1le0");
+    		},
+    		m(target, anchor) {
+    			insert(target, div, anchor);
+    			mount_component(loadingicon, div, null);
+    			current = true;
+    		},
+    		p: noop,
+    		i(local) {
+    			if (current) return;
+    			transition_in(loadingicon.$$.fragment, local);
+    			current = true;
+    		},
+    		o(local) {
+    			transition_out(loadingicon.$$.fragment, local);
+    			current = false;
+    		},
+    		d(detaching) {
+    			if (detaching) detach(div);
+    			destroy_component(loadingicon);
+    		}
+    	};
+    }
+
+    function create_fragment(ctx) {
+    	let await_block_anchor;
+    	let promise_1;
+    	let current;
+
+    	let info = {
+    		ctx,
+    		current: null,
+    		token: null,
+    		hasCatch: true,
+    		pending: create_pending_block,
+    		then: create_then_block,
+    		catch: create_catch_block,
+    		value: 17,
+    		error: 21,
+    		blocks: [,,,]
+    	};
+
+    	handle_promise(promise_1 = /*promise*/ ctx[1], info);
+
+    	return {
+    		c() {
+    			await_block_anchor = empty();
+    			info.block.c();
+    		},
+    		m(target, anchor) {
+    			insert(target, await_block_anchor, anchor);
+    			info.block.m(target, info.anchor = anchor);
+    			info.mount = () => await_block_anchor.parentNode;
+    			info.anchor = await_block_anchor;
+    			current = true;
+    		},
+    		p(new_ctx, [dirty]) {
+    			ctx = new_ctx;
+    			info.ctx = ctx;
+
+    			if (dirty & /*promise*/ 2 && promise_1 !== (promise_1 = /*promise*/ ctx[1]) && handle_promise(promise_1, info)) ; else {
+    				update_await_block_branch(info, ctx, dirty);
+    			}
+    		},
+    		i(local) {
+    			if (current) return;
+    			transition_in(info.block);
+    			current = true;
+    		},
+    		o(local) {
+    			for (let i = 0; i < 3; i += 1) {
+    				const block = info.blocks[i];
+    				transition_out(block);
+    			}
+
+    			current = false;
+    		},
+    		d(detaching) {
+    			if (detaching) detach(await_block_anchor);
+    			info.block.d(detaching);
+    			info.token = null;
+    			info = null;
+    		}
+    	};
+    }
+
+    function instance($$self, $$props, $$invalidate) {
+    	let $jobs;
+    	component_subscribe($$self, jobs, $$value => $$invalidate(3, $jobs = $$value));
+    	let params, promise;
+    	let prefs;
+
+    	if (typeof location !== "undefined") {
+    		params = location.search.substr(1).split(/&/g).map(item => {
+    			let parts = item.split(/=/);
+    			return { [parts[0]]: decodeURIComponent(parts[1]) };
+    		}).reduce((all, now) => Object.assign(all, now), {});
+    	}
+
+    	if (params && (params.token && params.jobb)) {
+    		promise = getData(params.token, params.jobb);
+    	}
+
+    	function normalizeJobList(jobs) {
+    		jobs = jobs.sort((a, b) => a[prefs.cols.ADDRESS] < b[prefs.cols.ADDRESS] ? -1 : 1);
+
+    		jobs.forEach(job => {
+    			job.oldStatus = job[prefs.cols.STATUS] === 'Hentes'
+    			? null
+    			: job[prefs.cols.STATUS];
+    		});
+
+    		return jobs;
+    	}
+
+    	async function getData(token, ids) {
+    		let res = await fetch(`${apiUrl}/prefs`);
+    		$$invalidate(2, prefs = await res.json());
+    		res = await fetch(`${apiUrl}/job/${encodeURIComponent(ids)}?token=${encodeURIComponent(token)}`);
+    		let json = await res.json();
+
+    		if (res.ok) {
+    			json = normalizeJobList(json);
+    			jobs.set(json);
+    		} else {
+    			let text = await res.text();
+    			console.log(text);
+    			throw new Error('Ingen tilgang');
+    		}
+    	}
+
+    	async function getDataByAssignee(token, number) {
+    		const res = await fetch(`${apiUrl}/byperson/${encodeURIComponent(number)}?token=${encodeURIComponent(token)}`);
+    		let json = await res.json();
+
+    		if (res.ok) {
+    			json = normalizeJobList(json);
+    			jobs.set(json);
+    		} else {
+    			let text = await res.text();
+    			console.log(text);
+    			throw new Error('Ingen tilgang');
+    		}
+    	}
+
+    	function update(jobnr, detail) {
+    		return changeJobDetails(jobnr, prefs.cols, detail, params.token).catch(err => alert(err));
+    	}
+
+    	jobs.subscribe(data => {
+    		console.log('updated data! ', data);
+    	});
+
+    	const func = job => job[prefs.cols.ADDRESS];
+    	const qualityupdate_handler = (job, e) => update(job[prefs.cols.JOBNR], e.detail);
+
+    	function textarea_input_handler(each_value, i) {
+    		each_value[i][prefs.cols.ADMCOMMENT] = this.value;
+    		jobs.set($jobs);
+    	}
+
+    	const change_handler = (job, e) => update(job[prefs.cols.JOBNR], { [prefs.cols.ADMCOMMENT]: e.target.value });
+
+    	const click_handler = (job, e) => update(job[prefs.cols.JOBNR], {
+    		[prefs.cols.STATUS]: 'Hentet',
+    		[prefs.cols.ASSIGNEE]: params.henter
+    	});
+
+    	const click_handler_1 = (job, e) => update(job[prefs.cols.JOBNR], {
+    		[prefs.cols.STATUS]: job.oldStatus || 'Ny',
+    		[prefs.cols.ASSIGNEE]: ''
+    	});
+
+    	const click_handler_2 = (job, e) => update(job[prefs.cols.JOBNR], {
+    		[prefs.cols.STATUS]: 'Hentes ikke',
+    		[prefs.cols.ASSIGNEE]: ''
+    	});
+
+    	const click_handler_3 = (job, e) => update(job[prefs.cols.JOBNR], {
+    		[prefs.cols.STATUS]: 'Hentes',
+    		[prefs.cols.ASSIGNEE]: params.henter
+    	});
+
+    	const click_handler_4 = e => $$invalidate(1, promise = getDataByAssignee(params.token, params.henter));
+
+    	return [
+    		params,
+    		promise,
+    		prefs,
+    		$jobs,
+    		getDataByAssignee,
+    		update,
+    		func,
+    		qualityupdate_handler,
+    		textarea_input_handler,
+    		change_handler,
+    		click_handler,
+    		click_handler_1,
+    		click_handler_2,
+    		click_handler_3,
+    		click_handler_4
+    	];
+    }
+
+    class ShowSingleJob extends SvelteComponent {
+    	constructor(options) {
+    		super();
+    		init(this, options, instance, create_fragment, safe_not_equal, {}, add_css);
+    	}
+    }
+
+    var app;
+    // basic "routing" for load-once-never-leave pages
+    if (typeof location !== 'undefined') {
+    	let chosen = {
+    		'/': App,
+    		'/henting/': ShowSingleJob
+    	}[location.pathname];
+    	app = new chosen({
+    		target: document.body
+    	});
+    } else {
+    	app = new App({
+    		target: document.body
+    	});
+    }
+
+    var app$1 = app;
+
+    return app$1;
+
+})();
 //# sourceMappingURL=bundle.js.map
