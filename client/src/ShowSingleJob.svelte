@@ -99,7 +99,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 		section {width: 60%; margin-left: 20%}
 		section p b:first-child {width: 15%;}
 		section p b, section p address, section p span, section p i {
-			border: 16px solid transparent
+			border: 16px solid transparent;
 		}
 
 	}
@@ -251,4 +251,3 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 {:catch error}
 	<p style="color: red">{error.message}</p>
 {/await}
-
