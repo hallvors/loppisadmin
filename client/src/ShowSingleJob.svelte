@@ -28,7 +28,20 @@
 
 	function normalizeJobList(jobs) {
 		jobs = jobs.sort(
-			(a, b) => a[prefs.cols.ADDRESS] < b[prefs.cols.ADDRESS] ? -1 : 1
+			(a, b) => {
+				if (a[prefs.cols.AREA] < b[prefs.cols.AREA]) {
+					return -1;
+				} else if (a[prefs.cols.AREA] > b[prefs.cols.AREA]) {
+					return 1;
+				} else {
+					if (a[prefs.cols.ADDRESS] < b[prefs.cols.ADDRESS]) {
+						return -1;
+					} else if (a[prefs.cols.ADDRESS] > b[prefs.cols.ADDRESS]) {
+						return 1;
+					}
+				}
+				return 0;
+			}
 		);
 		jobs.forEach(job => {
 			job.oldStatus = job[prefs.cols.STATUS] === 'Hentes' ? null : job[prefs.cols.STATUS];
