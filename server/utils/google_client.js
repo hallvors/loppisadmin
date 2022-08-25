@@ -51,22 +51,33 @@ function getFullList(force) {
 			let promises = [];
 			let processed = result.map((row, idx) => {
 				const out = row._rawData;
+				const rowChanged = false;
 				if (!out[env.cols.JOBNR]) {
 					row[headers[env.cols.JOBNR]] = out[env.cols.JOBNR] =
 						idx + 1;
-					promises.push(row.save());
+					rowChanged = true;
 				}
 				if (!out[env.cols.AREA]) {
-					let area = getAreaName(out[env.cols.ADDRESS]);
+					const area = getAreaName(out[env.cols.ADDRESS]);
 					if (area) {
 						row[headers[env.cols.AREA]] = out[env.cols.AREA] = area;
-						promises.push(row.save());
+						rowChanged = true;
 					}
+				}
+				// TODO: 2022-08-24 saving this did not work for some reason
+				if (!out[env.cols.COORDS]) {
+					const coords = getCoords(out[env.cols.ADDRESS]);
+					if (coords) {
+						out[env.cols.COORDS] = coords;
+					}
+				}
+				if (rowChanged) {
+					promises.push(row.save());
 				}
 				return out;
 			});
 			return Promise.resolve(promises).then(() => {
-				return processed;
+				return Promise.all(processed);
 			});
 		});
 }
@@ -105,7 +116,20 @@ function getAreaName(address) {
 	let match;
 	if (match = address.match(/^[^0-9]+\d+/)) {
 		if (env.osloData[match[0].toLowerCase()]) {
-			return env.osloData[match[0].toLowerCase()];
+			return env.osloData[match[0].toLowerCase()].area;
+		}
+	}
+	return '';
+}
+
+function getCoords(address) {
+	let match;
+	if (match = address.match(/^[^0-9]+\d+/)) {
+		if (env.osloData[match[0].toLowerCase()]) {
+			return [
+				env.osloData[match[0].toLowerCase()].lat,
+				env.osloData[match[0].toLowerCase()].lon
+			].join(',')
 		}
 	}
 	return '';

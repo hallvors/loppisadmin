@@ -1,7 +1,7 @@
 <script>
 	import { fade } from 'svelte/transition';
 	import {apiUrl, baseUrl, gMapsDirection} from './config.js';
-	import {jobs} from './store.js';
+	import {jobs, jobsData, cols} from './store.js';
 	import LoadingIcon from './components/LoadingIcon.svelte';
 	import RenderDays from './components/RenderDays.svelte';
 	import RenderTypes from './components/RenderTypes.svelte';
@@ -26,37 +26,22 @@
 		promise = getData(params.token, params.jobb)
 	}
 
-	function normalizeJobList(jobs) {
-		jobs = jobs.sort(
-			(a, b) => {
-				if (a[prefs.cols.AREA] < b[prefs.cols.AREA]) {
-					return -1;
-				} else if (a[prefs.cols.AREA] > b[prefs.cols.AREA]) {
-					return 1;
-				} else {
-					if (a[prefs.cols.ADDRESS] < b[prefs.cols.ADDRESS]) {
-						return -1;
-					} else if (a[prefs.cols.ADDRESS] > b[prefs.cols.ADDRESS]) {
-						return 1;
-					}
-				}
-				return 0;
-			}
-		);
-		jobs.forEach(job => {
+	function normalizeJobList(jsonFromServer) {
+		jsonFromServer.forEach(job => {
 			job.oldStatus = job[prefs.cols.STATUS] === 'Hentes' ? null : job[prefs.cols.STATUS];
 		});
-		return jobs;
+		return jsonFromServer;
 	}
 
 	async function getData(token, ids) {
 		let res = await fetch(`${apiUrl}/prefs`)
 		prefs = await res.json();
+		cols.set(prefs.cols);
 		res = await fetch(`${apiUrl}/job/${encodeURIComponent(ids)}?token=${encodeURIComponent(token)}`);
 		let json = await res.json();
 		if (res.ok) {
 			json = normalizeJobList(json);
-			jobs.set(json);
+			jobsData.set(json);
 		} else {
 			let text = await res.text();
 			console.log(text)
@@ -68,7 +53,7 @@
 		let json = await res.json();
 		if (res.ok) {
 			json = normalizeJobList(json);
-			jobs.set(json);
+			jobsData.set(json);
 		} else {
 			let text = await res.text();
 			console.log(text)
@@ -81,7 +66,7 @@
 		.catch(err => alert(err));
 	}
 
-jobs.subscribe(data => {console.log('updated data! ', data)})
+jobsData.subscribe(data => {console.log('updated data! ', data)})
 </script>
 <style>
 	.loading {

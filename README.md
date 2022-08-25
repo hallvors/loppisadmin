@@ -26,7 +26,7 @@ _Merk også at regnearket med data i må deles med sørvis-kontoens epost-adress
 
 ## Regnearket
 
-_Merk: oppsettet forventer datamodellen Google spreadsheet lager basert på Ila og Bolteløkka skolekorps' skjema for å melde inn loppehenting, pluss følgende ekstra overskrifter som må legges til manuelt: ```status	kvalitet	område	hentesav	admkom	jobnr```._
+_Merk: oppsettet forventer datamodellen Google spreadsheet lager basert på Ila og Bolteløkka skolekorps' skjema for å melde inn loppehenting, pluss følgende ekstra overskrifter som må legges til manuelt: ```status	kvalitet	område	hentesav	admkom	jobnr	koordinater```._
 
 Feltet jobnr brukes internt som en stabil ID for en spesifikk jobb. Det settes til radnummer dersom det ikke er satt manuelt.
 
@@ -34,4 +34,4 @@ Merk at innstillinger i `config/defaults.json` bestemmer hvordan kolonner i regn
 
 ## Lokal utvikling
 
-Det mest praktiske for lokal utvikling er å kjøre `yarn run autobuild` i en terminal og `node server.js` i en annen. Det kreves selvfølgelig korrekte innstillinger i `config/overrides.json` for å laste data fra et Google docs regneark.
+Det mest praktiske for lokal utvikling er å kjøre `yarn run autobuild` i en terminal og `node index.js` i en annen. Det kreves selvfølgelig korrekte innstillinger i `config/overrides.json` for å laste data fra et Google docs regneark.

@@ -39,12 +39,18 @@ router.get('/login', (req, res, next) => {
 	res.status(401);
 	throw new Error('not allowed');
 });
-// Note: no access restriction for /prefs, caveat emptor
+// Note that /prefs is available without authentication
+// The Google maps token is not very secret, but don't
+// add anything private or important here..
 router.get('/prefs', (req, res, next) => {
-	res.json({
+	const prefs ={
 		cols: env.cols,
 		types: env.nconf.get('types'),
-	});
+	};
+	if (env.nconf.get('google:mapsToken')) {
+		prefs.googleMapsToken = env.nconf.get('google:mapsToken');
+	}
+	res.json(prefs);
 });
 
 // Require valid session for all end points defined below

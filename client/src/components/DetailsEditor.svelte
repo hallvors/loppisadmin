@@ -104,7 +104,7 @@ function update() {
 					name="size"
 					bind:group={size}
 					value={SIZE_SMALL}>
-						<img src="/images/boxes.png" alt="liten bil" width="36">
+						<img src="/images/box.png" alt="kasser" width="36">
 				</label>
 			</span>
 		</p>

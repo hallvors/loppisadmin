@@ -25,7 +25,7 @@ export function filter(
 	job,
 	cols
 ) {
-	if (hideDoneJobs && doneStates.indexOf(job[cols.STATUS]) > -1) {
+	if (hideDoneJobs && doneStates.includes(job[cols.STATUS])) {
 		return false;
 	}
 	// all the "defaults" set - noop
@@ -33,7 +33,6 @@ export function filter(
 		sizePref.smallActive &&
 		sizePref.mediumActive &&
 		sizePref.bigActive &&
-		dayPref.monActive &&
 		dayPref.tueActive &&
 		dayPref.wedActive &&
 		dayPref.thuActive &&
@@ -124,3 +123,37 @@ export function filter(
 			.indexOf(true) > -1
 	);
 }
+
+export function sortByArea(cols){
+	return function(a, b) {
+	if (a[cols.AREA] < b[cols.AREA]) {
+		return -1;
+	} else if (a[cols.AREA] > b[cols.AREA]) {
+		return 1;
+	} else {
+		if (a[cols.ADDRESS] < b[cols.ADDRESS]) {
+			return -1;
+		} else if (a[cols.ADDRESS] > b[cols.ADDRESS]) {
+			return 1;
+		}
+	}
+	return 0;
+}}
+
+export function sortByStreet(cols){
+	return function(a, b) {
+	if (!a[cols.AREA]) {
+		// needs fixing, show at top of list
+		return -1;
+	}
+	if (!b[cols.AREA]) {
+		// needs fixing, show at top of list
+		return 1;
+	}
+	if (a[cols.ADDRESS] < b[cols.ADDRESS]) {
+		return -1;
+	} else if (a[cols.ADDRESS] > b[cols.ADDRESS]) {
+		return 1;
+	}
+	return 0;
+}}

@@ -1,10 +1,10 @@
 import {apiUrl} from './config.js';
-import {jobs} from './store.js';
+import {jobsData} from './store.js';
 
 const FROM = '4741238002';
 
 export function changeJobDetails(jobnr, cols, newState, token) {
-	jobs.update(jobs => {
+	jobsData.update(jobs => {
 		let theJob = jobs.find(job => job[cols.JOBNR] === jobnr)
 		// TODO: job used to be object, is now array. This hack should fail..?
 		// weirdly it works.. The flexibility of JS and Svelte is amazing
@@ -26,7 +26,7 @@ export function changeJobDetails(jobnr, cols, newState, token) {
 	.then(response => response.json())
 	.then(data => {
 		console.log(data)
-		jobs.update(jobs => {
+		jobsData.update(jobs => {
 			let theJob = jobs.find(job => job[cols.JOBNR] === jobnr);
 			theJob.loading = false;
 			return jobs;

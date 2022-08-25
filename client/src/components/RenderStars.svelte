@@ -6,7 +6,7 @@
 	let img1 = '/images/star-empty.png';
 	let img2 = '/images/star-full.png';
 	let stars = [];
-	if (qualityRanking === '' || qualityRanking === undefined) {
+	if (qualityRanking === '' || qualityRanking === undefined || isNaN(qualityRanking)) {
 		stars = [img1, img1, img1];
 	} else {
 		for(let i=0; i <= qualityRanking; i++) {
@@ -40,9 +40,9 @@
 </style>
 <div>
 {#each stars as star, index}
-	<img 
-		src={star} 
-		alt="poeng: {qualityRanking}" 
+	<img
+		src={star}
+		alt="poeng: {qualityRanking}"
 		data-index={index}
 		on:click={handleClick}
 	>

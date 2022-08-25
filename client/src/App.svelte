@@ -1,6 +1,4 @@
-
 <script>
-	import { fade } from 'svelte/transition';
 	import {apiUrl, baseUrl, gMapsDirection} from './config.js';
 	import RenderJob from './components/RenderJob.svelte';
 	import Modal from './components/Modal.svelte';
@@ -11,49 +9,65 @@
 	import LoadingIcon from './components/LoadingIcon.svelte';
 	import Menu from './components/Menu.svelte';
 	import {sendSms, changeJobDetails} from './api.js';
-	import {drivers, jobs} from './store.js';
-	import {getIdFromUrl, filter} from './utils/helpers.js';
+	import {drivers, cols, jobs, jobsData, sortBy, selectedIds,
+		freeTextFilter,
+		smallActive,
+		mediumActive,
+		bigActive,
+		tueActive,
+		wedActive,
+		thuActive,
+		dayFilterExclusive,
+		typeFilter,
+		qualityFilter,
+		hideDoneJobs,
+		bounds,
+		showMap,
+	} from './store.js';
+	import {getIdFromUrl, filter } from './utils/helpers.js';
+    import JobsMap from './components/JobsMap.svelte';
+	import { onMount } from 'svelte';
+	export let googleMapsLoaded = false; // set in main.js
 	let smsEditorType = '';
 	let showDriverEditor = false;
 	let showStateEditor = false;
 	let showMenu = false;
 	let showConfigMenu = false;
 	let promise = getData();
-	let freeTextFilter = '';
-	let bigActive = true;
-	let mediumActive = true;
-	let smallActive = true;
-	let qualityFilter = '';
-	let monActive = true;
-	let tueActive = true;
-	let wedActive = true;
-	let thuActive = true;
-	let dayFilterExclusive = false;
-	let typeFilter = '';
 	let prefs;
-	let cols;
-	let selectedItems = [];
 	// SMS editor vars
 	let possibleRecipients;
 	let recipients = [];
 	let message = '';
-	let hideDoneJobs = true;
 	let menuX = 0;
 	let menuY = 0;
 	let helperToken;
 	let tempMsgQueue = [];
 
+	onMount(() => {
+		if (typeof window.google !== 'undefined') {
+			return;
+		}
+		function tryLoadingGmaps() {
+			if (typeof prefs === 'undefined' || !($jobs && $jobs.length)) {
+				return setTimeout(tryLoadingGmaps, 90);
+			}
+			const gmapsScript = document.createElement('script');
+			gmapsScript.src = "https://maps.googleapis.com/maps/api/js?key=" + prefs.googleMapsToken + "&callback=initGMaps";
+			document.documentElement.appendChild(gmapsScript);
+		}
+		tryLoadingGmaps();
+	})
+
 	async function getData(forceReload) {
 		let res = await fetch(`${apiUrl}/prefs`);
 		prefs = await res.json();
-		cols = prefs.cols;
+		cols.set(prefs.cols);
 		res = await fetch(`${apiUrl}/jobs` + (forceReload ? '?refresh=1' : ''));
+
 		if (res.ok) {
 			let json = await res.json();
-			json.sort(
-				(a, b) => a[cols.ADDRESS] < b[cols.ADDRESS] ? -1 : 1
-			);
-			jobs.set(json);
+			jobsData.set(json);
 			return true;
 		} else {
 			let text = await res.text();
@@ -73,13 +87,13 @@
 		promise = getData(true);
 	}
 
-	function updatedSelectedList(event) {
+	function updateSelectedList(event) {
 		let detail = event.detail; // {jobnr: 1, selected: true }
-		if (detail.selected && selectedItems.indexOf(detail.jobnr) === -1) {
-			selectedItems = [...selectedItems, detail.jobnr];
-		} else if (!detail.selected && selectedItems.indexOf(detail.jobnr) > -1) {
-			selectedItems.splice(selectedItems.indexOf(detail.jobnr), 1);
-			selectedItems = selectedItems;
+		if (detail.selected && $selectedIds.indexOf(detail.jobnr) === -1) {
+			selectedIds.set([...$selectedIds, detail.jobnr]);
+		} else if (!detail.selected && $selectedIds.indexOf(detail.jobnr) > -1) {
+			$selectedIds.splice($selectedIds.indexOf(detail.jobnr), 1);
+			selectedIds.set($selectedIds);
 		}
 	}
 	let menuElm;
@@ -94,10 +108,10 @@
 				jobNr = elm.getAttribute('data-id');
 				elm = elm.parentNode;
 			}
-			if (jobNr && selectedItems.indexOf(jobNr) === -1) {
-				updatedSelectedList({detail: {selected: true, jobnr: jobNr}});
+			if (jobNr && $selectedIds.indexOf(jobNr) === -1) {
+				updateSelectedList({detail: {selected: true, jobnr: jobNr}});
 			}
-			if (jobNr || selectedItems.length) {
+			if (jobNr || $selectedIds.length) {
 				showMenu = true;
 			}
 		}
@@ -144,50 +158,43 @@
 
 	function initSms(type) {
 		showMenu = false;
-		let items = selectedItems
-			.map(item => $jobs.find(job => job[cols.JOBNR] === item))
-			.filter(item => filter(freeTextFilter, {smallActive, mediumActive, bigActive},
-				{monActive, tueActive, wedActive, thuActive, dayFilterExclusive},
-				typeFilter, qualityFilter, hideDoneJobs, drivers, item, cols));
+		let items = $selectedIds
+			.map(item => $jobs.find(job => job[$cols.JOBNR] === item));
 		if (type === 'donor') {
 			possibleRecipients = items.map(item => ({
-				name: item[cols.CONTACT_PERSON], number: item[cols.PHONE],
-				address: item[cols.ADDRESS],
+				name: item[$cols.CONTACT_PERSON], number: item[$cols.PHONE],
+				address: item[$cols.ADDRESS],
 			}));
-			recipients = items.map(item => item[cols.PHONE]);
+			recipients = items.map(item => item[$cols.PHONE]);
 			smsEditorType = type;
 		} else {
 			possibleRecipients = $drivers;
 			message = 'Hei, foreslår at du henter følgende jobb(er): \n\n' +
-				items.map(item => `${item[cols.ADDRESS]}
-${item[cols.CONTACT_PERSON]}, ${item[cols.PHONE]}`)
+				items.map(item => `${item[$cols.ADDRESS]}
+${item[$cols.CONTACT_PERSON]}, ${item[$cols.PHONE]}`)
 				.join('\n\n');
 			message += `
 
 Merk jobber som hentet her etterpå:
 ${baseUrl}/henting/?jobb=${
-	encodeURIComponent(items.map(item => getIdFromUrl(item[cols.JOBNR])).join(','))
+	encodeURIComponent(items.map(item => getIdFromUrl(item[$cols.JOBNR])).join(','))
 }&token=${encodeURIComponent(helperToken)}&henter={number}`;
 			smsEditorType = type;
 		}
 	}
 
 	function selectAllShown() {
-		selectedItems.length = 0;
+		const newList = [];
 		$jobs.forEach(item => {
-			if (filter(freeTextFilter, {smallActive, mediumActive, bigActive},
-				{monActive, tueActive, wedActive, thuActive, dayFilterExclusive},
-				typeFilter, qualityFilter, hideDoneJobs, drivers, item, cols)
-			) {
-				selectedItems.push(item[cols.JOBNR]);
-			}
+			newList.push(item[$cols.JOBNR]);
 		});
+		selectedIds.set(newList);
 	}
 
 	function openMap() {
-		let str = gMapsDirection + (selectedItems.map(item => {
-			let data = $jobs.find(job => job[cols.JOBNR] === item);
-			return data[cols.ADDRESS];
+		let str = gMapsDirection + ($selectedIds.map(item => {
+			let data = $jobs.find(job => job[$cols.JOBNR] === item);
+			return data[$cols.ADDRESS];
 		})
 		.join('/'));
 		window.open(str);
@@ -237,7 +244,8 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 		cursor: pointer;
 	}
 	.smallActive, .mediumActive, .bigActive {
-		border: 1px solid black;
+		border: 2px inset black;
+		border-radius: 10px;
 	}
 	.smallActive, .mediumActive, .bigActive, li.monActive, li.tueActive, li.wedActive, li.thuActive {
 		border-color: black;
@@ -290,32 +298,51 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 	top: 45%;
 	bottom: 50%;
 }
-
+.gmap {
+	position: fixed;
+	bottom: 0;
+	height: 45vh;
+	width: 100%;
+}
+body {
+	margin-bottom: 45vh;
+}
+.mapButton {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	font-size: larger;
+	padding: .5em;
+}
 </style>
 
+<div>
 {#await promise}
-	<div class="dataloading"><LoadingIcon /></div>
-	<p style="text-align: center;">...henter data</p>
+  <div>
+	<div class="dataloading"><LoadingIcon />	<p style="text-align: center;">...henter data</p>
+</div>
+  </div>
 {:then data}
 	<table class="main">
 		<tr>
-			<th colspan="2"><input type="search" bind:value={freeTextFilter} placeholder="Filtrer"></th>
+			<th colspan="2"><input type="search" bind:value={$freeTextFilter} placeholder="Filtrer"></th>
 			<th>
 				<img src="/images/bigcar.png" alt="stor bil" height="22"
-					class:bigActive
-					on:click="{e => bigActive = !bigActive}"
+					class={$bigActive ? 'bigActive' : ''}
+					on:click="{e => bigActive.set(!$bigActive)}"
 					tabindex="0">
 				<img src="/images/smallcar.png" alt="stasjonsvogn" height="22"
-					class:mediumActive
-					on:click="{e => mediumActive = !mediumActive}"
+					class={$mediumActive ? 'mediumActive' : ''}
+					on:click="{e => mediumActive.set(!$mediumActive)}"
 					tabindex="0">
-				<img src="/images/boxes.png" alt="1-3 bokser" height="22"
-					class:smallActive
-					on:click="{e => smallActive = !smallActive}"
+				<img src="/images/box.png" alt="1-3 bokser" height="22"
+					class={$smallActive ? 'smallActive' : ''}
+					on:click="{e => smallActive.set(!$smallActive)}"
 					tabindex="0">
 			</th>
 			<th>
-				<select bind:value={typeFilter}>
+				<select bind:value={$typeFilter} on:change={e => typeFilter.set(e.target.value)}>
 					<option value="">-</option>
 					{#each prefs.types as theType}
 						<option>{theType}</option>
@@ -323,7 +350,9 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 				</select>
 			</th>
 			<th>
-				<select bind:value={qualityFilter}>
+				<select bind:value={$qualityFilter} on:change={e => {
+						qualityFilter.set(e.target.value)}
+					}>
 					<option value="">-</option>
 					<option value="0">&#9733;</option>
 					<option value="1">&#9733;&#9733;</option>
@@ -333,29 +362,31 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 			<th>
 				<ol class="days">
 					<!--<li class:monActive on:click="{e => monActive = !monActive}">Ma</li>-->
-					<li class:tueActive on:click="{e => tueActive = !tueActive}" tabindex="0">Ti</li>
-					<li class:wedActive on:click="{e => wedActive = !wedActive}" tabindex="0">On</li>
-					<li class:thuActive on:click="{e => thuActive = !thuActive}" tabindex="0">To</li>
+					<li class={$tueActive ? 'tueActive' : ''} on:click="{e => tueActive.set(!$tueActive)}" tabindex="0">Ti</li>
+					<li class={$wedActive ? 'wedActive' : ''} on:click="{e => wedActive.set(!$wedActive)}" tabindex="0">On</li>
+					<li class={$thuActive ? 'thuActive' : ''} on:click="{e => thuActive.set(!$thuActive)}" tabindex="0">To</li>
 				</ol>
 			</th>
 			<th>
-				<label><input type="checkbox" bind:checked={dayFilterExclusive}>Bare valgte dager</label>
-				<br><label><input type="checkbox" bind:checked={hideDoneJobs}>Skjul ferdige</label>
+				<label><input type="checkbox" bind:checked={$dayFilterExclusive} on:change={e=>dayFilterExclusive.set(e.target.checked)}>Bare valgte dager</label>
+				<br><label><input type="checkbox" bind:checked={$hideDoneJobs}  on:change={e=>hideDoneJobs.set(e.target.checked)}>Skjul ferdige</label>
+				<br><label>Sortering:
+					<select bind:value={$sortBy} on:change={e => sortBy.set(e.target.value)}>
+					<option value="street">Gatenavn</option>
+					<option value="area">Område</option>
+				</select></label>
 			</th>
 		</tr>
-	{#each $jobs as theJob, i}
-		{#if filter(freeTextFilter, {smallActive, mediumActive, bigActive},
-			{monActive, tueActive, wedActive, thuActive, dayFilterExclusive}, typeFilter,
-			qualityFilter,
-			hideDoneJobs, drivers, theJob, cols)
-		}
-			<RenderJob
-				itemData={theJob}
-				prefs={prefs}
-				itemSelected={selectedItems.indexOf(theJob[cols.JOBNR]) > -1}
-				on:select={e => updatedSelectedList(e)}
-			/>
-		{/if}
+	{#each $jobs as theJob (theJob[$cols.JOBNR])}
+		{#key theJob.selected}
+		<RenderJob
+			job={theJob}
+			days={theJob[$cols.PICKUP_DAYS]}
+			quality={theJob[$cols.QUALITY]}
+			cols={$cols}
+			on:select={e => updateSelectedList(e)}
+		/>
+		{/key}
 	{/each}
 	<col class="jobnr" />
 	<col class="address" />
@@ -367,10 +398,10 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 </table>
 
 <p>
-	Antall jobber totalt: {$jobs.length}.
-	Hentes nå: {$jobs.filter(item => item[cols.STATUS] === 'Hentes').length}
-	Hentet: {$jobs.filter(item => item[cols.STATUS] === 'Hentet').length}
-	Hentes ikke: {$jobs.filter(item => item[cols.STATUS] === 'Hentes ikke').length}
+	Antall jobber totalt: {$jobsData.length}.
+	Hentes nå: {$jobsData.filter(item => item[$cols.STATUS] === 'Hentes').length}
+	Hentet: {$jobsData.filter(item => item[$cols.STATUS] === 'Hentet').length}
+	Hentes ikke: {$jobsData.filter(item => item[$cols.STATUS] === 'Hentes ikke').length}
 </p>
 
 {#if smsEditorType}
@@ -386,17 +417,17 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 				sendSms(e.detail.recipients, e.detail.message)
 				.then(() => {
 					flashMessage('SMS sendt til ' + e.detail.recipients );
-					return Promise.all(selectedItems.map(item => {
-						const job = $jobs.find(job => job[cols.JOBNR] === item);
+					return Promise.all($selectedIds.map(item => {
+						const job = $jobs.find(job => job[$cols.JOBNR] === item);
 						if (e.detail.smsEditorType === 'worker') {
-							return changeJobDetails(item, cols, {[cols.STATUS]: 'Sendt til henter'});
-						} else if (e.detail.smsEditorType === 'donor' && job && ['', 'Ny'].includes(job[cols.STATUS])) {
-							return changeJobDetails(item, cols, {[cols.STATUS]: 'Kontaktet'});
+							return changeJobDetails(item, $cols, {[$cols.STATUS]: 'Sendt til henter', [$cols.ASSIGNEE]: e.detail.recipients[0]});
+						} else if (e.detail.smsEditorType === 'donor' && job && ['', 'Ny'].includes(job[$cols.STATUS])) {
+							return changeJobDetails(item, $cols, {[$cols.STATUS]: 'Kontaktet'});
 						}
 						return Promise.resolve();
 					}))
 					.then(() => {
-						selectedItems.length = 0;
+						selectedIds.set([]);
 					})
 				})
 				.catch(err => flashMessage(err, true));
@@ -430,12 +461,14 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 			}}
 			on:statusupdate={e => {
 				if (e.detail.newState) {
-					selectedItems.forEach(item => {
-						let data = $jobs.find(job => job[cols.JOBNR] === item);
-						if (data[cols.ASSIGNEE]) {
-							return; // don't update state behind assignee's back..
+					$selectedIds.forEach(item => {
+						let data = $jobs.find(job => job[$cols.JOBNR] === item);
+						if (data[$cols.ASSIGNEE] && data[$cols.STATUS] === 'Hentes') {
+							if(!confirm(`Vil du endre status for ${data[$cols.ADDRESS]} selv om den er akseptert av en henter?`)) {
+								return; // don't update state behind assignee's back..
+							}
 						}
-						changeJobDetails(item, cols, {[cols.STATUS]: e.detail.newState});
+						changeJobDetails(item, $cols, {[$cols.STATUS]: e.detail.newState});
 					});
 				}
 				showStateEditor = false;
@@ -447,6 +480,8 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 {:catch error}
 	<p style="color: red">{error.message}</p>
 {/await}
+</div>
+
 <Menu
 	show={showMenu}
 	x={menuX}
@@ -489,7 +524,7 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 		},
 		{
 			label: 'Fjern merking', icon: '/images/nocheck.png',
-			action: e => (showConfigMenu = false, selectedItems.length = 0)
+			action: e => (showConfigMenu = false, $selectedIds.length = 0)
 		},
 		{
 			label: 'Tom SMS', icon: '/images/sms.png',
@@ -501,5 +536,21 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 {#each tempMsgQueue as msg, idx}
 	<FlashMessage {...msg} index={idx} />
 {/each}
+
+{ #if googleMapsLoaded && $showMap}
+<div class="gmap">
+<JobsMap
+  jobs={jobs}
+  googleMapsToken={prefs.googleMapsToken}
+  cols={$cols}
+  on:select={e => updateSelectedList(e)}
+  on:boundschange={e => bounds.set(e.detail.bounds)}
+>
+</JobsMap>
+</div>
+{ /if }
+<div class="mapButton">
+	<button on:click={e => showMap.set(!$showMap)} type="button">{$showMap ? 'Skjul kart' : 'Vis kart'}</button>
+</div>
 
 </div>

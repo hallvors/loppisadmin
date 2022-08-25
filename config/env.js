@@ -1,6 +1,7 @@
 const nconf = require('nconf');
 const {parse} = require('csv-parse/sync');
 const fs = require('fs');
+const utmgeoconv = require('utmgeoconv');
 
 nconf.env('__').argv();
 nconf.add('defaults', {type: 'file', file: `${__dirname}/defaults.json`});
@@ -17,7 +18,16 @@ for(let i=0, data = parse(csvData, {
 	columns: false,
 	skip_empty_lines: true
   }); i<data.length; i++) {
-	osloData[(data[i][0] + ' ' + data[i][1]).toLowerCase()] = data[i][2];
+	osloData[(data[i][0] + ' ' + data[i][1]).toLowerCase()] = Object.assign({
+		area: data[i][2]
+	},
+    utmgeoconv.utmToLatLon(
+		33,
+		'n',
+		data[i][4], // east
+		data[i][3], // north
+	  )
+	);
   };
 
 module.exports = {
