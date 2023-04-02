@@ -51,7 +51,7 @@ function getFullList(force) {
 			let promises = [];
 			let processed = result.map((row, idx) => {
 				const out = row._rawData;
-				const rowChanged = false;
+				let rowChanged = false;
 				if (!out[env.cols.JOBNR]) {
 					row[headers[env.cols.JOBNR]] = out[env.cols.JOBNR] =
 						idx + 1;
