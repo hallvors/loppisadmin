@@ -31,16 +31,20 @@ router.get("/login", (req, res, next) => {
       path: "/",
     });
     // something about Express or Safari not accepting a cookie during a redirect..?
-    res.send(`<html><meta http-equiv="refresh" content="1; url=/" />
+    res.send(`<html><meta http-equiv="refresh" content="1; url=${
+      payload.url || "/"
+    }" />
 		<p>
-		Du er nå logget inn og sendes videre til <a href="/">Loppis-admin</a>
+		Du er nå logget inn og sendes videre til <a href="${
+      payload.url || "/"
+    }">Loppis-admin</a>
 		</p>
 		</html>`);
     res.end();
     return;
   }
   res.status(401);
-  throw new Error("not allowed");
+  next(new Error("not allowed"));
 });
 // Note that /prefs is available without authentication
 // The Google maps token is not very secret, but don't
@@ -72,14 +76,19 @@ router.post("/letmein", (req, res, next) => {
     FROM,
     `Ber om tilgang til loppisadmin: +${phone}
 
-${baseUrl}/api/sendadminlink?to=${encodeURIComponent(phone)}&token=${jwt.sign(
-      { loppislogin: true },
+${baseUrl}/api/login?token=${jwt.sign(
+      {
+        loppislogin: true,
+        url: `/api/sendadminlink?to=${encodeURIComponent(phone)}`,
+      },
       authTokenSecret,
       { expiresIn: "14 days" }
     )}
 		`
   ).then(() => {
-    res.send("Forespørsel sendt...");
+    res.send(
+      'Forespørsel sendt, du mottar etterhvert lenke på SMS... <a href="/">Tilbake</a>'
+    );
   });
 });
 
@@ -100,7 +109,7 @@ router.get("/sendadminlink", (req, res, next) => {
   const msg = `Innloggingslenke, gyldig i 14 dager:
 ${baseUrl}/api/login?token=${token}`;
   return sendSMS(req.query.to, FROM, msg).then(() => {
-    res.send("Lenke sendt...");
+    res.send("Lenke sendt...  <a href="/">Videre til admin</a>");
   });
 });
 

@@ -482,7 +482,7 @@ body {
 	{#if error.message === 'Ingen tilgang'}
 		<form method="post" action="/api/letmein">
 			<p>Send forespørsel om tilgang</p>
-			<label>Mobilnummer: <input type="text" pattern="\d+" name="phone"></label><button type="submit">Send</button>
+			<label>Mobilnummer: <input type="text" pattern="\\d+" name="phone"></label><button type="submit">Send</button>
 		</form>
 	{/if}
 {/await}
