@@ -109,7 +109,7 @@ router.get("/sendadminlink", (req, res, next) => {
   const msg = `Innloggingslenke, gyldig i 14 dager:
 ${baseUrl}/api/login?token=${token}`;
   return sendSMS(req.query.to, FROM, msg).then(() => {
-    res.send("Lenke sendt...  <a href="/">Videre til admin</a>");
+    res.send("Lenke sendt...  <a href=\"/\">Videre til admin</a>");
   });
 });
 
