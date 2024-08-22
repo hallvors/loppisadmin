@@ -299,18 +299,25 @@ jobs.subscribe(data => {console.log('updated data! ', data)})
 	bottom: 50%;
 }
 .gmap {
-	position: fixed;
-	bottom: 0;
-	height: 45vh;
+	height: 50vh;
 	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
 }
+/* if screen is wider than tall, make the map a bit more square-ish
+It is easier to use it to filter for a particular area if it is square.
+A rectangular map always includes jobs that are west or east of the target.
+*/
+@media screen and (orientation: landscape) {
+	.gmap {
+		width: 75vh;
+	}
+}
+
 body {
 	margin-bottom: 45vh;
 }
 .mapButton {
-	position: fixed;
-	bottom: 0;
-	width: 100%;
 	text-align: center;
 	font-size: larger;
 	padding: .5em;
@@ -376,6 +383,26 @@ body {
 					<option value="area">Område</option>
 				</select></label>
 			</th>
+		</tr>
+		<tr>
+			<td colspan="7">
+				<div class="mapButton">
+					<button on:click={e => showMap.set(!$showMap)} type="button">{$showMap ? 'Skjul kart' : 'Vis kart'}</button>
+				</div>
+
+				{ #if googleMapsLoaded && $showMap}
+				<div class="gmap">
+				<JobsMap
+				  jobs={jobs}
+				  googleMapsToken={prefs.googleMapsToken}
+				  cols={$cols}
+				  on:select={e => updateSelectedList(e)}
+				  on:boundschange={e => console.log(e.detail.bounds) || bounds.set(e.detail.bounds)}
+				>
+				</JobsMap>
+				</div>
+				{ /if }
+			</td>
 		</tr>
 	{#each $jobs as theJob (theJob[$cols.JOBNR])}
 		{#key theJob.selected}
@@ -542,21 +569,5 @@ body {
 {#each tempMsgQueue as msg, idx}
 	<FlashMessage {...msg} index={idx} />
 {/each}
-
-{ #if googleMapsLoaded && $showMap}
-<div class="gmap">
-<JobsMap
-  jobs={jobs}
-  googleMapsToken={prefs.googleMapsToken}
-  cols={$cols}
-  on:select={e => updateSelectedList(e)}
-  on:boundschange={e => bounds.set(e.detail.bounds)}
->
-</JobsMap>
-</div>
-{ /if }
-<div class="mapButton">
-	<button on:click={e => showMap.set(!$showMap)} type="button">{$showMap ? 'Skjul kart' : 'Vis kart'}</button>
-</div>
 
 </div>

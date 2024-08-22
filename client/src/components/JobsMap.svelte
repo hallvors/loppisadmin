@@ -80,8 +80,8 @@ jobs.subscribe(data => {
 
   <style>
     .map-parent {
-        width: 100vw;
-        height: 45vh;
+        width: 100%;
+        height: 100%;
     }
     </style>
 
