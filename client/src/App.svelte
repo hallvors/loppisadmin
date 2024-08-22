@@ -169,16 +169,24 @@
 			smsEditorType = type;
 		} else {
 			possibleRecipients = $drivers;
-			message = 'Hei, foreslår at du henter følgende jobb(er): \n\n' +
+			message = 'Hei, foreslår at du henter følgende ' +
+				(items.length > 1 ? items.length + ' ' : '') +
+				'jobb'+ (items.length > 1 ? 'er' : '') +': \n\n' +
 				items.map(item => `${item[$cols.ADDRESS]}
 ${item[$cols.CONTACT_PERSON]}, ${item[$cols.PHONE]}`)
 				.join('\n\n');
 			message += `
 
-Merk jobber som hentet her etterpå:
+Husk å ringe givere før henting.
+
+Merk jobber som akseptert her:
+
 ${baseUrl}/henting/?jobb=${
 	encodeURIComponent(items.map(item => getIdFromUrl(item[$cols.JOBNR])).join(','))
-}&token=${encodeURIComponent(helperToken)}&henter={number}`;
+}&token=${encodeURIComponent(helperToken)}&henter={number}
+
+Husk å merke dem som hentet når du er ferdig!
+`;
 			smsEditorType = type;
 		}
 	}
