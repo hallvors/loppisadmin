@@ -200,7 +200,7 @@ jobsData.subscribe(data => {console.log('updated data! ', data)})
 							<em transition:fade><br>★ ★ ☺  Takk for at du hentet!  ☺ ★ ★</em>
 						{/if}
 					{/if}
-					{#if job[prefs.cols.ASSIGNEE] && job[prefs.cols.ASSIGNEE] !== params.henter}
+					{#if job[prefs.cols.ASSIGNEE] && job[prefs.cols.ASSIGNEE] !== params.henter && job[prefs.cols.STATUS] === 'Hentes'}
 						<br>
 						<em><b>Merk: jobben er akseptert av en annen. Sjekk med <a href={'tel:' + normalizeNumber(job[prefs.cols.ASSIGNEE])}>{normalizeNumber(job[prefs.cols.ASSIGNEE])}</a> om du vurderer å hente.</b></em>
 					{/if}
