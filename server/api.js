@@ -23,11 +23,11 @@ router.get("/login", (req, res, next) => {
   }
   if (payload && payload.loppislogin) {
     let token = jwt.sign({ admin: true }, authTokenSecret, {
-      expiresIn: "2 days",
+      expiresIn: "14 days",
     });
     res.cookie("adminJwt", token, {
       httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24 * 2,
+      maxAge: 1000 * 60 * 60 * 24 * 14,
       path: "/",
     });
     // something about Express or Safari not accepting a cookie during a redirect..?
