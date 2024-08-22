@@ -42,6 +42,13 @@ function statusVerbString(state) {
 	return state === 'Hentet' ? 'hentet' : 'henter nå';
 }
 
+function removeAssignee() {
+	if (confirm('Vil du fjerne henter-informasjon fra denne jobben? Merk at henteren ikke får noen beskjed om dette automatisk.')){
+		return changeJobDetails(job[cols.JOBNR], cols, {[cols.STATUS]: 'Ny', [cols.ASSIGNEE]: ''})
+		.catch(err => alert(err));
+	}
+}
+
 </script>
 <style>
 	.job {
@@ -191,6 +198,7 @@ small.area {
 {#if job[cols.ASSIGNEE]}
 	<div class="hentesav"><a href="tel:{normalizeNumber(job[cols.ASSIGNEE])}">
 		{getDriverName(job[cols.ASSIGNEE])}</a> {statusVerbString(job[cols.STATUS])}
+		<button on:click|stopPropagation={evt => removeAssignee(evt)}>❌</button>
 	</div>
 {/if}
 </td>
