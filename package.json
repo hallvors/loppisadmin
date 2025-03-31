@@ -10,7 +10,9 @@
     "start": "sirv client --single",
     "prod": "NODE_ENV=production node index.js",
     "start:dev": "sirv client --single --dev",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scaleway:build": "docker build --platform=linux/amd64 -t loppisadmin -t rg.fr-par.scw.cloud/funcscwnsloppisadmingktoqaga/loppisadmin:latest .",
+    "scaleway:push": "docker push rg.fr-par.scw.cloud/funcscwnsloppisadmingktoqaga/loppisadmin:latest"
   },
   "author": "Hallvord Reiar Michaelsen Steen <hallvord@hallvord.com>",
   "license": "ISC",

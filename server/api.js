@@ -72,7 +72,7 @@ router.post("/letmein", (req, res, next) => {
     return next(new Error("Krever gyldig mobilnummer"));
   }
   return sendSMS(
-    env.nconf.get("sms:adminnumber"),
+    phone,
     FROM,
     `Ber om tilgang til loppisadmin: +${phone}
 
@@ -82,7 +82,7 @@ ${baseUrl}/api/login?token=${jwt.sign(
         url: `/api/sendadminlink?to=${encodeURIComponent(phone)}`,
       },
       authTokenSecret,
-      { expiresIn: "14 days" }
+      { expiresIn: "1 days" }
     )}
 		`
   ).then(() => {

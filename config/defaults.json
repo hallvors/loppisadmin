@@ -3,7 +3,7 @@
 		"apiurl": "https://api.smsapi.com/sms.do"
 	},
 	"site": {
-		"baseUrl": "https://loppis-admin.herokuapp.com"
+		"baseUrl": "https://henteadmin.ibkorps.no"
 	},
 	"types": [
 		"Møbler",

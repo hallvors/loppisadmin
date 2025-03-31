@@ -1,28 +1,27 @@
-const Promise = require('bluebird');
 const env = require('../../config/env');
 const TOKEN = env.nconf.get('sms:token');
 const URL = env.nconf.get('sms:apiurl');
-const rp = require('request-promise');
 
 const isTest = false;
 
 function send(number, sender, message, param1) {
+	console.log({message});
+	const params = new URLSearchParams({
+			to: number,
+			from: sender,
+			message,
+			param1,
+			format: 'json',
+			test: isTest ? 1 : 0
+		});
 	let options = {
-		uri: URL,
+		method: 'POST',
 		headers: {
 			'Authorization': 'Bearer ' + TOKEN
 		},
-		qs: {
-			from: sender,
-			to: number,
-			message,
-			param1,
-			format: 'json'
-		},
-		json: true,
-		test: isTest ? 1 : 0
 	}
-	return rp(options);
+	console.log(`${URL}?${params.toString()}`)
+	return fetch(`${URL}?${params.toString()}`, options);
 }
 
 module.exports = {
