@@ -121,4 +121,5 @@ function addMessage(name) {
 			<button on:click={e => dispatch('cancel')} class="p8 br2" type="button">Avbryt</button>
 		</span>
 	</p>
+	<p><small>Merk: meldinger kan ikke besvares, men får automatisk en etterskrift som ber om at svar sendes til loppetelefon-nummeret.</small></p>
 </form>

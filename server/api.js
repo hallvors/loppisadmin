@@ -163,7 +163,7 @@ router.post("/sendsms", (req, res, next) => {
     res.end();
     return;
   }
-  return sendSMS(req.body.to, req.body.from, req.body.message, req.body.param1)
+  return sendSMS(req.body.to, req.body.from, `${req.body.message}\n\nVIKTIG: for å svare, send melding til 41238002`, req.body.param1)
     .then((result) => {
       res.json(result);
     })
