@@ -82,7 +82,7 @@ ${baseUrl}/api/login?token=${jwt.sign(
         url: `/api/sendadminlink?to=${encodeURIComponent(phone)}`,
       },
       authTokenSecret,
-      { expiresIn: "1 days" }
+      { expiresIn: "1 hour" }
     )}
 		`
   ).then(() => {
@@ -97,16 +97,16 @@ router.use(requireValidSessionOrToken);
 
 router.get("/helpertoken", (req, res, next) => {
   let token = jwt.sign({ helper: true }, authTokenSecret, {
-    expiresIn: "3 days",
+    expiresIn: "5 days",
   });
   res.json({ token });
 });
 
 router.get("/sendadminlink", (req, res, next) => {
   let token = jwt.sign({ loppislogin: true }, authTokenSecret, {
-    expiresIn: "14 days",
+    expiresIn: "21 days",
   });
-  const msg = `Innloggingslenke, gyldig i 14 dager:
+  const msg = `Innloggingslenke, gyldig i 21 dager:
 ${baseUrl}/api/login?token=${token}`;
   return sendSMS(req.query.to, FROM, msg).then(() => {
     res.send("Lenke sendt...  <a href=\"/\">Videre til admin</a>");
