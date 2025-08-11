@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const { getFullList, update } = require("./utils/google_client");
 const { requireValidSessionOrToken } = require("./utils/middleware");
 const sendSMS = require("./utils/smsapi_client").send;
-const FROM = "4741238002";
+const FROM = "IBKorps";
 const baseUrl = env.nconf.get("site:baseUrl");
 
 router.get("/login", (req, res, next) => {
