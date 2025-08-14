@@ -158,12 +158,12 @@ router.post("/update/:jobnr", (req, res, next) => {
 });
 
 router.post("/sendsms", (req, res, next) => {
-  if (!(req.body.to && req.body.from && req.body.message)) {
+  if (!(req.body.to && req.body.message)) {
     res.status("401");
     res.end();
     return;
   }
-  return sendSMS(req.body.to, req.body.from, `${req.body.message}\n\nVIKTIG: for å svare, send melding til 41238002`, req.body.param1)
+  return sendSMS(req.body.to, FROM, `${req.body.message}\n\nVIKTIG: for å svare, send melding til 41238002`, req.body.param1)
     .then((result) => {
       res.json(result);
     })
