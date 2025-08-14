@@ -54,6 +54,7 @@ function addMessage(name) {
 		width: 100%;
 		margin-top: 8px;
 	}
+	.caption {display:  table-caption;}
 	span {
 		display: table-cell;
 		vertical-align: top;
@@ -121,5 +122,5 @@ function addMessage(name) {
 			<button on:click={e => dispatch('cancel')} class="p8 br2" type="button">Avbryt</button>
 		</span>
 	</p>
-	<p><small>Merk: meldinger kan ikke besvares, men får automatisk en etterskrift som ber om at svar sendes til loppetelefon-nummeret.</small></p>
+	<p class="caption"><small>Merk: meldinger kan ikke besvares, men får automatisk en etterskrift som ber om at svar sendes til loppetelefon-nummeret.</small></p>
 </form>
