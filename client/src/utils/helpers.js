@@ -65,20 +65,13 @@ export function filter(
 
 	let showDay = [
 		//{prop: dayPref.monActive, str: 'Mandag'},
-		{ prop: dayPref.tueActive, str: "Tirsdag" },
-		{ prop: dayPref.wedActive, str: "Onsdag" },
-		{ prop: dayPref.thuActive, str: "Torsdag" },
+		{ prop: dayPref.tueActive, rx: /tirsdag/i },
+		{ prop: dayPref.wedActive, rx: /onsdag/i },
+		{ prop: dayPref.thuActive, rx: /torsdag/i },
 	].map((item) => {
-		if (dayPref.dayFilterExclusive) {
-			return (
-				job[cols.PICKUP_DAYS].indexOf(item.str) >
-					-1 ===
-				item.prop
-			);
-		}
 		return (
 			item.prop &&
-			job[cols.PICKUP_DAYS].indexOf(item.str) > -1
+			item.rx.test(job[cols.PICKUP_DAYS])
 		);
 	});
 	if (dayPref.dayFilterExclusive) {
