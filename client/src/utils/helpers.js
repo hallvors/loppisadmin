@@ -70,8 +70,9 @@ export function filter(
 		{ prop: dayPref.thuActive, rx: /torsdag/i },
 	].map((item) => {
 		return (
-			item.prop &&
-			item.rx.test(job[cols.PICKUP_DAYS])
+			dayPref.dayFilterExclusive ?
+			item.prop === item.rx.test(job[cols.PICKUP_DAYS]) : // "all must be true"-mode
+			item.prop && item.rx.test(job[cols.PICKUP_DAYS]) // "at least one must be true"-mode
 		);
 	});
 	if (dayPref.dayFilterExclusive) {
