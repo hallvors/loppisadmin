@@ -26,12 +26,14 @@
 		"PHONE": 5,
 		"PICKUP_DAYS": 6,
 		"SIZE": 7,
-		"STATUS": 8,
-		"QUALITY": 9,
-		"AREA": 10,
-		"ASSIGNEE": 11,
-		"ADMCOMMENT": 12,
-		"JOBNR": 13,
-		"COORDS": 14
+		"UNUSED_EMAIL": 8,
+		"POSTALCODE": 9,
+		"STATUS": 10,
+		"QUALITY": 11,
+		"AREA": 12,
+		"ASSIGNEE": 13,
+		"ADMCOMMENT": 14,
+		"JOBNR": 15,
+		"COORDS": 16
 	}
 }
