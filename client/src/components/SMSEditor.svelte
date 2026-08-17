@@ -10,7 +10,7 @@ let showQuickReplies = !message;
 const dispatch = createEventDispatcher();
 
 let stdMessages = {
-	'Bekreft data mottatt': 'Hei,\ntakk for at du har sendt inn skjema om loppehenting! :)\n\nVi henter hver kveld mellom 24. og 26. august. Vi kontakter deg på dette nummeret før henting.\n\nVennlig hilsen Ila og Bolteløkka skolekorps',
+	'Bekreft data mottatt': 'Hei,\ntakk for at du har sendt inn skjema om loppehenting! :)\n\nVi henter hver kveld mellom 25. og 27. august. Vi kontakter deg på dette nummeret før henting.\n\nVennlig hilsen Ila og Bolteløkka skolekorps',
 	'Passer det å hente?': 'Hei,\ntakk for at du vil gi korpset lopper. Passer det om noen kommer og henter hos deg snart?\n\nVennlig hilsen Ila og Bolteløkka skolekorps',
 	'Hentes snart': 'Hei,\ntakk for at du vil gi korpset lopper. Vi kommer og henter i kveld, så det er supert om loppene er klare. Hvordan forberede henting? Les gjerne her: http://ibkorps.no/loppemarked\n\nVennlig hilsen Ila og Bolteløkka skolekorps',
 	'Ikke IKEA': 'Hei,\ntakk for at du vil gi korpset lopper! Dessverre har vi dårlig erfaring med å selge IKEA-møbler, så slike vil vi helst ikke ta imot.\n\nVennlig hilsen Ila og Bolteløkka skolekorps',
