@@ -73,4 +73,4 @@ For å rulle ut til Scaleway, kan en bruke denne framgangsmåten:
 
 4. Gå til oversikten over _serverless containers_ https://console.scaleway.com/containers/namespaces/ og velg et navnerom (_namespace_).
 
-5. I prikk-menyen for riktig app, velg _Deploy_ for å bruke det nye Docker-bildet.
+5. I prikk-menyen for riktig app, velg _Restart_ for å bruke det nye Docker-bildet.
